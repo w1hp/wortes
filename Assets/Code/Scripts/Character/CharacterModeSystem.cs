@@ -5,7 +5,11 @@ public partial class CharacterModeSystem : SystemBase
 {
 	Entity inputEntity;
 	InputsData inputsData;
+	CharacterModel characterModel;
 	Mode mode = Mode.Shoot;
+	Entity highlighterEntity;
+	Entity gunEntity;
+
 
 	protected override void OnCreate()
 	{
@@ -19,21 +23,27 @@ public partial class CharacterModeSystem : SystemBase
 	{
 		inputEntity = SystemAPI.GetSingletonEntity<InputsData>();
 		inputsData = SystemAPI.GetComponent<InputsData>(inputEntity);
-
+		
+		characterModel = SystemAPI.GetSingleton<CharacterModel>();
+		gunEntity = characterModel.gun;
+		highlighterEntity = characterModel.highlighter;		
 
 		if (inputsData.switchMode)
 		{
 			if (mode == Mode.Build)
 			{
-				mode = Mode.Shoot;
 				Debug.Log("Shoot Mode");
-
+				mode = Mode.Shoot;
+				EntityManager.AddComponent(highlighterEntity, typeof(Disabled));
+				EntityManager.RemoveComponent<Disabled>(gunEntity);
 			}
 			else
 			{
-				mode = Mode.Build;
 				Debug.Log("Build Mode");
-			} 
+				mode = Mode.Build;
+				EntityManager.AddComponent(gunEntity, typeof(Disabled));
+				EntityManager.RemoveComponent<Disabled>(highlighterEntity);
+			}
 		}
 		SystemAPI.SetSingleton(new CharacterMode
 		{
@@ -43,6 +53,7 @@ public partial class CharacterModeSystem : SystemBase
 
 		if (mode == Mode.Shoot)
 		{
+
 			// TODO : Implement shoot mode
 		}
 		else
