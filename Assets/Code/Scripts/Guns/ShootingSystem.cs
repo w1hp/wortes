@@ -11,6 +11,8 @@ public partial struct ShootingSystem : ISystem
 	//private float timer;
 	Entity inputEntity;
 	InputsData inputsData;
+	Entity characterModeEntity;
+	CharacterMode characterModeData;
 
 	[BurstCompile]
 	public void OnUpdate(ref SystemState state)
@@ -18,32 +20,38 @@ public partial struct ShootingSystem : ISystem
 		inputEntity = SystemAPI.GetSingletonEntity<InputsData>();
 		inputsData = state.EntityManager.GetComponentData<InputsData>(inputEntity);
 
-		if (inputsData.action)
+		characterModeEntity = SystemAPI.GetSingletonEntity<CharacterMode>();
+		characterModeData = state.EntityManager.GetComponentData<CharacterMode>(characterModeEntity);
+
+		if (characterModeData.mode == Mode.Shoot)
 		{
-			//timer -= SystemAPI.Time.DeltaTime;
-			//if (timer > 0)
-			//{
-			//	return;
-			//}
-			//timer = 0.3f;   // reset timer
-
-			var config = SystemAPI.GetSingleton<Config>();
-
-			var ballTransform = state.EntityManager.GetComponentData<LocalTransform>(config.CannonBallPrefab);
-
-			foreach (var (gun, transform) in SystemAPI.Query<RefRO<Gun>, RefRO<LocalToWorld>>())
+			if (inputsData.action)
 			{
-				Entity projectileEntity = state.EntityManager.Instantiate(config.CannonBallPrefab);
+				//timer -= SystemAPI.Time.DeltaTime;
+				//if (timer > 0)
+				//{
+				//	return;
+				//}
+				//timer = 0.3f;   // reset timer
 
-				var barrelTransform = state.EntityManager.GetComponentData<LocalToWorld>(gun.ValueRO.Barrel);
-				ballTransform.Position = barrelTransform.Position;
+				var config = SystemAPI.GetSingleton<Config>();
 
-				state.EntityManager.SetComponentData(projectileEntity, ballTransform);
+				var ballTransform = state.EntityManager.GetComponentData<LocalTransform>(config.CannonBallPrefab);
 
-				state.EntityManager.SetComponentData(projectileEntity, new Projectile
+				foreach (var (gun, transform) in SystemAPI.Query<RefRO<Gun>, RefRO<LocalToWorld>>())
 				{
-					Velocity = math.normalize(barrelTransform.Up) * 12.0f
-				});
+					Entity projectileEntity = state.EntityManager.Instantiate(config.CannonBallPrefab);
+
+					var barrelTransform = state.EntityManager.GetComponentData<LocalToWorld>(gun.ValueRO.Barrel);
+					ballTransform.Position = barrelTransform.Position;
+
+					state.EntityManager.SetComponentData(projectileEntity, ballTransform);
+
+					state.EntityManager.SetComponentData(projectileEntity, new Projectile
+					{
+						Velocity = math.normalize(barrelTransform.Up) * 12.0f
+					});
+				}
 			}
 		}
 	}
