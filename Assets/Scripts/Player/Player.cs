@@ -4,14 +4,14 @@ using Unity.Entities;
 using Unity.Mathematics;
 
 [Serializable]
-public struct PlatformerPlayer : IComponentData
+public struct Player : IComponentData
 {
     public Entity ControlledCharacter;
     public Entity ControlledCamera;
 }
 
 [Serializable]
-public struct PlatformerPlayerInputs : IComponentData
+public struct PlayerInputs : IComponentData
 {
     public float2 Move;
     public float2 Look;

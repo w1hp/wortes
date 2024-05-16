@@ -8,7 +8,7 @@ using Unity.CharacterController;
 using Unity.Physics;
 
 [Serializable]
-public struct PlatformerCharacterComponent : IComponentData
+public struct CharacterComponent : IComponentData
 {
     [Header("References")]
     public Entity DefaultCameraTargetEntity;
@@ -145,7 +145,7 @@ public struct PlatformerCharacterComponent : IComponentData
 }
 
 [Serializable]
-public struct PlatformerCharacterControl : IComponentData
+public struct CharacterControl : IComponentData
 {
     public float3 MoveVector;
     
@@ -161,7 +161,7 @@ public struct PlatformerCharacterControl : IComponentData
     public bool FlyNoCollisionsPressed;
 }
 
-public struct PlatformerCharacterInitialized : IComponentData
+public struct CharacterInitialized : IComponentData
 { }
 
 [Serializable]

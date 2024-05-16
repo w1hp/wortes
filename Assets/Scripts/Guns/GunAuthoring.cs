@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class GunAuthoring : MonoBehaviour
 {
-	public GameObject Barrel;
+	public GameObject Muzzle;
+	public GameObject Bullet;
 	class Baker : Baker<GunAuthoring>
 	{
 		public override void Bake(GunAuthoring authoring)
@@ -13,7 +14,8 @@ public class GunAuthoring : MonoBehaviour
 			var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
 			AddComponent(entity, new Gun
 			{
-				Barrel = GetEntity(authoring.Barrel, TransformUsageFlags.Dynamic)
+				Muzzle = GetEntity(authoring.Muzzle, TransformUsageFlags.Dynamic),
+				Bullet = GetEntity(authoring.Bullet, TransformUsageFlags.Dynamic)
 			});
 		}
 	}
@@ -21,5 +23,6 @@ public class GunAuthoring : MonoBehaviour
 
 public struct Gun : IComponentData
 {
-	public Entity Barrel;
+	public Entity Muzzle;
+	public Entity Bullet;
 }

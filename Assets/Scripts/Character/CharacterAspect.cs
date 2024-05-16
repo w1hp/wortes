@@ -17,7 +17,7 @@ using UnityEngine.SocialPlatforms;
 using CapsuleCollider = Unity.Physics.CapsuleCollider;
 using Material = Unity.Physics.Material;
 
-public struct PlatformerCharacterUpdateContext
+public struct CharacterUpdateContext
 {
     public int ChunkIndex;
     public EntityCommandBuffer.ParallelWriter EndFrameECB;
@@ -45,20 +45,20 @@ public struct PlatformerCharacterUpdateContext
     }
 }
 
-public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCharacterProcessor<PlatformerCharacterUpdateContext>
+public readonly partial struct CharacterAspect : IAspect, IKinematicCharacterProcessor<CharacterUpdateContext>
 {
-    public readonly KinematicCharacterAspect CharacterAspect;
-    public readonly RefRW<PlatformerCharacterComponent> Character;
-    public readonly RefRW<PlatformerCharacterControl> CharacterControl;
-    public readonly RefRW<PlatformerCharacterStateMachine> StateMachine;
+    public readonly KinematicCharacterAspect KinematicCharacterAspect;
+    public readonly RefRW<CharacterComponent> Character;
+    public readonly RefRW<CharacterControl> CharacterControl;
+    public readonly RefRW<CharacterStateMachine> StateMachine;
     public readonly RefRW<CustomGravity> CustomGravity;
 
-    public void PhysicsUpdate(ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext)
+    public void PhysicsUpdate(ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext)
     {
-        ref KinematicCharacterBody characterBody = ref CharacterAspect.CharacterBody.ValueRW;
-        ref PlatformerCharacterComponent character = ref Character.ValueRW;
-        ref PlatformerCharacterControl characterControl = ref CharacterControl.ValueRW;
-        ref PlatformerCharacterStateMachine stateMachine = ref StateMachine.ValueRW;
+        ref KinematicCharacterBody characterBody = ref KinematicCharacterAspect.CharacterBody.ValueRW;
+        ref CharacterComponent character = ref Character.ValueRW;
+        ref CharacterControl characterControl = ref CharacterControl.ValueRW;
+        ref CharacterStateMachine stateMachine = ref StateMachine.ValueRW;
 
         // Common pre-update logic across states
         {
@@ -105,20 +105,20 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
         }
     }
 
-    public void VariableUpdate(ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext)
+    public void VariableUpdate(ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext)
     {
-        ref KinematicCharacterBody characterBody = ref CharacterAspect.CharacterBody.ValueRW;
-        ref PlatformerCharacterStateMachine stateMachine = ref StateMachine.ValueRW;
-        ref quaternion characterRotation = ref CharacterAspect.LocalTransform.ValueRW.Rotation;
+        ref KinematicCharacterBody characterBody = ref KinematicCharacterAspect.CharacterBody.ValueRW;
+        ref CharacterStateMachine stateMachine = ref StateMachine.ValueRW;
+        ref quaternion characterRotation = ref KinematicCharacterAspect.LocalTransform.ValueRW.Rotation;
         
         KinematicCharacterUtilities.AddVariableRateRotationFromFixedRateRotation(ref characterRotation, characterBody.RotationFromParent, baseContext.Time.DeltaTime, characterBody.LastPhysicsUpdateDeltaTime);
         stateMachine.OnStateVariableUpdate(stateMachine.CurrentState, ref context, ref baseContext, in this);
     }
 
-    public bool DetectGlobalTransitions(ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext)
+    public bool DetectGlobalTransitions(ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext)
     {
-        ref PlatformerCharacterStateMachine stateMachine = ref StateMachine.ValueRW;
-        ref PlatformerCharacterControl characterControl = ref CharacterControl.ValueRW;
+        ref CharacterStateMachine stateMachine = ref StateMachine.ValueRW;
+        ref CharacterControl characterControl = ref CharacterControl.ValueRW;
         
         if (stateMachine.CurrentState != CharacterState.Swimming && stateMachine.CurrentState != CharacterState.FlyingNoCollisions)
         {
@@ -150,27 +150,27 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
     }
 
     public void HandlePhysicsUpdatePhase1(
-        ref PlatformerCharacterUpdateContext context,
+        ref CharacterUpdateContext context,
         ref KinematicCharacterUpdateContext baseContext,
         bool allowParentHandling,
         bool allowGroundingDetection)
     {
-        ref KinematicCharacterBody characterBody = ref CharacterAspect.CharacterBody.ValueRW;
-        ref float3 characterPosition = ref CharacterAspect.LocalTransform.ValueRW.Position;
-        
-        CharacterAspect.Update_Initialize(in this, ref context, ref baseContext, ref characterBody, baseContext.Time.DeltaTime);
+        ref KinematicCharacterBody characterBody = ref KinematicCharacterAspect.CharacterBody.ValueRW;
+        ref float3 characterPosition = ref KinematicCharacterAspect.LocalTransform.ValueRW.Position;
+
+		KinematicCharacterAspect.Update_Initialize(in this, ref context, ref baseContext, ref characterBody, baseContext.Time.DeltaTime);
         if (allowParentHandling)
         {
-            CharacterAspect.Update_ParentMovement(in this, ref context, ref baseContext, ref characterBody, ref characterPosition, characterBody.WasGroundedBeforeCharacterUpdate);
+			KinematicCharacterAspect.Update_ParentMovement(in this, ref context, ref baseContext, ref characterBody, ref characterPosition, characterBody.WasGroundedBeforeCharacterUpdate);
         }
         if (allowGroundingDetection)
         {
-            CharacterAspect.Update_Grounding(in this, ref context, ref baseContext, ref characterBody, ref characterPosition);
+			KinematicCharacterAspect.Update_Grounding(in this, ref context, ref baseContext, ref characterBody, ref characterPosition);
         }
     }
 
     public void HandlePhysicsUpdatePhase2(
-        ref PlatformerCharacterUpdateContext context, 
+        ref CharacterUpdateContext context, 
         ref KinematicCharacterUpdateContext baseContext,
         bool allowPreventGroundingFromFutureSlopeChange,
         bool allowGroundingPushing,
@@ -178,37 +178,37 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
         bool allowMovingPlatformDetection,
         bool allowParentHandling)
     {
-        ref PlatformerCharacterComponent character = ref Character.ValueRW;
-        ref KinematicCharacterBody characterBody = ref CharacterAspect.CharacterBody.ValueRW;
-        ref float3 characterPosition = ref CharacterAspect.LocalTransform.ValueRW.Position;
+        ref CharacterComponent character = ref Character.ValueRW;
+        ref KinematicCharacterBody characterBody = ref KinematicCharacterAspect.CharacterBody.ValueRW;
+        ref float3 characterPosition = ref KinematicCharacterAspect.LocalTransform.ValueRW.Position;
         CustomGravity customGravity = CustomGravity.ValueRO;
 
         if (allowPreventGroundingFromFutureSlopeChange)
         {
-            CharacterAspect.Update_PreventGroundingFromFutureSlopeChange(in this, ref context, ref baseContext, ref characterBody, in character.StepAndSlopeHandling);
+			KinematicCharacterAspect.Update_PreventGroundingFromFutureSlopeChange(in this, ref context, ref baseContext, ref characterBody, in character.StepAndSlopeHandling);
         }
         if (allowGroundingPushing)
         {
-            CharacterAspect.Update_GroundPushing(in this, ref context, ref baseContext, customGravity.Gravity);
+			KinematicCharacterAspect.Update_GroundPushing(in this, ref context, ref baseContext, customGravity.Gravity);
         }
         if (allowMovementAndDecollisions)
         {
-            CharacterAspect.Update_MovementAndDecollisions(in this, ref context, ref baseContext, ref characterBody, ref characterPosition);
+			KinematicCharacterAspect.Update_MovementAndDecollisions(in this, ref context, ref baseContext, ref characterBody, ref characterPosition);
         }
         if (allowMovingPlatformDetection)
         {
-            CharacterAspect.Update_MovingPlatformDetection(ref baseContext, ref characterBody);
+			KinematicCharacterAspect.Update_MovingPlatformDetection(ref baseContext, ref characterBody);
         }
         if (allowParentHandling)
         {
-            CharacterAspect.Update_ParentMomentum(ref baseContext, ref characterBody);
+			KinematicCharacterAspect.Update_ParentMomentum(ref baseContext, ref characterBody);
         }
-        CharacterAspect.Update_ProcessStatefulCharacterHits();
+		KinematicCharacterAspect.Update_ProcessStatefulCharacterHits();
     }
 
     public unsafe void SetCapsuleGeometry(CapsuleGeometry capsuleGeometry)
     {
-        ref PhysicsCollider physicsCollider = ref CharacterAspect.PhysicsCollider.ValueRW;
+        ref PhysicsCollider physicsCollider = ref KinematicCharacterAspect.PhysicsCollider.ValueRW;
         
         CapsuleCollider* capsuleCollider = (CapsuleCollider*)physicsCollider.ColliderPtr;
         capsuleCollider->Geometry = capsuleGeometry;
@@ -216,22 +216,22 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
 
     public float3 GetGeometryCenter(CapsuleGeometryDefinition geometry)
     {
-        float3 characterPosition = CharacterAspect.LocalTransform.ValueRW.Position;
-        quaternion characterRotation = CharacterAspect.LocalTransform.ValueRW.Rotation;
+        float3 characterPosition = KinematicCharacterAspect.LocalTransform.ValueRW.Position;
+        quaternion characterRotation = KinematicCharacterAspect.LocalTransform.ValueRW.Rotation;
 
         RigidTransform characterTransform = new RigidTransform(characterRotation, characterPosition);
         float3 geometryCenter = math.transform(characterTransform, geometry.Center);
         return geometryCenter;
     }
 
-    public unsafe bool CanStandUp(ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext)
+    public unsafe bool CanStandUp(ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext)
     {
-        ref PhysicsCollider physicsCollider = ref CharacterAspect.PhysicsCollider.ValueRW;
-        ref PlatformerCharacterComponent character = ref Character.ValueRW;
-        ref float3 characterPosition = ref CharacterAspect.LocalTransform.ValueRW.Position;
-        ref quaternion characterRotation = ref CharacterAspect.LocalTransform.ValueRW.Rotation;
-        float characterScale = CharacterAspect.LocalTransform.ValueRO.Scale;
-        ref KinematicCharacterProperties characterProperties = ref CharacterAspect.CharacterProperties.ValueRW;
+        ref PhysicsCollider physicsCollider = ref KinematicCharacterAspect.PhysicsCollider.ValueRW;
+        ref CharacterComponent character = ref Character.ValueRW;
+        ref float3 characterPosition = ref KinematicCharacterAspect.LocalTransform.ValueRW.Position;
+        ref quaternion characterRotation = ref KinematicCharacterAspect.LocalTransform.ValueRW.Rotation;
+        float characterScale = KinematicCharacterAspect.LocalTransform.ValueRO.Scale;
+        ref KinematicCharacterProperties characterProperties = ref KinematicCharacterAspect.CharacterProperties.ValueRW;
         
         // Overlap test with standing geometry to see if we have space to stand
         CapsuleCollider* capsuleCollider = ((CapsuleCollider*)physicsCollider.ColliderPtr);
@@ -240,7 +240,7 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
         capsuleCollider->Geometry = character.StandingGeometry.ToCapsuleGeometry();
 
         bool isObstructed = false;
-        if (CharacterAspect.CalculateDistanceClosestCollisions(
+        if (KinematicCharacterAspect.CalculateDistanceClosestCollisions(
                 in this,
                 ref context,
                 ref baseContext,
@@ -285,23 +285,23 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
         };
     }
 
-    public static void GetCommonMoveVectorFromPlayerInput(in PlatformerPlayerInputs inputs, quaternion cameraRotation, out float3 moveVector)
+    public static void GetCommonMoveVectorFromPlayerInput(in PlayerInputs inputs, quaternion cameraRotation, out float3 moveVector)
     {
         moveVector = (math.mul(cameraRotation, math.right()) * inputs.Move.x) + (math.mul(cameraRotation, math.forward()) * inputs.Move.y);
     }
     
     #region Character Processor Callbacks
     public void UpdateGroundingUp(
-        ref PlatformerCharacterUpdateContext context,
+        ref CharacterUpdateContext context,
         ref KinematicCharacterUpdateContext baseContext)
     {
-        ref KinematicCharacterBody characterBody = ref CharacterAspect.CharacterBody.ValueRW;
-        
-        CharacterAspect.Default_UpdateGroundingUp(ref characterBody);
+        ref KinematicCharacterBody characterBody = ref KinematicCharacterAspect.CharacterBody.ValueRW;
+
+		KinematicCharacterAspect.Default_UpdateGroundingUp(ref characterBody);
     }
     
     public bool CanCollideWithHit(
-        ref PlatformerCharacterUpdateContext context, 
+        ref CharacterUpdateContext context, 
         ref KinematicCharacterUpdateContext baseContext,
         in BasicHit hit)
     {
@@ -309,14 +309,14 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
     }
 
     public bool IsGroundedOnHit(
-        ref PlatformerCharacterUpdateContext context, 
+        ref CharacterUpdateContext context, 
         ref KinematicCharacterUpdateContext baseContext,
         in BasicHit hit, 
         int groundingEvaluationType)
     {
-        PlatformerCharacterComponent characterComponent = Character.ValueRO;
+        CharacterComponent characterComponent = Character.ValueRO;
         
-        return CharacterAspect.Default_IsGroundedOnHit(
+        return KinematicCharacterAspect.Default_IsGroundedOnHit(
             in this,
             ref context,
             ref baseContext,
@@ -326,7 +326,7 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
     }
 
     public void OnMovementHit(
-            ref PlatformerCharacterUpdateContext context,
+            ref CharacterUpdateContext context,
             ref KinematicCharacterUpdateContext baseContext,
             ref KinematicCharacterHit hit,
             ref float3 remainingMovementDirection,
@@ -334,11 +334,11 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
             float3 originalVelocityDirection,
             float hitDistance)
     {
-        ref KinematicCharacterBody characterBody = ref CharacterAspect.CharacterBody.ValueRW;
-        ref float3 characterPosition = ref CharacterAspect.LocalTransform.ValueRW.Position;
-        PlatformerCharacterComponent characterComponent = Character.ValueRO;
-        
-        CharacterAspect.Default_OnMovementHit(
+        ref KinematicCharacterBody characterBody = ref KinematicCharacterAspect.CharacterBody.ValueRW;
+        ref float3 characterPosition = ref KinematicCharacterAspect.LocalTransform.ValueRW.Position;
+        CharacterComponent characterComponent = Character.ValueRO;
+
+		KinematicCharacterAspect.Default_OnMovementHit(
             in this,
             ref context,
             ref baseContext,
@@ -355,7 +355,7 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
     }
 
     public void OverrideDynamicHitMasses(
-        ref PlatformerCharacterUpdateContext context,
+        ref CharacterUpdateContext context,
         ref KinematicCharacterUpdateContext baseContext,
         ref PhysicsMass characterMass,
         ref PhysicsMass otherMass,
@@ -364,7 +364,7 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
     }
 
     public void ProjectVelocityOnHits(
-        ref PlatformerCharacterUpdateContext context,
+        ref CharacterUpdateContext context,
         ref KinematicCharacterUpdateContext baseContext,
         ref float3 velocity,
         ref bool characterIsGrounded,
@@ -372,9 +372,9 @@ public readonly partial struct PlatformerCharacterAspect : IAspect, IKinematicCh
         in DynamicBuffer<KinematicVelocityProjectionHit> velocityProjectionHits,
         float3 originalVelocityDirection)
     {
-        PlatformerCharacterComponent characterComponent = Character.ValueRO;
-        
-        CharacterAspect.Default_ProjectVelocityOnHits(
+        CharacterComponent characterComponent = Character.ValueRO;
+
+		KinematicCharacterAspect.Default_ProjectVelocityOnHits(
             ref velocity,
             ref characterIsGrounded,
             ref characterGroundHit,

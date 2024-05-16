@@ -4,17 +4,17 @@ using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
 
-public struct LedgeStandingUpState : IPlatformerCharacterState
+public struct LedgeStandingUpState : ICharacterState
 {
     public float3 StandingPoint;
     
     private bool ShouldExitState;
 
-    public void OnStateEnter(CharacterState previousState, ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in PlatformerCharacterAspect aspect)
+    public void OnStateEnter(CharacterState previousState, ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in CharacterAspect aspect)
     {
-        ref KinematicCharacterBody characterBody = ref aspect.CharacterAspect.CharacterBody.ValueRW;
-        ref KinematicCharacterProperties characterProperties = ref aspect.CharacterAspect.CharacterProperties.ValueRW;
-        ref PlatformerCharacterComponent character = ref aspect.Character.ValueRW;
+        ref KinematicCharacterBody characterBody = ref aspect.KinematicCharacterAspect.CharacterBody.ValueRW;
+        ref KinematicCharacterProperties characterProperties = ref aspect.KinematicCharacterAspect.CharacterProperties.ValueRW;
+        ref CharacterComponent character = ref aspect.Character.ValueRW;
         
         aspect.SetCapsuleGeometry(character.StandingGeometry.ToCapsuleGeometry());
         
@@ -28,21 +28,21 @@ public struct LedgeStandingUpState : IPlatformerCharacterState
         ShouldExitState = false;
     }
 
-    public void OnStateExit(CharacterState nextState, ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in PlatformerCharacterAspect aspect)
+    public void OnStateExit(CharacterState nextState, ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in CharacterAspect aspect)
     {
-        ref KinematicCharacterBody characterBody = ref aspect.CharacterAspect.CharacterBody.ValueRW;
-        ref KinematicCharacterProperties characterProperties = ref aspect.CharacterAspect.CharacterProperties.ValueRW;
+        ref KinematicCharacterBody characterBody = ref aspect.KinematicCharacterAspect.CharacterBody.ValueRW;
+        ref KinematicCharacterProperties characterProperties = ref aspect.KinematicCharacterAspect.CharacterProperties.ValueRW;
         
         characterProperties.EvaluateGrounding = true;
         characterProperties.DetectMovementCollisions = true;
         characterProperties.DecollideFromOverlaps = true;
 
-        aspect.CharacterAspect.SetOrUpdateParentBody(ref baseContext, ref characterBody, default, default); 
+        aspect.KinematicCharacterAspect.SetOrUpdateParentBody(ref baseContext, ref characterBody, default, default); 
     }
 
-    public void OnStatePhysicsUpdate(ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in PlatformerCharacterAspect aspect)
+    public void OnStatePhysicsUpdate(ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in CharacterAspect aspect)
     {
-        ref float3 characterPosition = ref aspect.CharacterAspect.LocalTransform.ValueRW.Position;
+        ref float3 characterPosition = ref aspect.KinematicCharacterAspect.LocalTransform.ValueRW.Position;
         
         aspect.HandlePhysicsUpdatePhase1(ref context, ref baseContext, true, false);
 
@@ -56,26 +56,26 @@ public struct LedgeStandingUpState : IPlatformerCharacterState
         DetectTransitions(ref context, ref baseContext, in aspect);
     }
 
-    public void OnStateVariableUpdate(ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in PlatformerCharacterAspect aspect)
+    public void OnStateVariableUpdate(ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in CharacterAspect aspect)
     {
 
     }
 
-    public void GetCameraParameters(in PlatformerCharacterComponent character, out Entity cameraTarget, out bool calculateUpFromGravity)
+    public void GetCameraParameters(in CharacterComponent character, out Entity cameraTarget, out bool calculateUpFromGravity)
     {
         cameraTarget = character.DefaultCameraTargetEntity;
         calculateUpFromGravity = true;
     }
 
-    public void GetMoveVectorFromPlayerInput(in PlatformerPlayerInputs inputs, quaternion cameraRotation, out float3 moveVector)
+    public void GetMoveVectorFromPlayerInput(in PlayerInputs inputs, quaternion cameraRotation, out float3 moveVector)
     {
-        PlatformerCharacterAspect.GetCommonMoveVectorFromPlayerInput(in inputs, cameraRotation, out moveVector);
+        CharacterAspect.GetCommonMoveVectorFromPlayerInput(in inputs, cameraRotation, out moveVector);
     }
 
-    public bool DetectTransitions(ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in PlatformerCharacterAspect aspect)
+    public bool DetectTransitions(ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in CharacterAspect aspect)
     {
-        ref KinematicCharacterBody characterBody = ref aspect.CharacterAspect.CharacterBody.ValueRW;
-        ref PlatformerCharacterStateMachine stateMachine = ref aspect.StateMachine.ValueRW;
+        ref KinematicCharacterBody characterBody = ref aspect.KinematicCharacterAspect.CharacterBody.ValueRW;
+        ref CharacterStateMachine stateMachine = ref aspect.StateMachine.ValueRW;
         
         if (ShouldExitState)
         {

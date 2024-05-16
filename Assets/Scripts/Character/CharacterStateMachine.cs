@@ -6,7 +6,7 @@ using Unity.Mathematics;
 using UnityEngine;
 
 [Serializable]
-public struct PlatformerCharacterStateMachine : IComponentData
+public struct CharacterStateMachine : IComponentData
 {
     public CharacterState CurrentState;
     public CharacterState PreviousState;
@@ -24,7 +24,7 @@ public struct PlatformerCharacterStateMachine : IComponentData
     public FlyingNoCollisionsState FlyingNoCollisionsState;
     public RopeSwingState RopeSwingState;
 
-    public void TransitionToState(CharacterState newState, ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in PlatformerCharacterAspect aspect)
+    public void TransitionToState(CharacterState newState, ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in CharacterAspect aspect)
     {
         PreviousState = CurrentState;
         CurrentState = newState;
@@ -33,7 +33,7 @@ public struct PlatformerCharacterStateMachine : IComponentData
         OnStateEnter(CurrentState, PreviousState, ref context, ref baseContext, in aspect);
     }
 
-    public void OnStateEnter(CharacterState state, CharacterState previousState, ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in PlatformerCharacterAspect aspect)
+    public void OnStateEnter(CharacterState state, CharacterState previousState, ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in CharacterAspect aspect)
     {
         switch (state)
         {
@@ -76,7 +76,7 @@ public struct PlatformerCharacterStateMachine : IComponentData
         }
     }
 
-    public void OnStateExit(CharacterState state, CharacterState newState, ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in PlatformerCharacterAspect aspect)
+    public void OnStateExit(CharacterState state, CharacterState newState, ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in CharacterAspect aspect)
     {
         switch (state)
         {
@@ -119,7 +119,7 @@ public struct PlatformerCharacterStateMachine : IComponentData
         }
     }
 
-    public void OnStatePhysicsUpdate(CharacterState state, ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in PlatformerCharacterAspect aspect)
+    public void OnStatePhysicsUpdate(CharacterState state, ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in CharacterAspect aspect)
     {
         switch (state)
         {
@@ -162,7 +162,7 @@ public struct PlatformerCharacterStateMachine : IComponentData
         }
     }
 
-    public void OnStateVariableUpdate(CharacterState state, ref PlatformerCharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in PlatformerCharacterAspect aspect)
+    public void OnStateVariableUpdate(CharacterState state, ref CharacterUpdateContext context, ref KinematicCharacterUpdateContext baseContext, in CharacterAspect aspect)
     {
         switch (state)
         {
@@ -205,7 +205,7 @@ public struct PlatformerCharacterStateMachine : IComponentData
         }
     }
 
-    public void GetCameraParameters(CharacterState state, in PlatformerCharacterComponent character, out Entity cameraTarget, out bool calculateUpFromGravity)
+    public void GetCameraParameters(CharacterState state, in CharacterComponent character, out Entity cameraTarget, out bool calculateUpFromGravity)
     {
         cameraTarget = default;
         calculateUpFromGravity = default;
@@ -251,7 +251,7 @@ public struct PlatformerCharacterStateMachine : IComponentData
         }
     }
 
-    public void GetMoveVectorFromPlayerInput(CharacterState state, in PlatformerPlayerInputs inputs, quaternion cameraRotation, out float3 moveVector)
+    public void GetMoveVectorFromPlayerInput(CharacterState state, in PlayerInputs inputs, quaternion cameraRotation, out float3 moveVector)
     {
         moveVector = default;
         

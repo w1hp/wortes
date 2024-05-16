@@ -9,7 +9,7 @@ using Unity.Physics.Systems;
 using Unity.CharacterController;
 
 [UpdateInGroup(typeof(InitializationSystemGroup))]
-public partial class PlatformerPlayerInputsSystem : SystemBase
+public partial class PlayerInputsSystem : SystemBase
 {
     private PlayerInputActions.GameplayMapActions _defaultActionsMap;
     
@@ -24,14 +24,14 @@ public partial class PlatformerPlayerInputsSystem : SystemBase
         Cursor.visible = false;
         
         RequireForUpdate<FixedTickSystem.Singleton>();
-        RequireForUpdate(SystemAPI.QueryBuilder().WithAll<PlatformerPlayer, PlatformerPlayerInputs>().Build());
+        RequireForUpdate(SystemAPI.QueryBuilder().WithAll<Player, PlayerInputs>().Build());
     }
     
     protected override void OnUpdate()
     {
         uint fixedTick = SystemAPI.GetSingleton<FixedTickSystem.Singleton>().Tick;
         
-        foreach (var (playerInputs, player) in SystemAPI.Query<RefRW<PlatformerPlayerInputs>, PlatformerPlayer>())
+        foreach (var (playerInputs, player) in SystemAPI.Query<RefRW<PlayerInputs>, Player>())
         {
             playerInputs.ValueRW.Move = Vector2.ClampMagnitude(_defaultActionsMap.Move.ReadValue<Vector2>(), 1f);
             playerInputs.ValueRW.Look = _defaultActionsMap.LookDelta.ReadValue<Vector2>();
@@ -78,12 +78,13 @@ public partial class PlatformerPlayerInputsSystem : SystemBase
 [UpdateInGroup(typeof(SimulationSystemGroup), OrderFirst = true)]
 [UpdateBefore(typeof(FixedStepSimulationSystemGroup))]
 [BurstCompile]
-public partial struct PlatformerPlayerVariableStepControlSystem : ISystem
+public partial struct PlayerVariableStepControlSystem : ISystem
 {
-    [BurstCompile]
+	//TODO: Change this system to make isometric camera
+	[BurstCompile]
     public void OnCreate(ref SystemState state)
     {
-        state.RequireForUpdate(SystemAPI.QueryBuilder().WithAll<PlatformerPlayer, PlatformerPlayerInputs>().Build());
+        state.RequireForUpdate(SystemAPI.QueryBuilder().WithAll<Player, PlayerInputs>().Build());
     }
 
     [BurstCompile]
@@ -93,7 +94,7 @@ public partial struct PlatformerPlayerVariableStepControlSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach (var (playerInputs, player) in SystemAPI.Query<PlatformerPlayerInputs, PlatformerPlayer>().WithAll<Simulate>())
+        foreach (var (playerInputs, player) in SystemAPI.Query<PlayerInputs, Player>().WithAll<Simulate>())
         {
             if (SystemAPI.HasComponent<OrbitCameraControl>(player.ControlledCamera))
             {
@@ -115,13 +116,13 @@ public partial struct PlatformerPlayerVariableStepControlSystem : ISystem
 /// </summary>
 [UpdateInGroup(typeof(FixedStepSimulationSystemGroup), OrderFirst = true)]
 [BurstCompile]
-public partial struct PlatformerPlayerFixedStepControlSystem : ISystem
+public partial struct PlayerFixedStepControlSystem : ISystem
 {
     [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
         state.RequireForUpdate<FixedTickSystem.Singleton>();
-        state.RequireForUpdate(SystemAPI.QueryBuilder().WithAll<PlatformerPlayer, PlatformerPlayerInputs>().Build());
+        state.RequireForUpdate(SystemAPI.QueryBuilder().WithAll<Player, PlayerInputs>().Build());
     }
 
     [BurstCompile]
@@ -133,13 +134,13 @@ public partial struct PlatformerPlayerFixedStepControlSystem : ISystem
     {
         uint fixedTick = SystemAPI.GetSingleton<FixedTickSystem.Singleton>().Tick;
         
-        foreach (var (playerInputs, player) in SystemAPI.Query<RefRW<PlatformerPlayerInputs>, PlatformerPlayer>()
+        foreach (var (playerInputs, player) in SystemAPI.Query<RefRW<PlayerInputs>, Player>()
                      .WithAll<Simulate>())
         {
-            if (SystemAPI.HasComponent<PlatformerCharacterControl>(player.ControlledCharacter) && SystemAPI.HasComponent<PlatformerCharacterStateMachine>(player.ControlledCharacter))
+            if (SystemAPI.HasComponent<CharacterControl>(player.ControlledCharacter) && SystemAPI.HasComponent<CharacterStateMachine>(player.ControlledCharacter))
             {
-                PlatformerCharacterControl characterControl = SystemAPI.GetComponent<PlatformerCharacterControl>(player.ControlledCharacter);
-                PlatformerCharacterStateMachine stateMachine = SystemAPI.GetComponent<PlatformerCharacterStateMachine>(player.ControlledCharacter);
+                CharacterControl characterControl = SystemAPI.GetComponent<CharacterControl>(player.ControlledCharacter);
+                CharacterStateMachine stateMachine = SystemAPI.GetComponent<CharacterStateMachine>(player.ControlledCharacter);
 
                 // Get camera rotation data, since our movement is relative to it
                 quaternion cameraRotation = quaternion.identity;

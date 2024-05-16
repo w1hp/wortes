@@ -47,7 +47,7 @@ public partial struct SceneInitializationSystem : ISystem
             state.EntityManager.AddComponentData(cameraEntity, new MainEntityCamera());
 
             // Assign camera & character to player
-            PlatformerPlayer player = SystemAPI.GetComponent<PlatformerPlayer>(playerEntity);
+            Player player = SystemAPI.GetComponent<Player>(playerEntity);
             player.ControlledCharacter = characterEntity;
             player.ControlledCamera = cameraEntity;
             SystemAPI.SetComponent(playerEntity, player);

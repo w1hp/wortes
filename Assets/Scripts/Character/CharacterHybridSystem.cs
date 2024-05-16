@@ -8,21 +8,21 @@ using UnityEngine;
 [AlwaysSynchronizeSystem]
 [UpdateInGroup(typeof(SimulationSystemGroup), OrderLast = true)]
 [UpdateAfter(typeof(EndSimulationEntityCommandBufferSystem))]
-public partial class PlatformerCharacterHybridSystem : SystemBase
+public partial class CharacterHybridSystem : SystemBase
 {
     protected override void OnUpdate()
     {
         EntityCommandBuffer ecb = SystemAPI.GetSingletonRW<EndSimulationEntityCommandBufferSystem.Singleton>().ValueRW.CreateCommandBuffer(World.Unmanaged); 
         
         // Create
-        foreach (var (characterAnimation, hybridData, entity) in SystemAPI.Query<RefRW<PlatformerCharacterAnimation>, PlatformerCharacterHybridData>()
-                     .WithNone<PlatformerCharacterHybridLink>()
+        foreach (var (characterAnimation, hybridData, entity) in SystemAPI.Query<RefRW<CharacterAnimation>, CharacterHybridData>()
+                     .WithNone<CharacterHybridLink>()
                      .WithEntityAccess())
         {
             GameObject tmpObject = GameObject.Instantiate(hybridData.MeshPrefab);
             Animator animator = tmpObject.GetComponent<Animator>();
 
-            ecb.AddComponent(entity, new PlatformerCharacterHybridLink
+            ecb.AddComponent(entity, new CharacterHybridLink
             {
                 Object = tmpObject,
                 Animator = animator,
@@ -41,13 +41,13 @@ public partial class PlatformerCharacterHybridSystem : SystemBase
         
         // Update
         foreach (var (characterAnimation, characterBody, characterTransform, characterComponent, characterStateMachine, characterControl, hybridLink, entity) in SystemAPI.Query<
-            RefRW<PlatformerCharacterAnimation>, 
+            RefRW<CharacterAnimation>, 
             KinematicCharacterBody,
             LocalTransform,
-            PlatformerCharacterComponent,
-            PlatformerCharacterStateMachine,
-            PlatformerCharacterControl,
-            PlatformerCharacterHybridLink>()
+            CharacterComponent,
+            CharacterStateMachine,
+            CharacterControl,
+            CharacterHybridLink>()
             .WithEntityAccess())
         {
             if (hybridLink.Object)
@@ -60,7 +60,7 @@ public partial class PlatformerCharacterHybridSystem : SystemBase
                 // Animation
                 if (hybridLink.Animator)
                 {
-                    PlatformerCharacterAnimationHandler.UpdateAnimation(
+                    CharacterAnimationHandler.UpdateAnimation(
                         hybridLink.Animator,
                         ref characterAnimation.ValueRW,
                         in characterBody,
@@ -89,12 +89,12 @@ public partial class PlatformerCharacterHybridSystem : SystemBase
         }
         
         // Destroy
-        foreach (var (hybridLink, entity) in SystemAPI.Query<PlatformerCharacterHybridLink>()
-                     .WithNone<PlatformerCharacterHybridData>()
+        foreach (var (hybridLink, entity) in SystemAPI.Query<CharacterHybridLink>()
+                     .WithNone<CharacterHybridData>()
                      .WithEntityAccess())
         {
             GameObject.Destroy(hybridLink.Object);
-            ecb.RemoveComponent<PlatformerCharacterHybridLink>(entity);
+            ecb.RemoveComponent<CharacterHybridLink>(entity);
         }
     }
 }

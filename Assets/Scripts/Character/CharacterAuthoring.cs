@@ -8,10 +8,10 @@ using UnityEngine.Serialization;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(PhysicsShapeAuthoring))]
-public class PlatformerCharacterAuthoring : MonoBehaviour
+public class CharacterAuthoring : MonoBehaviour
 {
     public AuthoringKinematicCharacterProperties CharacterProperties = AuthoringKinematicCharacterProperties.GetDefault();
-    public PlatformerCharacterComponent Character = default;
+    public CharacterComponent Character = default;
 
     [Header("References")]
     public GameObject MeshPrefab;
@@ -32,9 +32,9 @@ public class PlatformerCharacterAuthoring : MonoBehaviour
     public bool DebugClimbingGeometry;
     public bool DebugSwimmingGeometry;
 
-    public class Baker : Baker<PlatformerCharacterAuthoring>
+    public class Baker : Baker<CharacterAuthoring>
     {
-        public override void Bake(PlatformerCharacterAuthoring authoring)
+        public override void Bake(CharacterAuthoring authoring)
         {
             KinematicCharacterUtilities.BakeCharacter(this, authoring, authoring.CharacterProperties);
             
@@ -51,9 +51,9 @@ public class PlatformerCharacterAuthoring : MonoBehaviour
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
             
             AddComponent(entity, authoring.Character);
-            AddComponent(entity, new PlatformerCharacterControl());
-            AddComponent(entity, new PlatformerCharacterStateMachine());
-            AddComponentObject(entity, new PlatformerCharacterHybridData { MeshPrefab = authoring.MeshPrefab });
+            AddComponent(entity, new CharacterControl());
+            AddComponent(entity, new CharacterStateMachine());
+            AddComponentObject(entity, new CharacterHybridData { MeshPrefab = authoring.MeshPrefab });
         }
     }
 

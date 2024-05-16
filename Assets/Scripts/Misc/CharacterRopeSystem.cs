@@ -31,10 +31,10 @@ public partial struct CharacterRopeSystem : ISystem
                 return;
             }
 
-            if (SystemAPI.HasComponent<PlatformerCharacterComponent>(characterRope.OwningCharacterEntity) && SystemAPI.HasComponent<PlatformerCharacterStateMachine>(characterRope.OwningCharacterEntity))
+            if (SystemAPI.HasComponent<CharacterComponent>(characterRope.OwningCharacterEntity) && SystemAPI.HasComponent<CharacterStateMachine>(characterRope.OwningCharacterEntity))
             {
-                PlatformerCharacterComponent platformerCharacter = SystemAPI.GetComponent<PlatformerCharacterComponent>(characterRope.OwningCharacterEntity);
-                PlatformerCharacterStateMachine characterStateMachine = SystemAPI.GetComponent<PlatformerCharacterStateMachine>(characterRope.OwningCharacterEntity);
+                CharacterComponent platformerCharacter = SystemAPI.GetComponent<CharacterComponent>(characterRope.OwningCharacterEntity);
+                CharacterStateMachine characterStateMachine = SystemAPI.GetComponent<CharacterStateMachine>(characterRope.OwningCharacterEntity);
                 LocalToWorld characterLocalToWorld = SystemAPI.GetComponent<LocalToWorld>(characterRope.OwningCharacterEntity);
 
                 // Handle rope positioning

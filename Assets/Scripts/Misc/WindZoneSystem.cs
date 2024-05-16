@@ -29,7 +29,7 @@ public partial struct WindZoneSystem : ISystem
         {
             DeltaTime = SystemAPI.Time.DeltaTime,
             CharacterBodyLookup = SystemAPI.GetComponentLookup<KinematicCharacterBody>(false),
-            CharacterStateMachineLookup = SystemAPI.GetComponentLookup<PlatformerCharacterStateMachine>(true),
+            CharacterStateMachineLookup = SystemAPI.GetComponentLookup<CharacterStateMachine>(true),
             PhysicsVelocityLookup = SystemAPI.GetComponentLookup<PhysicsVelocity>(false),
             PhysicsMassLookup = SystemAPI.GetComponentLookup<PhysicsMass>(true),
         };
@@ -42,7 +42,7 @@ public partial struct WindZoneSystem : ISystem
         public float DeltaTime;
         public ComponentLookup<KinematicCharacterBody> CharacterBodyLookup;
         [ReadOnly]
-        public ComponentLookup<PlatformerCharacterStateMachine> CharacterStateMachineLookup;
+        public ComponentLookup<CharacterStateMachine> CharacterStateMachineLookup;
         public ComponentLookup<PhysicsVelocity> PhysicsVelocityLookup;
         [ReadOnly]
         public ComponentLookup<PhysicsMass> PhysicsMassLookup;
@@ -58,9 +58,9 @@ public partial struct WindZoneSystem : ISystem
                 {
                     // Characters
                     if (CharacterBodyLookup.TryGetComponent(otherEntity, out KinematicCharacterBody characterBody) && 
-                        CharacterStateMachineLookup.TryGetComponent(otherEntity, out PlatformerCharacterStateMachine characterStateMachine))
+                        CharacterStateMachineLookup.TryGetComponent(otherEntity, out CharacterStateMachine characterStateMachine))
                     {
-                        if (PlatformerCharacterAspect.CanBeAffectedByWindZone(characterStateMachine.CurrentState))
+                        if (CharacterAspect.CanBeAffectedByWindZone(characterStateMachine.CurrentState))
                         {
                             characterBody.RelativeVelocity += windZone.WindForce * DeltaTime;
                             CharacterBodyLookup[otherEntity] = characterBody;

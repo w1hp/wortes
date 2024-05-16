@@ -89,8 +89,8 @@ public partial struct OrbitCameraSystem : ISystem
             PhysicsWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>().PhysicsWorld,
             LocalToWorldLookup = SystemAPI.GetComponentLookup<LocalToWorld>(false),
             KinematicCharacterBodyLookup = SystemAPI.GetComponentLookup<KinematicCharacterBody>(true),
-            PlatformerCharacterComponentLookup = SystemAPI.GetComponentLookup<PlatformerCharacterComponent>(true),
-            PlatformerCharacterStateMachineLookup = SystemAPI.GetComponentLookup<PlatformerCharacterStateMachine>(true),
+            CharacterComponentLookup = SystemAPI.GetComponentLookup<CharacterComponent>(true),
+            CharacterStateMachineLookup = SystemAPI.GetComponentLookup<CharacterStateMachine>(true),
             CustomGravityLookup = SystemAPI.GetComponentLookup<CustomGravity>(true),
         };
         job.Schedule();
@@ -105,8 +105,8 @@ public partial struct OrbitCameraSystem : ISystem
 
         public ComponentLookup<LocalToWorld> LocalToWorldLookup;
         [ReadOnly] public ComponentLookup<KinematicCharacterBody> KinematicCharacterBodyLookup;
-        [ReadOnly] public ComponentLookup<PlatformerCharacterComponent> PlatformerCharacterComponentLookup;
-        [ReadOnly] public ComponentLookup<PlatformerCharacterStateMachine> PlatformerCharacterStateMachineLookup;
+        [ReadOnly] public ComponentLookup<CharacterComponent> CharacterComponentLookup;
+        [ReadOnly] public ComponentLookup<CharacterStateMachine> CharacterStateMachineLookup;
         [ReadOnly] public ComponentLookup<CustomGravity> CustomGravityLookup;
 
         void Execute(
@@ -120,8 +120,8 @@ public partial struct OrbitCameraSystem : ISystem
             
             if (LocalToWorldLookup.TryGetComponent(cameraControl.FollowedCharacterEntity, out LocalToWorld characterLTW) &&
                 CustomGravityLookup.TryGetComponent(cameraControl.FollowedCharacterEntity, out CustomGravity characterCustomGravity) &&
-                PlatformerCharacterComponentLookup.TryGetComponent(cameraControl.FollowedCharacterEntity, out PlatformerCharacterComponent characterComponent) &&
-                PlatformerCharacterStateMachineLookup.TryGetComponent(cameraControl.FollowedCharacterEntity, out PlatformerCharacterStateMachine characterStateMachine))
+                CharacterComponentLookup.TryGetComponent(cameraControl.FollowedCharacterEntity, out CharacterComponent characterComponent) &&
+                CharacterStateMachineLookup.TryGetComponent(cameraControl.FollowedCharacterEntity, out CharacterStateMachine characterStateMachine))
             {
                 // Camera target handling
                 {

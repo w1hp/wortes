@@ -5,13 +5,13 @@ using Unity.Mathematics;
 using UnityEngine;
 
 [Serializable]
-public class PlatformerCharacterHybridData : IComponentData
+public class CharacterHybridData : IComponentData
 {
     public GameObject MeshPrefab;
 }
 
 [Serializable]
-public class PlatformerCharacterHybridLink : ICleanupComponentData
+public class CharacterHybridLink : ICleanupComponentData
 {
     public GameObject Object;
     public Animator Animator;

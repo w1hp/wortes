@@ -10,7 +10,7 @@ using Unity.Transforms;
 using Unity.CharacterController;
 
 [UpdateInGroup(typeof(SimulationSystemGroup))] // update in variable update because the camera can use gravity to adjust its up direction
-[UpdateBefore(typeof(PlatformerCharacterVariableUpdateSystem))]
+[UpdateBefore(typeof(CharacterVariableUpdateSystem))]
 public partial class GravityZonesSystem : SystemBase
 {
     protected override void OnUpdate()

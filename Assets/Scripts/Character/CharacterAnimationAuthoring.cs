@@ -3,15 +3,15 @@ using Unity.Mathematics;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class PlatformerCharacterAnimationAuthoring : MonoBehaviour
+public class CharacterAnimationAuthoring : MonoBehaviour
 {
-    public class Baker : Baker<PlatformerCharacterAnimationAuthoring>
+    public class Baker : Baker<CharacterAnimationAuthoring>
     {
-        public override void Bake(PlatformerCharacterAnimationAuthoring authoring)
+        public override void Bake(CharacterAnimationAuthoring authoring)
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
             
-            PlatformerCharacterAnimation characterAnimation = new PlatformerCharacterAnimation();
+            CharacterAnimation characterAnimation = new CharacterAnimation();
 
             // Set clip indexes
             characterAnimation.IdleClip = 0;

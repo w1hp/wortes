@@ -9,7 +9,7 @@ using UnityEngine;
 using Unity.CharacterController;
 
 [Serializable]
-public struct PlatformerCharacterAnimation : IComponentData
+public struct CharacterAnimation : IComponentData
 {
     [HideInInspector] public int ClipIndexParameterHash;
 
@@ -33,15 +33,15 @@ public struct PlatformerCharacterAnimation : IComponentData
     [HideInInspector] public CharacterState LastAnimationCharacterState;
 }
 
-public static class PlatformerCharacterAnimationHandler
+public static class CharacterAnimationHandler
 {
     public static void UpdateAnimation(
         Animator animator,
-        ref PlatformerCharacterAnimation characterAnimation,
+        ref CharacterAnimation characterAnimation,
         in KinematicCharacterBody characterBody,
-        in PlatformerCharacterComponent characterComponent,
-        in PlatformerCharacterStateMachine characterStateMachine,
-        in PlatformerCharacterControl characterControl,
+        in CharacterComponent characterComponent,
+        in CharacterStateMachine characterStateMachine,
+        in CharacterControl characterControl,
         in LocalTransform localTransform)
     {
         float velocityMagnitude = math.length(characterBody.RelativeVelocity);

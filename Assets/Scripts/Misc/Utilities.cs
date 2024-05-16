@@ -2,7 +2,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-public static class PlatformerUtilities
+public static class Utilities
 {
     public static void SetEntityHierarchyEnabled(bool enabled, Entity parent, EntityCommandBuffer commandBuffer, BufferLookup<LinkedEntityGroup> linkedEntityGroupFromEntity)
     {
