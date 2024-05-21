@@ -18,8 +18,9 @@ public struct CharacterComponent : IComponentData
     public Entity MeshRootEntity;
     public Entity RopePrefabEntity;
     public Entity RollballMeshEntity;
+	public Entity HighlighterPrefabEntity;
 
-    [Header("Ground movement")]
+	[Header("Ground movement")]
     public float GroundRunMaxSpeed;
     public float GroundSprintMaxSpeed;
     public float GroundedMovementSharpness;
@@ -109,7 +110,10 @@ public struct CharacterComponent : IComponentData
     public CapsuleGeometryDefinition RollingGeometry;
     public CapsuleGeometryDefinition ClimbingGeometry;
     public CapsuleGeometryDefinition SwimmingGeometry;
-    
+
+    [Header("SwitchMode")]
+    public bool IsBuildMode;
+
     [HideInInspector]
     public float3 LocalLedgeDetectionPoint;
     [HideInInspector]
@@ -159,6 +163,8 @@ public struct CharacterControl : IComponentData
     public bool RopePressed;
     public bool ClimbPressed;
     public bool FlyNoCollisionsPressed;
+    public bool SwitchModePressed;
+	public bool ShootOrBuild;
 }
 
 public struct CharacterInitialized : IComponentData

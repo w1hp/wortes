@@ -68,7 +68,11 @@ public partial class PlayerInputsSystem : SystemBase
             {
                 playerInputs.ValueRW.FlyNoCollisionsPressed.Set(fixedTick);
             }
-        }
+			if (_defaultActionsMap.SwitchMode.WasPressedThisFrame())
+			{
+				playerInputs.ValueRW.SwitchModePressed.Set(fixedTick);
+			}
+		}
     }
 }
 
@@ -160,9 +164,11 @@ public partial struct PlayerFixedStepControlSystem : ISystem
                 characterControl.CrouchPressed = playerInputs.ValueRW.CrouchPressed.IsSet(fixedTick); 
                 characterControl.RopePressed = playerInputs.ValueRW.RopePressed.IsSet(fixedTick); 
                 characterControl.ClimbPressed = playerInputs.ValueRW.ClimbPressed.IsSet(fixedTick); 
-                characterControl.FlyNoCollisionsPressed = playerInputs.ValueRW.FlyNoCollisionsPressed.IsSet(fixedTick); 
-                
-                SystemAPI.SetComponent(player.ControlledCharacter, characterControl);
+                characterControl.FlyNoCollisionsPressed = playerInputs.ValueRW.FlyNoCollisionsPressed.IsSet(fixedTick);
+				characterControl.SwitchModePressed = playerInputs.ValueRW.SwitchModePressed.IsSet(fixedTick);
+				characterControl.ShootOrBuild = playerInputs.ValueRW.ShootOrBuild.IsSet(fixedTick);
+
+				SystemAPI.SetComponent(player.ControlledCharacter, characterControl);
             }
         }
     }

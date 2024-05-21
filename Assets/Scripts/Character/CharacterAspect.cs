@@ -80,7 +80,7 @@ public readonly partial struct CharacterAspect : IAspect, IKinematicCharacterPro
             if (characterControl.JumpPressed)
             {
                 character.LastTimeJumpPressed = (float)baseContext.Time.ElapsedTime;
-            }
+			}
             
             character.HasDetectedMoveAgainstWall = false;
             if (characterBody.IsGrounded)
@@ -95,6 +95,11 @@ public readonly partial struct CharacterAspect : IAspect, IKinematicCharacterPro
             {
                 character.LedgeGrabBlockCounter -= baseContext.Time.DeltaTime;
             }
+
+            if (characterControl.SwitchModePressed)
+            { 
+                character.IsBuildMode = !character.IsBuildMode;
+			}
         }
         
         stateMachine.OnStatePhysicsUpdate(stateMachine.CurrentState, ref context, ref baseContext, in this);

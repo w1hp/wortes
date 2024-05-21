@@ -24,8 +24,9 @@ public class CharacterAuthoring : MonoBehaviour
     public GameObject RopePrefab;
     public GameObject SwimmingDetectionPoint;
     public GameObject LedgeDetectionPoint;
+    public GameObject HighlighterPrefab;
 
-    [Header("Debug")]
+	[Header("Debug")]
     public bool DebugStandingGeometry;
     public bool DebugCrouchingGeometry;
     public bool DebugRollingGeometry;
@@ -45,7 +46,8 @@ public class CharacterAuthoring : MonoBehaviour
             authoring.Character.MeshRootEntity = GetEntity(authoring.MeshRoot, TransformUsageFlags.Dynamic);
             authoring.Character.RollballMeshEntity = GetEntity(authoring.RollballMesh, TransformUsageFlags.Dynamic);
             authoring.Character.RopePrefabEntity = GetEntity(authoring.RopePrefab, TransformUsageFlags.Dynamic);
-            authoring.Character.LocalSwimmingDetectionPoint = authoring.SwimmingDetectionPoint.transform.localPosition;
+			authoring.Character.HighlighterPrefabEntity = GetEntity(authoring.HighlighterPrefab, TransformUsageFlags.Dynamic);
+			authoring.Character.LocalSwimmingDetectionPoint = authoring.SwimmingDetectionPoint.transform.localPosition;
             authoring.Character.LocalLedgeDetectionPoint = authoring.LedgeDetectionPoint.transform.localPosition;
 
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);

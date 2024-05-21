@@ -1,64 +1,46 @@
-using System.Collections.Generic;
 using Unity.Entities;
-using UnityEngine;
 using Unity.Rendering;
-using UnityEngine.Rendering;
+using Unity.Burst;
+using Unity.Mathematics;
 
-
-[RequireMatchingQueriesForUpdate]
-public partial class MaterialChangerSystem : SystemBase
+[BurstCompile]
+public partial struct MaterialChangerSystem : ISystem
 {
-	private Dictionary<Material, BatchMaterialID> m_MaterialMapping;
-
-	private void RegisterMaterial(EntitiesGraphicsSystem hybridRendererSystem, Material material)
+	[BurstCompile]
+	public void OnUpdate(ref SystemState state)
 	{
-		// Only register each mesh once, so we can also unregister each mesh just once
-		if (!m_MaterialMapping.ContainsKey(material))
-			m_MaterialMapping[material] = hybridRendererSystem.RegisterMaterial(material);
-	}
-
-	protected override void OnStartRunning()
-	{
-		var hybridRenderer = World.GetOrCreateSystemManaged<EntitiesGraphicsSystem>();
-		m_MaterialMapping = new Dictionary<Material, BatchMaterialID>();
-
-		Entities
-			.WithoutBurst()
-			.ForEach((in MaterialChanger changer) =>
+		//var baseColorLookup = SystemAPI.GetComponentLookup<URPMaterialPropertyBaseColor>();
+		foreach (var character in SystemAPI.Query<RefRW<CharacterComponent>>().WithNone<Prefab>())
+		{
+			if (character.ValueRO.IsBuildMode)
 			{
-				RegisterMaterial(hybridRenderer, changer.material0);
-				RegisterMaterial(hybridRenderer, changer.material1);
-			}).Run();
-	}
+				SystemAPI.SetComponentEnabled<MaterialMeshInfo>(character.ValueRO.HighlighterPrefabEntity, true);
+				//var baseColor = SystemAPI.GetComponent<URPMaterialPropertyBaseColor>(character.ValueRW.HighlighterPrefabEntity);
+				//baseColor.ValueRW.Value = new float4(0, 1, 0, 0.5f);
+				var baseColor = SystemAPI.GetComponent<URPMaterialPropertyBaseColor>(character.ValueRW.HighlighterPrefabEntity);
+				baseColor.Value = new float4(0, 1, 0, 0.5f);
+				SystemAPI.SetComponent<URPMaterialPropertyBaseColor>(character.ValueRW.HighlighterPrefabEntity, baseColor);
+				//baseColorLookup[character.ValueRO.HighlighterPrefabEntity].Value = new float4(0, 1, 0, 0.5f);
 
-	private void UnregisterMaterials()
-	{
-		// Can't call this from OnDestroy(), so we can't do this on teardown
-		var hybridRenderer = World.GetExistingSystemManaged<EntitiesGraphicsSystem>();
-		if (hybridRenderer == null)
-			return;
-
-		foreach (var kv in m_MaterialMapping)
-			hybridRenderer.UnregisterMaterial(kv.Value);
-	}
-
-	protected override void OnUpdate()
-	{
-		EntityManager entityManager = EntityManager;
-
-		Entities
-			.WithoutBurst()
-			.ForEach((MaterialChanger changer, ref MaterialMeshInfo mmi) =>
+			}
+			else
 			{
-				changer.frame = changer.frame + 1;
+				SystemAPI.SetComponentEnabled<MaterialMeshInfo>(character.ValueRO.HighlighterPrefabEntity, false);
+			}
+		}
 
-				if (changer.frame >= changer.frequency)
-				{
-					changer.frame = 0;
-					changer.active = changer.active == 0 ? 1u : 0u;
-					var material = changer.active == 0 ? changer.material0 : changer.material1;
-					mmi.MaterialID = m_MaterialMapping[material];
-				}
-			}).Run();
+
+
+		//foreach (var(matChanger, baseColor) in SystemAPI.Query<MaterialChanger, RefRW<URPMaterialPropertyBaseColor>>())
+		//{
+		//	if (matChanger.isRed)
+		//	{
+		//		baseColor.ValueRW.Value = new float4(1, 0, 0, 0.5f);
+		//	}
+		//	else
+		//	{
+		//		baseColor.ValueRW.Value = new float4(0, 1, 0, 0.5f);
+		//	}
+		//}
 	}
 }

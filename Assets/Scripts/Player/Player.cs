@@ -27,4 +27,6 @@ public struct PlayerInputs : IComponentData
     public FixedInputEvent RopePressed;
     public FixedInputEvent ClimbPressed;
     public FixedInputEvent FlyNoCollisionsPressed;
+    public FixedInputEvent SwitchModePressed;
+	public FixedInputEvent ShootOrBuild;
 }
