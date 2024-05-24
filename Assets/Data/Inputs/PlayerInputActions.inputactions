@@ -115,12 +115,12 @@
                 },
                 {
                     "name": "ShootOrBuild",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "98d1f76f-1cf0-468f-923a-d8fcfc9fd49a",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "SwitchMode",

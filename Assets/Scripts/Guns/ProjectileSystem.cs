@@ -3,7 +3,6 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-// TODO : Change traejectory to be a curve
 public partial struct ProjectileSystem : ISystem
 {
 	[BurstCompile]

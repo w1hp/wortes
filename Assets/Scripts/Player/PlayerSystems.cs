@@ -43,8 +43,9 @@ public partial class PlayerInputsSystem : SystemBase
             playerInputs.ValueRW.SprintHeld = _defaultActionsMap.Sprint.IsPressed();
             playerInputs.ValueRW.RollHeld = _defaultActionsMap.Roll.IsPressed();
             playerInputs.ValueRW.JumpHeld = _defaultActionsMap.Jump.IsPressed();
+            playerInputs.ValueRW.ShootOrBuildHeld = _defaultActionsMap.ShootOrBuild.IsPressed();
 
-            if (_defaultActionsMap.Jump.WasPressedThisFrame())
+			if (_defaultActionsMap.Jump.WasPressedThisFrame())
             {
                 playerInputs.ValueRW.JumpPressed.Set(fixedTick);
             }
@@ -72,7 +73,11 @@ public partial class PlayerInputsSystem : SystemBase
 			{
 				playerInputs.ValueRW.SwitchModePressed.Set(fixedTick);
 			}
-		}
+            if (_defaultActionsMap.ShootOrBuild.WasPressedThisFrame())
+            {
+                playerInputs.ValueRW.ShootOrBuildPressed.Set(fixedTick);
+			}
+        }
     }
 }
 
@@ -158,15 +163,15 @@ public partial struct PlayerFixedStepControlSystem : ISystem
                 characterControl.JumpHeld = playerInputs.ValueRW.JumpHeld;
                 characterControl.RollHeld = playerInputs.ValueRW.RollHeld;
                 characterControl.SprintHeld = playerInputs.ValueRW.SprintHeld;
-
-                characterControl.JumpPressed = playerInputs.ValueRW.JumpPressed.IsSet(fixedTick);
+                characterControl.ShootOrBuildHeld = playerInputs.ValueRW.ShootOrBuildHeld;
+				characterControl.JumpPressed = playerInputs.ValueRW.JumpPressed.IsSet(fixedTick);
                 characterControl.DashPressed = playerInputs.ValueRW.DashPressed.IsSet(fixedTick); 
                 characterControl.CrouchPressed = playerInputs.ValueRW.CrouchPressed.IsSet(fixedTick); 
                 characterControl.RopePressed = playerInputs.ValueRW.RopePressed.IsSet(fixedTick); 
                 characterControl.ClimbPressed = playerInputs.ValueRW.ClimbPressed.IsSet(fixedTick); 
                 characterControl.FlyNoCollisionsPressed = playerInputs.ValueRW.FlyNoCollisionsPressed.IsSet(fixedTick);
 				characterControl.SwitchModePressed = playerInputs.ValueRW.SwitchModePressed.IsSet(fixedTick);
-				characterControl.ShootOrBuild = playerInputs.ValueRW.ShootOrBuild.IsSet(fixedTick);
+				characterControl.ShootOrBuild = playerInputs.ValueRW.ShootOrBuildPressed.IsSet(fixedTick);
 
 				SystemAPI.SetComponent(player.ControlledCharacter, characterControl);
             }

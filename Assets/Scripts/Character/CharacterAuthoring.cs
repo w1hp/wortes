@@ -25,6 +25,7 @@ public class CharacterAuthoring : MonoBehaviour
     public GameObject SwimmingDetectionPoint;
     public GameObject LedgeDetectionPoint;
     public GameObject HighlighterPrefab;
+    public GameObject GunPrefab;
 
 	[Header("Debug")]
     public bool DebugStandingGeometry;
@@ -47,6 +48,7 @@ public class CharacterAuthoring : MonoBehaviour
             authoring.Character.RollballMeshEntity = GetEntity(authoring.RollballMesh, TransformUsageFlags.Dynamic);
             authoring.Character.RopePrefabEntity = GetEntity(authoring.RopePrefab, TransformUsageFlags.Dynamic);
 			authoring.Character.HighlighterPrefabEntity = GetEntity(authoring.HighlighterPrefab, TransformUsageFlags.Dynamic);
+            authoring.Character.GunPrefabEntity = GetEntity(authoring.GunPrefab, TransformUsageFlags.Dynamic);
 			authoring.Character.LocalSwimmingDetectionPoint = authoring.SwimmingDetectionPoint.transform.localPosition;
             authoring.Character.LocalLedgeDetectionPoint = authoring.LedgeDetectionPoint.transform.localPosition;
 

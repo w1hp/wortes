@@ -20,13 +20,15 @@ public struct PlayerInputs : IComponentData
     public bool SprintHeld;
     public bool RollHeld;
     public bool JumpHeld;
-    
-    public FixedInputEvent JumpPressed;
+    public bool ShootOrBuildHeld;
+
+
+	public FixedInputEvent JumpPressed;
     public FixedInputEvent DashPressed;
     public FixedInputEvent CrouchPressed;
     public FixedInputEvent RopePressed;
     public FixedInputEvent ClimbPressed;
     public FixedInputEvent FlyNoCollisionsPressed;
     public FixedInputEvent SwitchModePressed;
-	public FixedInputEvent ShootOrBuild;
+	public FixedInputEvent ShootOrBuildPressed;
 }

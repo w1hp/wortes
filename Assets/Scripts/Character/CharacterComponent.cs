@@ -19,6 +19,7 @@ public struct CharacterComponent : IComponentData
     public Entity RopePrefabEntity;
     public Entity RollballMeshEntity;
 	public Entity HighlighterPrefabEntity;
+    public Entity GunPrefabEntity;
 
 	[Header("Ground movement")]
     public float GroundRunMaxSpeed;
@@ -113,8 +114,9 @@ public struct CharacterComponent : IComponentData
 
     [Header("SwitchMode")]
     public bool IsBuildMode;
+    public bool IsShootMode;
 
-    [HideInInspector]
+	[HideInInspector]
     public float3 LocalLedgeDetectionPoint;
     [HideInInspector]
     public float3 LocalSwimmingDetectionPoint;
@@ -165,6 +167,8 @@ public struct CharacterControl : IComponentData
     public bool FlyNoCollisionsPressed;
     public bool SwitchModePressed;
 	public bool ShootOrBuild;
+
+	public bool ShootOrBuildHeld;
 }
 
 public struct CharacterInitialized : IComponentData
