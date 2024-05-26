@@ -100,7 +100,7 @@ public readonly partial struct CharacterAspect : IAspect, IKinematicCharacterPro
             { 
                 character.IsBuildMode = !character.IsBuildMode;
 			}
-            if (characterControl.ShootOrBuild)
+            if (!character.IsBuildMode && characterControl.ShootOrBuild)
             {
                 character.IsShootMode = true;
 			}

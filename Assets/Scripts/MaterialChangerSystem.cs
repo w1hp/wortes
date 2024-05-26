@@ -14,6 +14,7 @@ public partial struct MaterialChangerSystem : ISystem
 			if (character.ValueRO.IsBuildMode)
 			{
 				SystemAPI.SetComponentEnabled<MaterialMeshInfo>(character.ValueRO.HighlighterPrefabEntity, true);
+				SystemAPI.SetComponentEnabled<MaterialMeshInfo>(character.ValueRO.GunPrefabEntity, false);
 				
 				var baseColor = SystemAPI.GetComponent<URPMaterialPropertyBaseColor>(character.ValueRO.HighlighterPrefabEntity);
 				baseColor.Value = new float4(0, 1, 0, 0.5f);
@@ -22,6 +23,7 @@ public partial struct MaterialChangerSystem : ISystem
 			else
 			{
 				SystemAPI.SetComponentEnabled<MaterialMeshInfo>(character.ValueRO.HighlighterPrefabEntity, false);
+				SystemAPI.SetComponentEnabled<MaterialMeshInfo>(character.ValueRO.GunPrefabEntity, true);
 			}
 		}
 	}
