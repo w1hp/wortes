@@ -6,27 +6,47 @@ using Unity.Transforms;
 [UpdateBefore(typeof(TransformSystemGroup))]
 public partial struct ShootingSystem : ISystem
 {
+	//private float timer;
+	private float lastShotTime;
+
 	[BurstCompile]
 	public void OnUpdate(ref SystemState state)
 	{
-		foreach (var character in SystemAPI.Query<RefRO<CharacterComponent>>().WithNone<Prefab>())
+		// Only shoot in frames where timer has expired
+		//timer -= SystemAPI.Time.DeltaTime;
+		//if (timer > 0)
+		//{
+		//	return;
+		//}
+		//timer = 0.3f;   // reset timer
+
+		foreach (var gun in SystemAPI.Query<RefRO<Gun>>().WithNone<Prefab>())
 		{
-			if (!character.ValueRO.IsShootMode)
+			if (gun.ValueRO.OwnerType == GunOwner.Player)
 			{
-				return; 
+				var character = SystemAPI.GetComponentRO<CharacterComponent>(gun.ValueRO.Owner);
+				if (!character.ValueRO.IsShootMode) break;
 			}
-			var gunComponent = state.EntityManager.GetComponentData<Gun>(character.ValueRO.GunPrefabEntity);
-			var bulletTransform = state.EntityManager.GetComponentData<LocalTransform>(character.ValueRO.GunPrefabEntity);
-			Entity projectileEntity = state.EntityManager.Instantiate(gunComponent.Bullet);
-			var muzzleTransform = state.EntityManager.GetComponentData<LocalToWorld>(gunComponent.Muzzle);
+			if (!(SystemAPI.Time.ElapsedTime > lastShotTime + gun.ValueRO.FireInterval)) break;
+
+			lastShotTime = (float)SystemAPI.Time.ElapsedTime;
+
+			Entity projectileEntity = state.EntityManager.Instantiate(gun.ValueRO.Bullet);
+
+			var muzzleTransform = state.EntityManager.GetComponentData<LocalToWorld>(gun.ValueRO.Muzzle);
+			var bulletTransform = state.EntityManager.GetComponentData<LocalTransform>(gun.ValueRO.Bullet);
 			bulletTransform.Position = muzzleTransform.Position;
 
 			state.EntityManager.SetComponentData(projectileEntity, bulletTransform);
+
+			// Set color (color is RefRO<URPMaterialPropertyBaseColor> type)
+			//state.EntityManager.SetComponentData(projectileEntity, color.ValueRO);
 
 			state.EntityManager.SetComponentData(projectileEntity, new Projectile
 			{
 				Velocity = math.normalize(muzzleTransform.Up) * 12.0f
 			});
 		}
+
 	}
 }

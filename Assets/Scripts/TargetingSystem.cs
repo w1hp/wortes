@@ -13,12 +13,13 @@ partial struct TargetingSystem : ISystem
 	[BurstCompile]
 	public void OnCreate(ref SystemState state)
 	{
-
+		state.RequireForUpdate<Target>();
 	}
 
 	public void OnUpdate(ref SystemState state)
 	{
-		var targetQuery = SystemAPI.QueryBuilder().WithAll<LocalTransform>().WithNone<Target>().Build();
+		// NA SCENIE MUSI BYC MIN 9 ENEMY ZEBY UNITY SIE NIE DOSTALO CRASHA
+		var targetQuery = SystemAPI.QueryBuilder().WithAll<LocalTransform, Enemy>().WithNone<Target>().Build();
 		var kdQuery = SystemAPI.QueryBuilder().WithAll<LocalTransform, Target>().Build();
 
 		var targetEntities = targetQuery.ToEntityArray(state.WorldUpdateAllocator);
