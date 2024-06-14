@@ -83,6 +83,7 @@ MonoBehaviour:
   OwnerType: 0
   Owner: {fileID: 0}
   FireInterval: 0.5
+  Strength: 20
 --- !u!33 &2343897118600550418
 MeshFilter:
   m_ObjectHideFlags: 0
