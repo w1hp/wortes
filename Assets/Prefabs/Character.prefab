@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: -8306520697180238540}
   - component: {fileID: -8944153960414828713}
   - component: {fileID: 2035369821488769395}
+  - component: {fileID: 5479493242900039102}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -478,6 +479,7 @@ MonoBehaviour:
         z: 0
     IsBuildMode: 0
     IsShooting: 0
+    CurrentSlot: 0
     LocalLedgeDetectionPoint:
       x: 0
       y: 1.084
@@ -586,6 +588,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43eb821ebe2cd7245b6b1576ffaa317f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5479493242900039102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692896102597148395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66f17f402c7beb4dbb3df5cdac84e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Character: {fileID: 1692896102597148395}
+  WeaponSlot1: {fileID: 0}
+  WeaponSlot2: {fileID: 0}
+  WeaponSlot3: {fileID: 0}
+  WeaponSlot4: {fileID: 0}
+  TowerSlot1: {fileID: 8759440460334986151, guid: e9c4a6629a1b5eed2b036c69846eb9ff,
+    type: 3}
+  TowerSlot2: {fileID: 6709929605758922932, guid: 5f1731f3531139022a66e00a5de39fd9,
+    type: 3}
+  TowerSlot3: {fileID: 0}
+  TowerSlot4: {fileID: 0}
 --- !u!1 &3057386589211996020
 GameObject:
   m_ObjectHideFlags: 0

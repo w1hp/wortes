@@ -73,11 +73,23 @@ public partial class PlayerInputsSystem : SystemBase
 			{
 				playerInputs.ValueRW.SwitchModePressed.Set(fixedTick);
 			}
-            if (_defaultActionsMap.ShootOrBuild.WasPressedThisFrame())
+            if (_defaultActionsMap.Choose1.WasPressedThisFrame())
             {
-                playerInputs.ValueRW.ShootOrBuildPressed.Set(fixedTick);
+                playerInputs.ValueRW.ChooseSlot = 0;
 			}
-        }
+			if (_defaultActionsMap.Choose2.WasPressedThisFrame())
+			{
+				playerInputs.ValueRW.ChooseSlot = 1;
+			}
+			if (_defaultActionsMap.Choose3.WasPressedThisFrame())
+			{
+				playerInputs.ValueRW.ChooseSlot = 2;
+			}
+			if (_defaultActionsMap.Choose4.WasPressedThisFrame())
+			{
+				playerInputs.ValueRW.ChooseSlot = 3;
+			}
+		}
     }
 }
 
@@ -171,7 +183,7 @@ public partial struct PlayerFixedStepControlSystem : ISystem
                 characterControl.ClimbPressed = playerInputs.ValueRW.ClimbPressed.IsSet(fixedTick); 
                 characterControl.FlyNoCollisionsPressed = playerInputs.ValueRW.FlyNoCollisionsPressed.IsSet(fixedTick);
 				characterControl.SwitchModePressed = playerInputs.ValueRW.SwitchModePressed.IsSet(fixedTick);
-				characterControl.ShootOrBuild = playerInputs.ValueRW.ShootOrBuildPressed.IsSet(fixedTick);
+                characterControl.ChooseSlot = playerInputs.ValueRO.ChooseSlot;
 
 				SystemAPI.SetComponent(player.ControlledCharacter, characterControl);
             }

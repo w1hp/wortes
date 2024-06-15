@@ -108,6 +108,8 @@ public readonly partial struct CharacterAspect : IAspect, IKinematicCharacterPro
 			{
 				character.IsShooting = false;
 			}   
+
+            character.CurrentSlot = characterControl.ChooseSlot;
 		}
         
         stateMachine.OnStatePhysicsUpdate(stateMachine.CurrentState, ref context, ref baseContext, in this);
