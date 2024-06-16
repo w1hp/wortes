@@ -601,10 +601,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 1692896102597148395}
+  SelectedWeapon: {fileID: 0}
   WeaponSlot1: {fileID: 0}
   WeaponSlot2: {fileID: 0}
   WeaponSlot3: {fileID: 0}
   WeaponSlot4: {fileID: 0}
+  SelectedTower: {fileID: 8759440460334986151, guid: e9c4a6629a1b5eed2b036c69846eb9ff,
+    type: 3}
   TowerSlot1: {fileID: 8759440460334986151, guid: e9c4a6629a1b5eed2b036c69846eb9ff,
     type: 3}
   TowerSlot2: {fileID: 6709929605758922932, guid: 5f1731f3531139022a66e00a5de39fd9,
