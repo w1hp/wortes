@@ -62,15 +62,21 @@ public partial struct ShootingSystem : ISystem
 		//}
 
 	}
+	[BurstCompile]
+	[WithNone(typeof(Prefab))]
 	public partial struct ShootingJob : IJobEntity
 	{
 		public EntityCommandBuffer ECB;
 		public float DeltaTime;
 		public ComponentLookup<CharacterComponent> CharacterComponentLookup;
 
-		public void Execute(ref Gun gun,
-			in LocalTransform gunLocalTransform, in LocalToWorld gunTransform)
+		public void Execute( 
+			ref Gun gun,
+			in LocalTransform gunLocalTransform, 
+			in LocalToWorld gunTransform)
 		{
+
+
 			if (gun.OwnerType == GunOwner.Player)
 			{
 				var character = CharacterComponentLookup.GetRefRO(gun.Owner);

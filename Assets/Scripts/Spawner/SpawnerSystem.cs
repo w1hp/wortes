@@ -5,7 +5,10 @@ using Unity.Burst;
 [BurstCompile]
 public partial struct SpawnerSystem : ISystem
 {
-    public void OnCreate(ref SystemState state) { }
+    public void OnCreate(ref SystemState state) 
+    {
+        state.RequireForUpdate<Spawner>();
+	}
 
     public void OnDestroy(ref SystemState state) { }
 

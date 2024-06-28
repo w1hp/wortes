@@ -115,6 +115,7 @@ public struct CharacterComponent : IComponentData
     [Header("SwitchMode")]
     public bool IsBuildMode;
     public bool IsShooting;
+    public bool IsBuilding;
     public byte CurrentSlot;
 
 	[HideInInspector]

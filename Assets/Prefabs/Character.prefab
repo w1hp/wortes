@@ -479,6 +479,7 @@ MonoBehaviour:
         z: 0
     IsBuildMode: 0
     IsShooting: 0
+    IsBuilding: 0
     CurrentSlot: 0
     LocalLedgeDetectionPoint:
       x: 0
@@ -884,7 +885,7 @@ PrefabInstance:
     - target: {fileID: 3301104542628723313, guid: 69626c07ffc418a48a6643b640374294,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3301104542628723313, guid: 69626c07ffc418a48a6643b640374294,
         type: 3}

@@ -21,4 +21,5 @@ public class MaterialChangerAuthoring : MonoBehaviour
 public struct MaterialChanger : IComponentData
 {
     public Entity Character;
+    public bool CanBuild;
 }
