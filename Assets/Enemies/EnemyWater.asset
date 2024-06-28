@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b4caec54d6260a4ab75927d382677ef, type: 3}
-  m_Name: Enemy 3
+  m_Name: EnemyWater
   m_EditorClassIdentifier: 
-  level: 3
+  level: 2
   prefab: {fileID: 5591473804521091752, guid: 3017595273bb0da429e93e9cae3c9881, type: 3}
-  health: 8
-  damage: 5
-  moveSpeed: 1
+  health: 2
+  damage: 3
+  moveSpeed: 4

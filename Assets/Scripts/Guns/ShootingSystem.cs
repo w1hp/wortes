@@ -13,7 +13,7 @@ public partial struct ShootingSystem : ISystem
 		{
 			if (!character.ValueRO.IsShootMode)
 			{
-				return; 
+				return;
 			}
 			var gunComponent = state.EntityManager.GetComponentData<Gun>(character.ValueRO.GunPrefabEntity);
 			var bulletTransform = state.EntityManager.GetComponentData<LocalTransform>(character.ValueRO.GunPrefabEntity);
@@ -29,4 +29,5 @@ public partial struct ShootingSystem : ISystem
 			});
 		}
 	}
+
 }

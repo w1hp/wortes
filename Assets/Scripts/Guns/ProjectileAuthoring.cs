@@ -19,4 +19,5 @@ public class ProjectileAuthoring : MonoBehaviour
 public struct Projectile : IComponentData
 {
 	public float3 Velocity;
+    public int Damage;
 }
