@@ -12,11 +12,11 @@ class EnemyAuthoringBaker : Baker<EnemyAuthoring>
     {
 		var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
 
-		AddComponent<Enemy>(entity);
+		AddComponent<EnemyTag>(entity);
 	}
 }
 
-public struct Enemy : IComponentData
+public struct EnemyTag : IComponentData
 {
 
 }

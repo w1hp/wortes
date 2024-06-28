@@ -18,8 +18,8 @@ partial struct TargetingSystem : ISystem
 
 	public void OnUpdate(ref SystemState state)
 	{
-		// NA SCENIE MUSI BYC MIN 9 ENEMY ZEBY UNITY SIE NIE DOSTALO CRASHA
-		var targetQuery = SystemAPI.QueryBuilder().WithAll<LocalTransform, Enemy>().WithNone<Target>().Build();
+		// NA SCENIE MUSI BYC MIN 9 OBIEKTOW Z ENEMYTAG ZEBY UNITY SIE NIE DOSTALO CRASHA
+		var targetQuery = SystemAPI.QueryBuilder().WithAll<LocalTransform, EnemyTag>().WithNone<Target>().Build();
 		var kdQuery = SystemAPI.QueryBuilder().WithAll<LocalTransform, Target>().Build();
 
 		var targetEntities = targetQuery.ToEntityArray(state.WorldUpdateAllocator);
