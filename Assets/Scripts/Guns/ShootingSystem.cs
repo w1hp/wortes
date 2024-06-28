@@ -113,4 +113,5 @@ public partial struct ShootingSystem : ISystem
 			//});
 		}
 	}
+
 }
