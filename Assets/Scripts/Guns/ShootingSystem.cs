@@ -100,8 +100,10 @@ public partial struct ShootingSystem : ISystem
 				Linear = gunTransform.Forward * gun.Strength,
 				Angular = float3.zero
 			};
-			ECB.SetComponent(projectileEntity, velocity);
 
+			ECB.SetComponent(projectileEntity, velocity);
+			
+			//ECB.SetComponentEnabled<MaterialMeshInfo>(projectileEntity., true);
 			//URPMaterialPropertyBaseColor color
 			//ECB.SetComponent(projectileEntity, color);
 

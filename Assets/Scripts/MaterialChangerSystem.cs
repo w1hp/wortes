@@ -6,6 +6,7 @@ using Unity.Physics.Stateful;
 using Unity.Assertions;
 
 using Unity.Transforms;
+using UnityEngine;
 
 
 [BurstCompile]
@@ -84,11 +85,31 @@ public partial struct MaterialChangerSystem : ISystem
 			}
 			if (character.ValueRO.IsBuilding && materialChanger.ValueRO.CanBuild)
 			{
-				Entity towerEntity = state.EntityManager.Instantiate(characterEQ.ValueRO.SelectedTower);
-				var towerTransform = state.EntityManager.GetComponentData<LocalTransform>(characterEQ.ValueRO.SelectedTower);
-				var highlighterTransform = state.EntityManager.GetComponentData<LocalToWorld>(entity);
-				towerTransform.Position = highlighterTransform.Position;
-				state.EntityManager.SetComponentData(towerEntity, towerTransform);
+				var selectedTowerComponent = SystemAPI.GetComponentRO<Tower>(characterEQ.ValueRO.SelectedTower);
+				var characterInventory = SystemAPI.GetComponentRW<Inventory>(materialChanger.ValueRO.Character);
+				if (selectedTowerComponent.ValueRO.GoldCost <= characterInventory.ValueRW.Gold &&
+					selectedTowerComponent.ValueRO.WoodCost <= characterInventory.ValueRW.Wood &&
+					selectedTowerComponent.ValueRO.MetalCost <= characterInventory.ValueRW.Metal &&
+					selectedTowerComponent.ValueRO.WaterCost <= characterInventory.ValueRW.Water &&
+					selectedTowerComponent.ValueRO.EarthCost <= characterInventory.ValueRW.Earth &&
+					selectedTowerComponent.ValueRO.FireCost <= characterInventory.ValueRW.Fire)
+				{
+					characterInventory.ValueRW.Gold -= selectedTowerComponent.ValueRO.GoldCost;
+					characterInventory.ValueRW.Wood -= selectedTowerComponent.ValueRO.WoodCost;
+					characterInventory.ValueRW.Metal -= selectedTowerComponent.ValueRO.MetalCost;
+					characterInventory.ValueRW.Water -= selectedTowerComponent.ValueRO.WaterCost;
+					characterInventory.ValueRW.Earth -= selectedTowerComponent.ValueRO.EarthCost;
+					characterInventory.ValueRW.Fire -= selectedTowerComponent.ValueRO.FireCost;
+
+					Entity towerEntity = state.EntityManager.Instantiate(characterEQ.ValueRO.SelectedTower);
+					var towerTransform = state.EntityManager.GetComponentData<LocalTransform>(characterEQ.ValueRO.SelectedTower);
+					var highlighterTransform = state.EntityManager.GetComponentData<LocalToWorld>(entity);
+					towerTransform.Position = highlighterTransform.Position;
+					state.EntityManager.SetComponentData(towerEntity, towerTransform);
+				}
+				else Debug.Log("Not enough resources");
+
+
 			}
 
 		}

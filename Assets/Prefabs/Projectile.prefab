@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ca689745cb19e49a8a087e0ef476a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GraphicsRepresentation: {fileID: 1955223000465111407}
 --- !u!114 &6764337312808660582
 MonoBehaviour:
   m_ObjectHideFlags: 0

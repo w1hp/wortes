@@ -3,12 +3,12 @@ using UnityEngine;
 
 class InventoryAuthoring : MonoBehaviour
 {
-    public uint Gold;
-	public uint Wood;
-	public uint Metal;
-	public uint Water;
-	public uint Earth;
-	public uint Fire;
+    public float Gold;
+	public float Wood;
+	public float Metal;
+	public float Water;
+	public float Earth;
+	public float Fire;
 }
 
 class InventoryAuthoringBaker : Baker<InventoryAuthoring>
@@ -30,12 +30,12 @@ class InventoryAuthoringBaker : Baker<InventoryAuthoring>
 
 public struct Inventory : IComponentData
 {
-    public uint Gold;
-	public uint Wood;
-	public uint Metal;
-	public uint Water;
-	public uint Earth;
-	public uint Fire;
+    public float Gold;
+	public float Wood;
+	public float Metal;
+	public float Water;
+	public float Earth;
+	public float Fire;
 }
 
 public enum Element
