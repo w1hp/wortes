@@ -100,14 +100,25 @@ public readonly partial struct CharacterAspect : IAspect, IKinematicCharacterPro
             { 
                 character.IsBuildMode = !character.IsBuildMode;
 			}
-            if (!character.IsBuildMode && characterControl.ShootOrBuild)
+            if (!character.IsBuildMode && characterControl.ShootOrBuildHeld)
             {
-                character.IsShootMode = true;
+                character.IsShooting = true;
 			}
 			else
 			{
-				character.IsShootMode = false;
+				character.IsShooting = false;
 			}   
+            if (character.IsBuildMode && characterControl.ShootOrBuildHeld)
+            {
+
+				character.IsBuilding = true;
+            }
+			else
+			{
+				character.IsBuilding = false;
+			}
+
+			character.CurrentSlot = characterControl.ChooseSlot;
 		}
         
         stateMachine.OnStatePhysicsUpdate(stateMachine.CurrentState, ref context, ref baseContext, in this);

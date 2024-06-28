@@ -114,7 +114,9 @@ public struct CharacterComponent : IComponentData
 
     [Header("SwitchMode")]
     public bool IsBuildMode;
-    public bool IsShootMode;
+    public bool IsShooting;
+    public bool IsBuilding;
+    public byte CurrentSlot;
 
 	[HideInInspector]
     public float3 LocalLedgeDetectionPoint;
@@ -169,6 +171,8 @@ public struct CharacterControl : IComponentData
 	public bool ShootOrBuild;
 
 	public bool ShootOrBuildHeld;
+
+	public byte ChooseSlot;
 }
 
 public struct CharacterInitialized : IComponentData

@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class MaterialChangerAuthoring : MonoBehaviour
 {
-	public bool isEnable;
-	public bool isRed;
+    public GameObject Character;
 
 	class MaterialChangerBaker : Baker<MaterialChangerAuthoring>
     {
@@ -14,14 +13,13 @@ public class MaterialChangerAuthoring : MonoBehaviour
            
             AddComponent(entity, new MaterialChanger
             {
-			    isEnable = authoring.isEnable,
-                isRed = authoring.isRed
+				Character = GetEntity(authoring.Character, TransformUsageFlags.Dynamic)
             });
         }
     }
 }
 public struct MaterialChanger : IComponentData
 {
-	public bool isEnable;
-    public bool isRed;
+    public Entity Character;
+    public bool CanBuild;
 }

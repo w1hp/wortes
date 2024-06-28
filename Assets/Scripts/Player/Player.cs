@@ -31,4 +31,6 @@ public struct PlayerInputs : IComponentData
     public FixedInputEvent FlyNoCollisionsPressed;
     public FixedInputEvent SwitchModePressed;
 	public FixedInputEvent ShootOrBuildPressed;
+
+    public byte ChooseSlot;
 }
