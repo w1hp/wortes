@@ -1,7 +1,7 @@
-using Unity.Entities;
+// using Unity.Entities;
 
-public struct BulletComponent : IComponentData
-{
-    public float Speed;
-    public float Size;
-}
+// public struct BulletComponent : IComponentData
+// {
+//     public float Speed;
+//     public float Size;
+// }

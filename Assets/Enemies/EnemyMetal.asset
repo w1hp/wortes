@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyMetal
   m_EditorClassIdentifier: 
   level: 4
-  prefab: {fileID: 5591473804521091752, guid: 3017595273bb0da429e93e9cae3c9881, type: 3}
+  prefab: {fileID: 5591473804521091752, guid: e98da819031628e43923f451071db23d, type: 3}
   health: 15
   damage: 25
   moveSpeed: 7

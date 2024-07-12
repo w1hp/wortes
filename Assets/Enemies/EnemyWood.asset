@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyWood
   m_EditorClassIdentifier: 
   level: 4
-  prefab: {fileID: 5591473804521091752, guid: 3017595273bb0da429e93e9cae3c9881, type: 3}
+  prefab: {fileID: 5591473804521091752, guid: 453b9b44def8d3543b6a61f9c731864a, type: 3}
   health: 10
   damage: 20
   moveSpeed: 5

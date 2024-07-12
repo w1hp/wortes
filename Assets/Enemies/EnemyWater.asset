@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyWater
   m_EditorClassIdentifier: 
   level: 2
-  prefab: {fileID: 5591473804521091752, guid: 3017595273bb0da429e93e9cae3c9881, type: 3}
+  prefab: {fileID: 5591473804521091752, guid: 2a9f012a3c4022a438d58acd93cddbe4, type: 3}
   health: 2
   damage: 3
   moveSpeed: 4

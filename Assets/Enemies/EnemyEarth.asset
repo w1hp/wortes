@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyEarth
   m_EditorClassIdentifier: 
   level: 3
-  prefab: {fileID: 5591473804521091752, guid: 3017595273bb0da429e93e9cae3c9881, type: 3}
+  prefab: {fileID: 5591473804521091752, guid: 9462d533af4908243821c888b3937a35, type: 3}
   health: 8
   damage: 5
   moveSpeed: 1
