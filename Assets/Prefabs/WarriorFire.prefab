@@ -134,6 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9591a5cb441a9647b97bafc436024e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourcePrefab: {fileID: 5092012498234743861, guid: 776594275ac07ecea95f2c5a895d4627,
+  ResourcePrefab: {fileID: 7428874357738166646, guid: 48f0628bc9cf0614bb0185cee66a9d0d,
     type: 3}
   ResourceAmount: 3

@@ -42,7 +42,7 @@ partial struct EnemyCollisionImpactSystem : ISystem
                 {
                     case StatefulEventState.Enter:
                         ECB.DestroyEntity(otherEntity);
-                        ECB.DestroyEntity(entity);
+                        ECB.SetComponentEnabled<IsExistTag>(entity, false);
                         break;
                     case StatefulEventState.Stay:
                         break;

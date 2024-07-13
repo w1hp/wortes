@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6383469630660165456}
   - component: {fileID: 3714669801984244031}
   - component: {fileID: 374942533107952916}
+  - component: {fileID: 8142834105400763487}
   m_Layer: 0
   m_Name: WarriorEarth
   m_TagString: Untagged
@@ -121,3 +122,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CalculateDetails: 0
+--- !u!114 &8142834105400763487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5591473804521091752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9591a5cb441a9647b97bafc436024e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResourcePrefab: {fileID: 7428874357738166646, guid: 48f0628bc9cf0614bb0185cee66a9d0d,
+    type: 3}
+  ResourceAmount: 3

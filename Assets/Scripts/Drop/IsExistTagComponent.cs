@@ -1,3 +1,3 @@
 using Unity.Entities;
 
-public struct IsExistTag : IComponentData { }
+public struct IsExistTag : IComponentData, IEnableableComponent { }

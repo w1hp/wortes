@@ -24,7 +24,7 @@ class DropAuthoringBaker : Baker<DropAuthoring>
     }
 }
 
-public struct Drop : ICleanupComponentData
+public struct Drop : IComponentData
 {
     public Entity ResourcePrefab;
     public int ResourceAmount;
