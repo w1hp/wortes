@@ -37,13 +37,3 @@ public struct Inventory : IComponentData
 	public float Earth;
 	public float Fire;
 }
-
-public enum Element
-{
-	Unidentified,
-	Fire, // ICE
-	Water, // LIGHTNING, DESERT
-	Earth, // WIND, LIGHTNING
-	Wood, 
-	Metal 
-}

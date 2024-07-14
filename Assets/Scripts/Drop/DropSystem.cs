@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 
+[UpdateAfter(typeof(EnemyCollisionImpactSystem))]
 partial struct DropSystem : ISystem
 {
     [BurstCompile]

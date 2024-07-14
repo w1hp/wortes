@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 2035369821488769395}
   - component: {fileID: 5479493242900039102}
   - component: {fileID: 6475067831583943522}
+  - component: {fileID: 8405094814202289979}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -635,6 +636,19 @@ MonoBehaviour:
   Water: 100
   Earth: 100
   Fire: 100
+--- !u!114 &8405094814202289979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692896102597148395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c5aa6e24a745c4ea05b54d058e0dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CalculateDetails: 0
 --- !u!1 &3057386589211996020
 GameObject:
   m_ObjectHideFlags: 0

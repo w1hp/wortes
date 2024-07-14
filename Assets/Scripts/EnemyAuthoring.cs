@@ -3,7 +3,7 @@ using UnityEngine;
 
 class EnemyAuthoring : MonoBehaviour
 {
-	public EnemyType enemyType;
+	public Element enemyType;
 	public float health = 50f;
 }
 
@@ -23,6 +23,6 @@ class EnemyAuthoringBaker : Baker<EnemyAuthoring>
 
 public struct EnemyTag : IComponentData
 {
-	public EnemyType EnemyType;
+	public Element EnemyType;
 	public float Health;
 }
