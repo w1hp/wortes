@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e4af9cac8a578ea2d9662cb3a7658222, type: 2}
+  - {fileID: 2100000, guid: f7b06e0878018bf4992c3717fa6912e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -169,7 +169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e4af9cac8a578ea2d9662cb3a7658222, type: 2}
+  - {fileID: 2100000, guid: f7b06e0878018bf4992c3717fa6912e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 8545409371311387455}
   - component: {fileID: 8885249236315627585}
   m_Layer: 9
-  m_Name: Arrow Tower
+  m_Name: ArrowTowerWood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,11 +346,16 @@ PrefabInstance:
       propertyPath: OwnerType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: ElementType
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7224457264266369207, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e4af9cac8a578ea2d9662cb3a7658222, type: 2}
+      objectReference: {fileID: 2100000, guid: f7b06e0878018bf4992c3717fa6912e6, type: 2}
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: m_LocalScale.x

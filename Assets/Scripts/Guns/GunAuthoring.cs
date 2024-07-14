@@ -8,9 +8,12 @@ public class GunAuthoring : MonoBehaviour
 	public GameObject Muzzle;
 	public GameObject Bullet;
 	public GunOwner OwnerType;
+	[Tooltip("Set it if OwnerType is Player")]
 	public GameObject Owner;
-	public float FireInterval;
+	public ElementType ElementType;
+	public float Damage;
 	public float Strength;
+	public float FireInterval;
 	class Baker : Baker<GunAuthoring>
 	{
 		public override void Bake(GunAuthoring authoring)
@@ -22,8 +25,10 @@ public class GunAuthoring : MonoBehaviour
 				Bullet = GetEntity(authoring.Bullet, TransformUsageFlags.Dynamic),
 				OwnerType = authoring.OwnerType,
 				Owner = GetEntity(authoring.Owner, TransformUsageFlags.Dynamic),
-				FireInterval = authoring.FireInterval,
-				Strength = authoring.Strength
+				ElementType = authoring.ElementType,
+				Damage = authoring.Damage,
+				Strength = authoring.Strength,
+				FireInterval = authoring.FireInterval
 			});
 		}
 	}
@@ -33,15 +38,18 @@ public struct Gun : IComponentData
 {
 	public Entity Muzzle;
 	public Entity Bullet;
-	public float Strength;
 	public GunOwner OwnerType;
 	public Entity Owner;
+	public ElementType ElementType;
+	public float Damage;
+	public float Strength;
 	public float FireInterval;
 	public float LastShotTime;
 }
 
 public enum GunOwner
 {
+	Unidentified,
 	Player,
 	Tower,
 	Enemy

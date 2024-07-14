@@ -28,10 +28,12 @@ public class EnemySpawnerAuthoring : MonoBehaviour
                 enemyData.Add(new EnemyData
                 {
                     damage = e.damage,
-                    health = e.health,
+                    maxHealth = e.health,
                     level = e.level,
                     moveSpeed = e.moveSpeed,
-                    prefab = GetEntity(e.prefab, TransformUsageFlags.None)
+					detectionRange = e.detectionRange,
+					elementType = e.elementType,
+					prefab = GetEntity(e.prefab, TransformUsageFlags.None)
                 });
             }
 

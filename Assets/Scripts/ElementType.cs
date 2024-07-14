@@ -1,4 +1,4 @@
-public enum Element
+public enum ElementType
 {
 	Unidentified,
 	Fire, 

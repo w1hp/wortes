@@ -17,3 +17,5 @@ MonoBehaviour:
   health: 5
   damage: 10
   moveSpeed: 2
+  detectionRange: 10
+  elementType: 1

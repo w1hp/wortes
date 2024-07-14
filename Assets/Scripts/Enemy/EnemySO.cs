@@ -8,4 +8,7 @@ public class EnemySO : ScriptableObject
     public float health;
     public float damage;
     public float moveSpeed;
+	public float detectionRange;
+	public ElementType elementType;
+
 }

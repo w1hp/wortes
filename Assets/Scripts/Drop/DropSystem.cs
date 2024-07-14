@@ -1,5 +1,7 @@
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
 
@@ -25,8 +27,15 @@ partial struct DropSystem : ISystem
             for (int i = 0; i < drop.ValueRO.ResourceAmount; i++)
             {
                 var resource = state.EntityManager.Instantiate(drop.ValueRO.ResourcePrefab);
-                state.EntityManager.SetComponentData(resource, transform);
-            }
+				ECB.SetComponent(resource, transform);
+
+                PhysicsVelocity velocity = new PhysicsVelocity
+                {
+                    Linear = 1f,
+                    Angular = new float3 { xyz = i * 30 }
+				};
+				ECB.SetComponent(resource, velocity);
+			}
             ECB.DestroyEntity(entity);
         }
 

@@ -41,22 +41,21 @@ partial struct EnemyCollisionImpactSystem : ISystem
                 switch (collisionEvent.State)
                 {
                     case StatefulEventState.Enter:
-                        ECB.DestroyEntity(otherEntity);
-                        ECB.SetComponentEnabled<IsExistTag>(entity, false);
-                        break;
+						var projectile = SystemAPI.GetComponent<Projectile>(otherEntity);
+                        enemy.ValueRW.TakeDamage(projectile.Damage, projectile.Type);
+						ECB.DestroyEntity(otherEntity);
+
+                        if (enemy.ValueRW.CurrentHealth <= 0f)
+						{
+							ECB.SetComponentEnabled<IsExistTag>(entity, false);
+						}
+						break;
                     case StatefulEventState.Stay:
                         break;
                     case StatefulEventState.Exit:
                         break;
                 }
             }
-
         }
-    }
-
-    [BurstCompile]
-    public void OnDestroy(ref SystemState state)
-    {
-
     }
 }

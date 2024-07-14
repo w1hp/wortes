@@ -3,7 +3,7 @@ using UnityEngine;
 
 class ItemAuthoring : MonoBehaviour
 {
-	public Element Type;
+	public ElementType Type;
 	public int Value = 1;
 }
 
@@ -22,6 +22,6 @@ class ItemAuthoringBaker : Baker<ItemAuthoring>
 
 public struct Item : IComponentData
 {
-    public Element Type;
+    public ElementType Type;
     public int Value;
 }

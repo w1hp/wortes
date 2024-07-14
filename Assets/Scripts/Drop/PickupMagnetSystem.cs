@@ -5,7 +5,9 @@ using Unity.Physics;
 using Unity.Physics.Stateful;
 using Unity.Transforms;
 using UnityEngine;
+using UnityEngine.UIElements;
 
+[UpdateAfter(typeof(DropSystem))]
 partial struct PickupMagnetSystem : ISystem
 {
 	[BurstCompile]
@@ -45,10 +47,11 @@ partial struct PickupMagnetSystem : ISystem
 						break;
 					case StatefulEventState.Stay:
 						var otherTransform = SystemAPI.GetComponent<LocalTransform>(otherEntity);
+						var direction = transform.ValueRO.Position - otherTransform.Position;
 
 						PhysicsVelocity velocity = new PhysicsVelocity
 						{
-							Linear = transform.ValueRO.Position - otherTransform.Position,
+							Linear = math.lerp(direction, (direction * 10), 0.08f),
 							Angular = float3.zero
 						};
 

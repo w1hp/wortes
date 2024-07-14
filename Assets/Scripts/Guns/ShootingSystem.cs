@@ -95,6 +95,12 @@ public partial struct ShootingSystem : ISystem
 				gunLocalTransform.Scale);
 			ECB.SetComponent(projectileEntity, localTransform);
 
+			ECB.SetComponent(projectileEntity, new Projectile
+			{
+				Damage = gun.Damage,
+				Type = gun.ElementType
+			});
+
 			PhysicsVelocity velocity = new PhysicsVelocity
 			{
 				Linear = gunTransform.Forward * gun.Strength,

@@ -12,10 +12,11 @@ class CharacterEquipmentAuthoring : MonoBehaviour
 	public GameObject WeaponSlot4;
 
 	public GameObject SelectedTower;
-	public GameObject TowerSlot1;
-	public GameObject TowerSlot2;
-	public GameObject TowerSlot3;
-	public GameObject TowerSlot4;
+	public GameObject FireTower;
+	public GameObject WaterTower;
+	public GameObject EarthTower;
+	public GameObject WoodTower;
+	public GameObject MetalTower;
 
 	class Baker : Baker<CharacterEquipmentAuthoring>
 	{
@@ -32,10 +33,11 @@ class CharacterEquipmentAuthoring : MonoBehaviour
 				//WeaponSlot4 = GetEntity(authoring.WeaponSlot4, TransformUsageFlags.Dynamic),
 
 				SelectedTower = GetEntity(authoring.SelectedTower, TransformUsageFlags.Dynamic),
-				TowerSlot1 = GetEntity(authoring.TowerSlot1, TransformUsageFlags.Dynamic),
-				TowerSlot2 = GetEntity(authoring.TowerSlot2, TransformUsageFlags.Dynamic),
-				//TowerSlot3 = GetEntity(authoring.TowerSlot3, TransformUsageFlags.Dynamic),
-				//TowerSlot4 = GetEntity(authoring.TowerSlot4, TransformUsageFlags.Dynamic)
+				FireTower = GetEntity(authoring.FireTower, TransformUsageFlags.Dynamic),
+				WaterTower = GetEntity(authoring.WaterTower, TransformUsageFlags.Dynamic),
+				EarthTower = GetEntity(authoring.EarthTower, TransformUsageFlags.Dynamic),
+				WoodTower = GetEntity(authoring.WoodTower, TransformUsageFlags.Dynamic),
+				MetalTower = GetEntity(authoring.MetalTower, TransformUsageFlags.Dynamic),
 			});
 		}
 	}
@@ -53,8 +55,9 @@ public struct CharacterEquipment : IComponentData
 	public Entity WeaponSlot4;
 
 	public Entity SelectedTower;
-    public Entity TowerSlot1;
-	public Entity TowerSlot2;
-	public Entity TowerSlot3;
-	public Entity TowerSlot4;
+    public Entity FireTower;
+	public Entity WaterTower;
+	public Entity EarthTower;
+	public Entity WoodTower;
+	public Entity MetalTower;
 }

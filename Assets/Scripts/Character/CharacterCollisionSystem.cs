@@ -43,19 +43,19 @@ partial struct CharacterCollisionSystem : ISystem
 						var inventory = SystemAPI.GetComponent<Inventory>(entity);
 						switch (item.Type)
 						{
-							case Element.Fire:
+							case ElementType.Fire:
 								inventory.Fire += item.Value;
 								break;
-							case Element.Water:
+							case ElementType.Water:
 								inventory.Water += item.Value;
 								break;
-							case Element.Earth:
+							case ElementType.Earth:
 								inventory.Earth += item.Value;
 								break;
-							case Element.Wood:
+							case ElementType.Wood:
 								inventory.Wood += item.Value;
 								break;
-							case Element.Metal:
+							case ElementType.Metal:
 								inventory.Metal += item.Value;
 								break;
 						}

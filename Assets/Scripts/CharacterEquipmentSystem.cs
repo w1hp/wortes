@@ -21,19 +21,23 @@ partial struct CharacterEquipmentSystem : ISystem
             {
 				case 0:
 					//characterEquipment.ValueRW.SelectedWeapon = characterEquipment.ValueRW.WeaponSlot1;
-                    characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.TowerSlot1;
+                    characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.FireTower;
 					break;
                 case 1:
 					//characterEquipment.ValueRW.SelectedWeapon = characterEquipment.ValueRW.WeaponSlot2;
-                    characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.TowerSlot2;
+                    characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.WaterTower;
 					break;
 				case 2:
 					//characterEquipment.ValueRW.SelectedWeapon = characterEquipment.ValueRW.WeaponSlot3;
-					//characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.TowerSlot3;
+					characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.EarthTower;
 					break;
 				case 3:
 					//characterEquipment.ValueRW.SelectedWeapon = characterEquipment.ValueRW.WeaponSlot4;
-					//characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.TowerSlot4;
+					characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.WoodTower;
+					break;
+				case 4:
+					//characterEquipment.ValueRW.SelectedWeapon = characterEquipment.ValueRW.WeaponSlot5;
+					characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.MetalTower;
 					break;
 				default:
                     break;
