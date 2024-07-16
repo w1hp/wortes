@@ -9,6 +9,6 @@ public class EnemySO : ScriptableObject
     public float damage;
     public float moveSpeed;
 	public float detectionRange;
-	public ElementType elementType;
-
+    public ElementType elementType;
+    public HealthBar healthBarData;
 }
