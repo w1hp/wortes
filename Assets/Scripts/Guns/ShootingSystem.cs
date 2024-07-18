@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using Unity.Rendering;
 using Unity.Physics;
+using Unity.Collections;
 
 [UpdateBefore(typeof(TransformSystemGroup))]
 public partial struct ShootingSystem : ISystem
@@ -25,6 +26,7 @@ public partial struct ShootingSystem : ISystem
 			ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
 			DeltaTime = SystemAPI.Time.DeltaTime,
 			CharacterComponentLookup = SystemAPI.GetComponentLookup<CharacterComponent>(),
+			Tower = SystemAPI.GetComponentLookup<Tower>()
 		};
 
 		shootingJob.Schedule();
@@ -67,20 +69,31 @@ public partial struct ShootingSystem : ISystem
 	public partial struct ShootingJob : IJobEntity
 	{
 		public EntityCommandBuffer ECB;
-		public float DeltaTime;
-		public ComponentLookup<CharacterComponent> CharacterComponentLookup;
+		[ReadOnly] public float DeltaTime;
+		[ReadOnly] public ComponentLookup<CharacterComponent> CharacterComponentLookup;
+		[ReadOnly] public ComponentLookup<Tower> Tower;
 
 		public void Execute( 
 			ref Gun gun,
 			in LocalTransform gunLocalTransform, 
 			in LocalToWorld gunTransform)
 		{
-
-
-			if (gun.OwnerType == GunOwner.Player)
+			switch (gun.OwnerType)
 			{
-				var character = CharacterComponentLookup.GetRefRO(gun.Owner);
-				if (!character.ValueRO.IsShooting) return;
+				case GunOwner.Unidentified:
+					break;
+				case GunOwner.Player:
+					var character = CharacterComponentLookup.GetRefRO(gun.Owner);
+					if (!character.ValueRO.IsShooting) return;
+					break;
+				case GunOwner.Tower:
+					var tower = Tower.GetRefRO(gun.Owner);
+					if (!tower.ValueRO.IsEnemyInRange) return;
+					break;
+				case GunOwner.Enemy:
+					break;
+				default:
+					break;
 			}
 
 			gun.LastShotTime -= DeltaTime;

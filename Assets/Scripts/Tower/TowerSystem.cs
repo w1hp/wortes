@@ -15,15 +15,16 @@ partial struct TowerSystem : ISystem
 	[BurstCompile]
 	public void OnUpdate(ref SystemState state)
 	{
-		foreach (var (tower, target, transform) in SystemAPI.Query<Tower, RefRO<Target>, RefRW<LocalTransform>>())
+		foreach (var (tower, target, transform) in SystemAPI.Query<RefRW<Tower>, RefRO<Target>, RefRW<LocalTransform>>())
 		{
 			if (target.ValueRO.Value == Entity.Null) break;
 
 			var targetPosition = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.Value).Position;
 
 			// Aim at target
-			if (math.distance(transform.ValueRO.Position, targetPosition) < tower.Range)
+			if (math.distance(transform.ValueRO.Position, targetPosition) < tower.ValueRO.Range)
 			{
+				tower.ValueRW.IsEnemyInRange = true;
 				// Normalize y axis OR
 				float3 to = targetPosition;
 				to.y = 0;
@@ -34,18 +35,13 @@ partial struct TowerSystem : ISystem
 				// not normalized y axis
 				//var desiredRotation = TransformHelpers.LookAtRotation(transform.ValueRO.Position, targetPosition, math.up());
 
-				var aimerTansform = SystemAPI.GetComponentRW<LocalTransform>(tower.Aimer);
+				var aimerTansform = SystemAPI.GetComponentRW<LocalTransform>(tower.ValueRO.Aimer);
 				aimerTansform.ValueRW.Rotation = math.slerp(aimerTansform.ValueRO.Rotation, desiredRotation, 0.08f);
 			}
-
-			// Shoot
-
+			else
+			{
+				tower.ValueRW.IsEnemyInRange = false;
+			}
 		}
-	}
-
-	[BurstCompile]
-	public void OnDestroy(ref SystemState state)
-	{
-
 	}
 }

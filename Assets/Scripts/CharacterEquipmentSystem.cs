@@ -44,10 +44,4 @@ partial struct CharacterEquipmentSystem : ISystem
             }
         }
     }
-
-    [BurstCompile]
-    public void OnDestroy(ref SystemState state)
-    {
-        
-    }
 }

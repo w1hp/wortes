@@ -67,4 +67,6 @@ public struct Tower : IComponentData
 
 	public Entity ProjectileSpawnPoint;
 	public Entity Aimer;
+
+	public bool IsEnemyInRange;
 }

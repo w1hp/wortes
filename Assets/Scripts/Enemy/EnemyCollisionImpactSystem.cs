@@ -9,7 +9,7 @@ partial struct EnemyCollisionImpactSystem : ISystem
     [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
-
+        state.RequireForUpdate<EnemyComponent>();
     }
 
     [BurstCompile]
@@ -43,7 +43,7 @@ partial struct EnemyCollisionImpactSystem : ISystem
                     case StatefulEventState.Enter:
 						var projectile = SystemAPI.GetComponent<Projectile>(otherEntity);
                         enemy.ValueRW.TakeDamage(projectile.Damage, projectile.Type);
-						ECB.DestroyEntity(otherEntity);
+						//ECB.DestroyEntity(otherEntity);
 
                         if (enemy.ValueRW.CurrentHealth <= 0f)
 						{

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 593872147078127439}
   - component: {fileID: 6466522865107447441}
   - component: {fileID: -7557108552252414673}
+  - component: {fileID: 7234359366352675603}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 911774879565320262}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 666, y: -666, z: 666}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47,7 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ca689745cb19e49a8a087e0ef476a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GraphicsRepresentation: {fileID: 1955223000465111407}
 --- !u!114 &6466522865107447441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,9 +66,9 @@ MonoBehaviour:
     y: 0
     z: 0
   m_PrimitiveSize:
-    x: 0.4
-    y: 0.4
-    z: 0.4
+    x: 0.25
+    y: 0.25
+    z: 0.25
   m_PrimitiveOrientation:
     Value:
       x: -0
@@ -76,15 +76,15 @@ MonoBehaviour:
       z: 0
     RotationOrder: 4
   m_Capsule:
-    Height: 0.4
-    Radius: 0.2
+    Height: 0.25
+    Radius: 0.125
     Axis: 2
   m_Cylinder:
-    Height: 0.4
-    Radius: 0.2
+    Height: 0.25
+    Radius: 0.125
     Axis: 2
   m_CylinderSideCount: 20
-  m_SphereRadius: 0.2
+  m_SphereRadius: 0.125
   m_MinimumSkinnedVertexWeight: 0.1
   m_ConvexHullGenerationParameters:
     m_SimplificationTolerance: 0.01
@@ -216,7 +216,7 @@ MonoBehaviour:
     x: 0
     y: 0
     z: 0
-  m_GravityFactor: 1
+  m_GravityFactor: 0.1
   m_OverrideDefaultMassDistribution: 0
   m_CenterOfMass:
     x: 0
@@ -242,6 +242,19 @@ MonoBehaviour:
     Tag05: 0
     Tag06: 0
     Tag07: 0
+--- !u!114 &7234359366352675603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911774879565320262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c5aa6e24a745c4ea05b54d058e0dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CalculateDetails: 0
 --- !u!1 &1955223000465111407
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +283,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2763412874166576619}

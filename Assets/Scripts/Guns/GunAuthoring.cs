@@ -8,7 +8,6 @@ public class GunAuthoring : MonoBehaviour
 	public GameObject Muzzle;
 	public GameObject Bullet;
 	public GunOwner OwnerType;
-	[Tooltip("Set it if OwnerType is Player")]
 	public GameObject Owner;
 	public ElementType ElementType;
 	public float Damage;

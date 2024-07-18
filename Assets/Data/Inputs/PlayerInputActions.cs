@@ -188,6 +188,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Choose5"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4e011ca-07ca-4062-ae17-5dd60b00e1f0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -608,6 +617,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Choose4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""228a5dba-0f68-4bda-a428-569d9d63f5d6"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d1975ce-e593-4817-ba54-6ba934aa6c4c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -634,6 +665,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_GameplayMap_Choose2 = m_GameplayMap.FindAction("Choose2", throwIfNotFound: true);
         m_GameplayMap_Choose3 = m_GameplayMap.FindAction("Choose3", throwIfNotFound: true);
         m_GameplayMap_Choose4 = m_GameplayMap.FindAction("Choose4", throwIfNotFound: true);
+        m_GameplayMap_Choose5 = m_GameplayMap.FindAction("Choose5", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -713,6 +745,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GameplayMap_Choose2;
     private readonly InputAction m_GameplayMap_Choose3;
     private readonly InputAction m_GameplayMap_Choose4;
+    private readonly InputAction m_GameplayMap_Choose5;
     public struct GameplayMapActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -735,6 +768,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Choose2 => m_Wrapper.m_GameplayMap_Choose2;
         public InputAction @Choose3 => m_Wrapper.m_GameplayMap_Choose3;
         public InputAction @Choose4 => m_Wrapper.m_GameplayMap_Choose4;
+        public InputAction @Choose5 => m_Wrapper.m_GameplayMap_Choose5;
         public InputActionMap Get() { return m_Wrapper.m_GameplayMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -798,6 +832,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Choose4.started += instance.OnChoose4;
             @Choose4.performed += instance.OnChoose4;
             @Choose4.canceled += instance.OnChoose4;
+            @Choose5.started += instance.OnChoose5;
+            @Choose5.performed += instance.OnChoose5;
+            @Choose5.canceled += instance.OnChoose5;
         }
 
         private void UnregisterCallbacks(IGameplayMapActions instance)
@@ -856,6 +893,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Choose4.started -= instance.OnChoose4;
             @Choose4.performed -= instance.OnChoose4;
             @Choose4.canceled -= instance.OnChoose4;
+            @Choose5.started -= instance.OnChoose5;
+            @Choose5.performed -= instance.OnChoose5;
+            @Choose5.canceled -= instance.OnChoose5;
         }
 
         public void RemoveCallbacks(IGameplayMapActions instance)
@@ -893,5 +933,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnChoose2(InputAction.CallbackContext context);
         void OnChoose3(InputAction.CallbackContext context);
         void OnChoose4(InputAction.CallbackContext context);
+        void OnChoose5(InputAction.CallbackContext context);
     }
 }

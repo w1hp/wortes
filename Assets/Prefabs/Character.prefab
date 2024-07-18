@@ -612,12 +612,16 @@ MonoBehaviour:
   WeaponSlot4: {fileID: 0}
   SelectedTower: {fileID: 8759440460334986151, guid: e9c4a6629a1b5eed2b036c69846eb9ff,
     type: 3}
-  TowerSlot1: {fileID: 8759440460334986151, guid: e9c4a6629a1b5eed2b036c69846eb9ff,
+  FireTower: {fileID: 8759440460334986151, guid: e9c4a6629a1b5eed2b036c69846eb9ff,
     type: 3}
-  TowerSlot2: {fileID: 6709929605758922932, guid: 5f1731f3531139022a66e00a5de39fd9,
+  WaterTower: {fileID: 8759440460334986151, guid: f9a91eae4f362e14ab2086e6405997c7,
     type: 3}
-  TowerSlot3: {fileID: 0}
-  TowerSlot4: {fileID: 0}
+  EarthTower: {fileID: 8759440460334986151, guid: a4b83a07ccb4b0d4b8bd3a2e67dcc121,
+    type: 3}
+  WoodTower: {fileID: 8759440460334986151, guid: a7ac89163a09ff44d875ee9ff9a03473,
+    type: 3}
+  MetalTower: {fileID: 8759440460334986151, guid: 75a2106f110c0a34b9c232501918af95,
+    type: 3}
 --- !u!114 &6475067831583943522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,6 +995,11 @@ PrefabInstance:
       propertyPath: Character
       value: 
       objectReference: {fileID: 1692896102597148395}
+    - target: {fileID: 864711937847559280, guid: 69626c07ffc418a48a6643b640374294,
+        type: 3}
+      propertyPath: BuildTimeRemaining
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3301104542628723313, guid: 69626c07ffc418a48a6643b640374294,
         type: 3}
       propertyPath: m_LocalPosition.x

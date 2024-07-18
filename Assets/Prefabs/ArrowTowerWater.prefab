@@ -268,7 +268,7 @@ MonoBehaviour:
   WaterCost: 5
   EarthCost: 5
   FireCost: 5
-  Range: 45
+  Range: 10
   Damage: 4
   AttackSpeed: 1
   ProjectileSpeed: 60
@@ -343,8 +343,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
+      propertyPath: Owner
+      value: 
+      objectReference: {fileID: 8759440460334986151}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: Damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
       propertyPath: OwnerType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}

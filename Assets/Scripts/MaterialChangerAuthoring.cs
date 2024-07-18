@@ -4,6 +4,7 @@ using UnityEngine;
 public class MaterialChangerAuthoring : MonoBehaviour
 {
     public GameObject Character;
+    public float BuildTimeRemaining;
 
 	class MaterialChangerBaker : Baker<MaterialChangerAuthoring>
     {
@@ -13,8 +14,9 @@ public class MaterialChangerAuthoring : MonoBehaviour
            
             AddComponent(entity, new MaterialChanger
             {
-				Character = GetEntity(authoring.Character, TransformUsageFlags.Dynamic)
-            });
+				Character = GetEntity(authoring.Character, TransformUsageFlags.Dynamic),
+				BuildTimeRemaining = authoring.BuildTimeRemaining,
+			});
         }
     }
 }
@@ -22,4 +24,6 @@ public struct MaterialChanger : IComponentData
 {
     public Entity Character;
     public bool CanBuild;
+	public float BuildTimeRemaining;
+    public float BuildTime;
 }

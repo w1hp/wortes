@@ -38,12 +38,13 @@ public partial struct MaterialChangerSystem : ISystem
 			var character = SystemAPI.GetComponentRO<CharacterComponent>(materialChanger.ValueRO.Character);
 			//var highlighterMMI = SystemAPI.GetComponentRW<MaterialMeshInfo>(entity);
 			//var highlighterMMI = materialMeshInfoLookup[entity];
-			
+
 			var highlighterChildren = SystemAPI.GetBuffer<Child>(entity);
 			var graphicEntity = highlighterChildren[0].Value;
 			var baseColor = SystemAPI.GetComponentRW<URPMaterialPropertyBaseColor>(graphicEntity);
 			//var graphicEntity = SystemAPI.GetComponentRO<GraphicEntity>(entity);
 
+			materialChanger.ValueRW.BuildTime -= SystemAPI.Time.DeltaTime;
 
 			if (!character.ValueRO.IsBuildMode)
 			{
@@ -85,6 +86,8 @@ public partial struct MaterialChangerSystem : ISystem
 			}
 			if (character.ValueRO.IsBuilding && materialChanger.ValueRO.CanBuild)
 			{
+				if (materialChanger.ValueRO.BuildTime > 0) return;
+
 				var selectedTowerComponent = SystemAPI.GetComponentRO<Tower>(characterEQ.ValueRO.SelectedTower);
 				var characterInventory = SystemAPI.GetComponentRW<Inventory>(materialChanger.ValueRO.Character);
 				if (selectedTowerComponent.ValueRO.GoldCost <= characterInventory.ValueRW.Gold &&
@@ -94,6 +97,7 @@ public partial struct MaterialChangerSystem : ISystem
 					selectedTowerComponent.ValueRO.EarthCost <= characterInventory.ValueRW.Earth &&
 					selectedTowerComponent.ValueRO.FireCost <= characterInventory.ValueRW.Fire)
 				{
+					materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
 					characterInventory.ValueRW.Gold -= selectedTowerComponent.ValueRO.GoldCost;
 					characterInventory.ValueRW.Wood -= selectedTowerComponent.ValueRO.WoodCost;
 					characterInventory.ValueRW.Metal -= selectedTowerComponent.ValueRO.MetalCost;
