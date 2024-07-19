@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7577008acf78f204183bf50f12deac9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCooldown: 30
+  spawnCooldown: 1
   cameraSize: {x: 0, y: 0, z: 0}
   enemiesSO:
   - {fileID: 11400000, guid: 6fa5a3fb53a707248af4238a92df2d13, type: 2}

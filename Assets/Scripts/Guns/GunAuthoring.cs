@@ -33,7 +33,7 @@ public class GunAuthoring : MonoBehaviour
 	}
 }
 
-public struct Gun : IComponentData
+public struct Gun : IComponentData, IEnableableComponent
 {
 	public Entity Muzzle;
 	public Entity Bullet;

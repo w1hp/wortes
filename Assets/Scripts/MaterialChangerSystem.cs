@@ -32,33 +32,71 @@ public partial struct MaterialChangerSystem : ISystem
 				DynamicBuffer<StatefulTriggerEvent>,
 				RefRW<MaterialChanger>>()
 				.WithEntityAccess())
-		//,			RefRW<URPMaterialPropertyBaseColor> baseColor
 		{
 			var characterEQ = SystemAPI.GetComponentRO<CharacterEquipment>(materialChanger.ValueRO.Character);
 			var character = SystemAPI.GetComponentRO<CharacterComponent>(materialChanger.ValueRO.Character);
-			//var highlighterMMI = SystemAPI.GetComponentRW<MaterialMeshInfo>(entity);
-			//var highlighterMMI = materialMeshInfoLookup[entity];
+
 
 			var highlighterChildren = SystemAPI.GetBuffer<Child>(entity);
 			var graphicEntity = highlighterChildren[0].Value;
 			var baseColor = SystemAPI.GetComponentRW<URPMaterialPropertyBaseColor>(graphicEntity);
-			//var graphicEntity = SystemAPI.GetComponentRO<GraphicEntity>(entity);
 
 			materialChanger.ValueRW.BuildTime -= SystemAPI.Time.DeltaTime;
 
 			if (!character.ValueRO.IsBuildMode)
 			{
 				SystemAPI.SetComponentEnabled<MaterialMeshInfo>(graphicEntity, false);
-				SystemAPI.SetComponentEnabled<MaterialMeshInfo>(character.ValueRO.GunPrefabEntity, true);
+
+				switch (character.ValueRO.CurrentSlot)
+				{
+					case 0:
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot1, true);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot2, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot3, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot4, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot5, false);
+						break;
+					case 1:
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot1, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot2, true);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot3, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot4, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot5, false);
+						break;
+					case 2:
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot1, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot2, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot3, true);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot4, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot5, false);
+						break;
+					case 3:
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot1, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot2, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot3, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot4, true);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot5, false);
+						break;
+					case 4:
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot1, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot2, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot3, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot4, false);
+						SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot5, true);
+						break;
+				}
+				//SystemAPI.SetComponentEnabled<MaterialMeshInfo>(character.ValueRO.GunPrefabEntity, true);
 				break;
 			}
 
-			//var selectedTowerMMI = materialMeshInfoLookup[characterEQ.ValueRO.SelectedTower];
-			//var selectedTowerMMI = SystemAPI.GetComponentRO<MaterialMeshInfo>(characterEQ.ValueRO.SelectedTower);
-			//highlighterMMI.ValueRW.Mesh = selectedTowerMMI.ValueRO.Mesh;
-
 			SystemAPI.SetComponentEnabled<MaterialMeshInfo>(graphicEntity, true);
-			SystemAPI.SetComponentEnabled<MaterialMeshInfo>(character.ValueRO.GunPrefabEntity, false);
+
+			SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot1, false);
+			SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot2, false);
+			SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot3, false);
+			SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot4, false);
+			SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEQ.ValueRO.WeaponSlot5, false);
+			//SystemAPI.SetComponentEnabled<MaterialMeshInfo>(character.ValueRO.GunPrefabEntity, false);
 
 			for (int i = 0; i < triggerEventBuffer.Length; i++)
 			{
