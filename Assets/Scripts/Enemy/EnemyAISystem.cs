@@ -1,4 +1,4 @@
-﻿using Unity.Transforms;
+﻿﻿using Unity.Transforms;
 using Unity.Entities;
 using Unity.Mathematics;
 using TMPro;
@@ -38,13 +38,9 @@ public partial struct EnemyAISystem : ISystem
 			float3 direction = characterPosition - enemyPosition;
 			if (math.distance(enemyPosition, characterPosition) < enemyComponent.DetectionRange)
 			{
-				float angle = math.atan2(direction.z, direction.x);
 
-				// Ustaw obrót wroga w płaszczyźnie XZ
-				transformComponent.ValueRW.Rotation = quaternion.Euler(new float3(0, angle, 0));
-
-				// Zaktualizuj pozycję wroga, poruszając się tylko w płaszczyźnie XZ
-				float3 normalizedDirection = math.normalize(direction);
+                // Zaktualizuj pozycję wroga, poruszając się tylko w płaszczyźnie XZ
+                float3 normalizedDirection = math.normalize(direction);
 				float3 newPosition = enemyPosition + normalizedDirection * SystemAPI.Time.DeltaTime;
 				newPosition.y = groundLevel; // Upewnij się, że nowa pozycja ma odpowiedni poziom Y
 
