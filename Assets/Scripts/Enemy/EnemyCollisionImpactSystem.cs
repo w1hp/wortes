@@ -6,56 +6,55 @@ using Unity.Assertions;
 
 partial struct EnemyCollisionImpactSystem : ISystem
 {
-    [BurstCompile]
-    public void OnCreate(ref SystemState state)
-    {
-        state.RequireForUpdate<EnemyComponent>();
-    }
+	[BurstCompile]
+	public void OnCreate(ref SystemState state)
+	{
+		state.RequireForUpdate<EnemyComponent>();
+	}
 
-    [BurstCompile]
-    public void OnUpdate(ref SystemState state)
-    {
-        var projectileQuery = SystemAPI.QueryBuilder()
-            .WithAll<Projectile>()
-            .Build();
+	[BurstCompile]
+	public void OnUpdate(ref SystemState state)
+	{
+		var projectileQuery = SystemAPI.QueryBuilder()
+			.WithAll<Projectile>()
+			.Build();
 
-        var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
-        var ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
+		var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+		var ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
-        // Assert.IsFalse(nonTriggerQuery.HasFilter(),
-        //     "The use of EntityQueryMask in this system will not respect the query's active filter settings.");
+		// Assert.IsFalse(nonTriggerQuery.HasFilter(),
+		//     "The use of EntityQueryMask in this system will not respect the query's active filter settings.");
 
-        var projectileMask = projectileQuery.GetEntityQueryMask();
+		var projectileMask = projectileQuery.GetEntityQueryMask();
 
-        foreach (var (enemy, collisionEventBuffer, entity) in
-            SystemAPI.Query<RefRW<EnemyComponent>, DynamicBuffer<StatefulCollisionEvent>>()
-            .WithEntityAccess())
-        {
-            for (int i = 0; i < collisionEventBuffer.Length; i++)
-            {
-                var collisionEvent = collisionEventBuffer[i];
-                var otherEntity = collisionEvent.GetOtherEntity(entity);
+		foreach (var (enemy, health, collisionEventBuffer, entity) in
+			SystemAPI.Query<RefRW<EnemyComponent>, RefRW<Health>, DynamicBuffer<StatefulCollisionEvent>>()
+			.WithEntityAccess())
+		{
+			for (int i = 0; i < collisionEventBuffer.Length; i++)
+			{
+				var collisionEvent = collisionEventBuffer[i];
+				var otherEntity = collisionEvent.GetOtherEntity(entity);
 
-                if (!projectileMask.MatchesIgnoreFilter(otherEntity)) continue;
+				if (!projectileMask.MatchesIgnoreFilter(otherEntity)) continue;
 
-                switch (collisionEvent.State)
-                {
-                    case StatefulEventState.Enter:
+				switch (collisionEvent.State)
+				{
+					case StatefulEventState.Enter:
 						var projectile = SystemAPI.GetComponent<Projectile>(otherEntity);
-                        enemy.ValueRW.TakeDamage(projectile.Damage, projectile.Type);
-						//ECB.DestroyEntity(otherEntity);
+						health.ValueRW.TakeDamage(projectile.Damage, projectile.Type);
 
-                        if (enemy.ValueRW.CurrentHealth <= 0f)
+						if (health.ValueRW.CurrentHealth <= 0f)
 						{
 							ECB.SetComponentEnabled<IsExistTag>(entity, false);
 						}
 						break;
-                    case StatefulEventState.Stay:
-                        break;
-                    case StatefulEventState.Exit:
-                        break;
-                }
-            }
-        }
-    }
+					case StatefulEventState.Stay:
+						break;
+					case StatefulEventState.Exit:
+						break;
+				}
+			}
+		}
+	}
 }

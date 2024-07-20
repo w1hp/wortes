@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 5479493242900039102}
   - component: {fileID: 6475067831583943522}
   - component: {fileID: 8405094814202289979}
+  - component: {fileID: 4011941080999230373}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -659,6 +660,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CalculateDetails: 0
+--- !u!114 &4011941080999230373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692896102597148395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3576abd70401d4d48851c85501b6a675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  fireResistance: 50
+  waterResistance: 50
+  earthResistance: 50
+  woodResistance: 50
+  metalResistance: 50
 --- !u!1 &3057386589211996020
 GameObject:
   m_ObjectHideFlags: 0

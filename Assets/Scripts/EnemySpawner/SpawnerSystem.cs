@@ -59,11 +59,20 @@ public partial class EnemySpawnerSystem : SystemBase
 		});
 
 		EntityManager.AddComponentData(newEnemy, new EnemyComponent
-		{ 
-			CurrentHealth = availableEnemies[index].maxHealth,
+		{
 			DetectionRange = availableEnemies[index].detectionRange,
-			EnemyType = availableEnemies[index].elementType
+			EnemyType = availableEnemies[index].elementType,
+			Damage = availableEnemies[index].damage,
+		});
 
+		EntityManager.AddComponentData(newEnemy, new Health
+		{
+			CurrentHealth = availableEnemies[index].maxHealth,
+			FireResistance = availableEnemies[index].fireResistance,
+			WaterResistance = availableEnemies[index].waterResistance,
+			EarthResistance = availableEnemies[index].earthResistance,
+			WoodResistance = availableEnemies[index].woodResistance,
+			MetalResistance = availableEnemies[index].metalResistance
 		});
 
 		nextSpawnTime = (float)SystemAPI.Time.ElapsedTime + enemySpawnerComponent.spawnCooldown;

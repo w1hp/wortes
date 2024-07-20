@@ -10,10 +10,15 @@ public struct EnemyData
 {
     public int level;
     public Entity prefab;
-    public float currentHealth;
-    public float maxHealth;
-	public float damage;
-    public float moveSpeed;
     public float detectionRange;
     public ElementType elementType;
+	public float damage;
+    public float moveSpeed;
+
+    public float maxHealth;
+	public float fireResistance;
+	public float waterResistance;
+	public float earthResistance;
+	public float woodResistance;
+	public float metalResistance;
 }

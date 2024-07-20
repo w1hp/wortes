@@ -27,13 +27,18 @@ public class EnemySpawnerAuthoring : MonoBehaviour
             {
                 enemyData.Add(new EnemyData
                 {
-                    damage = e.damage,
-                    maxHealth = e.health,
                     level = e.level,
-                    moveSpeed = e.moveSpeed,
+					prefab = GetEntity(e.prefab, TransformUsageFlags.None),
 					detectionRange = e.detectionRange,
 					elementType = e.elementType,
-					prefab = GetEntity(e.prefab, TransformUsageFlags.None)
+                    maxHealth = e.maxHealth,
+					fireResistance = e.fireResistance,
+					waterResistance = e.waterResistance,
+					earthResistance = e.earthResistance,
+					woodResistance = e.woodResistance,
+					metalResistance = e.metalResistance,
+					damage = e.damage,
+                    moveSpeed = e.moveSpeed
                 });
             }
 

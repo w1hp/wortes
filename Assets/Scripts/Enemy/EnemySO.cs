@@ -5,10 +5,17 @@ public class EnemySO : ScriptableObject
 {
     public int level;
     public GameObject prefab;
-    public float health;
-    public float damage;
-    public float moveSpeed;
 	public float detectionRange;
     public ElementType elementType;
+	public float damage;
+    public float moveSpeed;
+
+    public float maxHealth;
+	public float fireResistance;
+	public float waterResistance;
+	public float earthResistance;
+	public float woodResistance;
+	public float metalResistance;
+
     public HealthBar healthBarData;
 }
