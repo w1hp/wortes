@@ -12,8 +12,24 @@ using Unity.CharacterController;
 public partial class PlayerInputsSystem : SystemBase
 {
     private PlayerInputActions.GameplayMapActions _defaultActionsMap;
-    
-    protected override void OnCreate()
+
+    private GameOverSystem _gameOverSystem;
+
+	void OnGameOverEvent(bool isPlayerDead)
+	{
+		_defaultActionsMap.Disable();
+	}
+	protected override void OnStartRunning()
+	{
+        _gameOverSystem = EntityManager.World.GetExistingSystemManaged<GameOverSystem>();
+        _gameOverSystem.OnGameOver += OnGameOverEvent;
+	}
+	protected override void OnStopRunning()
+    {
+		_gameOverSystem.OnGameOver -= OnGameOverEvent;
+	}
+
+	protected override void OnCreate()
     {
 		PlayerInputActions inputActions = new PlayerInputActions();
         inputActions.Enable();
