@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 4
   prefab: {fileID: 5591473804521091752, guid: 453b9b44def8d3543b6a61f9c731864a, type: 3}
-  health: 10
-  damage: 20
-  moveSpeed: 5
   detectionRange: 10
   elementType: 4
+  damage: 20
+  moveSpeed: 5
+  maxHealth: 100
+  fireResistance: 100
+  waterResistance: 100
+  earthResistance: 100
+  woodResistance: 150
+  metalResistance: 0
+  healthBarData: {fileID: 0}
