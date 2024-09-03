@@ -10,6 +10,7 @@ public partial struct ProjectileSystem : ISystem
 	public void OnCreate(ref SystemState state)
 	{
 		state.RequireForUpdate<Projectile>();
+		state.RequireForUpdate<IsNotPause>();
 	}
 
 	[BurstCompile]

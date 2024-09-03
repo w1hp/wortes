@@ -38,6 +38,22 @@ MonoBehaviour:
     m_Localized: easdfasdf
     m_Metadata:
       m_Items: []
+  - m_Id: 649936635490304
+    m_Localized: damage 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 650017782689792
+    m_Localized: some description damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 650137580400640
+    m_Localized: speed 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 650214160003072
+    m_Localized: descriptiondescriptiondescription
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

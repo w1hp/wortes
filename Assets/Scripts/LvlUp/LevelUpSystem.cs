@@ -11,6 +11,7 @@ partial class LevelUpSystem : SystemBase
 	protected override void OnCreate()
 	{
 		RequireForUpdate(SystemAPI.QueryBuilder().WithAll<CharacterComponent, Inventory>().Build());
+		//RequireForUpdate<IsNotPause>();
 	}
 
 	protected override void OnUpdate()
@@ -25,6 +26,12 @@ partial class LevelUpSystem : SystemBase
 				Debug.Log("Level Up!");
 				//TODO: zmienic to kiedys na cos bardziej sensownego
 				UnityEngine.Time.timeScale = 0;
+				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.Confined;
+
+				//var entity = SystemAPI.GetSingletonEntity<IsNotPause>();
+				//ECB.AddComponent<Disabled>(entity);
+
 				//Debug.Log(RandomNumberUnityMathematics(3));
 
 

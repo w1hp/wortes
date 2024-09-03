@@ -17,6 +17,7 @@ public partial class EnemySpawnerSystem : SystemBase
 	{
 		base.OnCreate();
 		random = Random.CreateFromIndex((uint)UnityEngine.Time.realtimeSinceStartup);
+		RequireForUpdate<IsNotPause>();
 	}
 
 	protected override void OnUpdate()

@@ -13,7 +13,11 @@ using Unity.CharacterController;
 [UpdateBefore(typeof(CharacterVariableUpdateSystem))]
 public partial class GravityZonesSystem : SystemBase
 {
-    protected override void OnUpdate()
+	protected override void OnCreate()
+	{
+		RequireForUpdate<IsNotPause>();
+	}
+	protected override void OnUpdate()
     {
         // Update transforms so we have the proper interpolated position of our entities to calculate spherical gravities from
         // (without this, we'd see jitter on the planet)

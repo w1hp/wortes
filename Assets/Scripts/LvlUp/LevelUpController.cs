@@ -75,4 +75,14 @@ public class LevelUpController : MonoBehaviour
 		}
 		return (randomInt1, randomInt2, randomInt3);
 	}
+
+	public void OnPowerUpChosen(int powerUpIndex)
+	{
+		Debug.Log($"Power up chosen: {powerUpIndex}");
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+		Time.timeScale = 1;
+
+		container.SetActive(false);
+	}
 }

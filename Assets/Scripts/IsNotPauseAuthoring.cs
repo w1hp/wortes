@@ -13,7 +13,12 @@ public class IsNotPauseAuthoring : MonoBehaviour
 	}
 }
 
-public struct IsNotPause : IComponentData, IEnableableComponent
+public struct IsNotPause : IComponentData
 {
     
 }
+
+//public struct IsNotPause : IComponentData, IEnableableComponent
+//{
+
+//}

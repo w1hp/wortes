@@ -15,6 +15,7 @@ public partial struct MaterialChangerSystem : ISystem
 	[BurstCompile]
 	public void OnCreate(ref SystemState state)
 	{
+		state.RequireForUpdate<IsNotPause>();
 		state.RequireForUpdate<MaterialChanger>();
 	}
 	[BurstCompile]

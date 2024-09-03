@@ -11,6 +11,7 @@ partial class GameOverSystem : SystemBase
 	protected override void OnCreate()
 	{
 		RequireForUpdate<CharacterComponent>();
+		RequireForUpdate<IsNotPause>();
 	}
 	protected override void OnUpdate()
 	{

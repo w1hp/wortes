@@ -8,7 +8,11 @@ using Unity.Transforms;
 [UpdateInGroup(typeof(PresentationSystemGroup))]
 public partial class MainCameraSystem : SystemBase
 {
-    protected override void OnUpdate()
+	protected override void OnCreate()
+	{
+        RequireForUpdate<IsNotPause>();
+	}
+	protected override void OnUpdate()
     {
         if (MainGameObjectCamera.Instance != null && SystemAPI.HasSingleton<MainEntityCamera>())
         {

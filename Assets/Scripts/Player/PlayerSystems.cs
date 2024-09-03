@@ -38,8 +38,9 @@ public partial class PlayerInputsSystem : SystemBase
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        
-        RequireForUpdate<FixedTickSystem.Singleton>();
+
+		RequireForUpdate<IsNotPause>();
+		RequireForUpdate<FixedTickSystem.Singleton>();
         RequireForUpdate(SystemAPI.QueryBuilder().WithAll<Player, PlayerInputs>().Build());
     }
     
@@ -121,7 +122,8 @@ public partial struct PlayerVariableStepControlSystem : ISystem
 	[BurstCompile]
     public void OnCreate(ref SystemState state)
     {
-        state.RequireForUpdate(SystemAPI.QueryBuilder().WithAll<Player, PlayerInputs>().Build());
+		state.RequireForUpdate<IsNotPause>();
+		state.RequireForUpdate(SystemAPI.QueryBuilder().WithAll<Player, PlayerInputs>().Build());
     }
 
     [BurstCompile]
@@ -158,7 +160,8 @@ public partial struct PlayerFixedStepControlSystem : ISystem
     [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
-        state.RequireForUpdate<FixedTickSystem.Singleton>();
+		state.RequireForUpdate<IsNotPause>();
+		state.RequireForUpdate<FixedTickSystem.Singleton>();
         state.RequireForUpdate(SystemAPI.QueryBuilder().WithAll<Player, PlayerInputs>().Build());
     }
 

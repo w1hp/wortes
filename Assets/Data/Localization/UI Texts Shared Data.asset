@@ -35,6 +35,22 @@ MonoBehaviour:
     m_Key: health_1_description
     m_Metadata:
       m_Items: []
+  - m_Id: 649936635490304
+    m_Key: damage_1_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 650017782689792
+    m_Key: damage_1_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 650137580400640
+    m_Key: speed_1_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 650214160003072
+    m_Key: speed_1_description
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

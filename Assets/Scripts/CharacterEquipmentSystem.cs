@@ -8,6 +8,7 @@ partial struct CharacterEquipmentSystem : ISystem
     public void OnCreate(ref SystemState state)
     {
         state.RequireForUpdate<CharacterEquipment>();
+		state.RequireForUpdate<IsNotPause>();
 	}
 
     [BurstCompile]

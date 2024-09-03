@@ -15,7 +15,9 @@ using Unity.CharacterController;
 public partial struct CharacterInitializationSystem : ISystem
 {
     public void OnCreate(ref SystemState state)
-    { }
+    {
+        state.RequireForUpdate<IsNotPause>();
+	}
 
     public void OnDestroy(ref SystemState state)
     { }
@@ -64,9 +66,10 @@ public partial struct CharacterPhysicsUpdateSystem : ISystem
 
         state.RequireForUpdate(_characterQuery);
         state.RequireForUpdate<PhysicsWorldSingleton>();
-    }
+		state.RequireForUpdate<IsNotPause>();
+	}
 
-    [BurstCompile]
+	[BurstCompile]
     public void OnDestroy(ref SystemState state)
     { }
 
@@ -133,9 +136,10 @@ public partial struct CharacterVariableUpdateSystem : ISystem
         _baseContext.OnSystemCreate(ref state);
         
         state.RequireForUpdate(_characterQuery);
-    }
+		state.RequireForUpdate<IsNotPause>();
+	}
 
-    [BurstCompile]
+	[BurstCompile]
     public void OnDestroy(ref SystemState state)
     { }
 

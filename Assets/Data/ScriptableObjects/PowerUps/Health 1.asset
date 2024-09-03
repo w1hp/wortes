@@ -17,18 +17,18 @@ MonoBehaviour:
   icon: {fileID: 0}
   powerUpName:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:285abce4449377345b997bee53751235
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 642205065211904
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   description:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:285abce4449377345b997bee53751235
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 642461341380608
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

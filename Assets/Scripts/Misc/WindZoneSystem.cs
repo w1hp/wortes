@@ -16,7 +16,9 @@ public partial struct WindZoneSystem : ISystem
 {
     [BurstCompile]
     public void OnCreate(ref SystemState state)
-    { }
+    {
+		state.RequireForUpdate<IsNotPause>();
+	}
 
     [BurstCompile]
     public void OnDestroy(ref SystemState state)

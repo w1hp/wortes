@@ -14,6 +14,7 @@ public partial struct ShootingSystem : ISystem
 	public void OnCreate(ref SystemState state)
 	{
 		state.RequireForUpdate<Gun>();
+		state.RequireForUpdate<IsNotPause>();
 	}
 
 	[BurstCompile]

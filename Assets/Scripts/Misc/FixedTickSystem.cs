@@ -15,7 +15,9 @@ public partial struct FixedTickSystem : ISystem
     }
 
     public void OnCreate(ref SystemState state)
-    { }
+    {
+		state.RequireForUpdate<IsNotPause>();
+	}
 
     public void OnDestroy(ref SystemState state)
     { }

@@ -10,6 +10,7 @@ partial struct EnemyCollisionImpactSystem : ISystem
 	public void OnCreate(ref SystemState state)
 	{
 		state.RequireForUpdate<EnemyComponent>();
+		state.RequireForUpdate<IsNotPause>();
 	}
 
 	[BurstCompile]

@@ -10,6 +10,7 @@ partial struct TowerSystem : ISystem
 	public void OnCreate(ref SystemState state)
 	{
 		state.RequireForUpdate<Tower>();
+		state.RequireForUpdate<IsNotPause>();
 	}
 
 	[BurstCompile]
