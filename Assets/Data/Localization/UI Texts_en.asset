@@ -30,6 +30,14 @@ MonoBehaviour:
     m_Localized: back to menu
     m_Metadata:
       m_Items: []
+  - m_Id: 642205065211904
+    m_Localized: health 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 642461341380608
+    m_Localized: easdfasdf
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -27,6 +27,14 @@ MonoBehaviour:
     m_Key: back_to_menu
     m_Metadata:
       m_Items: []
+  - m_Id: 642205065211904
+    m_Key: health_1_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 642461341380608
+    m_Key: health_1_description
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

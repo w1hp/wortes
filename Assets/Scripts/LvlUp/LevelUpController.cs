@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using Unity.Entities;
 using TMPro;
+using System.Collections.Generic;
 
 public class LevelUpController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class LevelUpController : MonoBehaviour
 
 	[SerializeField] private TextMeshProUGUI namePowerUpText3;
 	[SerializeField] private TextMeshProUGUI descriptionPowerUpText3;
+
+	[SerializeField] private List<PowerUpSO> poolOfPowerUps;
 
 	[Header("Localization")]
 	[SerializeField] private LocalizedString namePowerUpLocalization;
@@ -40,16 +43,36 @@ public class LevelUpController : MonoBehaviour
 		levelUpSystem.LevelUp -= OnLevelUpEvent;
 	}
 
-	private void OnLevelUpEvent(PowerUpSO powerUp1, PowerUpSO powerUp2, PowerUpSO powerUp)
+	private void OnLevelUpEvent()
 	{
 		container.SetActive(true);
-		namePowerUpText1.text = powerUp1.name.GetLocalizedString();
-		descriptionPowerUpText1.text = powerUp1.description.GetLocalizedString();
 
-		namePowerUpText2.text = powerUp2.name.GetLocalizedString();
-		descriptionPowerUpText2.text = powerUp2.description.GetLocalizedString();
+		var (randomInt1, randomInt2, randomInt3) = Get3RandomPowerUps(poolOfPowerUps.Count);
 
-		namePowerUpText3.text = powerUp.name.GetLocalizedString();
-		descriptionPowerUpText3.text = powerUp.description.GetLocalizedString();
+		namePowerUpText1.text = poolOfPowerUps[randomInt1].powerUpName.GetLocalizedString();
+		descriptionPowerUpText1.text = poolOfPowerUps[randomInt1].description.GetLocalizedString();
+
+		namePowerUpText2.text = poolOfPowerUps[randomInt2].powerUpName.GetLocalizedString();
+		descriptionPowerUpText2.text = poolOfPowerUps[randomInt2].description.GetLocalizedString();
+
+		namePowerUpText3.text = poolOfPowerUps[randomInt3].powerUpName.GetLocalizedString();
+		descriptionPowerUpText3.text = poolOfPowerUps[randomInt3].description.GetLocalizedString();
+	}
+
+	private (int, int, int) Get3RandomPowerUps(int numberOfPowerUps)
+	{
+		uint seed = 69;
+		Unity.Mathematics.Random rng = new Unity.Mathematics.Random(seed);
+		int randomInt1 = rng.NextInt(numberOfPowerUps);
+		int randomInt2 = rng.NextInt(numberOfPowerUps);
+		int randomInt3 = rng.NextInt(numberOfPowerUps);
+
+		while (randomInt1 == randomInt2 || randomInt1 == randomInt3 || randomInt2 == randomInt3)
+		{
+			randomInt1 = rng.NextInt(numberOfPowerUps);
+			randomInt2 = rng.NextInt(numberOfPowerUps);
+			randomInt3 = rng.NextInt(numberOfPowerUps);
+		}
+		return (randomInt1, randomInt2, randomInt3);
 	}
 }

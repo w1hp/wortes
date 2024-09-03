@@ -6,11 +6,7 @@ using UnityEngine;
 [UpdateInGroup(typeof(SimulationSystemGroup))]
 partial class LevelUpSystem : SystemBase
 {
-	[SerializeField] private PowerUpSO powerUpSO_0;
-	[SerializeField] private PowerUpSO powerUpSO_1;
-	[SerializeField] private PowerUpSO powerUpSO_2;
-
-	public event Action<PowerUpSO, PowerUpSO, PowerUpSO> LevelUp;
+	public event Action LevelUp;
 
 	protected override void OnCreate()
 	{
@@ -26,8 +22,14 @@ partial class LevelUpSystem : SystemBase
 		{
 			if (CanLevelUp(inventory.ValueRO.Gold, inventory.ValueRO.Level))
 			{
+				Debug.Log("Level Up!");
+				//TODO: zmienic to kiedys na cos bardziej sensownego
+				UnityEngine.Time.timeScale = 0;
+				//Debug.Log(RandomNumberUnityMathematics(3));
+
+
 				inventory.ValueRW.Level++;
-				LevelUp?.Invoke(powerUpSO_0, powerUpSO_1, powerUpSO_2);
+				LevelUp?.Invoke();
 
 
 			}
@@ -37,5 +39,23 @@ partial class LevelUpSystem : SystemBase
 	bool CanLevelUp(float gold, float level)
 	{
 		return gold >= 10 * math.pow(level,2);
+	}
+
+	(int, int, int) RandomNumberUnityMathematics(int numberOfPowerUps)
+	{
+		uint seed = 69;
+		Unity.Mathematics.Random rng = new Unity.Mathematics.Random(seed);
+		int randomInt1 = rng.NextInt(numberOfPowerUps);
+		int randomInt2 = rng.NextInt(numberOfPowerUps);
+		int randomInt3 = rng.NextInt(numberOfPowerUps);
+
+		while (randomInt1 == randomInt2 || randomInt1 == randomInt3 || randomInt2 == randomInt3)
+		{
+			randomInt1 = rng.NextInt(numberOfPowerUps);
+			randomInt2 = rng.NextInt(numberOfPowerUps);
+			randomInt3 = rng.NextInt(numberOfPowerUps);
+		}
+
+		return (randomInt1, randomInt2, randomInt3);
 	}
 }

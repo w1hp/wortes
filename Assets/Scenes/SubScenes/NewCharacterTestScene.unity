@@ -142,8 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  currentHealth: 50
   detectionRange: 10
+  damage: 10
 --- !u!1 &30401947
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,8 +389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  currentHealth: 50
   detectionRange: 10
+  damage: 10
 --- !u!1001 &368369148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -626,8 +626,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  currentHealth: 50
   detectionRange: 10
+  damage: 10
 --- !u!1 &885585412 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5591473804521091752, guid: 9462d533af4908243821c888b3937a35,
@@ -647,8 +647,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  currentHealth: 50
   detectionRange: 10
+  damage: 10
 --- !u!1 &892132111 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5591473804521091752, guid: e98da819031628e43923f451071db23d,
@@ -668,8 +668,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  currentHealth: 50
   detectionRange: 10
+  damage: 10
 --- !u!1 &948540580 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5591473804521091752, guid: 453b9b44def8d3543b6a61f9c731864a,
@@ -689,8 +689,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  currentHealth: 50
   detectionRange: 10
+  damage: 10
 --- !u!1001 &1025828560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -782,8 +782,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  currentHealth: 50
   detectionRange: 10
+  damage: 10
 --- !u!1001 &1229073653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1000,8 +1000,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  currentHealth: 50
   detectionRange: 10
+  damage: 10
 --- !u!1001 &1574876380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1124,8 +1124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  currentHealth: 50
   detectionRange: 10
+  damage: 10
 --- !u!1001 &1638820950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1217,8 +1217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  currentHealth: 50
   detectionRange: 10
+  damage: 10
 --- !u!1 &1808221041
 GameObject:
   m_ObjectHideFlags: 0

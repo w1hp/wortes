@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.Localization;
+using Unity.Entities;
+
 
 [CreateAssetMenu(fileName = "PowerUp", menuName = "ScriptableObjects/PowerUps")]
-public class PowerUpSO : ScriptableObject
+public class PowerUpSO : ScriptableObject //, IComponentData
 {
 	public GameObject prefab;
 
@@ -10,6 +12,6 @@ public class PowerUpSO : ScriptableObject
 	public Sprite icon;
 
 	[Header("Localization")]
-	public LocalizedString name;
+	public LocalizedString powerUpName;
 	public LocalizedString description;
 }
