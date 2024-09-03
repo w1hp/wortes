@@ -3,7 +3,8 @@ using UnityEngine;
 
 class InventoryAuthoring : MonoBehaviour
 {
-    public float Gold;
+	public float Level;
+	public float Gold;
 	public float Wood;
 	public float Metal;
 	public float Water;
@@ -18,6 +19,7 @@ class InventoryAuthoringBaker : Baker<InventoryAuthoring>
         var entity = GetEntity(TransformUsageFlags.Dynamic);
 		AddComponent(entity, new Inventory
 		{
+			Level = authoring.Level,
 			Gold = authoring.Gold,
 			Wood = authoring.Wood,
 			Metal = authoring.Metal,
@@ -30,7 +32,8 @@ class InventoryAuthoringBaker : Baker<InventoryAuthoring>
 
 public struct Inventory : IComponentData
 {
-    public float Gold;
+	public float Level;
+	public float Gold;
 	public float Wood;
 	public float Metal;
 	public float Water;

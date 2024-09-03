@@ -58,8 +58,8 @@ partial struct CharacterCollisionSystem : ISystem
 									inventory.Metal += item.Value;
 									break;
 							}
+							inventory.Gold++;
 							ECB.SetComponent(entity, inventory);
-
 
 							ECB.DestroyEntity(otherEntity);
 							break;
