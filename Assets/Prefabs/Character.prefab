@@ -75,12 +75,13 @@ GameObject:
   - component: {fileID: 6689285571920954877}
   - component: {fileID: 4070104326975267335}
   - component: {fileID: -1191803628544701202}
+  - component: {fileID: 8405094814202289979}
   - component: {fileID: -8306520697180238540}
   - component: {fileID: -8944153960414828713}
   - component: {fileID: 2035369821488769395}
+  - component: {fileID: 5777890771963844859}
   - component: {fileID: 5479493242900039102}
   - component: {fileID: 6475067831583943522}
-  - component: {fileID: 8405094814202289979}
   - component: {fileID: 4011941080999230373}
   m_Layer: 0
   m_Name: Character
@@ -561,6 +562,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1d002f95a780948b1ce03964ee964d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8405094814202289979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692896102597148395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c5aa6e24a745c4ea05b54d058e0dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CalculateDetails: 0
 --- !u!114 &-8306520697180238540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,6 +610,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43eb821ebe2cd7245b6b1576ffaa317f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5777890771963844859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692896102597148395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70763839391362e44ae68ae389246f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5479493242900039102
@@ -648,19 +674,6 @@ MonoBehaviour:
   Water: 100
   Earth: 100
   Fire: 100
---- !u!114 &8405094814202289979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692896102597148395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5c5aa6e24a745c4ea05b54d058e0dcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CalculateDetails: 0
 --- !u!114 &4011941080999230373
 MonoBehaviour:
   m_ObjectHideFlags: 0

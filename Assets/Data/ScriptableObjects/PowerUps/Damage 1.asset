@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   level: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
+  powerUpType: 2
+  valueInPercent: 5
   powerUpName:
     m_TableReference:
       m_TableCollectionName: GUID:285abce4449377345b997bee53751235

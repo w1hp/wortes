@@ -27,6 +27,7 @@ public partial struct ShootingSystem : ISystem
 			ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
 			DeltaTime = SystemAPI.Time.DeltaTime,
 			CharacterComponentLookup = SystemAPI.GetComponentLookup<CharacterComponent>(),
+			CharacterStatsLookup = SystemAPI.GetComponentLookup<CharacterStats>(),
 			Tower = SystemAPI.GetComponentLookup<Tower>()
 		};
 
@@ -72,6 +73,7 @@ public partial struct ShootingSystem : ISystem
 		public EntityCommandBuffer ECB;
 		[ReadOnly] public float DeltaTime;
 		[ReadOnly] public ComponentLookup<CharacterComponent> CharacterComponentLookup;
+		[ReadOnly] public ComponentLookup<CharacterStats> CharacterStatsLookup;
 		[ReadOnly] public ComponentLookup<Tower> Tower;
 
 		public void Execute( 
@@ -79,6 +81,7 @@ public partial struct ShootingSystem : ISystem
 			in LocalTransform gunLocalTransform, 
 			in LocalToWorld gunTransform)
 		{
+			float damage = gun.Damage;
 			switch (gun.OwnerType)
 			{
 				case GunOwner.Unidentified:
@@ -86,6 +89,9 @@ public partial struct ShootingSystem : ISystem
 				case GunOwner.Player:
 					var character = CharacterComponentLookup.GetRefRO(gun.Owner);
 					if (!character.ValueRO.IsShooting) return;
+
+					var stats = CharacterStatsLookup.GetRefRO(gun.Owner);
+					damage += stats.ValueRO.BaseDamage;
 					break;
 				case GunOwner.Tower:
 					var tower = Tower.GetRefRO(gun.Owner);
@@ -111,7 +117,7 @@ public partial struct ShootingSystem : ISystem
 
 			ECB.SetComponent(projectileEntity, new Projectile
 			{
-				Damage = gun.Damage,
+				Damage = damage,
 				Type = gun.ElementType
 			});
 

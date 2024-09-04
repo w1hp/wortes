@@ -1,8 +1,8 @@
 using UnityEngine;
-using UnityEngine.Localization;
+using UnityEngine.UI;
 using Unity.Entities;
-using TMPro;
 using System.Collections.Generic;
+using TMPro;
 
 public class LevelUpController : MonoBehaviour
 {
@@ -10,22 +10,23 @@ public class LevelUpController : MonoBehaviour
 	[SerializeField] private GameObject container;
 	[SerializeField] private TextMeshProUGUI levelUpText;
 
-	[SerializeField] private TextMeshProUGUI namePowerUpText1;
-	[SerializeField] private TextMeshProUGUI descriptionPowerUpText1;
+	[SerializeField] private TextMeshProUGUI namePowerUp1;
+	[SerializeField] private TextMeshProUGUI descriptionPowerUp1;
+	[SerializeField] private Image iconPowerUp1;
 
-	[SerializeField] private TextMeshProUGUI namePowerUpText2;
-	[SerializeField] private TextMeshProUGUI descriptionPowerUpText2;
+	[SerializeField] private TextMeshProUGUI namePowerUp2;
+	[SerializeField] private TextMeshProUGUI descriptionPowerUp2;
+	[SerializeField] private Image iconPowerUp2;
 
-	[SerializeField] private TextMeshProUGUI namePowerUpText3;
-	[SerializeField] private TextMeshProUGUI descriptionPowerUpText3;
+	[SerializeField] private TextMeshProUGUI namePowerUp3;
+	[SerializeField] private TextMeshProUGUI descriptionPowerUp3;
+	[SerializeField] private Image iconPowerUp3;
 
 	[SerializeField] private List<PowerUpSO> poolOfPowerUps;
 
-	[Header("Localization")]
-	[SerializeField] private LocalizedString namePowerUpLocalization;
-	[SerializeField] private LocalizedString descriptionPowerUpLocalization;
-
 	private LevelUpSystem levelUpSystem;
+
+	private (int, int, int) lastGeneratedNumbers;
 
 	private void Awake()
 	{
@@ -49,39 +50,55 @@ public class LevelUpController : MonoBehaviour
 
 		var (randomInt1, randomInt2, randomInt3) = Get3RandomPowerUps(poolOfPowerUps.Count);
 
-		namePowerUpText1.text = poolOfPowerUps[randomInt1].powerUpName.GetLocalizedString();
-		descriptionPowerUpText1.text = poolOfPowerUps[randomInt1].description.GetLocalizedString();
+		SetPowerUpData(namePowerUp1, descriptionPowerUp1, iconPowerUp1, randomInt1);
+		SetPowerUpData(namePowerUp2, descriptionPowerUp2, iconPowerUp2, randomInt2);
+		SetPowerUpData(namePowerUp3, descriptionPowerUp3, iconPowerUp3, randomInt3);
+	}
 
-		namePowerUpText2.text = poolOfPowerUps[randomInt2].powerUpName.GetLocalizedString();
-		descriptionPowerUpText2.text = poolOfPowerUps[randomInt2].description.GetLocalizedString();
-
-		namePowerUpText3.text = poolOfPowerUps[randomInt3].powerUpName.GetLocalizedString();
-		descriptionPowerUpText3.text = poolOfPowerUps[randomInt3].description.GetLocalizedString();
+	private void SetPowerUpData(TextMeshProUGUI nameText, TextMeshProUGUI descriptionText, Image iconImage, int powerUpIndex)
+	{
+		nameText.text = poolOfPowerUps[powerUpIndex].powerUpName.GetLocalizedString();
+		descriptionText.text = poolOfPowerUps[powerUpIndex].description.GetLocalizedString();
+		iconImage.sprite = poolOfPowerUps[powerUpIndex].icon;
 	}
 
 	private (int, int, int) Get3RandomPowerUps(int numberOfPowerUps)
 	{
-		uint seed = 69;
-		Unity.Mathematics.Random rng = new Unity.Mathematics.Random(seed);
-		int randomInt1 = rng.NextInt(numberOfPowerUps);
-		int randomInt2 = rng.NextInt(numberOfPowerUps);
-		int randomInt3 = rng.NextInt(numberOfPowerUps);
-
-		while (randomInt1 == randomInt2 || randomInt1 == randomInt3 || randomInt2 == randomInt3)
+		int randomInt1, randomInt2, randomInt3;
+		do
 		{
-			randomInt1 = rng.NextInt(numberOfPowerUps);
-			randomInt2 = rng.NextInt(numberOfPowerUps);
-			randomInt3 = rng.NextInt(numberOfPowerUps);
+			randomInt1 = Random.Range(0, numberOfPowerUps);
+			randomInt2 = Random.Range(0, numberOfPowerUps);
+			randomInt3 = Random.Range(0, numberOfPowerUps);
 		}
-		return (randomInt1, randomInt2, randomInt3);
+		while (randomInt1 == randomInt2 || randomInt1 == randomInt3 || randomInt2 == randomInt3);
+		
+		Debug.Log($"Generated numbers: {randomInt1}, {randomInt2}, {randomInt3}");
+		return lastGeneratedNumbers = (randomInt1, randomInt2, randomInt3);
 	}
 
 	public void OnPowerUpChosen(int powerUpIndex)
 	{
-		Debug.Log($"Power up chosen: {powerUpIndex}");
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
-		Time.timeScale = 1;
+		PowerUpSO chosenPowerUp = null;
+
+		switch (powerUpIndex)
+		{
+			case 0:
+				chosenPowerUp = poolOfPowerUps[lastGeneratedNumbers.Item1];
+				break;
+			case 1:
+				chosenPowerUp = poolOfPowerUps[lastGeneratedNumbers.Item2];
+				break;
+			case 2:
+				chosenPowerUp = poolOfPowerUps[lastGeneratedNumbers.Item3];
+				break;
+		}
+
+		if (chosenPowerUp != null)
+		{
+			Debug.Log($"Power up chosen: {chosenPowerUp.name}");
+			levelUpSystem.ReturnToGame(chosenPowerUp.powerUpType, chosenPowerUp.valueInPercent);
+		}
 
 		container.SetActive(false);
 	}

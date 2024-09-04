@@ -7,7 +7,7 @@ using UnityEngine;
 partial class LevelUpSystem : SystemBase
 {
 	public event Action LevelUp;
-
+	
 	protected override void OnCreate()
 	{
 		RequireForUpdate(SystemAPI.QueryBuilder().WithAll<CharacterComponent, Inventory>().Build());
@@ -23,24 +23,46 @@ partial class LevelUpSystem : SystemBase
 		{
 			if (CanLevelUp(inventory.ValueRO.Gold, inventory.ValueRO.Level))
 			{
+				inventory.ValueRW.Level++;
 				Debug.Log("Level Up!");
+				
 				//TODO: zmienic to kiedys na cos bardziej sensownego
 				UnityEngine.Time.timeScale = 0;
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.Confined;
 
-				//var entity = SystemAPI.GetSingletonEntity<IsNotPause>();
-				//ECB.AddComponent<Disabled>(entity);
-
-				//Debug.Log(RandomNumberUnityMathematics(3));
-
-
-				inventory.ValueRW.Level++;
 				LevelUp?.Invoke();
-
-
 			}
 		}
+	}
+	public void ReturnToGame(PowerUpType type, int value)
+	{
+		Debug.Log("Return to game");
+		UnityEngine.Time.timeScale = 1;
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+
+		foreach (var (characterComponent, health, characterStats) in
+						SystemAPI.Query<RefRW<CharacterComponent>, RefRW<Health>, RefRW<CharacterStats>>())
+		{
+			switch (type)
+			{
+				case PowerUpType.Health:
+					health.ValueRW.CurrentHealth += value;
+					break;
+				case PowerUpType.Speed:
+					characterComponent.ValueRW.GroundRunMaxSpeed += value;
+					break;
+				case PowerUpType.Damage:
+					characterStats.ValueRW.BaseDamage += value;
+					break;
+			}
+		}
+
+		//var entity = SystemAPI.GetSingletonEntity<IsNotPause>();
+		//var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+		//var ECB = ecbSingleton.CreateCommandBuffer(EntityManager.WorldUnmanaged);
+		//ECB.RemoveComponent<Disabled>(entity);
 	}
 
 	bool CanLevelUp(float gold, float level)
@@ -48,21 +70,21 @@ partial class LevelUpSystem : SystemBase
 		return gold >= 10 * math.pow(level,2);
 	}
 
-	(int, int, int) RandomNumberUnityMathematics(int numberOfPowerUps)
-	{
-		uint seed = 69;
-		Unity.Mathematics.Random rng = new Unity.Mathematics.Random(seed);
-		int randomInt1 = rng.NextInt(numberOfPowerUps);
-		int randomInt2 = rng.NextInt(numberOfPowerUps);
-		int randomInt3 = rng.NextInt(numberOfPowerUps);
+	//(int, int, int) RandomNumberUnityMathematics(int numberOfPowerUps)
+	//{
+	//	uint seed = 69;
+	//	Unity.Mathematics.Random rng = new Unity.Mathematics.Random(seed);
+	//	int randomInt1 = rng.NextInt(numberOfPowerUps);
+	//	int randomInt2 = rng.NextInt(numberOfPowerUps);
+	//	int randomInt3 = rng.NextInt(numberOfPowerUps);
 
-		while (randomInt1 == randomInt2 || randomInt1 == randomInt3 || randomInt2 == randomInt3)
-		{
-			randomInt1 = rng.NextInt(numberOfPowerUps);
-			randomInt2 = rng.NextInt(numberOfPowerUps);
-			randomInt3 = rng.NextInt(numberOfPowerUps);
-		}
+	//	while (randomInt1 == randomInt2 || randomInt1 == randomInt3 || randomInt2 == randomInt3)
+	//	{
+	//		randomInt1 = rng.NextInt(numberOfPowerUps);
+	//		randomInt2 = rng.NextInt(numberOfPowerUps);
+	//		randomInt3 = rng.NextInt(numberOfPowerUps);
+	//	}
 
-		return (randomInt1, randomInt2, randomInt3);
-	}
+	//	return (randomInt1, randomInt2, randomInt3);
+	//}
 }

@@ -49,6 +49,7 @@ class CharacterEquipmentAuthoring : MonoBehaviour
 
 public struct CharacterEquipment : IComponentData
 {
+
 	public Entity Character;
     public Entity SelectedWeapon;
 	public Entity WeaponSlot1;

@@ -174,37 +174,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   container: {fileID: 1769476734}
   levelUpText: {fileID: 291972241}
-  namePowerUpText1: {fileID: 1738591516}
-  descriptionPowerUpText1: {fileID: 1492562867}
-  namePowerUpText2: {fileID: 493057786}
-  descriptionPowerUpText2: {fileID: 1967246176}
-  namePowerUpText3: {fileID: 1427807245}
-  descriptionPowerUpText3: {fileID: 1156472436}
+  namePowerUp1: {fileID: 1738591516}
+  descriptionPowerUp1: {fileID: 1492562867}
+  iconPowerUp1: {fileID: 1338028968}
+  namePowerUp2: {fileID: 493057786}
+  descriptionPowerUp2: {fileID: 1967246176}
+  iconPowerUp2: {fileID: 782436658}
+  namePowerUp3: {fileID: 1427807245}
+  descriptionPowerUp3: {fileID: 1156472436}
+  iconPowerUp3: {fileID: 1522305270}
   poolOfPowerUps:
-  - {fileID: 11400000, guid: 6ba0f575809ac44448f9770f3bfbfded, type: 2}
-  - {fileID: 11400000, guid: 738bbaac06194c44f9eee4cc858d1ef0, type: 2}
   - {fileID: 11400000, guid: f43dcf08479c5ad44bdb3f43ee8fcb87, type: 2}
-  namePowerUpLocalization:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  descriptionPowerUpLocalization:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  references:
-    version: 2
-    RefIds: []
+  - {fileID: 11400000, guid: 738bbaac06194c44f9eee4cc858d1ef0, type: 2}
+  - {fileID: 11400000, guid: 6ba0f575809ac44448f9770f3bfbfded, type: 2}
 --- !u!1 &55294040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,8 +1733,8 @@ RectTransform:
   m_Children:
   - {fileID: 782518550}
   - {fileID: 1738591515}
-  - {fileID: 1338028967}
   - {fileID: 1492562866}
+  - {fileID: 1338028967}
   - {fileID: 1949535819}
   m_Father: {fileID: 982144145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4202,8 +4184,8 @@ RectTransform:
   m_Children:
   - {fileID: 1042435098}
   - {fileID: 493057785}
-  - {fileID: 782436657}
   - {fileID: 1967246175}
+  - {fileID: 782436657}
   - {fileID: 1071565035}
   m_Father: {fileID: 982144145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4375,8 +4357,8 @@ RectTransform:
   m_Children:
   - {fileID: 2094329268}
   - {fileID: 1427807244}
-  - {fileID: 1522305269}
   - {fileID: 1156472435}
+  - {fileID: 1522305269}
   - {fileID: 55294041}
   m_Father: {fileID: 982144145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

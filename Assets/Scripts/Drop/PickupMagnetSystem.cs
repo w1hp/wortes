@@ -52,7 +52,7 @@ partial struct PickupMagnetSystem : ISystem
 
 						PhysicsVelocity velocity = new PhysicsVelocity
 						{
-							Linear = math.lerp(direction, (direction * 10), 0.08f),
+							Linear = math.lerp(direction, (direction * 10), 0.5f),
 							Angular = float3.zero
 						};
 
