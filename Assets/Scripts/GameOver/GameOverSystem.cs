@@ -5,7 +5,7 @@ using Unity.Entities;
 [UpdateInGroup(typeof(SimulationSystemGroup))]
 partial class GameOverSystem : SystemBase
 {
-	public event Action<bool> OnGameOver;
+	public event Action<float> OnGameOver;
 
 
 	protected override void OnCreate()
@@ -18,13 +18,13 @@ partial class GameOverSystem : SystemBase
 		var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 		var ECB = ecbSingleton.CreateCommandBuffer(EntityManager.WorldUnmanaged);
 
-		foreach (var (characterComponent, health, entity) in 
-			SystemAPI.Query<RefRO<CharacterComponent>, RefRO<Health>>()
+		foreach (var (characterComponent, health, inventory, entity) in 
+			SystemAPI.Query<RefRO<CharacterComponent>, RefRO<Health>, RefRO<Inventory>>()
 			.WithEntityAccess())
 		{
 			if (health.ValueRO.CurrentHealth <= 0f)
 			{
-				OnGameOver?.Invoke(true);
+				OnGameOver?.Invoke(inventory.ValueRO.Gold);
 				ECB.DestroyEntity(entity);
 			}
 		}

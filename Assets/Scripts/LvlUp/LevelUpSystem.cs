@@ -27,18 +27,13 @@ partial class LevelUpSystem : SystemBase
 				Debug.Log("Level Up!");
 
 				//TODO: zmienic to kiedys na cos bardziej sensownego
-				PauseGame();
+				UnityEngine.Time.timeScale = 0;
+				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.Confined;
 
 				LevelUp?.Invoke();
 			}
 		}
-	}
-
-	static void PauseGame()
-	{
-		UnityEngine.Time.timeScale = 0;
-		Cursor.visible = true;
-		Cursor.lockState = CursorLockMode.Confined;
 	}
 
 	public void ReturnToGame(PowerUpType type, int value)
@@ -64,16 +59,8 @@ partial class LevelUpSystem : SystemBase
 					break;
 			}
 		}
-
-		//var entity = SystemAPI.GetSingletonEntity<IsNotPause>();
-		//var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
-		//var ECB = ecbSingleton.CreateCommandBuffer(EntityManager.WorldUnmanaged);
-		//ECB.RemoveComponent<Disabled>(entity);
 	}
-	//public void LoadScene()
-	//{
-	//	SceneSystem.LoadSceneAsync(WorldUnmanaged, "MainMenu");
-	//}
+
 
 	bool CanLevelUp(float gold, float level)
 	{

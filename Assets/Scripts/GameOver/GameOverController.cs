@@ -33,11 +33,15 @@ public class GameOverController : MonoBehaviour
 		gameOverSystem.OnGameOver -= OnGameOverEvent;
 	}
 
-	private void OnGameOverEvent(bool isPlayerDead)
+	private void OnGameOverEvent(float gold)
 	{
+		UnityEngine.Time.timeScale = 0;
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.Confined;
+		var currentGold = PlayerPrefs.GetFloat("Gold", 0);
+		PlayerPrefs.SetFloat("Gold", gold + currentGold);
+		PlayerPrefs.Save();
 		container.SetActive(true);
-		gameOverText.text = isPlayerDead
-			? gameOverTextLocalization.GetLocalizedString()
-			: lvlUpTextLocalization.GetLocalizedString();
+		gameOverText.text = gameOverTextLocalization.GetLocalizedString();
 	}
 }

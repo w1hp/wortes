@@ -15,7 +15,7 @@ public partial class PlayerInputsSystem : SystemBase
 
     private GameOverSystem _gameOverSystem;
 
-	void OnGameOverEvent(bool isPlayerDead)
+	void OnGameOverEvent(float x)
 	{
 		_defaultActionsMap.Disable();
 	}

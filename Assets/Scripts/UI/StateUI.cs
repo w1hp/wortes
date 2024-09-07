@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Scenes;
 using Unity.Entities;
+using TMPro;
 
 
 public class StateUI : MonoBehaviour
@@ -13,6 +14,7 @@ public class StateUI : MonoBehaviour
 	//[SerializeField] private GameObject loadingPanel;
 	[SerializeField] private GameObject mainMenuPanel;
 	[SerializeField] private GameObject lvlSelectionPanel;
+	[SerializeField] private TextMeshProUGUI goldText;
 
 	public static StateUI Singleton;
 
@@ -26,9 +28,15 @@ public class StateUI : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
+	{
 		Singleton = this;
 		currentPanel = mainMenuPanel;
+	}
+
+	void Update()
+	{
+		if (goldText.IsActive())
+			goldText.text = PlayerPrefs.GetFloat("Gold", 0).ToString();
 	}
 
 
@@ -46,6 +54,7 @@ public class StateUI : MonoBehaviour
 
 	public void OnActionClick(int sceneIndex)
 	{
+		Debug.Log($"OnActionClick: {sceneIndex}");
 		lastClickedRow = sceneIndex;
 		lastClickedAction = LoadingAction.LoadAll;
 		clicked = true;
@@ -59,30 +68,23 @@ public class StateUI : MonoBehaviour
 		panel.SetActive(true);
 		currentPanel = panel;
 	}
+	public void EndGame()
+	{
+		lastClickedAction = LoadingAction.UnloadAll;
+		clicked = true;
+		inGame.SetActive(false);
+		mainMenu.SetActive(true);
+	}
+
+	//public void SetPause(bool value)
+	//{
+	//	UnityEngine.Time.timeScale = value ? 0 : 1;
+	//	Cursor.visible = value ? true : false;
+	//	Cursor.lockState = value ? CursorLockMode.Confined : CursorLockMode.Locked;
+	//}
 
 	public void QuitGame()
 	{
 		Application.Quit();
 	}
-
-	//public void ShowSettings()
-	//{
-	//	settingsPanel.SetActive(true);
-	//	mainMenuPanel.SetActive(false);
-	//}
-	//public void HideSettings()
-	//{
-	//	settingsPanel.SetActive(false);
-	//	mainMenuPanel.SetActive(true);
-	//}
-	//public void ShowLevelSelectionPanel()
-	//{
-	//	lvlSelectionPanel.SetActive(true);
-	//	mainMenuPanel.SetActive(false);
-	//}
-	//public void HideLevelSelectionPanel()
-	//{
-	//	lvlSelectionPanel.SetActive(false);
-	//	mainMenuPanel.SetActive(true);
-	//}
 }
