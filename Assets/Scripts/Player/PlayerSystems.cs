@@ -36,8 +36,8 @@ public partial class PlayerInputsSystem : SystemBase
         inputActions.GameplayMap.Enable();
         _defaultActionsMap = inputActions.GameplayMap;
         
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
 
 		RequireForUpdate<IsNotPause>();
 		RequireForUpdate<FixedTickSystem.Singleton>();

@@ -25,16 +25,22 @@ partial class LevelUpSystem : SystemBase
 			{
 				inventory.ValueRW.Level++;
 				Debug.Log("Level Up!");
-				
+
 				//TODO: zmienic to kiedys na cos bardziej sensownego
-				UnityEngine.Time.timeScale = 0;
-				Cursor.visible = true;
-				Cursor.lockState = CursorLockMode.Confined;
+				PauseGame();
 
 				LevelUp?.Invoke();
 			}
 		}
 	}
+
+	static void PauseGame()
+	{
+		UnityEngine.Time.timeScale = 0;
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.Confined;
+	}
+
 	public void ReturnToGame(PowerUpType type, int value)
 	{
 		Debug.Log("Return to game");
@@ -64,6 +70,10 @@ partial class LevelUpSystem : SystemBase
 		//var ECB = ecbSingleton.CreateCommandBuffer(EntityManager.WorldUnmanaged);
 		//ECB.RemoveComponent<Disabled>(entity);
 	}
+	//public void LoadScene()
+	//{
+	//	SceneSystem.LoadSceneAsync(WorldUnmanaged, "MainMenu");
+	//}
 
 	bool CanLevelUp(float gold, float level)
 	{
