@@ -2724,9 +2724,9 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 0.1516055166721344,
-        "g": 0.30143997073173525,
-        "b": 0.7509433031082153,
+        "r": 0.385824054479599,
+        "g": 0.4997453987598419,
+        "b": 0.8415094017982483,
         "a": 0.7058823704719544
     },
     "isMainColor": false,
@@ -2970,8 +2970,8 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "x": 10.0,
-        "y": 10.0,
+        "x": 1000.0,
+        "y": 1000.0,
         "z": 0.0,
         "w": 0.0
     }
@@ -3643,7 +3643,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.949999988079071,
+    "m_Value": 0.20000000298023225,
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
@@ -3842,7 +3842,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.05000000074505806,
+    "m_Value": 0.8999999761581421,
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
@@ -3862,10 +3862,10 @@
         "m_Expanded": false,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1765.0,
-            "y": -274.0000305175781,
-            "width": 120.00000762939453,
-            "height": 101.0
+            "x": 1767.199951171875,
+            "y": -274.39996337890627,
+            "width": 119.2000732421875,
+            "height": 100.79997253417969
         }
     },
     "m_Slots": [
@@ -4624,10 +4624,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -805.0000610351563,
-            "y": 778.0,
-            "width": 208.00001525878907,
-            "height": 314.0
+            "x": -807.2000732421875,
+            "y": 779.2000122070313,
+            "width": 208.0,
+            "height": 311.20001220703127
         }
     },
     "m_Slots": [
@@ -5301,9 +5301,9 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 0.038047339767217639,
-        "g": 0.5490196347236633,
-        "b": 0.5490196347236633,
+        "r": 0.004421438090503216,
+        "g": 0.7811320424079895,
+        "b": 0.7811320424079895,
         "a": 0.19607843458652497
     },
     "isMainColor": false,
