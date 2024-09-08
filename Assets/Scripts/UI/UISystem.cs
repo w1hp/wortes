@@ -25,9 +25,12 @@ partial struct UISystem : ISystem
 
 		if (ui.GetAction(out var sceneIndex, out var action))
 		{
-			var scene = scenes[sceneIndex];
-			scene.LoadingAction = action;
-			state.EntityManager.SetComponentData(entities[sceneIndex], scene);
+			var selectedScene = scenes[sceneIndex];
+			//var mainScene = scenes[0];
+			selectedScene.LoadingAction = action;
+			//mainScene.LoadingAction = action;
+			state.EntityManager.SetComponentData(entities[sceneIndex], selectedScene);
+			//state.EntityManager.SetComponentData(entities[0], mainScene);
 		}
 	}
 }
