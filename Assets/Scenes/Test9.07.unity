@@ -138,6 +138,74 @@ MonoScript:
   m_ClassName: SubScene
   m_Namespace: Unity.Scenes
   m_AssemblyName: Unity.Scenes
+--- !u!1001 &751188614
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 75346032389612828, guid: bb878dd78574f614a83848b8caad402d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1265.4916
+      objectReference: {fileID: 0}
+    - target: {fileID: 75346032389612828, guid: bb878dd78574f614a83848b8caad402d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3501.607
+      objectReference: {fileID: 0}
+    - target: {fileID: 75346032389612828, guid: bb878dd78574f614a83848b8caad402d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4928.0977
+      objectReference: {fileID: 0}
+    - target: {fileID: 75346032389612828, guid: bb878dd78574f614a83848b8caad402d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 75346032389612828, guid: bb878dd78574f614a83848b8caad402d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 75346032389612828, guid: bb878dd78574f614a83848b8caad402d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 75346032389612828, guid: bb878dd78574f614a83848b8caad402d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 75346032389612828, guid: bb878dd78574f614a83848b8caad402d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 75346032389612828, guid: bb878dd78574f614a83848b8caad402d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 75346032389612828, guid: bb878dd78574f614a83848b8caad402d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938543767675036914, guid: bb878dd78574f614a83848b8caad402d,
+        type: 3}
+      propertyPath: m_Name
+      value: Chunk
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bb878dd78574f614a83848b8caad402d, type: 3}
 --- !u!1 &1128484610
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +474,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac74ebb70311f494ca0ccb858ddfd22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2063006560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063006562}
+  - component: {fileID: 2063006561}
+  m_Layer: 0
+  m_Name: New Sub Scene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2063006561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063006560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a335734b1572644a6a5d09d87adc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SceneAsset: {fileID: 102900000, guid: ba566e7f0ab27d042821ac54b68ce41f, type: 3}
+  _HierarchyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  AutoLoadScene: 1
+  _SceneGUID:
+    Value:
+      x: 4159071659
+      y: 1087843232
+      z: 1170870914
+      w: 4048472171
+--- !u!4 &2063006562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063006560}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2081624642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,3 +2732,5 @@ SceneRoots:
   - {fileID: 1128484612}
   - {fileID: 1272408151033434006}
   - {fileID: 2081624644}
+  - {fileID: 2063006562}
+  - {fileID: 751188614}
