@@ -1266,7 +1266,7 @@ MonoBehaviour:
   CharacterSpawnPointEntity: {fileID: 1603005272}
   CharacterPrefabEntity: {fileID: 1692896102597148395, guid: c280173c4b1bb2d489cf851ca7c6783b,
     type: 3}
-  CameraPrefabEntity: {fileID: 7568817337597995144, guid: dbc75a3958bfded43b3c7ad0bc3b22e4,
+  CameraPrefabEntity: {fileID: 3779771934276041261, guid: e034f14de2586f440a02750be07cfd75,
     type: 3}
   PlayerPrefabEntity: {fileID: 4729649056687684238, guid: 2722e4344b42a74408b3efbf56b53814,
     type: 3}
