@@ -3,12 +3,13 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Entities.Serialization;
 using Unity.Scenes;
-using UnityEditor;
 using UnityEngine;
 
 
 public class SceneReferenceAuthoring : MonoBehaviour
 {
+#if UNITY_EDITOR
+
 	public List<UnityEditor.SceneAsset> sceneAssets;
 
 	class Baker : Baker<SceneReferenceAuthoring>
@@ -33,6 +34,7 @@ public class SceneReferenceAuthoring : MonoBehaviour
 		}
 
 	}
+#endif
 }
 
 
