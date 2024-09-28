@@ -14,14 +14,6 @@ public partial struct FixedTickSystem : ISystem
         public uint Tick;
     }
 
-    public void OnCreate(ref SystemState state)
-    {
-		state.RequireForUpdate<IsNotPause>();
-	}
-
-    public void OnDestroy(ref SystemState state)
-    { }
-
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {

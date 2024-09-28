@@ -15,16 +15,6 @@ using UnityEngine.SocialPlatforms;
 public partial struct SceneInitializationSystem : ISystem
 {
     [BurstCompile]
-    public void OnCreate(ref SystemState state)
-    {
-		state.RequireForUpdate<IsNotPause>();
-	}
-
-    [BurstCompile]
-    public void OnDestroy(ref SystemState state)
-    { }
-
-    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         // Game init

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyMetal
   m_EditorClassIdentifier: 
   level: 4
-  prefab: {fileID: 5591473804521091752, guid: e98da819031628e43923f451071db23d, type: 3}
+  prefab: {fileID: 2365732753298355669, guid: c09710941a3205447b8ed06ff4458ab7, type: 3}
   detectionRange: 10
   elementType: 5
   damage: 25
@@ -24,4 +24,7 @@ MonoBehaviour:
   earthResistance: 100
   woodResistance: 100
   metalResistance: 150
-  healthBarData: {fileID: 0}
+  experiencePoints: 5
+  resourcePrefab: {fileID: 7428874357738166646, guid: 34dd5eb501284cb429d92a36f9837e5d,
+    type: 3}
+  resourceAmount: 3

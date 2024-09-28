@@ -10,18 +10,23 @@ public partial struct ProjectileSystem : ISystem
 	public void OnCreate(ref SystemState state)
 	{
 		state.RequireForUpdate<Projectile>();
-		state.RequireForUpdate<IsNotPause>();
 	}
 
 	[BurstCompile]
 	public void OnUpdate(ref SystemState state)
 	{
 		var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+		
+		
+		var enemyQuery = SystemAPI.QueryBuilder()
+			.WithAll<EnemyTag>()
+			.Build();
+
 
 		var projectileJob = new ProjectileJob
 		{
 			ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
-			//DeltaTime = SystemAPI.Time.DeltaTime
+			enemyMask = enemyQuery.GetEntityQueryMask()
 		};
 
 		projectileJob.Schedule();
@@ -32,10 +37,10 @@ public partial struct ProjectileSystem : ISystem
 public partial struct ProjectileJob : IJobEntity
 {
 	public EntityCommandBuffer ECB;
-	//public float DeltaTime;
+	public EntityQueryMask enemyMask;
 
 	void Execute(
-		Entity entity, 
+		Entity entity,
 		ref Projectile projectile,
 		in DynamicBuffer<StatefulCollisionEvent> collisionEventBuffer,
 		ref LocalTransform transform)
@@ -44,30 +49,26 @@ public partial struct ProjectileJob : IJobEntity
 		{
 			var collisionEvent = collisionEventBuffer[i];
 			var otherEntity = collisionEvent.GetOtherEntity(entity);
-
+			
 			switch (collisionEvent.State)
 			{
 				case StatefulEventState.Enter:
 					break;
 				case StatefulEventState.Stay:
+					if (enemyMask.MatchesIgnoreFilter(otherEntity))
+					{
+						ECB.AddComponent(otherEntity, new DamageToCharacter
+						{
+							Value = projectile.Damage,
+							Type = projectile.Type,
+							OriginCharacter = projectile.OriginCharacter
+						});
+					}
 					ECB.DestroyEntity(entity);
 					break;
 				case StatefulEventState.Exit:
 					break;
 			}
 		}
-		//var gravity = new float3(0.0f, -9.82f, 0.0f);
-
-		//transform.Position += projectile.Velocity * DeltaTime;
-
-		//if (transform.Position.y <= 0.0f)
-		//{
-		//	ECB.DestroyEntity(entity);
-		//}
-
-		//projectile.Velocity += gravity * DeltaTime;
-
-
-
 	}
 }

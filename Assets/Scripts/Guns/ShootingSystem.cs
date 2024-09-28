@@ -1,9 +1,7 @@
-using UnityEngine;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using Unity.Rendering;
 using Unity.Physics;
 using Unity.Collections;
 
@@ -14,7 +12,6 @@ public partial struct ShootingSystem : ISystem
 	public void OnCreate(ref SystemState state)
 	{
 		state.RequireForUpdate<Gun>();
-		state.RequireForUpdate<IsNotPause>();
 	}
 
 	[BurstCompile]
@@ -32,39 +29,6 @@ public partial struct ShootingSystem : ISystem
 		};
 
 		shootingJob.Schedule();
-
-		//foreach (var gun in SystemAPI.Query<RefRW<Gun>>().WithNone<Prefab>())
-		//{
-		//	if (gun.ValueRO.OwnerType == GunOwner.Player)
-		//	{
-		//		var character = SystemAPI.GetComponentRO<CharacterComponent>(gun.ValueRO.Owner);
-		//		if (!character.ValueRO.IsShooting) break;
-		//	}
-
-		//	gun.ValueRW.LastShotTime -= SystemAPI.Time.DeltaTime;
-		//	if (gun.ValueRW.LastShotTime > 0)
-		//	{
-		//		continue;
-		//	}
-		//	gun.ValueRW.LastShotTime = gun.ValueRO.FireInterval;
-
-		//	Entity projectileEntity = state.EntityManager.Instantiate(gun.ValueRO.Bullet);
-
-		//	var muzzleTransform = state.EntityManager.GetComponentData<LocalToWorld>(gun.ValueRO.Muzzle);
-		//	var bulletTransform = state.EntityManager.GetComponentData<LocalTransform>(gun.ValueRO.Bullet);
-		//	bulletTransform.Position = muzzleTransform.Position;
-
-		//	state.EntityManager.SetComponentData(projectileEntity, bulletTransform);
-
-		//	// Set color (color is RefRO<URPMaterialPropertyBaseColor> type)
-		//	//state.EntityManager.SetComponentData(projectileEntity, color.ValueRO);
-
-		//	state.EntityManager.SetComponentData(projectileEntity, new Projectile
-		//	{
-		//		Velocity = math.normalize(muzzleTransform.Up) * 12.0f
-		//	});
-		//}
-
 	}
 	[BurstCompile]
 	[WithNone(typeof(Prefab))]
@@ -76,9 +40,9 @@ public partial struct ShootingSystem : ISystem
 		[ReadOnly] public ComponentLookup<CharacterStats> CharacterStatsLookup;
 		[ReadOnly] public ComponentLookup<Tower> Tower;
 
-		public void Execute( 
+		public void Execute(
 			ref Gun gun,
-			in LocalTransform gunLocalTransform, 
+			in LocalTransform gunLocalTransform,
 			in LocalToWorld gunTransform)
 		{
 			float damage = gun.Damage;
@@ -118,7 +82,8 @@ public partial struct ShootingSystem : ISystem
 			ECB.SetComponent(projectileEntity, new Projectile
 			{
 				Damage = damage,
-				Type = gun.ElementType
+				Type = gun.ElementType,
+				OriginCharacter = gun.Owner
 			});
 
 			PhysicsVelocity velocity = new PhysicsVelocity
@@ -128,15 +93,6 @@ public partial struct ShootingSystem : ISystem
 			};
 
 			ECB.SetComponent(projectileEntity, velocity);
-			
-			//ECB.SetComponentEnabled<MaterialMeshInfo>(projectileEntity., true);
-			//URPMaterialPropertyBaseColor color
-			//ECB.SetComponent(projectileEntity, color);
-
-			//ECB.SetComponent(projectileEntity, new Projectile
-			//{
-			//	Velocity = math.normalize(gunTransform.Up) * 12.0f
-			//});
 		}
 	}
 

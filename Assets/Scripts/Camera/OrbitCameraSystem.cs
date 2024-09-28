@@ -73,7 +73,6 @@ public partial struct OrbitCameraSystem : ISystem
     
     public void OnCreate(ref SystemState state)
     {
-        state.RequireForUpdate<IsNotPause>();
         state.RequireForUpdate<PhysicsWorldSingleton>();
         state.RequireForUpdate(SystemAPI.QueryBuilder().WithAll<OrbitCamera, OrbitCameraControl>().Build());
     }

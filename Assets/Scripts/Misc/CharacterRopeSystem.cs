@@ -12,16 +12,6 @@ using Unity.CharacterController;
 public partial struct CharacterRopeSystem : ISystem
 {
     [BurstCompile]
-    public void OnCreate(ref SystemState state)
-    {
-		state.RequireForUpdate<IsNotPause>();
-	}
-
-    [BurstCompile]
-    public void OnDestroy(ref SystemState state)
-    { }
-
-    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         EntityCommandBuffer ecb = SystemAPI.GetSingletonRW<EndSimulationEntityCommandBufferSystem.Singleton>().ValueRW.CreateCommandBuffer(state.WorldUnmanaged);

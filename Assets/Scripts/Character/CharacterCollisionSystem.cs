@@ -8,12 +8,6 @@ using UnityEngine;
 partial struct CharacterCollisionSystem : ISystem
 {
 	[BurstCompile]
-	public void OnCreate(ref SystemState state)
-	{
-		state.RequireForUpdate<IsNotPause>();
-	}
-
-	[BurstCompile]
 	public void OnUpdate(ref SystemState state)
 	{
 

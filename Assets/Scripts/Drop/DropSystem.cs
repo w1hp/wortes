@@ -12,7 +12,6 @@ partial struct DropSystem : ISystem
     public void OnCreate(ref SystemState state)
     {
         state.RequireForUpdate<Drop>();
-		state.RequireForUpdate<IsNotPause>();
 	}
 
 	[BurstCompile]

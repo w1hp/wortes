@@ -150,14 +150,13 @@ GameObject:
   - component: {fileID: 30401950}
   - component: {fileID: 30401949}
   - component: {fileID: 30401948}
-  - component: {fileID: 30401953}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &30401948
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -200,7 +199,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -245,21 +244,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &30401953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30401947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
 --- !u!1 &312607053
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,7 +558,7 @@ MonoBehaviour:
   CharacterSpawnPointEntity: {fileID: 1603005272}
   CharacterPrefabEntity: {fileID: 1692896102597148395, guid: c280173c4b1bb2d489cf851ca7c6783b,
     type: 3}
-  CameraPrefabEntity: {fileID: 7568817337597995144, guid: dbc75a3958bfded43b3c7ad0bc3b22e4,
+  CameraPrefabEntity: {fileID: 3779771934276041261, guid: e034f14de2586f440a02750be07cfd75,
     type: 3}
   PlayerPrefabEntity: {fileID: 4729649056687684238, guid: 2722e4344b42a74408b3efbf56b53814,
     type: 3}
@@ -639,7 +623,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2144486422}
-  - component: {fileID: 2144486421}
   m_Layer: 0
   m_Name: Config
   m_TagString: Untagged
@@ -647,18 +630,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2144486421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144486420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53c0df01aaf00cb4faf779f16949ed4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2144486422
 Transform:
   m_ObjectHideFlags: 0

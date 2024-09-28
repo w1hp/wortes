@@ -13,7 +13,6 @@ partial struct TargetingSystem : ISystem
 	[BurstCompile]
 	public void OnCreate(ref SystemState state)
 	{
-		state.RequireForUpdate<IsNotPause>();
 		state.RequireForUpdate<Target>();
 	}
 

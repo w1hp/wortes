@@ -17,7 +17,6 @@ public partial class EnemySpawnerSystem : SystemBase
 	{
 		base.OnCreate();
 		random = Random.CreateFromIndex((uint)UnityEngine.Time.realtimeSinceStartup);
-		RequireForUpdate<IsNotPause>();
 	}
 
 	protected override void OnUpdate()
@@ -66,6 +65,10 @@ public partial class EnemySpawnerSystem : SystemBase
 			Damage = availableEnemies[index].damage,
 		});
 
+		EntityManager.AddComponentData(newEnemy, new IsExistTag { });
+
+		EntityManager.AddComponentData(newEnemy, new EnemyTag { });
+
 		EntityManager.AddComponentData(newEnemy, new Health
 		{
 			CurrentHealth = availableEnemies[index].maxHealth,
@@ -74,6 +77,17 @@ public partial class EnemySpawnerSystem : SystemBase
 			EarthResistance = availableEnemies[index].earthResistance,
 			WoodResistance = availableEnemies[index].woodResistance,
 			MetalResistance = availableEnemies[index].metalResistance
+		});
+
+		EntityManager.AddComponentData(newEnemy, new CharacterExperiencePoints
+		{
+			Value = availableEnemies[index].experiencePoints
+		});
+
+		EntityManager.AddComponentData(newEnemy, new Drop
+		{
+			ResourcePrefab = availableEnemies[index].resourcePrefab,
+			ResourceAmount = availableEnemies[index].resourceAmount
 		});
 
 		nextSpawnTime = (float)SystemAPI.Time.ElapsedTime + enemySpawnerComponent.spawnCooldown;

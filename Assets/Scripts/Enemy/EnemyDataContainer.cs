@@ -21,4 +21,9 @@ public struct EnemyData
 	public float earthResistance;
 	public float woodResistance;
 	public float metalResistance;
+
+	public float experiencePoints;
+
+	public Entity resourcePrefab;
+	public int resourceAmount;
 }

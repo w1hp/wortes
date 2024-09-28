@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyWater
   m_EditorClassIdentifier: 
   level: 2
-  prefab: {fileID: 5591473804521091752, guid: 2a9f012a3c4022a438d58acd93cddbe4, type: 3}
+  prefab: {fileID: 2259230368267083137, guid: 069c7e91bebbfc645a7dee8ecf7de595, type: 3}
   detectionRange: 10
   elementType: 2
   damage: 3
@@ -24,4 +24,7 @@ MonoBehaviour:
   earthResistance: 0
   woodResistance: 100
   metalResistance: 100
-  healthBarData: {fileID: 0}
+  experiencePoints: 5
+  resourcePrefab: {fileID: 7428874357738166646, guid: 94a72468bb08f424cb96072ca0d99eb8,
+    type: 3}
+  resourceAmount: 3

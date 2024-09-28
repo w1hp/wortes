@@ -38,8 +38,11 @@ public class EnemySpawnerAuthoring : MonoBehaviour
 					woodResistance = e.woodResistance,
 					metalResistance = e.metalResistance,
 					damage = e.damage,
-                    moveSpeed = e.moveSpeed
-                });
+                    moveSpeed = e.moveSpeed,
+					experiencePoints = e.experiencePoints,
+					resourcePrefab = GetEntity(e.resourcePrefab, TransformUsageFlags.None),
+					resourceAmount = e.resourceAmount
+				});
             }
 
             AddComponentObject(enemySpawnerAuthoring, new EnemyDataContainer { enemies = enemyData });

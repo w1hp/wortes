@@ -17,5 +17,9 @@ public class EnemySO : ScriptableObject
 	public float woodResistance;
 	public float metalResistance;
 
-    public HealthBar healthBarData;
+	public float experiencePoints;
+
+	public GameObject resourcePrefab;
+	public int resourceAmount;
+	//public HealthBar healthBarData;
 }

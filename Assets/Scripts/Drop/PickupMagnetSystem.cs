@@ -14,7 +14,6 @@ partial struct PickupMagnetSystem : ISystem
 	public void OnCreate(ref SystemState state)
 	{
 		state.RequireForUpdate<PickupMagnet>();
-		state.RequireForUpdate<IsNotPause>();
 	}
 
 	[BurstCompile]

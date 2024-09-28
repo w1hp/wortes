@@ -11,7 +11,6 @@ public partial struct EnemyAISystem : ISystem
 
 	private void OnCreate(ref SystemState state)
 	{
-		state.RequireForUpdate<IsNotPause>();
 		entityManager = state.EntityManager;
 	}
 

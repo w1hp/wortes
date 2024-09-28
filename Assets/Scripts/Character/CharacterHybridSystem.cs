@@ -10,10 +10,6 @@ using UnityEngine;
 [UpdateAfter(typeof(EndSimulationEntityCommandBufferSystem))]
 public partial class CharacterHybridSystem : SystemBase
 {
-	protected override void OnCreate()
-	{
-		RequireForUpdate<IsNotPause>();
-	}
 	protected override void OnUpdate()
     {
         EntityCommandBuffer ecb = SystemAPI.GetSingletonRW<EndSimulationEntityCommandBufferSystem.Singleton>().ValueRW.CreateCommandBuffer(World.Unmanaged); 

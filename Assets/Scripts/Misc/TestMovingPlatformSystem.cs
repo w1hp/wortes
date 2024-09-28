@@ -14,17 +14,6 @@ using Unity.CharacterController;
 public partial struct TestMovingPlatformSystem : ISystem
 {
     [BurstCompile]
-    public void OnCreate(ref SystemState state)
-    {
-		state.RequireForUpdate<IsNotPause>();
-	}
-
-    [BurstCompile]
-    public void OnDestroy(ref SystemState state)
-    {
-    }
-
-    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         float deltaTime = SystemAPI.Time.DeltaTime;

@@ -9,10 +9,6 @@ using UnityEngine;
 [UpdateInGroup(typeof(PresentationSystemGroup))]
 public partial class MainCameraSystem : SystemBase
 {
-	protected override void OnCreate()
-	{
-        RequireForUpdate<IsNotPause>();
-	}
 	protected override void OnUpdate()
     {
         if (MainGameObjectCamera.Instance != null && SystemAPI.HasSingleton<MainEntityCamera>())

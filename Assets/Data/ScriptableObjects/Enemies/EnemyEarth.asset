@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyEarth
   m_EditorClassIdentifier: 
   level: 3
-  prefab: {fileID: 5591473804521091752, guid: 9462d533af4908243821c888b3937a35, type: 3}
+  prefab: {fileID: 5404238183554296672, guid: 40955d8b628774a4390f7c3242bf98ea, type: 3}
   detectionRange: 10
   elementType: 3
   damage: 5
@@ -24,4 +24,7 @@ MonoBehaviour:
   earthResistance: 150
   woodResistance: 0
   metalResistance: 100
-  healthBarData: {fileID: 0}
+  experiencePoints: 5
+  resourcePrefab: {fileID: 7428874357738166646, guid: 94291b0e461eacc459c9561d960eb8b7,
+    type: 3}
+  resourceAmount: 3

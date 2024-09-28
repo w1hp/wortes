@@ -27,4 +27,5 @@ public struct Projectile : IComponentData
 	public float3 Velocity;
     public float Damage;
 	public ElementType Type;
+	public Entity OriginCharacter;
 }

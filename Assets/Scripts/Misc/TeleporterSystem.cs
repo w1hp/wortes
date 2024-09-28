@@ -14,16 +14,6 @@ using Unity.Physics.Stateful;
 public partial struct TeleporterSystem : ISystem
 {
     [BurstCompile]
-    public void OnCreate(ref SystemState state)
-    {
-		state.RequireForUpdate<IsNotPause>();
-	}
-
-    [BurstCompile]
-    public void OnDestroy(ref SystemState state)
-    { }
-
-    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         TeleporterJob job = new TeleporterJob
