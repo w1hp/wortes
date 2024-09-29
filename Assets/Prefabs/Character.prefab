@@ -1341,6 +1341,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 864711937847559280, guid: 69626c07ffc418a48a6643b640374294,
         type: 3}
+      propertyPath: CanBuild
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 864711937847559280, guid: 69626c07ffc418a48a6643b640374294,
+        type: 3}
       propertyPath: isEnable
       value: 1
       objectReference: {fileID: 0}

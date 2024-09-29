@@ -3,7 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-partial struct TowerSystem : ISystem
+partial struct AimTowerSystem : ISystem
 {
 
 	[BurstCompile]
