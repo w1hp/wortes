@@ -21,6 +21,7 @@ class HealthAuthoringBaker : Baker<HealthAuthoring>
 		AddComponent(entity, new Health
 		{
 			CurrentHealth = authoring.maxHealth,
+			MaxHealth = authoring.maxHealth,
 			FireResistance = authoring.fireResistance,
 			WaterResistance = authoring.waterResistance,
 			EarthResistance = authoring.earthResistance,
@@ -40,28 +41,69 @@ public struct Health : IComponentData
 	public float WoodResistance;
 	public float MetalResistance;
 
-	public void TakeDamage(float amount, ElementType typeDamage)
+//	public void TakeDamage(float amount, ElementType typeDamage)
+//	{
+//		switch (typeDamage)
+//		{
+//			case ElementType.Fire:
+//				CurrentHealth -= amount * (100 - FireResistance) / 100;
+//				break;
+//			case ElementType.Water:
+//				CurrentHealth -= amount * (100 - WaterResistance) / 100;
+//				break;
+//			case ElementType.Earth:
+//				CurrentHealth -= amount * (100 - EarthResistance) / 100;
+//				break;
+//			case ElementType.Wood:
+//				CurrentHealth -= amount * (100 - WoodResistance) / 100;
+//				break;
+//			case ElementType.Metal:
+//				CurrentHealth -= amount * (100 - MetalResistance) / 100;
+//				break;
+//			default:
+//#if UNITY_EDITOR
+//				Debug.Log("Unidentified type dame");
+//#endif
+//				break;
+//		}
+//	}
+
+	public bool TakeDamage(float amount, ElementType typeDamage)
 	{
+		var isHealing = false;
+		var tmpHealth = CurrentHealth;
 		switch (typeDamage)
 		{
 			case ElementType.Fire:
-				CurrentHealth -= amount * (100 - FireResistance) / 100;
-				break;
+				tmpHealth -= amount * (100 - FireResistance) / 100;
+				isHealing = tmpHealth >= CurrentHealth ? true : false;
+				CurrentHealth = tmpHealth;
+				return isHealing;
 			case ElementType.Water:
-				CurrentHealth -= amount * (100 - WaterResistance) / 100;
-				break;
+				tmpHealth -= amount * (100 - WaterResistance) / 100;
+				isHealing = tmpHealth >= CurrentHealth ? true : false;
+				CurrentHealth = tmpHealth;
+				return isHealing;
 			case ElementType.Earth:
-				CurrentHealth -= amount * (100 - EarthResistance) / 100;
-				break;
+				tmpHealth -= amount * (100 - EarthResistance) / 100;
+				isHealing = tmpHealth >= CurrentHealth ? true : false;
+				CurrentHealth = tmpHealth;
+				return isHealing;
 			case ElementType.Wood:
-				CurrentHealth -= amount * (100 - WoodResistance) / 100;
-				break;
+				tmpHealth -= amount * (100 - WoodResistance) / 100;
+				isHealing = tmpHealth >= CurrentHealth ? true : false;
+				CurrentHealth = tmpHealth;
+				return isHealing;
 			case ElementType.Metal:
-				CurrentHealth -= amount * (100 - MetalResistance) / 100;
-				break;
+				tmpHealth -= amount * (100 - MetalResistance) / 100;
+				isHealing = tmpHealth >= CurrentHealth ? true : false;
+				CurrentHealth = tmpHealth;
+				return isHealing;
 			default:
+#if UNITY_EDITOR
 				Debug.Log("Unidentified type dame");
-				break;
+#endif
+				return isHealing;
 		}
 	}
 }

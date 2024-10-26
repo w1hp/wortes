@@ -54,7 +54,9 @@ public class StateUI : MonoBehaviour
 
 	public void OnActionClick(int sceneIndex)
 	{
+#if UNITY_EDITOR
 		Debug.Log($"OnActionClick: {sceneIndex}");
+#endif
 		lastClickedRow = sceneIndex;
 		lastClickedAction = LoadingAction.LoadAll;
 		clicked = true;
@@ -63,14 +65,16 @@ public class StateUI : MonoBehaviour
 	}
 	public void ShowPanel(GameObject panel)
 	{
+#if UNITY_EDITOR
 		Debug.Log($"Show panel: {panel.name}");
+#endif
 		currentPanel.SetActive(false);
 		panel.SetActive(true);
 		currentPanel = panel;
 	}
 	public void EndGame()
 	{
-		lastClickedAction = LoadingAction.UnloadAll;
+		lastClickedAction = LoadingAction.UnloadEntities;
 		clicked = true;
 		inGame.SetActive(false);
 		mainMenu.SetActive(true);
@@ -86,5 +90,8 @@ public class StateUI : MonoBehaviour
 	public void QuitGame()
 	{
 		Application.Quit();
+#if UNITY_EDITOR
+		UnityEditor.EditorApplication.isPlaying = false;
+#endif
 	}
 }

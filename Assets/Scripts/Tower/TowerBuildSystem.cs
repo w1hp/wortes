@@ -48,7 +48,9 @@ partial struct TowerBuildSystem : ISystem
 					towerTransform.Position = highlighterTransform.Position;
 					state.EntityManager.SetComponentData(towerEntity, towerTransform);
 				}
+#if UNITY_EDITOR
 				else Debug.Log("Not enough resources");
+#endif
 			}
 		}
 	}

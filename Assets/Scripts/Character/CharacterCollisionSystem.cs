@@ -73,7 +73,9 @@ partial struct CharacterCollisionSystem : ISystem
 							health.ValueRW.TakeDamage(enemy.Damage, enemy.EnemyType);
 							if (health.ValueRW.CurrentHealth <= 0f)
 							{
+#if UNITY_EDITOR
 								Debug.Log("Character is dead");
+#endif
 							}
 							break;
 						case CharacterHitState.Stay:

@@ -24,7 +24,9 @@ partial class LevelUpSystem : SystemBase
 			if (CanLevelUp(inventory.ValueRO.Gold, inventory.ValueRO.Level))
 			{
 				inventory.ValueRW.Level++;
+#if UNITY_EDITOR
 				Debug.Log("Level Up!");
+#endif
 
 				//TODO: zmienic to kiedys na cos bardziej sensownego
 				UnityEngine.Time.timeScale = 0;
@@ -38,7 +40,9 @@ partial class LevelUpSystem : SystemBase
 
 	public void ReturnToGame(PowerUpType type, int value)
 	{
+#if UNITY_EDITOR
 		Debug.Log("Return to game");
+#endif
 		UnityEngine.Time.timeScale = 1;
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;

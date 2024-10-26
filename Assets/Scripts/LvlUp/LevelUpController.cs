@@ -72,8 +72,10 @@ public class LevelUpController : MonoBehaviour
 			randomInt3 = Random.Range(0, numberOfPowerUps);
 		}
 		while (randomInt1 == randomInt2 || randomInt1 == randomInt3 || randomInt2 == randomInt3);
-		
+
+#if UNITY_EDITOR
 		Debug.Log($"Generated numbers: {randomInt1}, {randomInt2}, {randomInt3}");
+#endif
 		return lastGeneratedNumbers = (randomInt1, randomInt2, randomInt3);
 	}
 
@@ -96,7 +98,9 @@ public class LevelUpController : MonoBehaviour
 
 		if (chosenPowerUp != null)
 		{
+#if UNITY_EDITOR
 			Debug.Log($"Power up chosen: {chosenPowerUp.name}");
+#endif
 			levelUpSystem.ReturnToGame(chosenPowerUp.powerUpType, chosenPowerUp.valueInPercent);
 		}
 

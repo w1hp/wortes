@@ -25,6 +25,6 @@ MonoBehaviour:
   woodResistance: 150
   metalResistance: 0
   experiencePoints: 5
-  resourcePrefab: {fileID: 7428874357738166646, guid: 09f179ee846241640af2ec5e5fd54594,
+  resourcePrefab: {fileID: 2132811732415857500, guid: a825f039226293b4b9658af5ef3c53c0,
     type: 3}
   resourceAmount: 3

@@ -6,24 +6,23 @@ using Unity.Transforms;
 
 public partial class DealDamageSystem : SystemBase
 {
-	public Action<float, float3> OnDealDamage;
-	public Action<float, float3> OnGrantExperience;
+	public Action<float, float3, bool> OnDealDamage;
+	//public Action<float, float3> OnGrantExperience;
 
 	protected override void OnUpdate()
 	{
 		var ecb = new EntityCommandBuffer(Allocator.Temp);
 
 		// For each character with a damage component...
-		foreach (var (health, damageToCharacter, experiencePoints, transform, entity) in
-				 SystemAPI.Query<RefRW<Health>, DamageToCharacter, CharacterExperiencePoints,
-					 LocalTransform>().WithEntityAccess())
+		foreach (var (health, damageToCharacter, transform, entity) in
+				 SystemAPI.Query<RefRW<Health>, DamageToCharacter, LocalTransform>().WithEntityAccess())
 		{
-			health.ValueRW.TakeDamage(damageToCharacter.Value, damageToCharacter.Type);
+			var isHealing = health.ValueRW.TakeDamage(damageToCharacter.Value, damageToCharacter.Type);
 			// Subtract health from the character
 			//hitPoints.ValueRW.Value -= damageToCharacter.Value;
 
 			// Invoke the OnDealDamage event, passing in the required data
-			OnDealDamage?.Invoke(damageToCharacter.Value, transform.Position);
+			OnDealDamage?.Invoke(damageToCharacter.Value, transform.Position, isHealing);
 
 			ecb.RemoveComponent<DamageToCharacter>(entity);
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using Unity.Entities;
@@ -6,41 +7,68 @@ using UnityEngine.UI;
 
 public class ScreenSpaceUIController : MonoBehaviour
 {
-	//[SerializeField] private GameObject _statsMenu;
-	//[SerializeField] private TextMeshProUGUI _playerExperienceText;
-	//[SerializeField] private Slider _playerExperienceSlider;
+	[SerializeField] private TextMeshProUGUI _playerHealthText;
+	[SerializeField] private Slider _playerHealthSlider;
 
-	//private bool _showStats;
-	//private Entity _playerEntity;
-	//private EntityManager _entityManager;
+	[SerializeField] private Text _woodText;
+	[SerializeField] private Text _fireText;
+	[SerializeField] private Text _waterText;
+	[SerializeField] private Text _earthText;
+	[SerializeField] private Text _metalText;
 
-	//private IEnumerator Start()
-	//{
-	//	_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+	private bool _showStats;
+	private Entity _playerEntity;
+	private EntityManager _entityManager;
+	private bool isInitialized = false;
+	private bool isExistPlayer;
 
-	//	// Wait a few frames until ECS world is loaded, then get player entity reference
-	//	yield return new WaitForSeconds(0.2f);
-	//	_playerEntity = _entityManager.CreateEntityQuery(typeof(PlayerTag)).GetSingletonEntity();
-	//	Debug.Log($"Player: {_playerEntity.ToString()}");
-	//}
+	private IEnumerator Start()
+	{
+		_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-	//private void Update()
-	//{
-	//	if (Input.GetKeyDown(KeyCode.Escape))
-	//	{
-	//		_showStats = !_showStats;
-	//		ShowHideStatsMenu();
-	//	}
-	//}
+		while (!isExistPlayer)
+		{
+			isExistPlayer = _entityManager.CreateEntityQuery(typeof(PlayerTag)).TryGetSingletonEntity<PlayerTag>(out _playerEntity);
+#if UNITY_EDITOR
+		Debug.Log($"Player doesn't exist, wait 1s");
+#endif
+			yield return new WaitForSeconds(1f);
+		}
 
-	//private void ShowHideStatsMenu()
-	//{
-	//	_statsMenu.SetActive(_showStats);
+#if UNITY_EDITOR
+		Debug.Log($"Player: {_playerEntity.ToString()}");
+#endif
+		SetSliderHealth();
+		isInitialized = true;
+	}
 
-	//	if (!_showStats) return;
 
-	//	var curPlayerExperience = _entityManager.GetComponentData<CharacterExperiencePoints>(_playerEntity).Value;
-	//	_playerExperienceText.text = $"Player EXP: {curPlayerExperience}";
-	//	_playerExperienceSlider.value = curPlayerExperience;
-	//}
+	private void Update()
+	{
+		if (isInitialized)
+			UpdatePlayerHealth();
+	}
+	
+	private void SetSliderHealth()
+	{
+		var playerHealth = _entityManager.GetComponentData<Health>(_playerEntity);
+		var playerInventory = _entityManager.GetComponentData<Inventory>(_playerEntity);
+
+		_playerHealthSlider.maxValue = playerHealth.MaxHealth;
+		_playerHealthSlider.value = playerHealth.CurrentHealth;
+		_playerHealthText.text = $"Player HP: {playerHealth.CurrentHealth}";
+
+		_woodText.text = $"{playerInventory.Wood}";
+		_fireText.text = $"{playerInventory.Fire}";
+		_waterText.text = $"{playerInventory.Water}";
+		_earthText.text = $"{playerInventory.Earth}";
+		_metalText.text = $"{playerInventory.Metal}";
+	}
+
+	private void UpdatePlayerHealth()
+	{
+		var curPlayerHealth = _entityManager.GetComponentData<Health>(_playerEntity).CurrentHealth;
+		_playerHealthText.text = $"Player HP: {curPlayerHealth}";
+		_playerHealthSlider.value = curPlayerHealth;
+	}
 }
