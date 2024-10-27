@@ -9,6 +9,7 @@ public class GameOverController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject container;
+	[SerializeField] private GameObject uiInGame;
 	[SerializeField] private TextMeshProUGUI gameOverText;
     [Header("Localization")]
     [SerializeField] private LocalizedString lvlUpTextLocalization;
@@ -42,6 +43,7 @@ public class GameOverController : MonoBehaviour
 		PlayerPrefs.SetFloat("Gold", gold + currentGold);
 		PlayerPrefs.Save();
 		container.SetActive(true);
+		uiInGame.SetActive(false);
 		gameOverText.text = gameOverTextLocalization.GetLocalizedString();
 	}
 }

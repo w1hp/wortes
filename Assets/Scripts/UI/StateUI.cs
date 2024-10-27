@@ -4,21 +4,23 @@ using UnityEngine;
 using Unity.Scenes;
 using Unity.Entities;
 using TMPro;
+using Unity.Collections;
 
 
 public class StateUI : MonoBehaviour
 {
 	[SerializeField] private GameObject mainMenu;
-	[SerializeField] private GameObject inGame;
+	[SerializeField] private GameObject inGameUI;
+	[SerializeField] private GameObject gameOverPanel;
 	[SerializeField] private GameObject settingsPanel;
-	//[SerializeField] private GameObject loadingPanel;
+	[SerializeField] private GameObject loadingPanel;
 	[SerializeField] private GameObject mainMenuPanel;
 	[SerializeField] private GameObject lvlSelectionPanel;
 	[SerializeField] private TextMeshProUGUI goldText;
 
 	public static StateUI Singleton;
 
-	private LevelUpSystem levelUpSystem;
+	//private LevelUpSystem levelUpSystem;
 
 
 	private LoadingAction lastClickedAction = LoadingAction.None;
@@ -60,7 +62,8 @@ public class StateUI : MonoBehaviour
 		lastClickedRow = sceneIndex;
 		lastClickedAction = LoadingAction.LoadAll;
 		clicked = true;
-		inGame.SetActive(true);
+		inGameUI.SetActive(true);
+		loadingPanel.SetActive(true);
 		mainMenu.SetActive(false);
 	}
 	public void ShowPanel(GameObject panel)
@@ -74,9 +77,9 @@ public class StateUI : MonoBehaviour
 	}
 	public void EndGame()
 	{
-		lastClickedAction = LoadingAction.UnloadEntities;
+		lastClickedAction = LoadingAction.UnloadAll;
 		clicked = true;
-		inGame.SetActive(false);
+		gameOverPanel.SetActive(false);
 		mainMenu.SetActive(true);
 	}
 
