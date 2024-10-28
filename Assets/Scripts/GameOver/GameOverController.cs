@@ -36,7 +36,7 @@ public class GameOverController : MonoBehaviour
 
 	private void OnGameOverEvent(float gold)
 	{
-		UnityEngine.Time.timeScale = 0;
+		//UnityEngine.Time.timeScale = 0;
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.Confined;
 		var currentGold = PlayerPrefs.GetFloat("Gold", 0);

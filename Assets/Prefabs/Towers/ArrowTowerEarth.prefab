@@ -263,15 +263,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GoldCost: 5
   RefundFactor: 0.5
-  WoodCost: 5
-  MetalCost: 5
-  WaterCost: 5
-  EarthCost: 5
-  FireCost: 5
+  WoodCost: 50
+  MetalCost: 50
+  WaterCost: 50
+  EarthCost: 50
+  FireCost: 50
   Range: 45
   Damage: 4
   AttackSpeed: 1
   ProjectileSpeed: 60
+  Ammo: 50
   ProjectileSpawnPoint: {fileID: 0}
   Aimer: {fileID: 8485630202862799709}
 --- !u!114 &8545409371311387455

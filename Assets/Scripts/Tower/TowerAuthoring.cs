@@ -16,6 +16,7 @@ class TowerAuthoring : MonoBehaviour
 	public float Damage;
 	public float AttackSpeed;
 	public float ProjectileSpeed;
+	public float Ammo;
 
 	public GameObject ProjectileSpawnPoint;
 	public GameObject Aimer;
@@ -42,6 +43,7 @@ class TowerAuthoringBaker : Baker<TowerAuthoring>
 			Damage = authoring.Damage,
 			AttackSpeed = authoring.AttackSpeed,
 			ProjectileSpeed = authoring.ProjectileSpeed,
+			Ammo = authoring.Ammo,
 
 			ProjectileSpawnPoint = GetEntity(authoring.ProjectileSpawnPoint, TransformUsageFlags.Dynamic),
 			Aimer = GetEntity(authoring.Aimer, TransformUsageFlags.Dynamic)
@@ -64,6 +66,7 @@ public struct Tower : IComponentData
 	public float Damage;
 	public float AttackSpeed;
 	public float ProjectileSpeed;
+	public float Ammo;
 
 	public Entity ProjectileSpawnPoint;
 	public Entity Aimer;

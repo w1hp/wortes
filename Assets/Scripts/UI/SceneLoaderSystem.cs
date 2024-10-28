@@ -2,7 +2,6 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Scenes;
-using UnityEngine;
 
 [RequireMatchingQueriesForUpdate]
 [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
@@ -24,7 +23,9 @@ public partial struct SceneStateSystem : ISystem
 		// which is not allowed inside a foreach query.
 		for (int index = 0; index < scenes.Length; ++index)
 		{
+
 			var scene = scenes[index];
+
 			scene.StreamingState = SceneSystem.GetSceneStreamingState(state.WorldUnmanaged, scene.EntityScene);
 
 			// The LoadingAction is set when the user clicks a button in the UI.
@@ -33,9 +34,6 @@ public partial struct SceneStateSystem : ISystem
 				case LoadingAction.LoadAll:
 				case LoadingAction.LoadMeta:
 					{
-#if UNITY_EDITOR
-						Debug.Log("LoadMeta");
-#endif
 						var loadParam = new SceneSystem.LoadParameters
 						{
 							AutoLoad = (scene.LoadingAction == LoadingAction.LoadAll)
@@ -54,9 +52,6 @@ public partial struct SceneStateSystem : ISystem
 					}
 				case LoadingAction.UnloadAll:
 					{
-#if UNITY_EDITOR
-						Debug.Log("UnloadAll");
-#endif
 						SceneSystem.UnloadScene(state.WorldUnmanaged, scene.EntityScene,
 							SceneSystem.UnloadParameters.DestroyMetaEntities);
 						scene.EntityScene = default;
@@ -64,9 +59,6 @@ public partial struct SceneStateSystem : ISystem
 					}
 				case LoadingAction.UnloadEntities:
 					{
-#if UNITY_EDITOR
-						Debug.Log("UnloadEntities");
-#endif
 						SceneSystem.UnloadScene(state.WorldUnmanaged, scene.EntityScene);
 						break;
 					}

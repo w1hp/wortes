@@ -30,6 +30,9 @@ partial class LevelUpSystem : SystemBase
 
 				//TODO: zmienic to kiedys na cos bardziej sensownego
 				UnityEngine.Time.timeScale = 0;
+#if UNITY_EDITOR
+				Debug.Log("timeScale = 0");
+#endif
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.Confined;
 

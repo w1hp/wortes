@@ -21,7 +21,12 @@ public class ScreenSpaceUIController : MonoBehaviour
 	private bool isInitialized = false;
 	private bool isExistPlayer;
 
-	private IEnumerator Start()
+
+	private void OnEnable()
+	{
+		StartCoroutine(Initialize());
+	}
+	private IEnumerator Initialize()
 	{
 		_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
@@ -37,13 +42,13 @@ public class ScreenSpaceUIController : MonoBehaviour
 #if UNITY_EDITOR
 		Debug.Log($"Player: {_playerEntity.ToString()}");
 #endif
-		isInitialized = true;
 	}
+
 
 
 	private void Update()
 	{
-		if (isInitialized)
+		if (_entityManager.Exists(_playerEntity))
 		{
 			var playerHealth = _entityManager.GetComponentData<Health>(_playerEntity);
 			var playerInventory = _entityManager.GetComponentData<Inventory>(_playerEntity);
