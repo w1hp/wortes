@@ -13,20 +13,20 @@ public partial class PlayerInputsSystem : SystemBase
 {
     private PlayerInputActions.GameplayMapActions _defaultActionsMap;
 
-    private GameOverSystem _gameOverSystem;
+    //private GameOverSystem _gameOverSystem;
 
-	void OnGameOverEvent(float x)
-	{
-		_defaultActionsMap.Disable();
-	}
+	//void OnGameOverEvent(float x)
+	//{
+	//	_defaultActionsMap.Disable();
+	//}
 	protected override void OnStartRunning()
 	{
-        _gameOverSystem = EntityManager.World.GetExistingSystemManaged<GameOverSystem>();
-        _gameOverSystem.OnGameOver += OnGameOverEvent;
+        //_gameOverSystem = EntityManager.World.GetExistingSystemManaged<GameOverSystem>();
+        //_gameOverSystem.OnGameOver += OnGameOverEvent;
 	}
 	protected override void OnStopRunning()
     {
-		_gameOverSystem.OnGameOver -= OnGameOverEvent;
+		//_gameOverSystem.OnGameOver -= OnGameOverEvent;
 	}
 
 	protected override void OnCreate()

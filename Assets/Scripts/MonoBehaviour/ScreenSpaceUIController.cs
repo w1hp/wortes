@@ -18,23 +18,17 @@ public class ScreenSpaceUIController : MonoBehaviour
 
 	private Entity _playerEntity;
 	private EntityManager _entityManager;
-	private bool isInitialized = false;
-	private bool isExistPlayer;
+	private bool isInitPlayer;
 
-
-	private void OnEnable()
-	{
-		StartCoroutine(Initialize());
-	}
 	private IEnumerator Initialize()
 	{
 		_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-		while (!isExistPlayer)
+		while (!isInitPlayer)
 		{
-			isExistPlayer = _entityManager.CreateEntityQuery(typeof(PlayerTag)).TryGetSingletonEntity<PlayerTag>(out _playerEntity);
+			isInitPlayer = _entityManager.CreateEntityQuery(typeof(PlayerTag)).TryGetSingletonEntity<PlayerTag>(out _playerEntity);
 #if UNITY_EDITOR
-			Debug.Log($"Player doesn't exist, wait 1s");
+			Debug.Log($"Player is not initialized, wait 1s");
 #endif
 			yield return new WaitForSeconds(1f);
 		}
@@ -44,7 +38,17 @@ public class ScreenSpaceUIController : MonoBehaviour
 #endif
 	}
 
+	private void OnEnable()
+	{
+		StartCoroutine(Initialize());
+	}
 
+	private void OnDisable()
+	{
+		_entityManager = default;
+		_playerEntity = default;
+		isInitPlayer = default;
+	}
 
 	private void Update()
 	{
