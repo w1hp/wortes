@@ -4,14 +4,16 @@ using Unity.Physics.Stateful;
 using Unity.Transforms;
 using UnityEngine;
 
+
 partial struct TowerBuildSystem : ISystem
 {
 	[BurstCompile]
 	public void OnUpdate(ref SystemState state)
 	{
-		foreach (var (triggerEventBuffer, materialChanger, entity) in
+		foreach (var (triggerEventBuffer, towerCollision, materialChanger, entity) in
 	SystemAPI.Query<
 		DynamicBuffer<StatefulTriggerEvent>,
+		RefRO<TowerCollision>,
 		RefRW<MaterialChanger>>()
 		.WithEntityAccess())
 		{
@@ -20,38 +22,87 @@ partial struct TowerBuildSystem : ISystem
 
 			materialChanger.ValueRW.BuildTime -= SystemAPI.Time.DeltaTime;
 
-
-			if (character.ValueRO.IsBuilding && materialChanger.ValueRO.CanBuild)
+			if (character.ValueRO.IsBuilding && towerCollision.ValueRO.CanBuild)
 			{
 				if (materialChanger.ValueRO.BuildTime > 0) return;
 
-				var selectedTowerComponent = SystemAPI.GetComponentRO<Tower>(characterEQ.ValueRO.SelectedTower);
-				var characterInventory = SystemAPI.GetComponentRW<Inventory>(materialChanger.ValueRO.Character);
-				if (selectedTowerComponent.ValueRO.GoldCost <= characterInventory.ValueRW.Gold &&
-					selectedTowerComponent.ValueRO.WoodCost <= characterInventory.ValueRW.Wood &&
-					selectedTowerComponent.ValueRO.MetalCost <= characterInventory.ValueRW.Metal &&
-					selectedTowerComponent.ValueRO.WaterCost <= characterInventory.ValueRW.Water &&
-					selectedTowerComponent.ValueRO.EarthCost <= characterInventory.ValueRW.Earth &&
-					selectedTowerComponent.ValueRO.FireCost <= characterInventory.ValueRW.Fire)
-				{
-					materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
-					characterInventory.ValueRW.Gold -= selectedTowerComponent.ValueRO.GoldCost;
-					characterInventory.ValueRW.Wood -= selectedTowerComponent.ValueRO.WoodCost;
-					characterInventory.ValueRW.Metal -= selectedTowerComponent.ValueRO.MetalCost;
-					characterInventory.ValueRW.Water -= selectedTowerComponent.ValueRO.WaterCost;
-					characterInventory.ValueRW.Earth -= selectedTowerComponent.ValueRO.EarthCost;
-					characterInventory.ValueRW.Fire -= selectedTowerComponent.ValueRO.FireCost;
+				RefRO<TowerElement> towerElement = SystemAPI.GetComponentRO<TowerElement>(characterEQ.ValueRO.SelectedTower);
+				RefRO<TowerCost> towerCost = SystemAPI.GetComponentRO<TowerCost>(characterEQ.ValueRO.SelectedTower);
+				RefRW<CharacterResources> characterResources = SystemAPI.GetComponentRW<CharacterResources>(materialChanger.ValueRO.Character);
 
-					Entity towerEntity = state.EntityManager.Instantiate(characterEQ.ValueRO.SelectedTower);
-					var towerTransform = state.EntityManager.GetComponentData<LocalTransform>(characterEQ.ValueRO.SelectedTower);
-					var highlighterTransform = state.EntityManager.GetComponentData<LocalToWorld>(entity);
-					towerTransform.Position = highlighterTransform.Position;
-					state.EntityManager.SetComponentData(towerEntity, towerTransform);
-				}
+				switch (towerElement.ValueRO.Element)
+				{
+					case ElementType.Wood:
+						if (towerCost.ValueRO.Cost <= characterResources.ValueRW.Wood)
+						{
+							characterResources.ValueRW.Wood -= towerCost.ValueRO.Cost;
+							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
+							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
+						}
 #if UNITY_EDITOR
-				else Debug.Log("Not enough resources");
+                        else
+				Debug.Log("Not enough resources to build tower");
 #endif
+						break;
+					case ElementType.Metal:
+						if (towerCost.ValueRO.Cost <= characterResources.ValueRW.Metal)
+						{
+							characterResources.ValueRW.Metal -= towerCost.ValueRO.Cost;
+							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
+							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
+						}
+#if UNITY_EDITOR
+						else
+							Debug.Log("Not enough resources to build tower");
+#endif
+						break;
+					case ElementType.Water:
+						if (towerCost.ValueRO.Cost <= characterResources.ValueRW.Water)
+						{
+							characterResources.ValueRW.Water -= towerCost.ValueRO.Cost;
+							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
+							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
+						}
+#if UNITY_EDITOR
+						else
+							Debug.Log("Not enough resources to build tower");
+#endif
+						break;
+					case ElementType.Earth:
+						if (towerCost.ValueRO.Cost <= characterResources.ValueRW.Earth)
+						{
+							characterResources.ValueRW.Earth -= towerCost.ValueRO.Cost;
+							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
+							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
+						}
+#if UNITY_EDITOR
+						else
+							Debug.Log("Not enough resources to build tower");
+#endif
+						break;
+					case ElementType.Fire:
+						if (towerCost.ValueRO.Cost <= characterResources.ValueRW.Fire)
+						{
+							characterResources.ValueRW.Fire -= towerCost.ValueRO.Cost;
+							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
+							BuildTower(characterEQ.ValueRO.SelectedTower, entity,	ref state);
+						}
+#if UNITY_EDITOR
+						else
+							Debug.Log("Not enough resources to build tower");
+#endif
+						break;
+				}
 			}
 		}
+	}
+
+	private void BuildTower(Entity selectedTower, Entity highlighter, ref SystemState state)
+	{ 
+		Entity towerEntity = state.EntityManager.Instantiate(selectedTower);
+		var towerTransform = state.EntityManager.GetComponentData<LocalTransform>(towerEntity);
+		var highlighterTransform = state.EntityManager.GetComponentData<LocalToWorld>(highlighter);
+		towerTransform.Position = highlighterTransform.Position;
+		state.EntityManager.SetComponentData(towerEntity, towerTransform);
 	}
 }

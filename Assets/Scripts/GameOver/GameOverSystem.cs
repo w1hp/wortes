@@ -18,7 +18,7 @@ partial class GameOverSystem : SystemBase
 		var ECB = ecbSingleton.CreateCommandBuffer(EntityManager.WorldUnmanaged);
 
 		foreach (var (characterComponent, health, inventory, entity) in 
-			SystemAPI.Query<RefRO<CharacterComponent>, RefRO<Health>, RefRO<Inventory>>()
+			SystemAPI.Query<RefRO<CharacterComponent>, RefRO<Health>, RefRO<CharacterResources>>()
 			.WithEntityAccess())
 		{
 			if (health.ValueRO.CurrentHealth <= 0f)

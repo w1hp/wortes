@@ -33,27 +33,27 @@ partial struct CharacterCollisionSystem : ISystem
 					switch (collisionEvent.State)
 					{
 						case CharacterHitState.Enter:
-							var inventory = SystemAPI.GetComponent<Inventory>(entity);
+							var characterResources = SystemAPI.GetComponent<CharacterResources>(entity);
 							switch (item.Type)
 							{
 								case ElementType.Fire:
-									inventory.Fire += item.Value;
+									characterResources.Fire += item.Value;
 									break;
 								case ElementType.Water:
-									inventory.Water += item.Value;
+									characterResources.Water += item.Value;
 									break;
 								case ElementType.Earth:
-									inventory.Earth += item.Value;
+									characterResources.Earth += item.Value;
 									break;
 								case ElementType.Wood:
-									inventory.Wood += item.Value;
+									characterResources.Wood += item.Value;
 									break;
 								case ElementType.Metal:
-									inventory.Metal += item.Value;
+									characterResources.Metal += item.Value;
 									break;
 							}
-							inventory.Gold++;
-							ECB.SetComponent(entity, inventory);
+							characterResources.Gold++;
+							ECB.SetComponent(entity, characterResources);
 
 							ECB.DestroyEntity(otherEntity);
 							break;

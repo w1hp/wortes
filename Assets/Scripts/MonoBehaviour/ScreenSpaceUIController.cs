@@ -55,7 +55,7 @@ public class ScreenSpaceUIController : MonoBehaviour
 		if (_entityManager.Exists(_playerEntity))
 		{
 			var playerHealth = _entityManager.GetComponentData<Health>(_playerEntity);
-			var playerInventory = _entityManager.GetComponentData<Inventory>(_playerEntity);
+			var playerInventory = _entityManager.GetComponentData<CharacterResources>(_playerEntity);
 
 			_playerHealthSlider.maxValue = playerHealth.MaxHealth;
 			_playerHealthSlider.value = playerHealth.CurrentHealth;

@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2c653b395ab133747a97c1eb68a1ff3f, type: 2}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -169,7 +169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2c653b395ab133747a97c1eb68a1ff3f, type: 2}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 8545409371311387455}
   - component: {fileID: 8885249236315627585}
   m_Layer: 9
-  m_Name: ArrowTowerMetal
+  m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,19 +261,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b2040c5a81db647a5d5fdcd29a660d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoldCost: 5
-  RefundFactor: 0.5
-  WoodCost: 50
-  MetalCost: 50
-  WaterCost: 50
-  EarthCost: 50
-  FireCost: 50
-  Range: 10
-  Damage: 4
-  AttackSpeed: 1
-  ProjectileSpeed: 60
-  Ammo: 50
-  ProjectileSpawnPoint: {fileID: 0}
+  Element: 0
+  Cost: 0
+  Range: 45
   Aimer: {fileID: 8485630202862799709}
 --- !u!114 &8545409371311387455
 MonoBehaviour:
@@ -360,13 +350,13 @@ PrefabInstance:
     - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: ElementType
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7224457264266369207, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2c653b395ab133747a97c1eb68a1ff3f, type: 2}
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: m_LocalScale.x

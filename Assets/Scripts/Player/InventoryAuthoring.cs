@@ -17,7 +17,7 @@ class InventoryAuthoringBaker : Baker<InventoryAuthoring>
     public override void Bake(InventoryAuthoring authoring)
     {
         var entity = GetEntity(TransformUsageFlags.Dynamic);
-		AddComponent(entity, new Inventory
+		AddComponent(entity, new CharacterResources
 		{
 			Level = authoring.Level,
 			Gold = authoring.Gold,
@@ -30,7 +30,7 @@ class InventoryAuthoringBaker : Baker<InventoryAuthoring>
 	}
 }
 
-public struct Inventory : IComponentData
+public struct CharacterResources : IComponentData
 {
 	public float Level;
 	public float Gold;

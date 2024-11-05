@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 864711937847559280}
   - component: {fileID: 2909862812157340692}
   - component: {fileID: 6178006281211768875}
+  - component: {fileID: 8638351982463825259}
   m_Layer: 0
   m_Name: Highlighter
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
+  BuildTimeRemaining: 0
 --- !u!114 &2909862812157340692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +83,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &8638351982463825259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4901134748955214011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc60223a62dd7841a9fc24d62149f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5258228151891513767
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ partial struct TowerCollisionDetectionSystem : ISystem
 	[BurstCompile]
 	public void OnCreate(ref SystemState state)
 	{
-		state.RequireForUpdate<Tower>();
+		state.RequireForUpdate<TowerCollision>();
 	}
 
 	[BurstCompile]
@@ -21,10 +21,10 @@ partial struct TowerCollisionDetectionSystem : ISystem
 		var nonTriggerQuery = SystemAPI.QueryBuilder().WithNone<StatefulTriggerEvent>().Build();
 
 		var nonTriggerMask = nonTriggerQuery.GetEntityQueryMask();
-		foreach (var (triggerEventBuffer, materialChanger, entity) in
+		foreach (var (triggerEventBuffer, towerCollision, entity) in
 			SystemAPI.Query<
 				DynamicBuffer<StatefulTriggerEvent>,
-				RefRW<MaterialChanger>>()
+				RefRW<TowerCollision>>()
 				.WithEntityAccess())
 		{
 			var highlighterChildren = SystemAPI.GetBuffer<Child>(entity);
@@ -44,13 +44,13 @@ partial struct TowerCollisionDetectionSystem : ISystem
 				}
 				if (triggerEvent.State == StatefulEventState.Enter)
 				{
-					materialChanger.ValueRW.CanBuild = false;
+					towerCollision.ValueRW.CanBuild = false;
 					//RED
 					baseColor.ValueRW.Value = new float4(1, 0, 0, 0.5f);
 				}
 				else if (triggerEvent.State == StatefulEventState.Exit)
 				{
-					materialChanger.ValueRW.CanBuild = true;
+					towerCollision.ValueRW.CanBuild = true;
 					//GREEN
 					baseColor.ValueRW.Value = new float4(0, 1, 0, 0.5f);
 				}

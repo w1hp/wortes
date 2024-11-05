@@ -10,7 +10,7 @@ partial class LevelUpSystem : SystemBase
 	
 	protected override void OnCreate()
 	{
-		RequireForUpdate(SystemAPI.QueryBuilder().WithAll<CharacterComponent, Inventory>().Build());
+		RequireForUpdate(SystemAPI.QueryBuilder().WithAll<CharacterComponent, CharacterResources>().Build());
 		//RequireForUpdate<IsNotPause>();
 	}
 
@@ -18,12 +18,12 @@ partial class LevelUpSystem : SystemBase
 	{
 		var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 		var ECB = ecbSingleton.CreateCommandBuffer(EntityManager.WorldUnmanaged);
-		foreach (var(characterComponent, inventory) in 
-			SystemAPI.Query<RefRO<CharacterComponent>, RefRW<Inventory>>())
+		foreach (var(characterComponent, characterResources) in 
+			SystemAPI.Query<RefRO<CharacterComponent>, RefRW<CharacterResources>>())
 		{
-			if (CanLevelUp(inventory.ValueRO.Gold, inventory.ValueRO.Level))
+			if (CanLevelUp(characterResources.ValueRO.Gold, characterResources.ValueRO.Level))
 			{
-				inventory.ValueRW.Level++;
+				characterResources.ValueRW.Level++;
 #if UNITY_EDITOR
 				Debug.Log("Level Up!");
 #endif
