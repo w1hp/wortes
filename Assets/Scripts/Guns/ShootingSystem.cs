@@ -5,6 +5,7 @@ using Unity.Transforms;
 using Unity.Physics;
 using Unity.Collections;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [UpdateBefore(typeof(TransformSystemGroup))]
 public partial struct ShootingSystem : ISystem
@@ -13,10 +14,6 @@ public partial struct ShootingSystem : ISystem
 	public void OnCreate(ref SystemState state)
 	{
 		state.RequireForUpdate<Gun>();
-		//state.RequireForUpdate<TowerAimer>(); idk why it stops this system
-		//state.RequireForUpdate<CharacterStats>();
-		state.RequireForUpdate<CharacterComponent>();
-
 	}
 
 	[BurstCompile]
@@ -30,7 +27,8 @@ public partial struct ShootingSystem : ISystem
 			DeltaTime = SystemAPI.Time.DeltaTime,
 			CharacterComponentLookup = SystemAPI.GetComponentLookup<CharacterComponent>(),
 			CharacterStatsLookup = SystemAPI.GetComponentLookup<CharacterStats>(),
-			TowerAimerLookup = SystemAPI.GetComponentLookup<TowerAimer>()
+			TowerAimerLookup = SystemAPI.GetComponentLookup<TowerAimer>(),
+			TowerAmmoLookup = SystemAPI.GetComponentLookup<TowerAmmo>()
 		};
 
 		shootingJob.Schedule();
@@ -44,6 +42,7 @@ public partial struct ShootingSystem : ISystem
 		[ReadOnly] public ComponentLookup<CharacterComponent> CharacterComponentLookup;
 		[ReadOnly] public ComponentLookup<CharacterStats> CharacterStatsLookup;
 		[ReadOnly] public ComponentLookup<TowerAimer> TowerAimerLookup;
+		public ComponentLookup<TowerAmmo> TowerAmmoLookup;
 
 		public void Execute(
 			ref Gun gun,
@@ -65,6 +64,7 @@ public partial struct ShootingSystem : ISystem
 				case GunOwner.Tower:
 					var tower = TowerAimerLookup.GetRefRO(gun.Owner);
 					if (!tower.ValueRO.IsEnemyInRange) return;
+
 					break;
 				case GunOwner.Enemy:
 					break;
@@ -98,6 +98,17 @@ public partial struct ShootingSystem : ISystem
 			};
 
 			ECB.SetComponent(projectileEntity, velocity);
+
+
+			if (gun.OwnerType == GunOwner.Tower)
+			{
+				var ammo = TowerAmmoLookup.GetRefRW(gun.Owner);
+				ammo.ValueRW.Ammo--;
+				if (ammo.ValueRO.Ammo <= 0)
+				{
+					ECB.SetComponentEnabled<IsExistTag>(gun.Owner, false);
+				}
+			}
 		}
 	}
 

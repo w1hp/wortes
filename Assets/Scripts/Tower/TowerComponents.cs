@@ -18,5 +18,9 @@ public struct TowerElement : IComponentData
 {
 	public ElementType Element;
 }
+public struct TowerAmmo : IComponentData
+{
+	public ushort Ammo;	
+}
 public struct TowerTag : IComponentData { }
 
