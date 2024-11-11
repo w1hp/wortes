@@ -21,3 +21,13 @@ public struct DamageToCharacter : IComponentData
 	public ElementType Type;    
 	public Entity OriginCharacter;
 }
+public struct CharacterResources : IComponentData
+{
+	public float Level;
+	public float Gold;
+	public float Wood;
+	public float Metal;
+	public float Water;
+	public float Earth;
+	public float Fire;
+}

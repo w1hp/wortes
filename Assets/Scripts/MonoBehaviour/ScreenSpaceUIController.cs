@@ -16,6 +16,11 @@ public class ScreenSpaceUIController : MonoBehaviour
 	[SerializeField] private Text _earthText;
 	[SerializeField] private Text _metalText;
 
+	[SerializeField] private TextMeshProUGUI _timerText;
+
+	public static ScreenSpaceUIController Singleton;
+
+
 	private Entity _playerEntity;
 	private EntityManager _entityManager;
 	private bool isInitPlayer;
@@ -36,6 +41,11 @@ public class ScreenSpaceUIController : MonoBehaviour
 #if UNITY_EDITOR
 		Debug.Log($"Player: {_playerEntity.ToString()}");
 #endif
+	}
+
+	void Start()
+	{
+		Singleton = this;
 	}
 
 	private void OnEnable()
@@ -67,5 +77,10 @@ public class ScreenSpaceUIController : MonoBehaviour
 			_earthText.text = $"{playerInventory.Earth}";
 			_metalText.text = $"{playerInventory.Metal}";
 		}
+	}
+
+	public void UpdateTimer((float minutes, float seconds) time)
+	{
+		_timerText.text = string.Format("{0:00}:{1:00}", time.minutes, time.seconds);
 	}
 }

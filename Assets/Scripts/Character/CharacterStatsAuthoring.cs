@@ -17,7 +17,7 @@ class CharacterStatsAuthoringBaker : Baker<CharacterStatsAuthoring>
 
 	}
 }
-
+//TODO: check if this is the correct way to implement the CharacterStats component
 public struct CharacterStats : IComponentData
 {
 	public int BaseDamage;
