@@ -9,6 +9,7 @@ class BossAuthoring : MonoBehaviour
 		{
 			var entity = GetEntity(TransformUsageFlags.Dynamic);
 			AddComponent<BossTag>(entity);
+			AddComponent<BossStateMachine>(entity);
 		}
 	}
 }

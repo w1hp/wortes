@@ -11,7 +11,10 @@ partial struct BossInitializationSystem : ISystem
 	[BurstCompile]
 	public void OnCreate(ref SystemState state)
 	{
-		state.RequireForUpdate<BossInitialization>();
+		state.RequireForUpdate(SystemAPI.QueryBuilder()
+			.WithAll<BossInitialization>()
+			.WithNone<BossCountdown>()
+			.Build());
 	}
 
 	[BurstCompile]
@@ -20,9 +23,7 @@ partial struct BossInitializationSystem : ISystem
 		var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 		var ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
-		foreach (var (bossInitialization, entity) in SystemAPI.Query<BossInitialization>()
-			.WithEntityAccess()
-			.WithNone<BossCountdown>())
+		foreach (var (bossInitialization, entity) in SystemAPI.Query<BossInitialization>().WithEntityAccess())
 		{
 			//Disable enemy spawner
 			var enemySpawnerEntity = SystemAPI.GetSingletonEntity<EnemySpawnerComponent>();
@@ -51,7 +52,7 @@ partial struct BossInitializationSystem : ISystem
 			playerTransform.Position.z += 7;
 			ECB.SetComponent(bossEntity, playerTransform);
 
-			ECB.DestroyEntity(entity);
+			ECB.RemoveComponent<BossInitialization>(entity);
 			//TASK: Enable player controls
 		}
 	}
