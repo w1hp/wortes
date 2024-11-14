@@ -4,6 +4,7 @@ using UnityEngine;
 class CountdownAuthoring : MonoBehaviour
 {
 	public float TargetDuration;
+	public GameObject BossPrefab;
 
 	class Baker : Baker<CountdownAuthoring>
 	{
@@ -14,7 +15,10 @@ class CountdownAuthoring : MonoBehaviour
 			{
 				TargetDuration = authoring.TargetDuration,
 			});
-			AddComponent(entity, new BossInitialization());
+			AddComponent(entity, new BossInitialization
+			{
+				BossPrefabEntity = GetEntity(authoring.BossPrefab, TransformUsageFlags.Dynamic),
+			});
 		}
 	}
 }
@@ -25,5 +29,6 @@ public struct BossCountdown : IComponentData
 }
 public struct BossInitialization : IComponentData
 {
-    
+	public Entity BossPrefabEntity;
+
 }
