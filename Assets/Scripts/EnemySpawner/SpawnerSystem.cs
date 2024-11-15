@@ -37,7 +37,7 @@ public partial class EnemySpawnerSystem : SystemBase
 
 	private void SpawnEnemy()
 	{
-		int level = 2;
+		int level = 3;
 		List<EnemyData> availableEnemies = new List<EnemyData>();
 
 		foreach (EnemyData enemyData in enemyDataContainerComponent.enemies)

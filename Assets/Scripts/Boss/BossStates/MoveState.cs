@@ -2,23 +2,27 @@ using Unity.Entities;
 
 public struct MoveState : IBossState
 {
-	public void OnStateEnter(BossState previousState, Entity entity, ref SystemState state)
+	public void OnStateEnter(BossState previousState, Entity entity, EntityCommandBuffer ecb)
 	{
 #if UNITY_EDITOR
 		UnityEngine.Debug.Log("Entering Move State");
 #endif
-		
-		state.EntityManager.AddComponent<EnemyComponent>(entity);
+		ecb.AddComponent(entity, new EnemyComponent
+		{
+			EnemyType = ElementType.Fire,
+			DetectionRange = 30f,
+			Damage = 25f
+		});
 
 	}
 
-	public void OnStateExit(BossState nextState, Entity entity, ref SystemState state)
+	public void OnStateExit(BossState nextState, Entity entity, EntityCommandBuffer ecb)
 	{
-		state.EntityManager.RemoveComponent<EnemyComponent>(entity);
+		ecb.RemoveComponent<EnemyComponent>(entity);
 	}
 
-	public void OnStateUpdate(RefRW<BossStateMachine> bossStateMachine, Entity entity, ref SystemState state)
+	public void OnStateUpdate(RefRW<BossStateMachine> bossStateMachine, Entity entity, EntityCommandBuffer ecb)
 	{
-		bossStateMachine.ValueRW.TransitionToState(BossState.Idle, entity, ref state);
+		bossStateMachine.ValueRW.TransitionToState(BossState.Idle, entity, ecb);
 	}
 }

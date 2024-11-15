@@ -8,7 +8,7 @@ public struct BossStateMachine : IComponentData
 	public BossState PreviousState;
 
 	public float Timer;
-	public uint Seed;
+	//public uint Seed;
 	//TASK: Set Seed and Timer field in baker
 	public IdleState IdleState;
 	public MoveState MoveState;
@@ -16,81 +16,83 @@ public struct BossStateMachine : IComponentData
 	public DefendState DefendState;
 	public AttackState AttackState;
 
-	public void TransitionToState(BossState nextState, Entity entity, ref SystemState systemState)
+	public void TransitionToState(BossState nextState, Entity entity, EntityCommandBuffer ecb)
 	{
 		PreviousState = CurrentState;
 		CurrentState = nextState;
 
-		Random rng = new Random(Seed);
-		Seed = rng.NextUInt(10);
-		Timer = rng.NextFloat(0, 4);
+		//Random rng = new Random(Seed);
+		//Seed = rng.NextUInt(1,666);
 
-		OnStateExit(PreviousState, CurrentState, entity, ref systemState);
-		OnStateEnter(CurrentState, PreviousState, entity, ref systemState);
+		//Random rng = new Random();
+		//Timer = rng.NextFloat(1, 7);
+
+		OnStateExit(PreviousState, CurrentState, entity, ecb);
+		OnStateEnter(CurrentState, PreviousState, entity, ecb);
 	}
 
-	public void OnStateExit(BossState state, BossState newState, Entity entity, ref SystemState systemState)
+	public void OnStateExit(BossState state, BossState newState, Entity entity, EntityCommandBuffer ecb)
 	{
 		switch (state)
 		{
 			case BossState.Idle:
-				IdleState.OnStateExit(newState, entity, ref systemState);
+				IdleState.OnStateExit(newState, entity, ecb);
 				break;
 			case BossState.Move:
-				MoveState.OnStateExit(newState, entity, ref systemState);
+				MoveState.OnStateExit(newState, entity, ecb);
 				break;
 			//case BossState.Dash:
 			//	DashState.OnStateExit(newState, entity, ref systemState);
 			//	break;
 			case BossState.Defend:
-				DefendState.OnStateExit(newState, entity, ref systemState);
+				DefendState.OnStateExit(newState, entity, ecb);
 				break;
 			case BossState.Attack:
-				AttackState.OnStateExit(newState, entity, ref systemState);
+				AttackState.OnStateExit(newState, entity, ecb);
 				break;
 		}
 	}
 
-	public void OnStateEnter(BossState state, BossState previousState, Entity entity, ref SystemState systemState)
+	public void OnStateEnter(BossState state, BossState previousState, Entity entity, EntityCommandBuffer ecb)
 	{
 		switch (state)
 		{
 			case BossState.Idle:
-				IdleState.OnStateEnter(previousState, entity, ref systemState);
+				IdleState.OnStateEnter(previousState, entity, ecb);
 				break;
 			case BossState.Move:
-				MoveState.OnStateEnter(previousState, entity, ref systemState);
+				MoveState.OnStateEnter(previousState, entity, ecb);
 				break;
 			//case BossState.Dash:
 			//	DashState.OnStateEnter(previousState, entity, ref systemState);
 			//	break;
 			case BossState.Defend:
-				DefendState.OnStateEnter(previousState, entity, ref systemState);
+				DefendState.OnStateEnter(previousState, entity, ecb);
 				break;
 			case BossState.Attack:
-				AttackState.OnStateEnter(previousState, entity, ref systemState);
+				AttackState.OnStateEnter(previousState, entity, ecb);
 				break;
 		}
 	}
 
-	public void OnStateUpdate(RefRW<BossStateMachine> bossStateMachine, Entity entity, ref SystemState state)
+	public void OnStateUpdate(RefRW<BossStateMachine> bossStateMachine, Entity entity, EntityCommandBuffer ecb)
 	{
 		switch (CurrentState)
 		{
 			case BossState.Idle:
-				IdleState.OnStateUpdate(bossStateMachine, entity, ref state);
+				IdleState.OnStateUpdate(bossStateMachine, entity, ecb);
 				break;
 			case BossState.Move:
-				MoveState.OnStateUpdate(bossStateMachine, entity, ref state);
+				MoveState.OnStateUpdate(bossStateMachine, entity, ecb);
 				break;
 			//case BossState.Dash:
 			//	DashState.OnStateUpdate(bossStateMachine, entity, ref state);
 			//	break;
 			case BossState.Defend:
-				DefendState.OnStateUpdate(bossStateMachine, entity, ref state);
+				DefendState.OnStateUpdate(bossStateMachine, entity, ecb);
 				break;
 			case BossState.Attack:
-				AttackState.OnStateUpdate(bossStateMachine, entity, ref state);
+				AttackState.OnStateUpdate(bossStateMachine, entity, ecb);
 				break;
 		}
 	}

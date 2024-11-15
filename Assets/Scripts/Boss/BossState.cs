@@ -14,9 +14,9 @@ public enum BossState
 }
 public interface IBossState
 {
-	void OnStateEnter(BossState previousState, Entity entity, ref SystemState state);
-	void OnStateExit(BossState nextState, Entity entity, ref SystemState state);
-	void OnStateUpdate(RefRW<BossStateMachine> bossStateMachine, Entity entity, ref SystemState state);
+	void OnStateEnter(BossState previousState, Entity entity, EntityCommandBuffer ecb);
+	void OnStateExit(BossState nextState, Entity entity, EntityCommandBuffer ecb);
+	void OnStateUpdate(RefRW<BossStateMachine> bossStateMachine, Entity entity, EntityCommandBuffer ecb);
 }
 
 
