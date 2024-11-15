@@ -1,30 +1,38 @@
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Mathematics;
+
+
 
 partial struct BossSystem : ISystem
 {
-    [BurstCompile]
-    public void OnCreate(ref SystemState state)
-    {
+	[BurstCompile]
+	public void OnCreate(ref SystemState state)
+	{
 		state.RequireForUpdate(SystemAPI.QueryBuilder()
-            .WithAll<BossStateMachine>()
-            .WithNone<BossInitialization>()
-            .Build());
+			.WithAll<BossStateMachine>()
+			.WithNone<BossInitialization>()
+			.Build());
 	}
 
 	[BurstCompile]
-    public void OnUpdate(ref SystemState state)
-    {
-		foreach (var (bossStateMachine, entity) in SystemAPI.Query<BossStateMachine>()
-            .WithEntityAccess())
+	public void OnUpdate(ref SystemState state)
+	{
+		foreach (var (bossStateMachine, health, entity) in
+			SystemAPI.Query<RefRW<BossStateMachine>, Health>()
+			.WithEntityAccess())
 		{
-            bossStateMachine.OnStateUpdate(entity, ref state);
+			//if (health.CurrentHealth <= (health.MaxHealth / 2))
+			//	bossStateMachine.ValueRW.TransitionToState(BossState.Defend);
+
+	
+
+			// Update timer
+			bossStateMachine.ValueRW.Timer -= SystemAPI.Time.DeltaTime;
+			if (bossStateMachine.ValueRW.Timer <= 0)
+			{
+				bossStateMachine.ValueRW.OnStateUpdate(bossStateMachine, entity, ref state);
+			}
 		}
 	}
-
-    [BurstCompile]
-    public void OnDestroy(ref SystemState state)
-    {
-        
-    }
 }
