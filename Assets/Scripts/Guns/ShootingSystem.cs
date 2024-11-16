@@ -28,6 +28,7 @@ public partial struct ShootingSystem : ISystem
 			CharacterComponentLookup = SystemAPI.GetComponentLookup<CharacterComponent>(),
 			CharacterStatsLookup = SystemAPI.GetComponentLookup<CharacterStats>(),
 			TowerAimerLookup = SystemAPI.GetComponentLookup<TowerAimer>(),
+			BossStateMachineLookup = SystemAPI.GetComponentLookup<BossStateMachine>(),
 			TowerAmmoLookup = SystemAPI.GetComponentLookup<TowerAmmo>()
 		};
 
@@ -42,6 +43,7 @@ public partial struct ShootingSystem : ISystem
 		[ReadOnly] public ComponentLookup<CharacterComponent> CharacterComponentLookup;
 		[ReadOnly] public ComponentLookup<CharacterStats> CharacterStatsLookup;
 		[ReadOnly] public ComponentLookup<TowerAimer> TowerAimerLookup;
+		[ReadOnly] public ComponentLookup<BossStateMachine> BossStateMachineLookup;
 		public ComponentLookup<TowerAmmo> TowerAmmoLookup;
 
 		public void Execute(
@@ -67,6 +69,8 @@ public partial struct ShootingSystem : ISystem
 
 					break;
 				case GunOwner.Enemy:
+					var enemy = BossStateMachineLookup.GetRefRO(gun.Owner);
+					if (enemy.ValueRO.CurrentState != BossState.Attack) return;
 					break;
 				default:
 					break;

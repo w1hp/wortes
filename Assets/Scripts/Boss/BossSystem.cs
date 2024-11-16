@@ -42,7 +42,11 @@ partial struct BossSystem : ISystem
 			bossStateMachine.ValueRW.Timer -= SystemAPI.Time.DeltaTime;
 			if (bossStateMachine.ValueRW.Timer <= 0)
 			{
-				bossStateMachine.ValueRW.Timer = rng.NextFloat(.5f, 3);
+				if (bossStateMachine.ValueRW.CurrentState != BossState.Idle)
+					bossStateMachine.ValueRW.Timer = rng.NextFloat(.5f, 1.5f);
+				else
+					bossStateMachine.ValueRW.Timer = rng.NextFloat(4, 7);
+
 				bossStateMachine.ValueRW.OnStateUpdate(bossStateMachine, entity, ECB);
 			}
 		}

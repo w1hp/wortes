@@ -8,8 +8,7 @@ public struct BossStateMachine : IComponentData
 	public BossState PreviousState;
 
 	public float Timer;
-	//public uint Seed;
-	//TASK: Set Seed and Timer field in baker
+
 	public IdleState IdleState;
 	public MoveState MoveState;
 	//public DashState DashState; // wait with this implementation
@@ -20,12 +19,6 @@ public struct BossStateMachine : IComponentData
 	{
 		PreviousState = CurrentState;
 		CurrentState = nextState;
-
-		//Random rng = new Random(Seed);
-		//Seed = rng.NextUInt(1,666);
-
-		//Random rng = new Random();
-		//Timer = rng.NextFloat(1, 7);
 
 		OnStateExit(PreviousState, CurrentState, entity, ecb);
 		OnStateEnter(CurrentState, PreviousState, entity, ecb);
