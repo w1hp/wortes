@@ -1,5 +1,6 @@
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Entities.UniversalDelegates;
 using Unity.Mathematics;
 
 
@@ -7,6 +8,7 @@ using Unity.Mathematics;
 partial struct BossSystem : ISystem
 {
 	private Random rng;
+	private bool isSecondPhase;
 
 	[BurstCompile]
 	public void OnCreate(ref SystemState state)
@@ -29,14 +31,12 @@ partial struct BossSystem : ISystem
 			SystemAPI.Query<RefRW<BossStateMachine>, Health>()
 			.WithEntityAccess())
 		{
-			if (health.CurrentHealth <= 0)
+			if (!isSecondPhase && health.CurrentHealth <= (health.MaxHealth / 2))
 			{
-				ECB.SetComponentEnabled<IsExistTag>(entity, false);
+				bossStateMachine.ValueRW.TransitionToState(BossState.Defend, entity, ECB,ref state);
+				isSecondPhase = true;
+				bossStateMachine.ValueRW.Timer = 15f;
 			}
-			if (health.CurrentHealth <= (health.MaxHealth / 2))
-				bossStateMachine.ValueRW.TransitionToState(BossState.Defend, entity, ECB);
-
-
 
 			// Update timer
 			bossStateMachine.ValueRW.Timer -= SystemAPI.Time.DeltaTime;
@@ -47,7 +47,7 @@ partial struct BossSystem : ISystem
 				else
 					bossStateMachine.ValueRW.Timer = rng.NextFloat(4, 7);
 
-				bossStateMachine.ValueRW.OnStateUpdate(bossStateMachine, entity, ECB);
+				bossStateMachine.ValueRW.OnStateUpdate(bossStateMachine, entity, ECB,ref state);
 			}
 		}
 	}

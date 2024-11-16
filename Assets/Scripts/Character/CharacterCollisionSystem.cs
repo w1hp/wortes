@@ -69,14 +69,11 @@ partial struct CharacterCollisionSystem : ISystem
 					switch (collisionEvent.State)
 					{
 						case CharacterHitState.Enter:
-							var health = SystemAPI.GetComponentRW<Health>(entity);
-							health.ValueRW.TakeDamage(enemy.Damage, enemy.EnemyType);
-							if (health.ValueRW.CurrentHealth <= 0f)
+							ECB.AddComponent(entity, new DamageToCharacter
 							{
-#if UNITY_EDITOR
-								Debug.Log("Character is dead");
-#endif
-							}
+								Value = enemy.Damage,
+								Type = enemy.EnemyType
+							});
 							break;
 						case CharacterHitState.Stay:
 							break;
@@ -84,8 +81,6 @@ partial struct CharacterCollisionSystem : ISystem
 							break;
 					}
 				}
-
-
 			}
 		}
 	}

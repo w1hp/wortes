@@ -24,9 +24,10 @@ public class StateUI : MonoBehaviour
 
 
 	private LoadingAction lastClickedAction = LoadingAction.None;
-	private int lastClickedRow;
+	private int lastSceneIndex;
 	private bool clicked = false;
 	private GameObject currentPanel;
+
 
 	// Start is called before the first frame update
 	void Start()
@@ -45,7 +46,7 @@ public class StateUI : MonoBehaviour
 
 	public bool GetAction(out int sceneIndex, out LoadingAction action)
 	{
-		sceneIndex = lastClickedRow;
+		sceneIndex = lastSceneIndex;
 		action = lastClickedAction;
 
 		var temp = clicked;
@@ -54,12 +55,12 @@ public class StateUI : MonoBehaviour
 	}
 
 
-	public void OnActionClick(int sceneIndex)
+	public void LoadScene(int sceneIndex)
 	{
 #if UNITY_EDITOR
 		Debug.Log($"OnActionClick: {sceneIndex}");
 #endif
-		lastClickedRow = sceneIndex;
+		lastSceneIndex = sceneIndex;
 		lastClickedAction = LoadingAction.LoadAll;
 		clicked = true;
 		inGameUI.SetActive(true);
@@ -77,10 +78,28 @@ public class StateUI : MonoBehaviour
 	}
 	public void EndGame()
 	{
+		UnityEngine.Time.timeScale = 1;
+#if UNITY_EDITOR
+		Debug.Log("timeScale = 1");
+#endif
 		lastClickedAction = LoadingAction.UnloadAll;
 		clicked = true;
 		gameOverPanel.SetActive(false);
+
 		mainMenu.SetActive(true);
+	}
+	public void NextLevel()
+	{
+		UnityEngine.Time.timeScale = 1;
+#if UNITY_EDITOR
+		Debug.Log("timeScale = 1");
+#endif
+		lastClickedAction = LoadingAction.UnloadAll;
+		clicked = true;
+		gameOverPanel.SetActive(false);
+
+		lastSceneIndex++;
+		LoadScene(lastSceneIndex);
 	}
 
 	//public void SetPause(bool value)

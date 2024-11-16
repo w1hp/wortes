@@ -26,8 +26,10 @@ partial struct BossInitializationSystem : ISystem
 		foreach (var (bossInitialization, entity) in SystemAPI.Query<BossInitialization>().WithEntityAccess())
 		{
 			//Disable enemy spawner
-			var enemySpawnerEntity = SystemAPI.GetSingletonEntity<EnemySpawnerComponent>();
-			ECB.DestroyEntity(enemySpawnerEntity);
+			//var enemySpawnerEntity = SystemAPI.GetSingletonEntity<EnemySpawnerComponent>();
+			//ECB.DestroyEntity(enemySpawnerEntity);
+			state.WorldUnmanaged.GetExistingSystemState<EnemySpawnerSystem>().Enabled = false;
+
 
 			//Kill all enemies
 			var enemyQuery = SystemAPI.QueryBuilder()

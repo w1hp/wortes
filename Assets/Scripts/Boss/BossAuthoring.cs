@@ -3,10 +3,14 @@ using UnityEngine;
 
 class BossAuthoring : MonoBehaviour
 {
-	//public uint Seed;
 	public float Timer;
 
 	public float Health;
+	public float FireResistance;
+	public float WaterResistance;
+	public float EarthResistance;
+	public float MetalResistance;
+	public float WoodResistance;
 	class Baker : Baker<BossAuthoring>
 	{
 		public override void Bake(BossAuthoring authoring)
@@ -23,9 +27,15 @@ class BossAuthoring : MonoBehaviour
 			AddComponent(entity, new Health
 			{
 				CurrentHealth = authoring.Health,
-				MaxHealth = authoring.Health
+				MaxHealth = authoring.Health,
+				FireResistance = authoring.FireResistance,
+				WaterResistance = authoring.WaterResistance,
+				EarthResistance = authoring.EarthResistance,
+				WoodResistance = authoring.WoodResistance,
+				MetalResistance = authoring.MetalResistance
 			});
-
+			AddComponent<EnemyTag>(entity);
+			AddComponent<IsExistTag>(entity);
 		}
 	}
 }
