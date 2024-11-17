@@ -6,6 +6,8 @@ public struct BossStateMachine : IComponentData
 {
 	public BossState CurrentState;
 	public BossState PreviousState;
+	public bool isSecondPhase;
+
 
 	public float Timer;
 

@@ -13,11 +13,11 @@ public class StateUI : MonoBehaviour
 	[SerializeField] private GameObject inGameUI;
 	[SerializeField] private GameObject gameOverPanel;
 	[SerializeField] private GameObject settingsPanel;
-	[SerializeField] private GameObject loadingPanel;
 	[SerializeField] private GameObject mainMenuPanel;
 	[SerializeField] private GameObject lvlSelectionPanel;
 	[SerializeField] private TextMeshProUGUI goldText;
 
+	public GameObject loadingPanel;
 	public static StateUI Singleton;
 
 	//private LevelUpSystem levelUpSystem;
@@ -58,7 +58,7 @@ public class StateUI : MonoBehaviour
 	public void LoadScene(int sceneIndex)
 	{
 #if UNITY_EDITOR
-		Debug.Log($"OnActionClick: {sceneIndex}");
+		Debug.Log($"lastSceneIndex: {sceneIndex}");
 #endif
 		lastSceneIndex = sceneIndex;
 		lastClickedAction = LoadingAction.LoadAll;
@@ -94,13 +94,31 @@ public class StateUI : MonoBehaviour
 #if UNITY_EDITOR
 		Debug.Log("timeScale = 1");
 #endif
-		lastClickedAction = LoadingAction.UnloadAll;
-		clicked = true;
+		lastSceneIndex++;
+		if (lastSceneIndex > 5)
+		{
+			EndGame();
+			ShowWinPanel();
+		}
+		else
+			LoadScene(lastSceneIndex);
+
 		gameOverPanel.SetActive(false);
 
-		lastSceneIndex++;
-		LoadScene(lastSceneIndex);
 	}
+	public void ShowWinPanel()
+	{
+#if UNITY_EDITOR
+		Debug.Log("oh wow, you Win");
+#endif
+	}
+	public void UnloadScene()
+	{
+		loadingPanel.SetActive(true);
+		lastClickedAction = LoadingAction.UnloadAll;
+		clicked = true;
+	}
+
 
 	//public void SetPause(bool value)
 	//{

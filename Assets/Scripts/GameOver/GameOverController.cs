@@ -40,6 +40,7 @@ public class GameOverController : MonoBehaviour
 
 	private void OnGameOverEvent(bool isVictory, float gold)
 	{
+		stateUI.UnloadScene();
 		UnityEngine.Time.timeScale = 0;
 #if UNITY_EDITOR
 		Debug.Log("timeScale = 0");

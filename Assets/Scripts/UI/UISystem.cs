@@ -4,15 +4,17 @@ using Unity.Collections;
 
 partial struct UISystem : ISystem
 {
+	
 	[BurstCompile]
 	public void OnCreate(ref SystemState state)
 	{
 		state.RequireForUpdate<SceneReference>();
-
+		//isAnySceneUnloading = false;
 	}
 
 	public void OnUpdate(ref SystemState state)
 	{
+
 		if (StateUI.Singleton == null)
 		{
 			return;
@@ -29,5 +31,27 @@ partial struct UISystem : ISystem
 			selectedScene.LoadingAction = action;
 			state.EntityManager.SetComponentData(entities[sceneIndex], selectedScene);
 		}
+		//int processingSceneCount = 0;
+		bool isAnySceneUnloading = false;
+		for (int index = 0; index < scenes.Length; ++index)
+		{
+			var scene = scenes[index];
+			if (scene.StreamingState == Unity.Scenes.SceneSystem.SceneStreamingState.Unloading ||
+				scene.StreamingState == Unity.Scenes.SceneSystem.SceneStreamingState.Loading)
+			{
+
+#if UNITY_EDITOR
+				UnityEngine.Debug.Log("(Un)loading");
+#endif
+				isAnySceneUnloading = true;
+				break;
+			}
+			else
+			{
+				isAnySceneUnloading = false;
+			}
+		}
+
+		ui.loadingPanel.SetActive(isAnySceneUnloading);
 	}
 }

@@ -8,7 +8,6 @@ using Unity.Mathematics;
 partial struct BossSystem : ISystem
 {
 	private Random rng;
-	private bool isSecondPhase;
 
 	[BurstCompile]
 	public void OnCreate(ref SystemState state)
@@ -31,10 +30,10 @@ partial struct BossSystem : ISystem
 			SystemAPI.Query<RefRW<BossStateMachine>, Health>()
 			.WithEntityAccess())
 		{
-			if (!isSecondPhase && health.CurrentHealth <= (health.MaxHealth / 2))
+			if (!bossStateMachine.ValueRO.isSecondPhase && health.CurrentHealth <= (health.MaxHealth / 2))
 			{
-				bossStateMachine.ValueRW.TransitionToState(BossState.Defend, entity, ECB,ref state);
-				isSecondPhase = true;
+				bossStateMachine.ValueRW.TransitionToState(BossState.Defend, entity, ECB, ref state);
+				bossStateMachine.ValueRW.isSecondPhase = true;
 				bossStateMachine.ValueRW.Timer = 15f;
 			}
 
@@ -47,7 +46,7 @@ partial struct BossSystem : ISystem
 				else
 					bossStateMachine.ValueRW.Timer = rng.NextFloat(4, 7);
 
-				bossStateMachine.ValueRW.OnStateUpdate(bossStateMachine, entity, ECB,ref state);
+				bossStateMachine.ValueRW.OnStateUpdate(bossStateMachine, entity, ECB, ref state);
 			}
 		}
 	}
