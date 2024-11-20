@@ -13,7 +13,7 @@ public struct BossStateMachine : IComponentData
 
 	public IdleState IdleState;
 	public MoveState MoveState;
-	//public DashState DashState; // wait with this implementation
+	//public DashState DashState; 
 	public DefendState DefendState;
 	public AttackState AttackState;
 

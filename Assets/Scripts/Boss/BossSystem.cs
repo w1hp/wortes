@@ -1,6 +1,5 @@
 using Unity.Burst;
 using Unity.Entities;
-using Unity.Entities.UniversalDelegates;
 using Unity.Mathematics;
 
 
@@ -17,7 +16,7 @@ partial struct BossSystem : ISystem
 			.WithNone<BossInitialization>()
 			.Build());
 
-		rng = new Random(666);
+		rng = new Random(1234);
 	}
 
 	[BurstCompile]

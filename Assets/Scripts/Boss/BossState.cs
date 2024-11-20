@@ -1,6 +1,5 @@
 using Unity.Entities;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public enum BossState
 {
