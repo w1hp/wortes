@@ -19,7 +19,7 @@ public struct DamageToCharacter : IComponentData
 {
 	public float Value;
 	public ElementType Type;    
-	public Entity OriginCharacter;
+	public OriginCharacterType OriginCharacterType;
 }
 public struct CharacterResources : IComponentData
 {

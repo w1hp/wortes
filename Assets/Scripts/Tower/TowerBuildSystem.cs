@@ -10,12 +10,10 @@ partial struct TowerBuildSystem : ISystem
 	[BurstCompile]
 	public void OnUpdate(ref SystemState state)
 	{
-		foreach (var (triggerEventBuffer, towerCollision, materialChanger, entity) in
-	SystemAPI.Query<
-		DynamicBuffer<StatefulTriggerEvent>,
-		RefRO<TowerCollision>,
-		RefRW<MaterialChanger>>()
-		.WithEntityAccess())
+		foreach (var (triggerEventBuffer, towerCollision, towerBuildCount,
+			materialChanger, entity) in
+			SystemAPI.Query<DynamicBuffer<StatefulTriggerEvent>, RefRO<TowerCollision>, RefRW<TowerBuiltCount>, RefRW<MaterialChanger>>()
+			.WithEntityAccess())
 		{
 			RefRO<CharacterEquipment> characterEQ = SystemAPI.GetComponentRO<CharacterEquipment>(materialChanger.ValueRO.Character);
 			RefRO<CharacterComponent> character = SystemAPI.GetComponentRO<CharacterComponent>(materialChanger.ValueRO.Character);
@@ -38,10 +36,11 @@ partial struct TowerBuildSystem : ISystem
 							characterResources.ValueRW.Wood -= towerCost.ValueRO.Cost;
 							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
 							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
+							towerBuildCount.ValueRW.Count++;
 						}
 #if UNITY_EDITOR
-                        else
-				Debug.Log("Not enough resources to build tower");
+						else
+							Debug.Log("Not enough resources to build tower");
 #endif
 						break;
 					case ElementType.Metal:
@@ -50,6 +49,7 @@ partial struct TowerBuildSystem : ISystem
 							characterResources.ValueRW.Metal -= towerCost.ValueRO.Cost;
 							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
 							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
+							towerBuildCount.ValueRW.Count++;
 						}
 #if UNITY_EDITOR
 						else
@@ -62,6 +62,7 @@ partial struct TowerBuildSystem : ISystem
 							characterResources.ValueRW.Water -= towerCost.ValueRO.Cost;
 							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
 							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
+							towerBuildCount.ValueRW.Count++;
 						}
 #if UNITY_EDITOR
 						else
@@ -74,6 +75,7 @@ partial struct TowerBuildSystem : ISystem
 							characterResources.ValueRW.Earth -= towerCost.ValueRO.Cost;
 							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
 							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
+							towerBuildCount.ValueRW.Count++;
 						}
 #if UNITY_EDITOR
 						else
@@ -85,7 +87,8 @@ partial struct TowerBuildSystem : ISystem
 						{
 							characterResources.ValueRW.Fire -= towerCost.ValueRO.Cost;
 							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
-							BuildTower(characterEQ.ValueRO.SelectedTower, entity,	ref state);
+							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
+							towerBuildCount.ValueRW.Count++;
 						}
 #if UNITY_EDITOR
 						else
@@ -98,7 +101,7 @@ partial struct TowerBuildSystem : ISystem
 	}
 
 	private void BuildTower(Entity selectedTower, Entity highlighter, ref SystemState state)
-	{ 
+	{
 		Entity towerEntity = state.EntityManager.Instantiate(selectedTower);
 		var towerTransform = state.EntityManager.GetComponentData<LocalTransform>(towerEntity);
 		var highlighterTransform = state.EntityManager.GetComponentData<LocalToWorld>(highlighter);

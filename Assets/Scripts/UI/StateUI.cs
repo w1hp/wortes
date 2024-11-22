@@ -16,18 +16,14 @@ public class StateUI : MonoBehaviour
 	[SerializeField] private GameObject mainMenuPanel;
 	[SerializeField] private GameObject lvlSelectionPanel;
 	[SerializeField] private TextMeshProUGUI goldText;
-
-	public GameObject loadingPanel;
+	[SerializeField] public GameObject loadingPanel;
+	
 	public static StateUI Singleton;
-
-	//private LevelUpSystem levelUpSystem;
-
+	public int LastSceneIndex { get; private set; }
 
 	private LoadingAction lastClickedAction = LoadingAction.None;
-	private int lastSceneIndex;
 	private bool clicked = false;
 	private GameObject currentPanel;
-
 
 	// Start is called before the first frame update
 	void Start()
@@ -42,11 +38,9 @@ public class StateUI : MonoBehaviour
 			goldText.text = PlayerPrefs.GetFloat("Gold", 0).ToString();
 	}
 
-
-
 	public bool GetAction(out int sceneIndex, out LoadingAction action)
 	{
-		sceneIndex = lastSceneIndex;
+		sceneIndex = LastSceneIndex;
 		action = lastClickedAction;
 
 		var temp = clicked;
@@ -54,19 +48,19 @@ public class StateUI : MonoBehaviour
 		return temp;
 	}
 
-
 	public void LoadScene(int sceneIndex)
 	{
 #if UNITY_EDITOR
 		Debug.Log($"lastSceneIndex: {sceneIndex}");
 #endif
-		lastSceneIndex = sceneIndex;
+		LastSceneIndex = sceneIndex;
 		lastClickedAction = LoadingAction.LoadAll;
 		clicked = true;
 		inGameUI.SetActive(true);
 		loadingPanel.SetActive(true);
 		mainMenu.SetActive(false);
 	}
+
 	public void ShowPanel(GameObject panel)
 	{
 #if UNITY_EDITOR
@@ -76,6 +70,7 @@ public class StateUI : MonoBehaviour
 		panel.SetActive(true);
 		currentPanel = panel;
 	}
+
 	public void EndGame()
 	{
 		UnityEngine.Time.timeScale = 1;
@@ -88,37 +83,38 @@ public class StateUI : MonoBehaviour
 
 		mainMenu.SetActive(true);
 	}
+
 	public void NextLevel()
 	{
 		UnityEngine.Time.timeScale = 1;
 #if UNITY_EDITOR
 		Debug.Log("timeScale = 1");
 #endif
-		lastSceneIndex++;
-		if (lastSceneIndex > 5)
+		LastSceneIndex++;
+		if (LastSceneIndex > 5)
 		{
 			EndGame();
 			ShowWinPanel();
 		}
 		else
-			LoadScene(lastSceneIndex);
+			LoadScene(LastSceneIndex);
 
 		gameOverPanel.SetActive(false);
-
 	}
+
 	public void ShowWinPanel()
 	{
 #if UNITY_EDITOR
 		Debug.Log("oh wow, you Win");
 #endif
 	}
+
 	public void UnloadScene()
 	{
 		loadingPanel.SetActive(true);
 		lastClickedAction = LoadingAction.UnloadAll;
 		clicked = true;
 	}
-
 
 	//public void SetPause(bool value)
 	//{

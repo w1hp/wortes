@@ -10,6 +10,10 @@ public struct TowerCollision : IComponentData
 {
 	public bool CanBuild;
 }
+public struct TowerBuiltCount : IComponentData
+{
+	public int Count;
+}
 public struct TowerCost : IComponentData
 {
 	public float Cost;

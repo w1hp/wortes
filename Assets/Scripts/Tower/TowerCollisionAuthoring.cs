@@ -9,6 +9,7 @@ class TowerCollisionAuthoring : MonoBehaviour
 		{
 			var entity = GetEntity(TransformUsageFlags.Dynamic);
 			AddComponent(entity, new TowerCollision { CanBuild = true });
+			AddComponent<TowerBuiltCount>(entity);
 		}
 	}
 }

@@ -5,36 +5,26 @@ using Unity.Services.Core;
 
 public class AnalyticsManager : MonoBehaviour
 {
-	[SerializeField] private bool isTimeToCallEvent = false;
 	async void Start()
 	{
 		await UnityServices.InitializeAsync();
 		//List<string> consentIdentifiers = await Events.CheckForRequiredConsents();
 		AnalyticsService.Instance.StartDataCollection();
-
 	}
-	public void OnTutorialStarted()
+}
+
+public class LevelCompletedEvent : Unity.Services.Analytics.Event
+{
+	public LevelCompletedEvent() : base("levelCompleted")
 	{
-		Dictionary<string, object> parameters = new Dictionary<string, object>()
-		{
-			// { PARAMETER_KEY, PARAMETER_VALUE }
-		};
-
-		//Events.CustomData("tutorial_started", parameters);
 	}
 
-	void Update()
-	{
-		if (isTimeToCallEvent)
-		{
-			CallEvent();
-			isTimeToCallEvent = false;
-		}
-
-	}
-	public void CallEvent()
-	{
-		CustomEvent customEvent = new CustomEvent("gameplay");
-		AnalyticsService.Instance.RecordEvent(customEvent);
-	}
+	public int EnemyCount { set { SetParameter("enemyCount", value); } }
+	public int Level_ID { set { SetParameter("level_ID", value); } }
+	public int PlayerFragCount { set { SetParameter("playerFragCount", value); } }
+	public int PlayerHealth { set { SetParameter("playerHealth", value); } }
+	public float Time { set { SetParameter("time", value); } }
+	public int TowerCount { set { SetParameter("towerCount", value); } }
+	public int TowerFragCount { set { SetParameter("towerFragCount", value); } }
+	public int UserLevel { set { SetParameter("userLevel", value); } }
 }

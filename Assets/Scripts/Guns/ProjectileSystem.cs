@@ -61,7 +61,7 @@ public partial struct ProjectileJob : IJobEntity
 						{
 							Value = projectile.Damage,
 							Type = projectile.Type,
-							OriginCharacter = projectile.OriginCharacter
+							OriginCharacterType = projectile.OriginCharacterType
 						});
 					}
 					ECB.DestroyEntity(entity);

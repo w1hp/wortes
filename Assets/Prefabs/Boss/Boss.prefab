@@ -443,6 +443,11 @@ PrefabInstance:
       propertyPath: FireInterval
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: OriginCharacterType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -541,6 +546,11 @@ PrefabInstance:
         type: 3}
       propertyPath: FireInterval
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: OriginCharacterType
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
@@ -641,6 +651,11 @@ PrefabInstance:
       propertyPath: FireInterval
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: OriginCharacterType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -739,6 +754,11 @@ PrefabInstance:
         type: 3}
       propertyPath: FireInterval
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: OriginCharacterType
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
@@ -839,6 +859,11 @@ PrefabInstance:
       propertyPath: FireInterval
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: OriginCharacterType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -937,6 +962,11 @@ PrefabInstance:
         type: 3}
       propertyPath: FireInterval
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: OriginCharacterType
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
@@ -1037,6 +1067,11 @@ PrefabInstance:
       propertyPath: FireInterval
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: OriginCharacterType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1135,6 +1170,11 @@ PrefabInstance:
         type: 3}
       propertyPath: FireInterval
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: OriginCharacterType
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}

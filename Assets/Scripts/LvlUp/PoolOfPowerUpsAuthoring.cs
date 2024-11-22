@@ -18,5 +18,5 @@ public class PoolOfPowerUpsAuthoring : MonoBehaviour
 
 public struct PoolOfPowerUps : IComponentData
 {
-    
+    //TASK: Why did I create this?
 }

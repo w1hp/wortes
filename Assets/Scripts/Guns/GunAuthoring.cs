@@ -7,7 +7,7 @@ public class GunAuthoring : MonoBehaviour
 {
 	public GameObject Muzzle;
 	public GameObject Bullet;
-	public GunOwner OwnerType;
+	public OriginCharacterType OriginCharacterType;
 	public GameObject Owner;
 	public ElementType ElementType;
 	public float Damage;
@@ -22,7 +22,7 @@ public class GunAuthoring : MonoBehaviour
 			{
 				Muzzle = GetEntity(authoring.Muzzle, TransformUsageFlags.Dynamic),
 				Bullet = GetEntity(authoring.Bullet, TransformUsageFlags.Dynamic),
-				OwnerType = authoring.OwnerType,
+				OriginCharacterType = authoring.OriginCharacterType,
 				Owner = GetEntity(authoring.Owner, TransformUsageFlags.Dynamic),
 				ElementType = authoring.ElementType,
 				Damage = authoring.Damage,
@@ -37,7 +37,7 @@ public struct Gun : IComponentData, IEnableableComponent
 {
 	public Entity Muzzle;
 	public Entity Bullet;
-	public GunOwner OwnerType;
+	public OriginCharacterType OriginCharacterType;
 	public Entity Owner;
 	public ElementType ElementType;
 	public float Damage;
@@ -46,7 +46,7 @@ public struct Gun : IComponentData, IEnableableComponent
 	public float LastShotTime;
 }
 
-public enum GunOwner
+public enum OriginCharacterType
 {
 	Unidentified,
 	Player,

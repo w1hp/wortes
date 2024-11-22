@@ -42,5 +42,3 @@ partial struct CountdownSystem : ISystem
 		return (minutes, seconds);
 	}
 }
-
-//TODO: add boss manager

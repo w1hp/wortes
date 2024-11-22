@@ -369,6 +369,11 @@ PrefabInstance:
       propertyPath: ElementType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: OriginCharacterType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7224457264266369207, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

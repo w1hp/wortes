@@ -15,23 +15,35 @@ public partial class DealDamageSystem : SystemBase
 
 		// For each character with a damage component...
 		foreach (var (health, damageToCharacter, transform, entity) in
-				 SystemAPI.Query<RefRW<Health>, DamageToCharacter, LocalTransform>().WithEntityAccess())
+				 SystemAPI.Query<RefRW<Health>, RefRO<DamageToCharacter>, LocalTransform>().WithEntityAccess())
 		{
-			var isHealing = health.ValueRW.TakeDamage(damageToCharacter.Value, damageToCharacter.Type);
+			var isHealing = health.ValueRW.TakeDamage(damageToCharacter.ValueRO.Value, damageToCharacter.ValueRO.Type);
 			// Subtract health from the character
 			//hitPoints.ValueRW.Value -= damageToCharacter.Value;
 
 			// Invoke the OnDealDamage event, passing in the required data
-			OnDealDamage?.Invoke(damageToCharacter.Value, transform.Position, isHealing);
+			OnDealDamage?.Invoke(damageToCharacter.ValueRO.Value, transform.Position, isHealing);
 
 			ecb.RemoveComponent<DamageToCharacter>(entity);
 
 			// If the damaged character is out of health... Add experience to the player
 			if (health.ValueRO.CurrentHealth <= 0f)
 			{
-				//ecb.DestroyEntity(entity);
-				//var originCharacterExperience =
-				//	SystemAPI.GetComponent<CharacterExperiencePoints>(damageToCharacter.OriginCharacter);
+				var killStatistics = SystemAPI.GetSingletonRW<KillStatistics>();
+				switch (damageToCharacter.ValueRO.OriginCharacterType)
+				{
+					case OriginCharacterType.Enemy:
+						return;
+					case OriginCharacterType.Player:
+						killStatistics.ValueRW.EnemyCount++;
+						killStatistics.ValueRW.PlayerFragCount++;
+						break;
+					case OriginCharacterType.Tower:
+						killStatistics.ValueRW.EnemyCount++;
+						killStatistics.ValueRW.TowerFragCount++;
+						break;
+				}
+				//var originCharacterExperience = SystemAPI.GetComponent<CharacterExperiencePoints>(damageToCharacter.OriginCharacter);
 				//originCharacterExperience.Value += experiencePoints.Value;
 				//SystemAPI.SetComponent(damageToCharacter.OriginCharacter, originCharacterExperience);
 

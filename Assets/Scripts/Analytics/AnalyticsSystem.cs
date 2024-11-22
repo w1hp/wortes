@@ -2,37 +2,52 @@ using Unity.Burst;
 using Unity.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
+//using UnityEngine.Analytics;
+using Unity.Services.Analytics;
 
-[UpdateInGroup(typeof(InitializationSystemGroup))]
-partial struct AnalyticsSystem : ISystem
+public partial struct LevelCompletedAnalyticsSystem : ISystem
 {
 	public void OnCreate(ref SystemState state)
 	{
-		state.RequireForUpdate<AnalyticsEvent>();
+		state.RequireForUpdate<LevelCompletedEventComponent>();
 	}
 
 	public void OnUpdate(ref SystemState state)
 	{
-		//var eventQuery = SystemAPI.Query<AnalyticsEvent>();
-		foreach (var (analyticsEvent, entity) in SystemAPI.Query<AnalyticsEvent>().WithEntityAccess())
-		{
-			// Send event to Unity Analytics
-			//UnityEngine.Analytics.Analytics.CustomEvent(
-			//	analyticsEvent.EventName.ToString(),
-			//	new Dictionary<string, object>
-			//	{
-			//		{ analyticsEvent.ParameterKey.ToString(), analyticsEvent.ParameterValue }
-			//	});
+		var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
 
-			// Optionally remove the component to avoid re-sending the same event
-			state.EntityManager.RemoveComponent<AnalyticsEvent>(entity);
+		foreach (var (eventData, entity) in SystemAPI.Query<RefRO<LevelCompletedEventComponent>>().WithEntityAccess())
+		{
+			AnalyticsService.Instance.RecordEvent(new LevelCompletedEvent
+			{
+				EnemyCount = eventData.ValueRO.EnemyCount,
+				Level_ID = eventData.ValueRO.LevelID,
+				PlayerFragCount = eventData.ValueRO.PlayerFragCount,
+				PlayerHealth = eventData.ValueRO.PlayerHealth,
+				Time = eventData.ValueRO.Time,
+				TowerCount = eventData.ValueRO.TowerCount,
+				TowerFragCount = eventData.ValueRO.TowerFragCount,
+				UserLevel = eventData.ValueRO.UserLevel
+			});
+
+			ecb.RemoveComponent<LevelCompletedEventComponent>(entity);
 		}
+
+		ecb.Playback(state.EntityManager);
+		ecb.Dispose();
 	}
 }
 
-public struct AnalyticsEvent : IComponentData
+
+public struct LevelCompletedEventComponent : IComponentData
 {
-	public FixedString128Bytes EventName;
-	public FixedString128Bytes ParameterKey;
-	public float ParameterValue;
+	public int EnemyCount;
+	public int LevelID;
+	public int PlayerFragCount;
+	public int PlayerHealth;
+	public float Time; // Czas w sekundach
+	public int TowerCount;
+	public int TowerFragCount;
+	public int UserLevel;
 }
+

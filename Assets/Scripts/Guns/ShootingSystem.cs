@@ -4,8 +4,6 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using Unity.Physics;
 using Unity.Collections;
-using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 [UpdateBefore(typeof(TransformSystemGroup))]
 public partial struct ShootingSystem : ISystem
@@ -52,23 +50,26 @@ public partial struct ShootingSystem : ISystem
 			in LocalToWorld gunTransform)
 		{
 			float damage = gun.Damage;
-			switch (gun.OwnerType)
+			switch (gun.OriginCharacterType)
 			{
-				case GunOwner.Unidentified:
-					break;
-				case GunOwner.Player:
+				case OriginCharacterType.Unidentified:
+#if UNITY_EDITOR
+					UnityEngine.Debug.Log("Unidentified character type");
+#endif
+					return;
+				case OriginCharacterType.Player:
 					var character = CharacterComponentLookup.GetRefRO(gun.Owner);
 					if (!character.ValueRO.IsShooting) return;
 
 					var stats = CharacterStatsLookup.GetRefRO(gun.Owner);
 					damage += stats.ValueRO.BaseDamage;
 					break;
-				case GunOwner.Tower:
+				case OriginCharacterType.Tower:
 					var tower = TowerAimerLookup.GetRefRO(gun.Owner);
 					if (!tower.ValueRO.IsEnemyInRange) return;
 
 					break;
-				case GunOwner.Enemy:
+				case OriginCharacterType.Enemy:
 					var enemy = BossStateMachineLookup.GetRefRO(gun.Owner);
 					if (enemy.ValueRO.CurrentState != BossState.Attack) return;
 					break;
@@ -92,7 +93,7 @@ public partial struct ShootingSystem : ISystem
 			{
 				Damage = damage,
 				Type = gun.ElementType,
-				OriginCharacter = gun.Owner
+				OriginCharacterType = gun.OriginCharacterType
 			});
 
 			PhysicsVelocity velocity = new PhysicsVelocity
@@ -104,7 +105,7 @@ public partial struct ShootingSystem : ISystem
 			ECB.SetComponent(projectileEntity, velocity);
 
 
-			if (gun.OwnerType == GunOwner.Tower)
+			if (gun.OriginCharacterType == OriginCharacterType.Tower)
 			{
 				var ammo = TowerAmmoLookup.GetRefRW(gun.Owner);
 				ammo.ValueRW.Ammo--;
