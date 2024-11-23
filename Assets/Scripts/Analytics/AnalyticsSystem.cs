@@ -9,19 +9,20 @@ public partial struct LevelCompletedAnalyticsSystem : ISystem
 {
 	public void OnCreate(ref SystemState state)
 	{
-		state.RequireForUpdate<LevelCompletedEventComponent>();
+		state.RequireForUpdate<LevelEndedEventComponent>();
 	}
 
 	public void OnUpdate(ref SystemState state)
 	{
 		var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
 
-		foreach (var (eventData, entity) in SystemAPI.Query<RefRO<LevelCompletedEventComponent>>().WithEntityAccess())
+		foreach (var (eventData, entity) in SystemAPI.Query<RefRO<LevelEndedEventComponent>>().WithEntityAccess())
 		{
-			AnalyticsService.Instance.RecordEvent(new LevelCompletedEvent
+			AnalyticsService.Instance.RecordEvent(new LevelEndedEvent
 			{
 				EnemyCount = eventData.ValueRO.EnemyCount,
 				Level_ID = eventData.ValueRO.LevelID,
+				LevelSuccess = eventData.ValueRO.LevelSuccess,
 				PlayerFragCount = eventData.ValueRO.PlayerFragCount,
 				PlayerHealth = eventData.ValueRO.PlayerHealth,
 				Time = eventData.ValueRO.Time,
@@ -30,7 +31,7 @@ public partial struct LevelCompletedAnalyticsSystem : ISystem
 				UserLevel = eventData.ValueRO.UserLevel
 			});
 
-			ecb.RemoveComponent<LevelCompletedEventComponent>(entity);
+			ecb.RemoveComponent<LevelEndedEventComponent>(entity);
 		}
 
 		ecb.Playback(state.EntityManager);
@@ -39,10 +40,11 @@ public partial struct LevelCompletedAnalyticsSystem : ISystem
 }
 
 
-public struct LevelCompletedEventComponent : IComponentData
+public struct LevelEndedEventComponent : IComponentData
 {
 	public int EnemyCount;
 	public int LevelID;
+	public bool LevelSuccess;
 	public int PlayerFragCount;
 	public int PlayerHealth;
 	public float Time; // Czas w sekundach

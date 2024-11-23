@@ -2,86 +2,102 @@ using System;
 using Unity.Burst;
 using Unity.Entities;
 
+
 [UpdateInGroup(typeof(SimulationSystemGroup))]
 partial class GameOverSystem : SystemBase
 {
 	public event Action<bool, float> OnGameOver;
-	private EntityManager entityManager;
-
-
 	protected override void OnCreate()
 	{
-		//RequireForUpdate<CharacterComponent>();
+		RequireForUpdate<GameOverTag>();
 	}
 	protected override void OnUpdate()
 	{
 		var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 		var ECB = ecbSingleton.CreateCommandBuffer(EntityManager.WorldUnmanaged);
-		entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+		
+		var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+		entityManager.WorldUnmanaged.GetExistingSystemState<EnemySpawnerSystem>().Enabled = true;
+
+		var gameOverEntity = SystemAPI.GetSingletonEntity<GameOverTag>();
+		var gameOverComponent = SystemAPI.GetComponent<GameOverTag>(gameOverEntity);
 
 
-		foreach (var (characterComponent, characterEntity) in
-			SystemAPI.Query<RefRO<CharacterComponent>>()
+		var killStatistics = SystemAPI.GetSingleton<KillStatistics>();
+		var countUpTime = SystemAPI.GetSingleton<CountUpTime>();
+		int sceneIndex = StateUI.Singleton.LastSceneIndex;
+
+		var playerEntity = SystemAPI.GetSingletonEntity<CharacterComponent>();
+		var playerHealth = SystemAPI.GetComponent<Health>(playerEntity);
+		var playerResources = SystemAPI.GetComponent<CharacterResources>(playerEntity);
+
+		var towerBuiltCount = SystemAPI.GetSingleton<TowerBuiltCount>();
+		OnGameOver?.Invoke(gameOverComponent.Success, playerResources.Gold); 
+
+#if UNITY_EDITOR
+		UnityEngine.Debug.Log($"Success: {gameOverComponent.Success}. " +
+			$"Kill stats: all enemy({killStatistics.EnemyCount}), player({killStatistics.PlayerFragCount}), towers({killStatistics.TowerFragCount}). " +
+			$"Index scene: {sceneIndex}. " +
+			$"Player health: {playerHealth.CurrentHealth}, level: {playerResources.Level}. " +
+			$"Elapsed time: {countUpTime.ElapsedTime}. " +
+			$"Tower Built Count: {towerBuiltCount.Count}");
+#endif
+
+		ECB.AddComponent(gameOverEntity, new LevelEndedEventComponent
+		{
+			EnemyCount = killStatistics.EnemyCount,
+			PlayerFragCount = killStatistics.PlayerFragCount,
+			TowerFragCount = killStatistics.TowerFragCount,
+
+			LevelID = sceneIndex,
+			LevelSuccess = gameOverComponent.Success,
+
+			PlayerHealth = (int)playerHealth.CurrentHealth,
+			UserLevel = (int)playerResources.Level,
+
+			Time = countUpTime.ElapsedTime,
+			TowerCount = towerBuiltCount.Count,
+		});
+
+		ECB.RemoveComponent<GameOverTag>(gameOverEntity);
+	}
+}
+
+partial struct GameOverTagSystem : ISystem
+{
+	[BurstCompile]
+	public void OnUpdate(ref SystemState state)
+	{
+		foreach (var (player, playerEntity) in
+			SystemAPI.Query<PlayerTag>()
 			.WithEntityAccess()
 			.WithNone<IsExistTag>())
 		{
 #if UNITY_EDITOR
 			UnityEngine.Debug.Log("Character is dead");
 #endif
-			//SystemAPI.ManagedAPI.GetSingleton<EnemySpawnerSystem>().Enabled = true;
-			entityManager.WorldUnmanaged.GetExistingSystemState<EnemySpawnerSystem>().Enabled = true;
-			var characterResources = SystemAPI.GetComponent<CharacterResources>(characterEntity);
+			var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+			var ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
-			OnGameOver?.Invoke(false, characterResources.Gold);
-			ECB.DestroyEntity(characterEntity);
-
+			ECB.AddComponent(playerEntity, new GameOverTag { Success = false });
+			ECB.RemoveComponent<PlayerTag>(playerEntity);
 		}
+
 		foreach (var (boss, bossEntity) in SystemAPI.Query<BossTag>()
 			.WithEntityAccess()
 			.WithNone<IsExistTag>())
 		{
-			var killStatistics = SystemAPI.GetSingleton<KillStatistics>();
-			var countUpTime = SystemAPI.GetSingleton<CountUpTime>();
-			int sceneIndex = StateUI.Singleton.LastSceneIndex;
-
-			var player = SystemAPI.GetSingletonEntity<PlayerTag>();
-			var playerHealth = SystemAPI.GetComponent<Health>(player);
-			var playerResources = SystemAPI.GetComponent<CharacterResources>(player);
-
-			var towerBuiltCount = SystemAPI.GetSingleton<TowerBuiltCount>();
-
-
 #if UNITY_EDITOR
-			UnityEngine.Debug.Log($"Boss is dead. " +
-				$"Kill stats: all enemy({killStatistics.EnemyCount}), player({killStatistics.PlayerFragCount}), towers({killStatistics.TowerFragCount}). " +
-				$"Index scene: {sceneIndex}. " +
-				$"Player health: {playerHealth.CurrentHealth}, level: {playerResources.Level}. " +
-				$"Elapsed time: {countUpTime.ElapsedTime}. " +
-				$"Tower Built Count: {towerBuiltCount.Count}");
+			UnityEngine.Debug.Log("Boss is dead");
 #endif
-
-			ECB.AddComponent(bossEntity, new LevelCompletedEventComponent
-			{
-				EnemyCount = killStatistics.EnemyCount, 
-				PlayerFragCount = killStatistics.PlayerFragCount, 
-				TowerFragCount = killStatistics.TowerFragCount,
-				
-				LevelID = sceneIndex,
-
-				PlayerHealth = (int)playerHealth.CurrentHealth, 
-				UserLevel = (int)playerResources.Level,
-
-				Time = countUpTime.ElapsedTime,
-				TowerCount = towerBuiltCount.Count,
-			});
-			entityManager.WorldUnmanaged.GetExistingSystemState<EnemySpawnerSystem>().Enabled = true;
-
-			var characterResources = SystemAPI.GetSingleton<CharacterResources>();
-
-			OnGameOver?.Invoke(true, characterResources.Gold);
+			var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+			var ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
+			ECB.AddComponent(bossEntity, new GameOverTag { Success = true });
 			ECB.RemoveComponent<BossTag>(bossEntity);
-			//ECB.DestroyEntity(bossEntity);
 		}
-
 	}
+}
+public struct GameOverTag : IComponentData
+{
+	public bool Success;
 }

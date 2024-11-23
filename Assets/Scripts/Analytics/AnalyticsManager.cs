@@ -13,14 +13,15 @@ public class AnalyticsManager : MonoBehaviour
 	}
 }
 
-public class LevelCompletedEvent : Unity.Services.Analytics.Event
+public class LevelEndedEvent : Unity.Services.Analytics.Event
 {
-	public LevelCompletedEvent() : base("levelCompleted")
+	public LevelEndedEvent() : base("levelEnded")
 	{
 	}
 
 	public int EnemyCount { set { SetParameter("enemyCount", value); } }
 	public int Level_ID { set { SetParameter("level_ID", value); } }
+	public bool LevelSuccess { set { SetParameter("levelSuccess", value); } }
 	public int PlayerFragCount { set { SetParameter("playerFragCount", value); } }
 	public int PlayerHealth { set { SetParameter("playerHealth", value); } }
 	public float Time { set { SetParameter("time", value); } }
