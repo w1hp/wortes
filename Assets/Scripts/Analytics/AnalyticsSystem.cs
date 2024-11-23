@@ -1,8 +1,5 @@
-using Unity.Burst;
 using Unity.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
-//using UnityEngine.Analytics;
 using Unity.Services.Analytics;
 
 public partial struct LevelCompletedAnalyticsSystem : ISystem
@@ -39,7 +36,6 @@ public partial struct LevelCompletedAnalyticsSystem : ISystem
 	}
 }
 
-
 public struct LevelEndedEventComponent : IComponentData
 {
 	public int EnemyCount;
@@ -47,9 +43,8 @@ public struct LevelEndedEventComponent : IComponentData
 	public bool LevelSuccess;
 	public int PlayerFragCount;
 	public int PlayerHealth;
-	public float Time; // Czas w sekundach
+	public float Time;
 	public int TowerCount;
 	public int TowerFragCount;
 	public int UserLevel;
 }
-

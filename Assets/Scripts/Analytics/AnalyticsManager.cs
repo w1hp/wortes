@@ -29,3 +29,14 @@ public class LevelEndedEvent : Unity.Services.Analytics.Event
 	public int TowerFragCount { set { SetParameter("towerFragCount", value); } }
 	public int UserLevel { set { SetParameter("userLevel", value); } }
 }
+
+public class LevelUpPlayerEvent : Unity.Services.Analytics.Event
+{
+	public LevelUpPlayerEvent() : base("levelUpPlayer")
+	{
+	}
+
+	public string BuffName { set { SetParameter("buffName", value); } }
+	public int Level_ID { set { SetParameter("level_ID", value); } }
+	public int UserLevel { set { SetParameter("userLevel", value); } }
+}

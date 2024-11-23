@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Unity.Entities;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Services.Analytics;
 
 public class LevelUpController : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class LevelUpController : MonoBehaviour
 
 	private LevelUpSystem levelUpSystem;
 
+	private int lastPlayerLevel;
 	private (int, int, int) lastGeneratedNumbers;
 
 	private void Awake()
@@ -44,8 +46,9 @@ public class LevelUpController : MonoBehaviour
 		levelUpSystem.LevelUp -= OnLevelUpEvent;
 	}
 
-	private void OnLevelUpEvent()
+	private void OnLevelUpEvent(int playerLevel)
 	{
+		lastPlayerLevel = playerLevel;
 		container.SetActive(true);
 
 		var (randomInt1, randomInt2, randomInt3) = Get3RandomPowerUps(poolOfPowerUps.Count);
@@ -101,6 +104,12 @@ public class LevelUpController : MonoBehaviour
 #if UNITY_EDITOR
 			Debug.Log($"Power up chosen: {chosenPowerUp.name}");
 #endif
+			AnalyticsService.Instance.RecordEvent(new LevelUpPlayerEvent
+			{
+				BuffName = chosenPowerUp.name,
+				Level_ID = StateUI.Singleton.LastSceneIndex,
+				UserLevel = lastPlayerLevel,
+			});
 			levelUpSystem.ReturnToGame(chosenPowerUp.powerUpType, chosenPowerUp.valueInPercent);
 		}
 

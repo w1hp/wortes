@@ -6,7 +6,7 @@ using UnityEngine;
 [UpdateInGroup(typeof(SimulationSystemGroup))]
 partial class LevelUpSystem : SystemBase
 {
-	public event Action LevelUp;
+	public event Action<int> LevelUp;
 	
 	protected override void OnCreate()
 	{
@@ -23,7 +23,7 @@ partial class LevelUpSystem : SystemBase
 		{
 			if (CanLevelUp(characterResources.ValueRO.Gold, characterResources.ValueRO.Level))
 			{
-				characterResources.ValueRW.Level++;
+				
 #if UNITY_EDITOR
 				Debug.Log("Level Up!");
 #endif
@@ -36,7 +36,8 @@ partial class LevelUpSystem : SystemBase
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.Confined;
 
-				LevelUp?.Invoke();
+				LevelUp?.Invoke((int)characterResources.ValueRW.Level);
+				characterResources.ValueRW.Level++;
 			}
 		}
 	}
