@@ -10,12 +10,15 @@ public class GameOverController : MonoBehaviour
 	[SerializeField] private GameObject container;
 	[SerializeField] private GameObject uiInGame;
 	[SerializeField] private TextMeshProUGUI descriptionText;
+	[SerializeField] private TextMeshProUGUI buttonText;
 	[SerializeField] private UnityEngine.UI.Button button;
 	[SerializeField] private GameObject stateUiGameObject;
 
 	[Header("Localization")]
-	[SerializeField] private LocalizedString lvlUpTextLocalization;
-	[SerializeField] private LocalizedString gameOverTextLocalization;
+	[SerializeField] private LocalizedString lvlUpDescriptionTextLocalization;
+	[SerializeField] private LocalizedString gameOverDescriptionTextLocalization;
+	[SerializeField] private LocalizedString lvlUpButtonTextLocalization;
+	[SerializeField] private LocalizedString gameOverButtonTextLocalization;
 
 	private GameOverSystem gameOverSystem;
 	private StateUI stateUI;
@@ -57,12 +60,14 @@ public class GameOverController : MonoBehaviour
 		button.onClick.RemoveAllListeners(); // Remove previous listeners
 		if (isVictory)
 		{
-			descriptionText.text = lvlUpTextLocalization.GetLocalizedString();
+			descriptionText.text = lvlUpDescriptionTextLocalization.GetLocalizedString();
+			buttonText.text = lvlUpButtonTextLocalization.GetLocalizedString();
 			button.onClick.AddListener(() => stateUI.NextLevel());
 		}
 		else
 		{
-			descriptionText.text = gameOverTextLocalization.GetLocalizedString();
+			descriptionText.text = gameOverDescriptionTextLocalization.GetLocalizedString();
+			buttonText.text = gameOverButtonTextLocalization.GetLocalizedString();
 			button.onClick.AddListener(() => stateUI.EndGame());
 		}
 	}

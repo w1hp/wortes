@@ -16,11 +16,11 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 285abce4449377345b997bee53751235
   m_Entries:
   - m_Id: 73853890560
-    m_Key: win_game
+    m_Key: win_game_description
     m_Metadata:
       m_Items: []
   - m_Id: 152039911424
-    m_Key: lose_game
+    m_Key: lose_game_description
     m_Metadata:
       m_Items: []
   - m_Id: 17520128487424
@@ -49,6 +49,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 650214160003072
     m_Key: speed_1_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33540969673060352
+    m_Key: next_lvl
     m_Metadata:
       m_Items: []
   m_Metadata:

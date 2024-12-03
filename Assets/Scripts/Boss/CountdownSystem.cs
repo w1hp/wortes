@@ -10,14 +10,13 @@ partial struct CountdownSystem : ISystem
 		state.RequireForUpdate<BossCountdown>();
 	}
 
-	[BurstCompile]
 	public void OnUpdate(ref SystemState state)
 	{
-		if (ScreenSpaceUIController.Singleton == null)
+		if (CountdownController.Singleton == null)
 		{
 			return;
 		}
-		var screenSpaceUISingleton = ScreenSpaceUIController.Singleton;
+		var countdownController = CountdownController.Singleton;
 
 		var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 		var ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
@@ -27,9 +26,10 @@ partial struct CountdownSystem : ISystem
 		{
 			bossCountdown.ValueRW.TargetDuration = bossCountdown.ValueRO.TargetDuration > 0 ?
 				bossCountdown.ValueRW.TargetDuration -= SystemAPI.Time.DeltaTime : 0;
-			screenSpaceUISingleton.UpdateTimer(ConvertToMinutesAndSeconds(ref state, bossCountdown.ValueRO.TargetDuration));
+			countdownController.UpdateTimer(ConvertToMinutesAndSeconds(ref state, bossCountdown.ValueRO.TargetDuration));
 			if (bossCountdown.ValueRO.TargetDuration == 0)
 			{
+				countdownController.EnableBossHealthPanel();
 				ECB.RemoveComponent<BossCountdown>(entity);
 			}
 		}

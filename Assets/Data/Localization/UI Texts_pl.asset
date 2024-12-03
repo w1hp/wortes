@@ -54,6 +54,10 @@ MonoBehaviour:
     m_Localized: 1112312312312
     m_Metadata:
       m_Items: []
+  - m_Id: 33540969673060352
+    m_Localized: nastepny lvl
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
