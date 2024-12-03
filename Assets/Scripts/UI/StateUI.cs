@@ -9,13 +9,14 @@ using Unity.Collections;
 
 public class StateUI : MonoBehaviour
 {
-	[SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject mainMenu;
 	[SerializeField] private GameObject inGameUI;
 	[SerializeField] private GameObject gameOverPanel;
 	[SerializeField] private GameObject settingsPanel;
-	[SerializeField] private GameObject loadingPanel;
+    [SerializeField] private GameObject introductionPanel;
+    [SerializeField] private GameObject loadingPanel;
 	[SerializeField] private GameObject mainMenuPanel;
-	[SerializeField] private GameObject lvlSelectionPanel;
+    [SerializeField] private GameObject lvlSelectionPanel;
 	[SerializeField] private TextMeshProUGUI goldText;
 
 	public static StateUI Singleton;

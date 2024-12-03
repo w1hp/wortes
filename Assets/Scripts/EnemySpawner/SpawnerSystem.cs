@@ -53,8 +53,8 @@ public partial class EnemySpawnerSystem : SystemBase
 		Entity newEnemy = EntityManager.Instantiate(availableEnemies[index].prefab);
 		EntityManager.SetComponentData(newEnemy, new LocalTransform
 		{
-			Position = GetPositionOutsideOfCameraRange(),
-			Rotation = quaternion.identity,
+            Position = GetRandomPositionOnMap(),
+            Rotation = quaternion.identity,
 			Scale = 1
 		});
 
@@ -93,22 +93,20 @@ public partial class EnemySpawnerSystem : SystemBase
 		nextSpawnTime = (float)SystemAPI.Time.ElapsedTime + enemySpawnerComponent.spawnCooldown;
 	}
 
-	private float3 GetPositionOutsideOfCameraRange()
-	{
-		float3 position;
-		do
-		{
-			position = new float3(
-				random.NextFloat(-enemySpawnerComponent.cameraSize.x * 2, enemySpawnerComponent.cameraSize.x * 2),
-				1,
-				random.NextFloat(-enemySpawnerComponent.cameraSize.z * 2, enemySpawnerComponent.cameraSize.z * 2)
-			);
-		} while (math.abs(position.x) < enemySpawnerComponent.cameraSize.x && math.abs(position.z) < enemySpawnerComponent.cameraSize.z);
+    private float3 GetRandomPositionOnMap()
+    {
+        // Ustal zakres mapy (dostosuj wartości do wielkości mapy)
+        float mapWidth = 100f;  // Szerokość mapy
+        float mapHeight = 100f; // Wysokość mapy
 
-		Vector3 cameraPosition = Camera.main.transform.position;
-		position.x += cameraPosition.x;
-		position.z += cameraPosition.z;
+        // Losowanie pozycji w zakresie mapy
+        float3 position = new float3(
+            random.NextFloat(-mapWidth / 2, mapWidth / 2), // Losowa pozycja X w granicach mapy
+            1, // Stała wysokość (Y)
+            random.NextFloat(-mapHeight / 2, mapHeight / 2) // Losowa pozycja Z w granicach mapy
+        );
 
-		return position;
-	}
+        return position;
+    }
+
 }

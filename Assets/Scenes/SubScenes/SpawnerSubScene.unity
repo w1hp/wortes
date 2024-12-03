@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -240,10 +240,21 @@ MonoBehaviour:
   spawnCooldown: 1
   cameraSize: {x: 10, y: 0, z: 10}
   enemiesSO:
-  - {fileID: 11400000, guid: bc6f0317ef53a9e40ad058a3f623de89, type: 2}
-  - {fileID: 11400000, guid: ccd5ec73c32410e4897bde2fdf62c637, type: 2}
   - {fileID: 11400000, guid: ca4629790a7b5ae4894429acbfada9fc, type: 2}
+  - {fileID: 11400000, guid: 958ccc59c58e8c246aaf705bc5706506, type: 2}
+  - {fileID: 11400000, guid: 2aba43bf994323b419843dea41f3ce4e, type: 2}
+  - {fileID: 11400000, guid: bc6f0317ef53a9e40ad058a3f623de89, type: 2}
+  - {fileID: 11400000, guid: 33f5e3b094d43194f982d285ef6cb4e5, type: 2}
+  - {fileID: 11400000, guid: 78bae60f71d7eb44ca36417591c6f8d7, type: 2}
+  - {fileID: 11400000, guid: 6fa5a3fb53a707248af4238a92df2d13, type: 2}
+  - {fileID: 11400000, guid: 236da9df2e9f6ce49bbdd875bc82f1da, type: 2}
+  - {fileID: 11400000, guid: 605b47a9762a318438bb6477f5213da0, type: 2}
+  - {fileID: 11400000, guid: ccd5ec73c32410e4897bde2fdf62c637, type: 2}
+  - {fileID: 11400000, guid: 3da5248b5a7cb0c4494b093da5e8fdb6, type: 2}
+  - {fileID: 11400000, guid: 5142a1f8d5c0c0845acb5ab0cdfd02ec, type: 2}
   - {fileID: 11400000, guid: 815e9dc024b04494a9573a0b39cbe9a7, type: 2}
+  - {fileID: 11400000, guid: 87f7bcae36f79b64ea90eb16d13adf34, type: 2}
+  - {fileID: 11400000, guid: 33e0f704bb0219c4eb53ad3bfea7b70a, type: 2}
 --- !u!4 &1239162016
 Transform:
   m_ObjectHideFlags: 0
