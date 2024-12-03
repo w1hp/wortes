@@ -55,6 +55,10 @@ public class GameOverController : MonoBehaviour
 		PlayerPrefs.SetFloat("Gold", gold + currentGold);
 		PlayerPrefs.Save();
 
+
+		var countdownController = CountdownController.Singleton;
+		countdownController.UpdateBossHealthPanel(false);
+
 		container.SetActive(true);
 		uiInGame.SetActive(false);
 		button.onClick.RemoveAllListeners(); // Remove previous listeners

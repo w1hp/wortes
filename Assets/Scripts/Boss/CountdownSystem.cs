@@ -29,7 +29,7 @@ partial struct CountdownSystem : ISystem
 			countdownController.UpdateTimer(ConvertToMinutesAndSeconds(ref state, bossCountdown.ValueRO.TargetDuration));
 			if (bossCountdown.ValueRO.TargetDuration == 0)
 			{
-				countdownController.EnableBossHealthPanel();
+				countdownController.UpdateBossHealthPanel(true);
 				ECB.RemoveComponent<BossCountdown>(entity);
 			}
 		}

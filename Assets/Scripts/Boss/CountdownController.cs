@@ -7,8 +7,9 @@ public class CountdownController : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI _timerText;
 
-	[SerializeField] public GameObject bossHealthPanel;
-	[SerializeField] public GameObject timerPanel;
+	[SerializeField] private GameObject bossHealthPanel;
+	[SerializeField] private GameObject container;
+
 
 	public static CountdownController Singleton;
     void Start()
@@ -20,9 +21,9 @@ public class CountdownController : MonoBehaviour
 	{
 		_timerText.text = string.Format("{0:00}:{1:00}", time.minutes, time.seconds);
 	}
-	public void EnableBossHealthPanel()
+	public void UpdateBossHealthPanel(bool showBossHealthBar)
 	{
-		bossHealthPanel.SetActive(true);
-		timerPanel.SetActive(false);
+		bossHealthPanel.SetActive(showBossHealthBar);
+		container.SetActive(!showBossHealthBar);
 	}
 }
