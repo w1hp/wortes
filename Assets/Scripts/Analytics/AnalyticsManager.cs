@@ -8,7 +8,6 @@ public class AnalyticsManager : MonoBehaviour
 	async void Start()
 	{
 		await UnityServices.InitializeAsync();
-		//List<string> consentIdentifiers = await Events.CheckForRequiredConsents();
 		AnalyticsService.Instance.StartDataCollection();
 	}
 }

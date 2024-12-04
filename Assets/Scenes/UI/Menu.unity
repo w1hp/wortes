@@ -13823,6 +13823,7 @@ GameObject:
   - component: {fileID: 1651553417}
   - component: {fileID: 1651553416}
   - component: {fileID: 1651553415}
+  - component: {fileID: 1651553419}
   m_Layer: 5
   m_Name: BackToMenuButton
   m_TagString: Untagged
@@ -13935,6 +13936,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1651553419}
+        m_TargetAssemblyTypeName: KillPlayer, Assembly-CSharp
+        m_MethodName: Kill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1651553417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13973,6 +13986,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651553413}
   m_CullTransparentMesh: 1
+--- !u!114 &1651553419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651553413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22b9a14dc8b3d6439fef8ed67605974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1657892149
 GameObject:
   m_ObjectHideFlags: 0
@@ -19088,8 +19113,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 111780998}
-  - {fileID: 1094874472}
   - {fileID: 1998080734}
+  - {fileID: 1094874472}
   - {fileID: 1691686139}
   m_Father: {fileID: 7915281658776341256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

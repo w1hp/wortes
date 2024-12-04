@@ -73,7 +73,7 @@ public class StateUI : MonoBehaviour
 
 	public void EndGame()
 	{
-		PauseMenuController.Singleton.SetPause(false);
+		PauseMenuController.Singleton.SetPause(false, true);
 
 		lastClickedAction = LoadingAction.UnloadAll;
 		clicked = true;

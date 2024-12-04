@@ -47,9 +47,6 @@ public class GameOverController : MonoBehaviour
 
 		PauseMenuController.Singleton.SetPause(true);
 
-		Cursor.visible = true;
-		Cursor.lockState = CursorLockMode.Confined;
-
 		var currentGold = PlayerPrefs.GetFloat("Gold", 0);
 		PlayerPrefs.SetFloat("Gold", gold + currentGold);
 		PlayerPrefs.Save();
@@ -60,7 +57,7 @@ public class GameOverController : MonoBehaviour
 
 		container.SetActive(true);
 		uiInGame.SetActive(false);
-		button.onClick.RemoveAllListeners(); // Remove previous listeners
+		button.onClick.RemoveAllListeners();
 		if (isVictory)
 		{
 			descriptionText.text = lvlUpDescriptionTextLocalization.GetLocalizedString();
