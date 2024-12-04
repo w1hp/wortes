@@ -171,6 +171,7 @@ public struct CharacterControl : IComponentData
 	public bool ShootOrBuild;
 
 	public bool ShootOrBuildHeld;
+	public bool PausePressed;
 
 	public byte ChooseSlot;
 }

@@ -73,10 +73,8 @@ public class StateUI : MonoBehaviour
 
 	public void EndGame()
 	{
-		UnityEngine.Time.timeScale = 1;
-#if UNITY_EDITOR
-		Debug.Log("timeScale = 1");
-#endif
+		PauseMenuController.Singleton.SetPause(false);
+
 		lastClickedAction = LoadingAction.UnloadAll;
 		clicked = true;
 		gameOverPanel.SetActive(false);
@@ -86,10 +84,7 @@ public class StateUI : MonoBehaviour
 
 	public void NextLevel()
 	{
-		UnityEngine.Time.timeScale = 1;
-#if UNITY_EDITOR
-		Debug.Log("timeScale = 1");
-#endif
+		PauseMenuController.Singleton.SetPause(false);
 		LastSceneIndex++;
 		if (LastSceneIndex > 5)
 		{
@@ -115,13 +110,6 @@ public class StateUI : MonoBehaviour
 		lastClickedAction = LoadingAction.UnloadAll;
 		clicked = true;
 	}
-
-	//public void SetPause(bool value)
-	//{
-	//	UnityEngine.Time.timeScale = value ? 0 : 1;
-	//	Cursor.visible = value ? true : false;
-	//	Cursor.lockState = value ? CursorLockMode.Confined : CursorLockMode.Locked;
-	//}
 
 	public void QuitGame()
 	{

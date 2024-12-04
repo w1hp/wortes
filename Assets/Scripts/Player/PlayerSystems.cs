@@ -105,6 +105,10 @@ public partial class PlayerInputsSystem : SystemBase
 			{
 				playerInputs.ValueRW.ChooseSlot = 3;
 			}
+			if (_defaultActionsMap.Pause.WasPressedThisFrame())
+			{
+				PauseMenuController.Singleton.SetPause();
+			}
 		}
     }
 }
@@ -117,7 +121,6 @@ public partial class PlayerInputsSystem : SystemBase
 [BurstCompile]
 public partial struct PlayerVariableStepControlSystem : ISystem
 {
-	//TODO: Change this system to make isometric camera
 	[BurstCompile]
     public void OnCreate(ref SystemState state)
     {

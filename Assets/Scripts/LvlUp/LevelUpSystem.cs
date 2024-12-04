@@ -28,11 +28,8 @@ partial class LevelUpSystem : SystemBase
 				Debug.Log("Level Up!");
 #endif
 
-				//TODO: zmienic to kiedys na cos bardziej sensownego
-				UnityEngine.Time.timeScale = 0;
-#if UNITY_EDITOR
-				Debug.Log("timeScale = 0");
-#endif
+				PauseMenuController.Singleton.SetPause(true);
+
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.Confined;
 
@@ -47,9 +44,7 @@ partial class LevelUpSystem : SystemBase
 #if UNITY_EDITOR
 		Debug.Log("Return to game");
 #endif
-		UnityEngine.Time.timeScale = 1;
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
+		PauseMenuController.Singleton.SetPause(false);
 
 		foreach (var (characterComponent, health, characterStats) in
 						SystemAPI.Query<RefRW<CharacterComponent>, RefRW<Health>, RefRW<CharacterStats>>())

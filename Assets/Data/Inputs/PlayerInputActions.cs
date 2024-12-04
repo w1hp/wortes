@@ -197,6 +197,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""1bc031cf-13bd-4d52-be6e-65e0a60cfbf1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -230,28 +239,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""343b41fc-355f-42c2-b00a-c8ae30ad612a"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Roll"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""dab2fec4-1ac5-4df6-b615-e90912460c46"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -323,28 +310,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b143f747-5e51-4c9c-9267-39ff22088fdf"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e023a517-781e-496f-96e1-62a85c46f78e"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e601188a-0696-45cd-80b7-ba3eac4314ab"",
                     ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
@@ -384,94 +349,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b4fc3d14-c1f9-485d-81b7-5869df204075"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3d5a467e-67c3-4320-ad53-5c7fb09bec0b"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6c4217fc-df5f-40b3-bde8-524d2d9c1a57"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rope"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a892b883-92b3-45bf-b2c8-4e0a81b4fdda"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rope"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8c686a2f-07d8-40d3-ab87-dfb197892165"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Climb"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""af69a741-4607-4b4c-9e46-6f53158ba1e5"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Climb"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""22707d2a-a98c-4a5f-aecd-4777414fff8d"",
-                    ""path"": ""<Keyboard>/z"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FlyNoCollisions"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""644381cf-4f4c-480d-a1cf-2b25df88971f"",
-                    ""path"": ""<Gamepad>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FlyNoCollisions"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -639,6 +516,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Choose5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""143107ac-8a4f-4329-aefc-83e17b80eb53"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73238de4-3bd5-4344-8867-dbd0187d49ff"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -666,6 +565,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_GameplayMap_Choose3 = m_GameplayMap.FindAction("Choose3", throwIfNotFound: true);
         m_GameplayMap_Choose4 = m_GameplayMap.FindAction("Choose4", throwIfNotFound: true);
         m_GameplayMap_Choose5 = m_GameplayMap.FindAction("Choose5", throwIfNotFound: true);
+        m_GameplayMap_Pause = m_GameplayMap.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -746,6 +646,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GameplayMap_Choose3;
     private readonly InputAction m_GameplayMap_Choose4;
     private readonly InputAction m_GameplayMap_Choose5;
+    private readonly InputAction m_GameplayMap_Pause;
     public struct GameplayMapActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -769,6 +670,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Choose3 => m_Wrapper.m_GameplayMap_Choose3;
         public InputAction @Choose4 => m_Wrapper.m_GameplayMap_Choose4;
         public InputAction @Choose5 => m_Wrapper.m_GameplayMap_Choose5;
+        public InputAction @Pause => m_Wrapper.m_GameplayMap_Pause;
         public InputActionMap Get() { return m_Wrapper.m_GameplayMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -835,6 +737,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Choose5.started += instance.OnChoose5;
             @Choose5.performed += instance.OnChoose5;
             @Choose5.canceled += instance.OnChoose5;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IGameplayMapActions instance)
@@ -896,6 +801,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Choose5.started -= instance.OnChoose5;
             @Choose5.performed -= instance.OnChoose5;
             @Choose5.canceled -= instance.OnChoose5;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IGameplayMapActions instance)
@@ -934,5 +842,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnChoose3(InputAction.CallbackContext context);
         void OnChoose4(InputAction.CallbackContext context);
         void OnChoose5(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
