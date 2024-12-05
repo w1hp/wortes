@@ -2378,6 +2378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 922432006}
+  uiInGame: {fileID: 0}
   gameOverText: {fileID: 1847447025}
   lvlUpTextLocalization:
     m_TableReference:
@@ -7306,6 +7307,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d576b2da23f24bbe1e1d4b687fb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerHealthText: {fileID: 0}
+  _playerHealthSlider: {fileID: 0}
+  _woodText: {fileID: 0}
+  _fireText: {fileID: 0}
+  _waterText: {fileID: 0}
+  _earthText: {fileID: 0}
+  _metalText: {fileID: 0}
 --- !u!222 &8758341333909483298
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4caec54d6260a4ab75927d382677ef, type: 3}
+  m_Name: EnemyEarth 2
+  m_EditorClassIdentifier: 
+  level: 3
+  prefab: {fileID: 5404238183554296672, guid: 078353657b372904e84107db4b18c0b8, type: 3}
+  detectionRange: 10
+  elementType: 3
+  damage: 10
+  moveSpeed: 0.7
+  maxHealth: 130
+  fireResistance: 130
+  waterResistance: 130
+  earthResistance: 200
+  woodResistance: 0
+  metalResistance: 130
+  experiencePoints: 5
+  resourcePrefab: {fileID: 2132811732415857500, guid: 051a09c4195a1b54a9332126f2a396f7,
+    type: 3}
+  resourceAmount: 3

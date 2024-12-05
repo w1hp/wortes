@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4caec54d6260a4ab75927d382677ef, type: 3}
+  m_Name: EnemyWater 2
+  m_EditorClassIdentifier: 
+  level: 2
+  prefab: {fileID: 2259230368267083137, guid: 96761e09c4f07bf48bac68b2782c520b, type: 3}
+  detectionRange: 10
+  elementType: 2
+  damage: 10
+  moveSpeed: 0.7
+  maxHealth: 130
+  fireResistance: 130
+  waterResistance: 150
+  earthResistance: 0
+  woodResistance: 130
+  metalResistance: 130
+  experiencePoints: 5
+  resourcePrefab: {fileID: 2132811732415857500, guid: 7f2802af19c8b804984a5432f660a67d,
+    type: 3}
+  resourceAmount: 3
