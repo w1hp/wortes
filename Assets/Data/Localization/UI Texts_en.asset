@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 152039911424
-    m_Localized: You die
+    m_Localized: game over :c
     m_Metadata:
       m_Items: []
   - m_Id: 73853890560
-    m_Localized: lvl up
+    m_Localized: lvl up :>
     m_Metadata:
       m_Items: []
   - m_Id: 17520128487424
@@ -35,7 +35,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 642461341380608
-    m_Localized: easdfasdf
+    m_Localized: +5% max health
     m_Metadata:
       m_Items: []
   - m_Id: 649936635490304
@@ -43,7 +43,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 650017782689792
-    m_Localized: some description damage
+    m_Localized: +5% damage
     m_Metadata:
       m_Items: []
   - m_Id: 650137580400640
@@ -51,7 +51,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 650214160003072
-    m_Localized: descriptiondescriptiondescription
+    m_Localized: +5% move speed
     m_Metadata:
       m_Items: []
   - m_Id: 33540969673060352

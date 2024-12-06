@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 152039911424
-    m_Localized: "Nie \u017Cyjesz"
+    m_Localized: nie zyjesz :c
     m_Metadata:
       m_Items: []
   - m_Id: 73853890560
-    m_Localized: lvl up
+    m_Localized: lvl up :>
     m_Metadata:
       m_Items: []
   - m_Id: 17520128487424
@@ -35,7 +35,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 642461341380608
-    m_Localized: asdfsdafasdvvvv
+    m_Localized: "+5% max poziomu \u017Cycia"
     m_Metadata:
       m_Items: []
   - m_Id: 649936635490304
@@ -43,7 +43,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 650017782689792
-    m_Localized: asdffffffffffffffff
+    m_Localized: +5% obrazen
     m_Metadata:
       m_Items: []
   - m_Id: 650137580400640
@@ -51,11 +51,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 650214160003072
-    m_Localized: 1112312312312
+    m_Localized: +5% predkosci poruszania
     m_Metadata:
       m_Items: []
   - m_Id: 33540969673060352
-    m_Localized: nastepny lvl
+    m_Localized: nastepny poziom
     m_Metadata:
       m_Items: []
   references:
