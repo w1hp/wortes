@@ -5550,6 +5550,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7915281658776341257}
+        m_TargetAssemblyTypeName: StateUI, Assembly-CSharp
+        m_MethodName: BuyUpgrade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: BuildSpeed
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &379888888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8788,6 +8800,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7915281658776341257}
+        m_TargetAssemblyTypeName: StateUI, Assembly-CSharp
+        m_MethodName: BuyUpgrade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MoveSpeed
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &661118499
@@ -25256,6 +25280,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7915281658776341257}
+        m_TargetAssemblyTypeName: StateUI, Assembly-CSharp
+        m_MethodName: BuyUpgrade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MaxHealth
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1940128888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26086,7 +26122,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1998080734}
-  - component: {fileID: 1998080735}
   m_Layer: 5
   m_Name: InGame
   m_TagString: Untagged
@@ -26116,18 +26151,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1998080735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998080733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 829d576b2da23f24bbe1e1d4b687fb44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1999385600
 GameObject:
   m_ObjectHideFlags: 0
@@ -26641,6 +26664,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7915281658776341257}
+        m_TargetAssemblyTypeName: StateUI, Assembly-CSharp
+        m_MethodName: BuyUpgrade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: AttackDamage
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2035936564
@@ -29130,6 +29165,7 @@ GameObject:
   - component: {fileID: 3216313042131248136}
   - component: {fileID: 3889334691139126291}
   - component: {fileID: 7915281658776341257}
+  - component: {fileID: 7915281658776341258}
   m_Layer: 0
   m_Name: ScreenSpaceUI
   m_TagString: Untagged
@@ -29896,7 +29932,23 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 61265906}
   lvlSelectionPanel: {fileID: 571525341}
   goldText: {fileID: 496306349}
+  purchasedUpgradesHealth: {fileID: 1056432985}
+  purchasedUpgradesDamage: {fileID: 1978508698}
+  purchasedUpgradesMoveSpeed: {fileID: 106766601}
+  purchasedUpgradesBuildSpeed: {fileID: 1300990776}
   loadingPanel: {fileID: 1691686138}
+--- !u!114 &7915281658776341258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5331210673906158695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829d576b2da23f24bbe1e1d4b687fb44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8000221538639311959
 RectTransform:
   m_ObjectHideFlags: 0

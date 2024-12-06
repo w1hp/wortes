@@ -24,7 +24,7 @@ public partial struct ShootingSystem : ISystem
 			ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
 			DeltaTime = SystemAPI.Time.DeltaTime,
 			CharacterComponentLookup = SystemAPI.GetComponentLookup<CharacterComponent>(),
-			CharacterStatsLookup = SystemAPI.GetComponentLookup<CharacterStats>(),
+			CharacterStatsLookup = SystemAPI.GetComponentLookup<BaseStats>(),
 			TowerAimerLookup = SystemAPI.GetComponentLookup<TowerAimer>(),
 			BossStateMachineLookup = SystemAPI.GetComponentLookup<BossStateMachine>(),
 			TowerAmmoLookup = SystemAPI.GetComponentLookup<TowerAmmo>()
@@ -39,7 +39,7 @@ public partial struct ShootingSystem : ISystem
 		public EntityCommandBuffer ECB;
 		[ReadOnly] public float DeltaTime;
 		[ReadOnly] public ComponentLookup<CharacterComponent> CharacterComponentLookup;
-		[ReadOnly] public ComponentLookup<CharacterStats> CharacterStatsLookup;
+		[ReadOnly] public ComponentLookup<BaseStats> CharacterStatsLookup;
 		[ReadOnly] public ComponentLookup<TowerAimer> TowerAimerLookup;
 		[ReadOnly] public ComponentLookup<BossStateMachine> BossStateMachineLookup;
 		public ComponentLookup<TowerAmmo> TowerAmmoLookup;
@@ -65,7 +65,7 @@ public partial struct ShootingSystem : ISystem
 					if (!character.ValueRO.IsShooting) return;
 
 					var stats = CharacterStatsLookup.GetRefRO(gun.Owner);
-					damage += stats.ValueRO.BaseDamage;
+					damage += stats.ValueRO.AttackDamage;
 					break;
 				case OriginCharacterType.Tower:
 					var tower = TowerAimerLookup.GetRefRO(gun.Owner);

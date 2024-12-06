@@ -9,16 +9,24 @@ using Unity.Collections;
 
 public class StateUI : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenu;
+	[SerializeField] private GameObject mainMenu;
 	[SerializeField] private GameObject inGameUI;
 	[SerializeField] private GameObject gameOverPanel;
 	[SerializeField] private GameObject settingsPanel;
-    [SerializeField] private GameObject introductionPanel;
+	[SerializeField] private GameObject introductionPanel;
 	[SerializeField] private GameObject mainMenuPanel;
-    [SerializeField] private GameObject lvlSelectionPanel;
+	[SerializeField] private GameObject lvlSelectionPanel;
+
 	[SerializeField] private TextMeshProUGUI goldText;
+	[SerializeField] private TextMeshProUGUI purchasedUpgradesHealth;
+	[SerializeField] private TextMeshProUGUI purchasedUpgradesDamage;
+	[SerializeField] private TextMeshProUGUI purchasedUpgradesMoveSpeed;
+	//[SerializeField] private TextMeshProUGUI purchasedUpgradesAttackSpeed;
+	[SerializeField] private TextMeshProUGUI purchasedUpgradesBuildSpeed;
+
 	[SerializeField] public GameObject loadingPanel;
-	
+
+
 	public static StateUI Singleton;
 	public int LastSceneIndex { get; private set; }
 
@@ -36,7 +44,14 @@ public class StateUI : MonoBehaviour
 	void Update()
 	{
 		if (goldText.IsActive())
+		{
 			goldText.text = PlayerPrefs.GetFloat("Gold", 0).ToString();
+			purchasedUpgradesDamage.text = PlayerPrefs.GetInt("AttackDamage", 0).ToString();
+			purchasedUpgradesHealth.text = PlayerPrefs.GetInt("MaxHealth", 0).ToString();
+			purchasedUpgradesMoveSpeed.text = PlayerPrefs.GetInt("MoveSpeed", 0).ToString();
+			//purchasedUpgradesAttackSpeed.text = PlayerPrefs.GetInt("AttackSpeed", 0).ToString();
+			purchasedUpgradesBuildSpeed.text = PlayerPrefs.GetInt("BuildSpeed", 0).ToString();
+		}
 	}
 
 	public bool GetAction(out int sceneIndex, out LoadingAction action)
@@ -60,6 +75,29 @@ public class StateUI : MonoBehaviour
 		inGameUI.SetActive(true);
 		loadingPanel.SetActive(true);
 		mainMenu.SetActive(false);
+	}
+	public void BuyUpgrade(string name)
+	{
+		if (PlayerPrefs.GetFloat("Gold", 0) >= 100)
+		{
+			PlayerPrefs.SetFloat("Gold", PlayerPrefs.GetFloat("Gold", 0) - 100);
+			switch (name)
+			{
+				case "AttackDamage":
+					PlayerPrefs.SetInt("AttackDamage", PlayerPrefs.GetInt("AttackDamage", 0) + 1);
+					break;
+				case "MaxHealth":
+					PlayerPrefs.SetInt("MaxHealth", PlayerPrefs.GetInt("MaxHealth", 0) + 1);
+					break;
+				case "MoveSpeed":
+					PlayerPrefs.SetInt("MoveSpeed", PlayerPrefs.GetInt("MoveSpeed", 0) + 1);
+					break;
+				case "BuildSpeed":
+					PlayerPrefs.SetInt("BuildSpeed", PlayerPrefs.GetInt("BuildSpeed", 0) + 1);
+					break;
+			}
+			
+		}
 	}
 
 	public void ShowPanel(GameObject panel)

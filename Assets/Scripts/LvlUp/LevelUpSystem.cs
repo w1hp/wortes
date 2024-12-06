@@ -7,7 +7,7 @@ using UnityEngine;
 partial class LevelUpSystem : SystemBase
 {
 	public event Action<int> LevelUp;
-	
+
 	protected override void OnCreate()
 	{
 		RequireForUpdate(SystemAPI.QueryBuilder().WithAll<CharacterComponent, CharacterResources>().Build());
@@ -18,12 +18,12 @@ partial class LevelUpSystem : SystemBase
 	{
 		var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 		var ECB = ecbSingleton.CreateCommandBuffer(EntityManager.WorldUnmanaged);
-		foreach (var(characterComponent, characterResources) in 
+		foreach (var (characterComponent, characterResources) in
 			SystemAPI.Query<RefRO<CharacterComponent>, RefRW<CharacterResources>>())
 		{
 			if (CanLevelUp(characterResources.ValueRO.Gold, characterResources.ValueRO.Level))
 			{
-				
+
 #if UNITY_EDITOR
 				Debug.Log("Level Up!");
 #endif
@@ -46,28 +46,94 @@ partial class LevelUpSystem : SystemBase
 #endif
 		PauseMenuController.Singleton.SetPause(false);
 
-		foreach (var (characterComponent, health, characterStats) in
-						SystemAPI.Query<RefRW<CharacterComponent>, RefRW<Health>, RefRW<CharacterStats>>())
+		foreach (var (characterComponent, health, characterStats, purchasedUpgrades, entity) in
+						SystemAPI.Query<RefRW<CharacterComponent>, RefRW<Health>, RefRW<BaseStats>, RefRO<PurchasedUpgrades>>().WithEntityAccess())
 		{
+			var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+			var ECB = ecbSingleton.CreateCommandBuffer(EntityManager.WorldUnmanaged);
+
+			// Add const power up per level
+			var moveSpeedStatModification = new MoveSpeedStatModification
+			{
+				ModificationType = StatModificationTypes.Percentage,
+				ModificationValue = purchasedUpgrades.ValueRO.MoveSpeed * 0.5f
+			};
+
+			//if (purchasedUpgrades.ValueRO.AttackSpeed > 0)
+			var attackSpeedStatModification = new AttackSpeedStatModification
+			{
+				ModificationType = StatModificationTypes.Percentage,
+				ModificationValue = purchasedUpgrades.ValueRO.AttackSpeed * 0.5f
+			};
+
+			var attackDamageStatModification = new AttackDamageStatModification
+			{
+				ModificationType = StatModificationTypes.Percentage,
+				ModificationValue = purchasedUpgrades.ValueRO.AttackDamage * 0.5f
+			};
+
+			var healthStatModification = new HealthStatModification
+			{
+				ModificationType = StatModificationTypes.Percentage,
+				ModificationValue = purchasedUpgrades.ValueRO.MaxHealth * 0.5f
+			};
+
+			// Add power up
 			switch (type)
 			{
 				case PowerUpType.Health:
-					health.ValueRW.CurrentHealth += value;
+					healthStatModification.ModificationValue += value;
+
+					//ECB.AddComponent(entity, new StatModification
+					//{
+					//	StatToModify = StatTypes.MaxHealth,
+					//	ModificationType = StatModificationTypes.Percentage,
+					//	ModificationValue = value
+					//});
+					//health.ValueRW.CurrentHealth += value;
 					break;
 				case PowerUpType.MoveSpeed:
-					characterComponent.ValueRW.GroundRunMaxSpeed += value;
+					moveSpeedStatModification.ModificationValue += value;
+					//ECB.AddComponent(entity, new StatModification
+					//{
+					//	StatToModify = StatTypes.MoveSpeed,
+					//	ModificationType = StatModificationTypes.Percentage,
+					//	ModificationValue = value
+					//});
+					//characterComponent.ValueRW.GroundRunMaxSpeed += value;
 					break;
 				case PowerUpType.Damage:
-					characterStats.ValueRW.BaseDamage += value;
+					attackDamageStatModification.ModificationValue += value;
+					//ECB.AddComponent(entity, new StatModification
+					//{
+					//	StatToModify = StatTypes.AttackDamage,
+					//	ModificationType = StatModificationTypes.Percentage,
+					//	ModificationValue = value
+					//});
+					//characterStats.ValueRW.AttackDamage += value;
+					break;
+				case PowerUpType.AttackSpeed:
+					attackSpeedStatModification.ModificationValue += value;
 					break;
 			}
+			if (healthStatModification.ModificationValue > 0)
+				ECB.AddComponent(entity, healthStatModification);
+			if (moveSpeedStatModification.ModificationValue > 0)
+				ECB.AddComponent(entity, moveSpeedStatModification);
+			if (attackDamageStatModification.ModificationValue > 0)
+				ECB.AddComponent(entity, attackDamageStatModification);
+			if (attackSpeedStatModification.ModificationValue > 0)
+				ECB.AddComponent(entity, attackSpeedStatModification);
+
+
+
 		}
 	}
 
 
 	bool CanLevelUp(float gold, float level)
 	{
-		return gold >= 10 * math.pow(level,2);
+		return gold >= 10 * math.pow(level, 2);
 	}
 
 	//(int, int, int) RandomNumberUnityMathematics(int numberOfPowerUps)

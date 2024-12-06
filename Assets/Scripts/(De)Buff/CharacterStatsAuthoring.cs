@@ -10,39 +10,42 @@ class CharacterStatsAuthoring : MonoBehaviour
 		{
 			var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
 
-			AddComponent<CharacterStats>(entity);
+			AddComponent(entity, new BaseStats());
 		}
 	}
 }
 
 
-//TODO: check if this is the correct way to implement the CharacterStats component
-public struct CharacterStats : IComponentData
+
+
+
+public struct BaseStats : IComponentData
 {
-	public int BaseDamage;
+	public int AttackDamage;
 	public int AttackSpeed;
-	public int AttackRange;
-	public int CriticalChances;
-	public int CriticalDamage;
-	public int Multishot;
+	//public int AttackRange;
+	//public int CriticalChances;
+	//public int CriticalDamage;
+	//public int Multishot;
 	//int EnemyRecoil;
 
 	public int MaxHealth;
 	//int HealthRegeneration;
-	public int DamageReduction;
-	public int DamageBlocking;
+	//public int DamageReduction;
+	//public int DamageBlocking;
 	
-	public int MovementSpeed;
-	public int PickUpRange;
+	public int MoveSpeed;
+	//public int PickUpRange;
 	//int ExperienceGainMultip;
 }
-public struct BaseStats : IComponentData
-{
-	public float AttackDamage;
-	public float MoveSpeed;
-}
+
 
 public struct TotalAttackDamage : IComponentData
+{
+	public float Value;
+}
+
+public struct TotalAttackSpeed : IComponentData
 {
 	public float Value;
 }
@@ -51,51 +54,71 @@ public struct TotalMoveSpeed : IComponentData
 {
 	public float Value;
 }
-public struct Damage : IComponentData
+
+public struct TotalHealth : IComponentData
 {
 	public float Value;
 }
 
-public partial class InitializePlayerStatsSystem : SystemBase
+
+//public partial class InitializePlayerStatsSystem : SystemBase
+//{
+//	protected override void OnUpdate()
+//	{
+//		Enabled = false;
+//		var ecb = new EntityCommandBuffer(Allocator.TempJob);
+
+//		Entities
+//			.WithAll<PlayerTag>()
+//			.ForEach((Entity playerEntity, in BaseStats baseStats) =>
+//			{
+//				ecb.AddComponent(playerEntity, new TotalMoveSpeed { Value = baseStats.MoveSpeed });
+//				ecb.AddComponent(playerEntity, new TotalAttackDamage { Value = baseStats.AttackDamage });
+//			}).Run();
+
+//		ecb.Playback(EntityManager);
+//		ecb.Dispose();
+//	}
+//}
+
+public struct AttackDamageStatModification : IComponentData
 {
-	protected override void OnUpdate()
-	{
-		Enabled = false;
-		var ecb = new EntityCommandBuffer(Allocator.TempJob);
-
-		Entities
-			.WithAll<PlayerTag>()
-			.ForEach((Entity playerEntity, in BaseStats baseStats) =>
-			{
-				ecb.AddComponent(playerEntity, new TotalMoveSpeed { Value = baseStats.MoveSpeed });
-				ecb.AddComponent(playerEntity, new TotalAttackDamage { Value = baseStats.AttackDamage });
-			}).Run();
-
-		ecb.Playback(EntityManager);
-		ecb.Dispose();
-	}
-}
-
-public struct StatModification : IComponentData
-{
-	public StatTypes StatToModify;
+	//public StatTypes StatToModify;
 	public StatModificationTypes ModificationType;
 	public float ModificationValue;
 	public float Timer;
+}
 
-	public static StatModification Empty => new StatModification
-	{
-		StatToModify = StatTypes.None,
-		ModificationType = StatModificationTypes.None,
-		ModificationValue = 0f,
-		Timer = 0f
-	};
+public struct AttackSpeedStatModification : IComponentData
+{
+	//public StatTypes StatToModify;
+	public StatModificationTypes ModificationType;
+	public float ModificationValue;
+	public float Timer;
+}
+
+public struct MoveSpeedStatModification : IComponentData
+{
+	//public StatTypes StatToModify;
+	public StatModificationTypes ModificationType;
+	public float ModificationValue;
+	public float Timer;
+}
+
+public struct HealthStatModification : IComponentData
+{
+	//public StatTypes StatToModify;
+	public StatModificationTypes ModificationType;
+	public float ModificationValue;
+	public float Timer;
 }
 
 public enum StatTypes
 {
 	AttackDamage,
+	AttackSpeed,
 	MoveSpeed,
+	MaxHealth,
 	None
 }
 
