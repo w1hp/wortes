@@ -18,7 +18,8 @@ class EnemyAuthoringBaker : Baker<EnemyAuthoring>
 		{
 			EnemyType = authoring.enemyType,
 			DetectionRange = authoring.detectionRange,
-			Damage = authoring.damage
+			Damage = authoring.damage,
+			//moveSpeed = authoring.moveSpeed
 		});
 	}
 }
@@ -28,4 +29,5 @@ public struct EnemyComponent : IComponentData
 	public ElementType EnemyType;
 	public float DetectionRange;
 	public float Damage;
+    public float moveSpeed;
 }

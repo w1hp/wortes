@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61062808952bf3b42a3d781d10f7a154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 1.5
+  Timer: 60
   Health: 100
   FireResistance: 50
   WaterResistance: 50
