@@ -18,15 +18,15 @@ public partial struct ProjectileSystem : ISystem
 		var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 		
 		
-		var enemyQuery = SystemAPI.QueryBuilder()
-			.WithAll<EnemyTag>()
+		var damageableQuery = SystemAPI.QueryBuilder()
+			.WithAll<DamageableTag>()
 			.Build();
 
 
 		var projectileJob = new ProjectileJob
 		{
 			ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
-			enemyMask = enemyQuery.GetEntityQueryMask()
+			damageableMask = damageableQuery.GetEntityQueryMask()
 		};
 
 		projectileJob.Schedule();
@@ -37,7 +37,7 @@ public partial struct ProjectileSystem : ISystem
 public partial struct ProjectileJob : IJobEntity
 {
 	public EntityCommandBuffer ECB;
-	public EntityQueryMask enemyMask;
+	public EntityQueryMask damageableMask;
 
 	void Execute(
 		Entity entity,
@@ -52,10 +52,9 @@ public partial struct ProjectileJob : IJobEntity
 			
 			switch (collisionEvent.State)
 			{
-				case StatefulEventState.Enter:
-					break;
+				case StatefulEventState.Enter:	
 				case StatefulEventState.Stay:
-					if (enemyMask.MatchesIgnoreFilter(otherEntity))
+					if (damageableMask.MatchesIgnoreFilter(otherEntity))
 					{
 						ECB.AddComponent(otherEntity, new DamageToCharacter
 						{

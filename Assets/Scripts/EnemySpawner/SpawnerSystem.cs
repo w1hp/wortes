@@ -69,6 +69,9 @@ public partial class EnemySpawnerSystem : SystemBase
 
 		EntityManager.AddComponentData(newEnemy, new EnemyTag { });
 
+		EntityManager.AddComponentData(newEnemy, new DamageableTag { });
+
+
 		EntityManager.AddComponentData(newEnemy, new Health
 		{
 			CurrentHealth = availableEnemies[index].maxHealth,

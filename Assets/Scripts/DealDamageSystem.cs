@@ -32,8 +32,6 @@ public partial class DealDamageSystem : SystemBase
 				var killStatistics = SystemAPI.GetSingletonRW<KillStatistics>();
 				switch (damageToCharacter.ValueRO.OriginCharacterType)
 				{
-					case OriginCharacterType.Enemy:
-						return;
 					case OriginCharacterType.Player:
 						killStatistics.ValueRW.EnemyCount++;
 						killStatistics.ValueRW.PlayerFragCount++;

@@ -10,6 +10,7 @@ class PlayerTagAuthoring : MonoBehaviour
 			var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
 			AddComponent(entity, new PlayerTag());
 			AddComponent(entity, new IsExistTag());
+			AddComponent<DamageableTag>(entity);
 		}
 	}
 }

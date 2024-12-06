@@ -7,3 +7,4 @@ public struct EnemyTag : IComponentData { }
 public struct PlayerTag : IComponentData { }
 
 public struct IsNotPause : IComponentData { }
+public struct DamageableTag : IComponentData { }

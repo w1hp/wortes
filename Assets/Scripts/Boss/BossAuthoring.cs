@@ -35,6 +35,7 @@ class BossAuthoring : MonoBehaviour
 				MetalResistance = authoring.MetalResistance
 			});
 			AddComponent<EnemyTag>(entity);
+			AddComponent<DamageableTag>(entity);
 			AddComponent<IsExistTag>(entity);
 		}
 	}

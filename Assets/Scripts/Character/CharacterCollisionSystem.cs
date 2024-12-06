@@ -16,6 +16,7 @@ partial struct CharacterCollisionSystem : ISystem
 
 		var itemLookup = SystemAPI.GetComponentLookup<Item>(true);
 		var enemyLookup = SystemAPI.GetComponentLookup<EnemyComponent>(true);
+		var projectileLookup = SystemAPI.GetComponentLookup<Projectile>(true);
 
 
 		foreach (var (characterComponent, collisionEventBuffer, entity) in
@@ -69,11 +70,30 @@ partial struct CharacterCollisionSystem : ISystem
 					switch (collisionEvent.State)
 					{
 						case CharacterHitState.Enter:
+				
+						case CharacterHitState.Stay:
 							ECB.AddComponent(entity, new DamageToCharacter
 							{
 								Value = enemy.Damage,
 								Type = enemy.EnemyType
 							});
+							break;
+						case CharacterHitState.Exit:
+							break;
+					}
+				}
+				else if (projectileLookup.TryGetComponent(otherEntity, out Projectile projectile))
+				{
+					switch (collisionEvent.State)
+					{
+						case CharacterHitState.Enter:
+							ECB.AddComponent(entity, new DamageToCharacter
+							{
+								Value = projectile.Damage,
+								Type = projectile.Type,
+								OriginCharacterType = projectile.OriginCharacterType
+							});
+							ECB.DestroyEntity(otherEntity);
 							break;
 						case CharacterHitState.Stay:
 							break;
