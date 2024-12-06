@@ -168,15 +168,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Choose5",
-                    "type": "Button",
-                    "id": "f4e011ca-07ca-4062-ae17-5dd60b00e1f0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "1bc031cf-13bd-4d52-be6e-65e0a60cfbf1",
@@ -470,28 +461,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Choose4",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "228a5dba-0f68-4bda-a428-569d9d63f5d6",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Choose5",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6d1975ce-e593-4817-ba54-6ba934aa6c4c",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Choose5",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

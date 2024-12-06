@@ -638,12 +638,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 1692896102597148395}
-  SelectedWeapon: {fileID: 5199186497130225072}
+  SelectedWeapon: {fileID: 6762123648873043946}
+  WeaponSlot0: {fileID: 6762123648873043946}
   WeaponSlot1: {fileID: 5199186497130225072}
   WeaponSlot2: {fileID: 1944486168274623026}
   WeaponSlot3: {fileID: 122148421464033128}
   WeaponSlot4: {fileID: 663582106332601277}
-  WeaponSlot5: {fileID: 6762123648873043946}
   SelectedTower: {fileID: 8759440460334986151, guid: 80da36c3c63d14043a37314acdf2e667,
     type: 3}
   FireTower: {fileID: 844096362543688308, guid: c19396d0da9627b4c859d3918a953283,

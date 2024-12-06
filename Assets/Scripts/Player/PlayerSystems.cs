@@ -91,19 +91,19 @@ public partial class PlayerInputsSystem : SystemBase
 			}
             if (_defaultActionsMap.Choose1.WasPressedThisFrame())
             {
-                playerInputs.ValueRW.ChooseSlot = 0;
+                playerInputs.ValueRW.ChooseSlot = (byte)(playerInputs.ValueRO.ChooseSlot == 1 ? 0 : 1);
 			}
 			if (_defaultActionsMap.Choose2.WasPressedThisFrame())
 			{
-				playerInputs.ValueRW.ChooseSlot = 1;
+				playerInputs.ValueRW.ChooseSlot = (byte)(playerInputs.ValueRO.ChooseSlot == 2 ? 0 : 2);
 			}
 			if (_defaultActionsMap.Choose3.WasPressedThisFrame())
 			{
-				playerInputs.ValueRW.ChooseSlot = 2;
+				playerInputs.ValueRW.ChooseSlot = (byte)(playerInputs.ValueRO.ChooseSlot == 3 ? 0 : 3);
 			}
 			if (_defaultActionsMap.Choose4.WasPressedThisFrame())
 			{
-				playerInputs.ValueRW.ChooseSlot = 3;
+				playerInputs.ValueRW.ChooseSlot = (byte)(playerInputs.ValueRO.ChooseSlot == 4 ? 0 : 4);
 			}
 			if (_defaultActionsMap.Pause.WasPressedThisFrame())
 			{
