@@ -8053,7 +8053,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 1538585448}
-  _healthText: {fileID: 1093831734}
 --- !u!1 &763454934
 GameObject:
   m_ObjectHideFlags: 0
@@ -12327,7 +12326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1093831733
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13396,7 +13395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 1921444711}
-  _healthText: {fileID: 1634065519}
 --- !u!1 &1181107696
 GameObject:
   m_ObjectHideFlags: 0
@@ -18887,7 +18885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1634065518
 RectTransform:
   m_ObjectHideFlags: 0
