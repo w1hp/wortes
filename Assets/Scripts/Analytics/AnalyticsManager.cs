@@ -8,24 +8,27 @@ public class AnalyticsManager : MonoBehaviour
 {
 	private async void Start()
 	{
-		await InitializeUnityServices();
+		await UnityServices.InitializeAsync();
+		//await InitializeUnityServices();
+		AnalyticsService.Instance.StartDataCollection();
+
 	}
-	private async Task InitializeUnityServices()
-	{
-		try
-		{
-			await UnityServices.InitializeAsync();
-			if (AnalyticsService.Instance != null)
-			{
-				AnalyticsService.Instance.StartDataCollection();
-				Debug.Log("Unity Analytics initialized and data collection started.");
-			}
-		}
-		catch (System.Exception e)
-		{
-			Debug.LogError($"Failed to initialize Unity Services: {e.Message}");
-		}
-	}
+	//private async Task InitializeUnityServices()
+	//{
+	//	try
+	//	{
+	//		await UnityServices.InitializeAsync();
+	//		if (AnalyticsService.Instance != null)
+	//		{
+	//			AnalyticsService.Instance.StartDataCollection();
+	//			Debug.Log("Unity Analytics initialized and data collection started.");
+	//		}
+	//	}
+	//	catch (System.Exception e)
+	//	{
+	//		Debug.LogError($"Failed to initialize Unity Services: {e.Message}");
+	//	}
+	//}
 
 	public void LogLowFrameRateEvent(float frameRate, int levelID, float timeBelowThreshold)
 	{
