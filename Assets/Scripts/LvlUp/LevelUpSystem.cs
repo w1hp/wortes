@@ -56,26 +56,26 @@ partial class LevelUpSystem : SystemBase
 			var moveSpeedStatModification = new MoveSpeedStatModification
 			{
 				ModificationType = StatModificationTypes.Percentage,
-				ModificationValue = purchasedUpgrades.ValueRO.MoveSpeed * 0.5f
+				ModificationValue = purchasedUpgrades.ValueRO.MoveSpeed * 0.05f
 			};
 
 			//if (purchasedUpgrades.ValueRO.AttackSpeed > 0)
 			var attackSpeedStatModification = new AttackSpeedStatModification
 			{
 				ModificationType = StatModificationTypes.Percentage,
-				ModificationValue = purchasedUpgrades.ValueRO.AttackSpeed * 0.5f
+				ModificationValue = purchasedUpgrades.ValueRO.AttackSpeed * 0.05f
 			};
 
 			var attackDamageStatModification = new AttackDamageStatModification
 			{
 				ModificationType = StatModificationTypes.Percentage,
-				ModificationValue = purchasedUpgrades.ValueRO.AttackDamage * 0.5f
+				ModificationValue = purchasedUpgrades.ValueRO.AttackDamage * 0.05f
 			};
 
 			var healthStatModification = new HealthStatModification
 			{
 				ModificationType = StatModificationTypes.Percentage,
-				ModificationValue = purchasedUpgrades.ValueRO.MaxHealth * 0.5f
+				ModificationValue = purchasedUpgrades.ValueRO.MaxHealth * 0.05f
 			};
 
 			// Add power up

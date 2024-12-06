@@ -4,21 +4,30 @@ using UnityEngine;
 
 class CharacterStatsAuthoring : MonoBehaviour
 {
+	public int AttackDamage;
+	public int AttackSpeed;
+	public int MaxHealth;
+	public int MoveSpeed;
 	class Baker : Baker<CharacterStatsAuthoring>
 	{
 		public override void Bake(CharacterStatsAuthoring authoring)
 		{
 			var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
 
-			AddComponent(entity, new BaseStats());
+			AddComponent(entity, new BaseStats
+			{
+				AttackDamage = authoring.AttackDamage,
+				AttackSpeed = authoring.AttackSpeed,
+				MaxHealth = authoring.MaxHealth,
+				MoveSpeed = authoring.MoveSpeed
+			});
+			AddComponent(entity, new TotalAttackDamage { Value = authoring.AttackDamage});
+			AddComponent(entity, new TotalAttackSpeed{ Value = authoring.AttackSpeed});
+			AddComponent(entity, new TotalMoveSpeed{ Value = authoring.MoveSpeed});
+
 		}
 	}
 }
-
-
-
-
-
 public struct BaseStats : IComponentData
 {
 	public int AttackDamage;
@@ -54,80 +63,3 @@ public struct TotalMoveSpeed : IComponentData
 {
 	public float Value;
 }
-
-public struct TotalHealth : IComponentData
-{
-	public float Value;
-}
-
-
-//public partial class InitializePlayerStatsSystem : SystemBase
-//{
-//	protected override void OnUpdate()
-//	{
-//		Enabled = false;
-//		var ecb = new EntityCommandBuffer(Allocator.TempJob);
-
-//		Entities
-//			.WithAll<PlayerTag>()
-//			.ForEach((Entity playerEntity, in BaseStats baseStats) =>
-//			{
-//				ecb.AddComponent(playerEntity, new TotalMoveSpeed { Value = baseStats.MoveSpeed });
-//				ecb.AddComponent(playerEntity, new TotalAttackDamage { Value = baseStats.AttackDamage });
-//			}).Run();
-
-//		ecb.Playback(EntityManager);
-//		ecb.Dispose();
-//	}
-//}
-
-public struct AttackDamageStatModification : IComponentData
-{
-	//public StatTypes StatToModify;
-	public StatModificationTypes ModificationType;
-	public float ModificationValue;
-	public float Timer;
-}
-
-public struct AttackSpeedStatModification : IComponentData
-{
-	//public StatTypes StatToModify;
-	public StatModificationTypes ModificationType;
-	public float ModificationValue;
-	public float Timer;
-}
-
-public struct MoveSpeedStatModification : IComponentData
-{
-	//public StatTypes StatToModify;
-	public StatModificationTypes ModificationType;
-	public float ModificationValue;
-	public float Timer;
-}
-
-public struct HealthStatModification : IComponentData
-{
-	//public StatTypes StatToModify;
-	public StatModificationTypes ModificationType;
-	public float ModificationValue;
-	public float Timer;
-}
-
-public enum StatTypes
-{
-	AttackDamage,
-	AttackSpeed,
-	MoveSpeed,
-	MaxHealth,
-	None
-}
-
-public enum StatModificationTypes
-{
-	Percentage,
-	Numerical,
-	Absolute,
-	None
-}
-
-public struct ModifyStatsTag : IComponentData { }
