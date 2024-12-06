@@ -1,11 +1,12 @@
-using Unity.Entities;
+﻿using Unity.Entities;
 using UnityEngine;
 
 class EnemyAuthoring : MonoBehaviour
 {
 	public ElementType enemyType;
-	public float detectionRange = 10f;
+	public float detectionRange = 100f;
 	public float damage = 10f;
+    public float moveSpeed = 2f;
 }
 
 class EnemyAuthoringBaker : Baker<EnemyAuthoring>
@@ -19,7 +20,7 @@ class EnemyAuthoringBaker : Baker<EnemyAuthoring>
 			EnemyType = authoring.enemyType,
 			DetectionRange = authoring.detectionRange,
 			Damage = authoring.damage,
-			//moveSpeed = authoring.moveSpeed
+			moveSpeed = authoring.moveSpeed
 		});
 	}
 }

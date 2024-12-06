@@ -4371,18 +4371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15b82a8c6b2c93479c2b3e59e9bf84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerSenTextValue: {fileID: 0}
-  controllerSenSlider: {fileID: 657736911}
-  defaultSen: 4
-  mainControllerSen: 4
-  invertYToggle: {fileID: 0}
-  brightnessSlider: {fileID: 657736911}
-  brightnessTextValue: {fileID: 0}
-  defaultBrightness: 1
-  _qualityLevel: 0
-  _isFullScreen: 0
-  _brightnessLevel: 0
-  resolutionDropdown: {fileID: 0}
 --- !u!1 &223832809
 GameObject:
   m_ObjectHideFlags: 0
@@ -7297,7 +7285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 470969654}
 --- !u!1 &430349562
 GameObject:
   m_ObjectHideFlags: 0
@@ -12454,7 +12441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 1599293580}
 --- !u!1 &834704564
 GameObject:
   m_ObjectHideFlags: 0
@@ -25107,7 +25093,7 @@ MonoBehaviour:
         m_MethodName: ShowPanel
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 772062079}
+          m_ObjectArgument: {fileID: 1548958850}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -26999,7 +26985,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 739153296}
 --- !u!1 &1679801063
 GameObject:
   m_ObjectHideFlags: 0
@@ -29749,7 +29734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 2018564171}
 --- !u!1 &1921444708
 GameObject:
   m_ObjectHideFlags: 0
@@ -31085,7 +31069,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 859964906}
 --- !u!1 &1999385600
 GameObject:
   m_ObjectHideFlags: 0
@@ -31190,7 +31173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 1243602365}
 --- !u!224 &2014807911
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31359,7 +31341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2020363014
 RectTransform:
   m_ObjectHideFlags: 0

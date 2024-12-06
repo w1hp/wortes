@@ -45,7 +45,11 @@ public partial struct EnemyAISystem : ISystem
 
 				// Zaktualizuj pozycję wroga, poruszając się tylko w płaszczyźnie XZ
 				float3 normalizedDirection = math.normalize(direction);
-				float3 newPosition = enemyPosition + normalizedDirection * SystemAPI.Time.DeltaTime;
+
+				float testMoveSpeed = 2f; // Testowa prędkość
+				float3 newPosition = enemyPosition + normalizedDirection * testMoveSpeed * SystemAPI.Time.DeltaTime;
+
+				//float3 newPosition = enemyPosition + normalizedDirection * SystemAPI.Time.DeltaTime;
 				newPosition.y = groundLevel; // Upewnij się, że nowa pozycja ma odpowiedni poziom Y
 
 				transformComponent.ValueRW.Position = newPosition;

@@ -30,7 +30,7 @@ public class StateUI : MonoBehaviour
 	void Start()
 	{
 		Singleton = this;
-		currentPanel = introductionPanel;
+		currentPanel = mainMenuPanel;
 	}
 
 	void Update()
