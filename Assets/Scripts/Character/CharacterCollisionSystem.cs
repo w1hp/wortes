@@ -4,7 +4,7 @@ using Unity.Entities;
 using Unity.Physics.Stateful;
 using UnityEngine;
 
-[UpdateAfter(typeof(PickupMagnetSystem))]
+//[UpdateAfter(typeof(PickupMagnetSystem))]
 partial struct CharacterCollisionSystem : ISystem
 {
 	[BurstCompile]

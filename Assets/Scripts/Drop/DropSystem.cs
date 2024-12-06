@@ -36,7 +36,6 @@ partial struct DropSystem : ISystem
 				};
 				ECB.SetComponent(resource, velocity);
 			}
-			// TODO: tutaj mozna dodac licznik zabitych przeciwnikow
 			ECB.DestroyEntity(entity);
         }
 
