@@ -49,6 +49,9 @@ public partial struct ShootingSystem : ISystem
 			in LocalTransform gunLocalTransform,
 			in LocalToWorld gunTransform)
 		{
+			gun.LastShotTime -= DeltaTime;
+			if (gun.LastShotTime > 0) return;
+
 			float damage = gun.Damage;
 			switch (gun.OriginCharacterType)
 			{
@@ -77,8 +80,7 @@ public partial struct ShootingSystem : ISystem
 					break;
 			}
 
-			gun.LastShotTime -= DeltaTime;
-			if (gun.LastShotTime > 0) return;
+
 			gun.LastShotTime = gun.FireInterval;
 
 			Entity projectileEntity = ECB.Instantiate(gun.Bullet);

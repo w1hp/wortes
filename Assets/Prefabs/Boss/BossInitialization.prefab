@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334c4a931f43a604aa9d968cb71a4a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetDuration: 5
+  TargetDuration: 150
   BossPrefab: {fileID: 4203347819334720143, guid: af6718f9656d654449f617d7b457dd79,
     type: 3}
