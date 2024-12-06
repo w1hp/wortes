@@ -54,7 +54,7 @@ partial class LevelUpSystem : SystemBase
 				case PowerUpType.Health:
 					health.ValueRW.CurrentHealth += value;
 					break;
-				case PowerUpType.Speed:
+				case PowerUpType.MoveSpeed:
 					characterComponent.ValueRW.GroundRunMaxSpeed += value;
 					break;
 				case PowerUpType.Damage:

@@ -22,6 +22,7 @@ public class PowerUpSO : ScriptableObject //, IComponentData
 public enum PowerUpType
 {
 	Health,
-	Speed,
-	Damage
+	MoveSpeed,
+	Damage,
+	AttackSpeed,
 }

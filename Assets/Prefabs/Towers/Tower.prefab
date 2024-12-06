@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Element: 0
-  Cost: 0
+  Cost: 10
   Range: 45
   Aimer: {fileID: 8485630202862799709}
   Ammo: 0
