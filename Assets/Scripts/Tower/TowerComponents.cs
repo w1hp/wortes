@@ -10,9 +10,19 @@ public struct TowerCollision : IComponentData
 {
 	public bool CanBuild;
 }
+
+/// <summary>
+/// Struct representing the count of towers built by a player.
+/// This should exist only once per player.
+/// </summary>
 public struct TowerBuiltCount : IComponentData
 {
 	public int Count;
+}
+public struct TowerBuildTime : IComponentData
+{
+	public float BuildTimeRemaining;
+	public float BuildTime;
 }
 public struct TowerCost : IComponentData
 {

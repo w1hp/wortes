@@ -10,23 +10,22 @@ partial struct TowerBuildSystem : ISystem
 	[BurstCompile]
 	public void OnUpdate(ref SystemState state)
 	{
-		foreach (var (triggerEventBuffer, towerCollision, towerBuildCount,
-			materialChanger, entity) in
-			SystemAPI.Query<DynamicBuffer<StatefulTriggerEvent>, RefRO<TowerCollision>, RefRW<TowerBuiltCount>, RefRW<MaterialChanger>>()
+		foreach (var ( towerBuildCount, towerBuildTime, entity) in
+			SystemAPI.Query<RefRW<TowerBuiltCount>, RefRW<TowerBuildTime>>()
 			.WithEntityAccess())
 		{
-			RefRO<CharacterEquipment> characterEQ = SystemAPI.GetComponentRO<CharacterEquipment>(materialChanger.ValueRO.Character);
-			RefRO<CharacterComponent> character = SystemAPI.GetComponentRO<CharacterComponent>(materialChanger.ValueRO.Character);
+			towerBuildTime.ValueRW.BuildTime -= SystemAPI.Time.DeltaTime;
 
-			materialChanger.ValueRW.BuildTime -= SystemAPI.Time.DeltaTime;
+			RefRO<CharacterComponent> character = SystemAPI.GetComponentRO<CharacterComponent>(entity);
 
-			if (character.ValueRO.IsBuilding && towerCollision.ValueRO.CanBuild)
+			if (character.ValueRO.IsBuilding)
 			{
-				if (materialChanger.ValueRO.BuildTime > 0) return;
+				if (towerBuildTime.ValueRO.BuildTime > 0) return;
 
+				RefRO<CharacterEquipment> characterEQ = SystemAPI.GetComponentRO<CharacterEquipment>(entity);
 				RefRO<TowerElement> towerElement = SystemAPI.GetComponentRO<TowerElement>(characterEQ.ValueRO.SelectedTower);
 				RefRO<TowerCost> towerCost = SystemAPI.GetComponentRO<TowerCost>(characterEQ.ValueRO.SelectedTower);
-				RefRW<CharacterResources> characterResources = SystemAPI.GetComponentRW<CharacterResources>(materialChanger.ValueRO.Character);
+				RefRW<CharacterResources> characterResources = SystemAPI.GetComponentRW<CharacterResources>(entity);
 
 				switch (towerElement.ValueRO.Element)
 				{
@@ -34,7 +33,7 @@ partial struct TowerBuildSystem : ISystem
 						if (towerCost.ValueRO.Cost <= characterResources.ValueRW.Wood)
 						{
 							characterResources.ValueRW.Wood -= towerCost.ValueRO.Cost;
-							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
+							towerBuildTime.ValueRW.BuildTime = towerBuildTime.ValueRO.BuildTimeRemaining;
 							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
 							towerBuildCount.ValueRW.Count++;
 						}
@@ -47,7 +46,7 @@ partial struct TowerBuildSystem : ISystem
 						if (towerCost.ValueRO.Cost <= characterResources.ValueRW.Metal)
 						{
 							characterResources.ValueRW.Metal -= towerCost.ValueRO.Cost;
-							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
+							towerBuildTime.ValueRW.BuildTime = towerBuildTime.ValueRO.BuildTimeRemaining;
 							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
 							towerBuildCount.ValueRW.Count++;
 						}
@@ -60,7 +59,7 @@ partial struct TowerBuildSystem : ISystem
 						if (towerCost.ValueRO.Cost <= characterResources.ValueRW.Water)
 						{
 							characterResources.ValueRW.Water -= towerCost.ValueRO.Cost;
-							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
+							towerBuildTime.ValueRW.BuildTime = towerBuildTime.ValueRO.BuildTimeRemaining;
 							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
 							towerBuildCount.ValueRW.Count++;
 						}
@@ -73,7 +72,7 @@ partial struct TowerBuildSystem : ISystem
 						if (towerCost.ValueRO.Cost <= characterResources.ValueRW.Earth)
 						{
 							characterResources.ValueRW.Earth -= towerCost.ValueRO.Cost;
-							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
+							towerBuildTime.ValueRW.BuildTime = towerBuildTime.ValueRO.BuildTimeRemaining;
 							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
 							towerBuildCount.ValueRW.Count++;
 						}
@@ -86,7 +85,7 @@ partial struct TowerBuildSystem : ISystem
 						if (towerCost.ValueRO.Cost <= characterResources.ValueRW.Fire)
 						{
 							characterResources.ValueRW.Fire -= towerCost.ValueRO.Cost;
-							materialChanger.ValueRW.BuildTime = materialChanger.ValueRO.BuildTimeRemaining;
+							towerBuildTime.ValueRW.BuildTime = towerBuildTime.ValueRO.BuildTimeRemaining;
 							BuildTower(characterEQ.ValueRO.SelectedTower, entity, ref state);
 							towerBuildCount.ValueRW.Count++;
 						}
