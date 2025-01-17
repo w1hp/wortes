@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics.Stateful;
 using Unity.Rendering;
+using Unity.Physics;
 using Unity.Transforms;
 
 
@@ -56,5 +57,11 @@ partial struct TowerCollisionDetectionSystem : ISystem
 				}
 			}
 		}
+	}
+
+	struct CollisionEventImpulseJob : ICollisionEventsJob
+	{
+		public void Execute(CollisionEvent collisionEvent)
+		{ }
 	}
 }

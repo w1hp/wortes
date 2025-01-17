@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 8180119399880941698}
   - component: {fileID: 4647080328795485782}
   - component: {fileID: 1732396927732171442}
+  - component: {fileID: 3969477641827353018}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -489,8 +490,6 @@ MonoBehaviour:
         x: 0
         y: 0.7
         z: 0
-    IsBuildMode: 0
-    IsShooting: 0
     IsBuilding: 0
     CurrentSlot: 0
     LocalLedgeDetectionPoint:
@@ -735,6 +734,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildTimeRemaining: 2
+--- !u!114 &3969477641827353018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692896102597148395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7a20da814a5164b84ad79c654cac11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 2
+  elementType: 1
+  originCharacterType: 1
 --- !u!1 &3057386589211996020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,7 +1084,7 @@ PrefabInstance:
     - target: {fileID: 4211389737583730509, guid: a6f3177c71ec96844b060c184fab9cff,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4931674746312332046, guid: a6f3177c71ec96844b060c184fab9cff,
         type: 3}
@@ -1180,7 +1194,7 @@ PrefabInstance:
     - target: {fileID: 4211389737583730509, guid: dd6a90b88fb4f7e4f9361e03af6faaa5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4931674746312332046, guid: dd6a90b88fb4f7e4f9361e03af6faaa5,
         type: 3}
@@ -1290,7 +1304,7 @@ PrefabInstance:
     - target: {fileID: 4211389737583730509, guid: e78a8c073b800da438e9f40980510872,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4931674746312332046, guid: e78a8c073b800da438e9f40980510872,
         type: 3}
@@ -1400,7 +1414,7 @@ PrefabInstance:
     - target: {fileID: 4211389737583730509, guid: 51d2cbe6ac4d18d49adf50030b648a4e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4931674746312332046, guid: 51d2cbe6ac4d18d49adf50030b648a4e,
         type: 3}
@@ -1506,6 +1520,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GunFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211389737583730509, guid: 2af998053ca533c44a120a0554547ece,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4931674746312332046, guid: 2af998053ca533c44a120a0554547ece,
         type: 3}

@@ -112,9 +112,9 @@ public struct CharacterComponent : IComponentData
     public CapsuleGeometryDefinition ClimbingGeometry;
     public CapsuleGeometryDefinition SwimmingGeometry;
 
-    [Header("SwitchMode")]
-    public bool IsBuildMode;
-    public bool IsShooting;
+    [Header("Building")]
+    //public bool IsBuildMode;
+    //public bool IsShooting;
     public bool IsBuilding;
     public byte CurrentSlot;
 
