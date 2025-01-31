@@ -14,11 +14,12 @@ public partial class EnemySpawnerSystem : SystemBase
     private float nextSpawnTime;
     private Random random;
 
-    private float spawnInterval = 2f; // Initial spawn interval in seconds
-    private float spawnAccelerationRate = 0.95f; // How much the interval decreases per spawn cycle
+    private float spawnInterval = 2f; 
+    private float spawnAccelerationRate = 0.95f; 
     private double elapsedTime;
 
-    private const float safeDistanceFromPlayer = 5f; // Minimum distance from player for spawning
+    private const float minSpawnDistance = 25f; 
+    private const float maxSpawnDistance = 50f;
 
     protected override void OnCreate()
     {
@@ -40,6 +41,13 @@ public partial class EnemySpawnerSystem : SystemBase
 
         enemySpawnerComponent = EntityManager.GetComponentData<EnemySpawnerComponent>(enemySpawnerEntity);
         enemyDataContainer = EntityManager.GetComponentObject<EnemyDataContainer>(enemySpawnerEntity);
+
+        // Check if enemy list is not empty
+        if (enemyDataContainer.enemies == null || enemyDataContainer.enemies.Count == 0)
+        {
+            Debug.LogWarning("No enemies found in EnemyDataContainer!");
+            return;
+        }
 
         elapsedTime = SystemAPI.Time.ElapsedTime;
 
@@ -75,11 +83,19 @@ public partial class EnemySpawnerSystem : SystemBase
 
         float groundLevel = 1.0f; // Adjust enemy spawn height to the correct ground level
         float3 spawnPosition;
+        int attempts = 0;
+        const int maxAttempts = 10;
 
         do
         {
-            spawnPosition = new float3(random.NextFloat(-10, 10), groundLevel, random.NextFloat(-10, 10));
-        } while (math.distance(GetPlayerPosition(), spawnPosition) < safeDistanceFromPlayer);
+            float angle = random.NextFloat(0, 2 * math.PI);
+            float distance = random.NextFloat(minSpawnDistance, maxSpawnDistance);
+            float offsetX = math.cos(angle) * distance;
+            float offsetZ = math.sin(angle) * distance;
+            float3 playerPosition = GetPlayerPosition();
+            spawnPosition = new float3(playerPosition.x + offsetX, groundLevel, playerPosition.z + offsetZ);
+            attempts++;
+        } while (attempts < maxAttempts);
 
         var instance = EntityManager.Instantiate(enemyPrefab);
         EntityManager.SetComponentData(instance, LocalTransform.FromPosition(spawnPosition));
@@ -125,9 +141,12 @@ public partial class EnemySpawnerSystem : SystemBase
     {
         if (EntityManager.HasComponent<LocalTransform>(characterEntity))
         {
-            return EntityManager.GetComponentData<LocalTransform>(characterEntity).Position;
+            float3 playerPos = EntityManager.GetComponentData<LocalTransform>(characterEntity).Position;
+            Debug.Log($"Player position: {playerPos}");
+            return playerPos;
         }
 
+        Debug.LogWarning("Character entity has no LocalTransform component!");
         return float3.zero; // Default position if player not found
     }
 }
