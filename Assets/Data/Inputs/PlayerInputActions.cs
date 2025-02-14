@@ -157,7 +157,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""Choose1"",
                     ""type"": ""Button"",
                     ""id"": ""924e61da-95b1-4715-b686-6ac3b8f07b08"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false

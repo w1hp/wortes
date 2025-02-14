@@ -4,11 +4,17 @@ using UnityEngine.UI;
 
 public class ResourceController : MonoBehaviour
 {
-	[SerializeField] private TextMeshProUGUI _woodText;
-	[SerializeField] private TextMeshProUGUI _fireText;
-	[SerializeField] private TextMeshProUGUI _waterText;
-	[SerializeField] private TextMeshProUGUI _earthText;
-	[SerializeField] private TextMeshProUGUI _metalText;
+	[SerializeField] private TextMeshProUGUI _metalAmount;
+	[SerializeField] private TextMeshProUGUI _fireAmount;
+	[SerializeField] private TextMeshProUGUI _waterAmount;
+	[SerializeField] private TextMeshProUGUI _earthAmount;
+	[SerializeField] private TextMeshProUGUI _woodAmount;
+
+	[SerializeField] private TextMeshProUGUI _metalTowerCost;
+	[SerializeField] private TextMeshProUGUI _fireTowerCost;
+	[SerializeField] private TextMeshProUGUI _waterTowerCost;
+	[SerializeField] private TextMeshProUGUI _earthTowerCost;
+	[SerializeField] private TextMeshProUGUI _woodTowerCost;
 
 	[SerializeField] private Slider _metalReloadSlider;
 	//[SerializeField] private Slider _fireReloadSlider;
@@ -31,12 +37,30 @@ public class ResourceController : MonoBehaviour
 		//_woodReloadSlider.value = 0;
 	}
 
-	public void UpdateResourceText(float wood, float fire, float water, float earth, float metal)
+	public void UpdateResourceText(float metal, float fire, float water, float earth, float wood)
 	{
-		_woodText.text = $"{wood}";
-		_fireText.text = $"{fire}";
-		_waterText.text = $"{water}";
-		_earthText.text = $"{earth}";
-		_metalText.text = $"{metal}";
+		_metalAmount.text = FormatResourceText(metal);
+		_fireAmount.text = FormatResourceText(fire);
+		_waterAmount.text = FormatResourceText(water);
+		_earthAmount.text = FormatResourceText(earth);
+		_woodAmount.text = FormatResourceText(wood);
+	}
+
+	private string FormatResourceText(float value)
+	{
+		if (value >= 1000000)
+			return $"{value / 1000000f:0.#}M";
+		if (value >= 1000)
+			return $"{value / 1000f:0.#}k";
+		return value.ToString();
+	}
+
+	public void UpdateTowerCostText(float metal, float fire, float water, float earth, float wood)
+	{
+		_metalTowerCost.text = $"/ {metal}";
+		_fireTowerCost.text = $"/ {fire}";
+		_waterTowerCost.text = $"/ {water}";
+		_earthTowerCost.text = $"/ {earth}";
+		_woodTowerCost.text = $"/ {wood}";
 	}
 }

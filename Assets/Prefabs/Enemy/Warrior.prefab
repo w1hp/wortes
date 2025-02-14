@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6016322706034247141}
   - component: {fileID: 6546087164542527488}
   - component: {fileID: 2970539640799852620}
+  - component: {fileID: 8608522499231231601}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5591473804521091752}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -256,3 +257,17 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &8608522499231231601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5591473804521091752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae6194441b7eb84085fc9924e8b372a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimatedGameObjectPrefab: {fileID: 3862277631971027947, guid: 7ae956b4f54394e80818898d8f4d30c6,
+    type: 3}

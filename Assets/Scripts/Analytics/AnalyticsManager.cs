@@ -30,18 +30,18 @@ public class AnalyticsManager : MonoBehaviour
 	//	}
 	//}
 
-	public void LogLowFrameRateEvent(float frameRate, int levelID, float timeBelowThreshold)
-	{
-		var lowFrameRateEvent = new GameAnalytics.LowFrameRateEvent
-		{
-			FrameRate = frameRate,
-			LevelID = levelID,
-			TimeBelowThreshold = timeBelowThreshold
-		};
+	//public void LogLowFrameRateEvent(float frameRate, int levelID, float timeBelowThreshold)
+	//{
+	//	var lowFrameRateEvent = new GameAnalytics.LowFrameRateEvent
+	//	{
+	//		FrameRate = frameRate,
+	//		LevelID = levelID,
+	//		TimeBelowThreshold = timeBelowThreshold
+	//	};
 
-		AnalyticsService.Instance.RecordEvent(lowFrameRateEvent);
-		Debug.Log($"Logged LowFrameRateEvent: FrameRate={frameRate}, LevelID={levelID}, TimeBelowThreshold={timeBelowThreshold}");
-	}
+	//	AnalyticsService.Instance.RecordEvent(lowFrameRateEvent);
+	//	Debug.Log($"Logged LowFrameRateEvent: FrameRate={frameRate}, LevelID={levelID}, TimeBelowThreshold={timeBelowThreshold}");
+	//}
 
 	public void LogEnemyDefeatedEvent(int enemyID, int killerID, int levelID)
 	{

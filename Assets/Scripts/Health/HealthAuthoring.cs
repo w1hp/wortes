@@ -29,6 +29,13 @@ class HealthAuthoring : MonoBehaviour
 	}
 }
 
+public enum AttackResult
+{
+	Healed,
+	Damaged,
+	NoEffect
+}
+
 public struct Health : IComponentData
 {
 	public float CurrentHealth;
@@ -39,42 +46,43 @@ public struct Health : IComponentData
 	public float WoodResistance;
 	public float MetalResistance;
 
-	public bool TakeDamage(float amount, ElementType typeDamage)
+	public AttackResult TakeDamage(float amount, ElementType typeDamage)
 	{
-		var isHealing = false;
-		var tmpHealth = CurrentHealth;
+		float tmpHealth = CurrentHealth;
+		float resistance = 0f;
+
 		switch (typeDamage)
 		{
 			case ElementType.Fire:
-				tmpHealth -= amount * (100 - FireResistance) / 100;
-				isHealing = tmpHealth >= CurrentHealth ? true : false;
-				CurrentHealth = tmpHealth;
-				return isHealing;
+				resistance = FireResistance;
+				break;
 			case ElementType.Water:
-				tmpHealth -= amount * (100 - WaterResistance) / 100;
-				isHealing = tmpHealth >= CurrentHealth ? true : false;
-				CurrentHealth = tmpHealth;
-				return isHealing;
+				resistance = WaterResistance;
+				break;
 			case ElementType.Earth:
-				tmpHealth -= amount * (100 - EarthResistance) / 100;
-				isHealing = tmpHealth >= CurrentHealth ? true : false;
-				CurrentHealth = tmpHealth;
-				return isHealing;
+				resistance = EarthResistance;
+				break;
 			case ElementType.Wood:
-				tmpHealth -= amount * (100 - WoodResistance) / 100;
-				isHealing = tmpHealth >= CurrentHealth ? true : false;
-				CurrentHealth = tmpHealth;
-				return isHealing;
+				resistance = WoodResistance;
+				break;
 			case ElementType.Metal:
-				tmpHealth -= amount * (100 - MetalResistance) / 100;
-				isHealing = tmpHealth >= CurrentHealth ? true : false;
-				CurrentHealth = tmpHealth;
-				return isHealing;
+				resistance = MetalResistance;
+				break;
 			default:
 #if UNITY_EDITOR
-				Debug.Log("Unidentified type dame");
+				Debug.Log("Unidentified type damage");
 #endif
-				return isHealing;
+				return AttackResult.NoEffect;
 		}
+
+		if (resistance == 100f)
+		{
+			return AttackResult.NoEffect;
+		}
+
+		tmpHealth -= amount * (100 - resistance) / 100;
+		var isHealing = tmpHealth >= CurrentHealth;
+		CurrentHealth = tmpHealth;
+		return isHealing ? AttackResult.Healed : AttackResult.Damaged;
 	}
 }

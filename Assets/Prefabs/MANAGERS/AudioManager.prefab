@@ -174,10 +174,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e553c5e8493ac7e4eb3800b8008f6716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  main: {fileID: 0}
-  music: {fileID: 0}
-  sfx: {fileID: 0}
-  audioMixer: {fileID: 24100000, guid: dc2626e0baa20284cac8cd74725a24ad, type: 2}
+  MaxDistance: 50
+  MaxAudioSources: 10
+  ClosestEmitterPerClipCount: 3
+  Main: {fileID: 0}
+  Music: {fileID: 0}
+  Sfx: {fileID: 0}
+  AudioMixer: {fileID: 0}
+  VolumeCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  PitchCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  LoopClip: {fileID: 0}
+  MaxValClip: {fileID: 0}
+  AudioSource: {fileID: 0}
+  ShowDebugLines: 0
+  AudioClips:
+  - Type: 1
+    Clip: {fileID: 8300000, guid: c55f6561ae4c1174cbf4d3be9bee319e, type: 3}
 --- !u!1 &8183388653938353476
 GameObject:
   m_ObjectHideFlags: 0

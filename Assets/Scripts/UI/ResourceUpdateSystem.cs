@@ -1,5 +1,6 @@
 using Unity.Burst;
 using Unity.Entities;
+using UnityEngine.TextCore.Text;
 
 partial struct ResourceUpdateSystem : ISystem
 {
@@ -13,13 +14,25 @@ partial struct ResourceUpdateSystem : ISystem
 	{
 		if (ResourceController.Singleton == null)
 			return;
-		var recourseController = ResourceController.Singleton;
+		var resourseController = ResourceController.Singleton;
 
-		CharacterResources characterResources;
-		if (!SystemAPI.TryGetSingleton<CharacterResources>(out characterResources))
+		Entity character;
+		if (!SystemAPI.TryGetSingletonEntity<CharacterResources>(out character))
 			return;
 
-		recourseController.UpdateResourceText(characterResources.Wood, characterResources.Fire, characterResources.Water, characterResources.Earth, characterResources.Metal);
+		CharacterResources characterResources = SystemAPI.GetComponentRO<CharacterResources>(character).ValueRO;
+		CharacterEquipment characterEquipment = SystemAPI.GetComponentRO<CharacterEquipment>(character).ValueRO;
+		RefRO<TowerCost> metalTowerCost = SystemAPI.GetComponentRO<TowerCost>(characterEquipment.MetalTower);
+		RefRO<TowerCost> fireTowerCost = SystemAPI.GetComponentRO<TowerCost>(characterEquipment.FireTower);
+		RefRO<TowerCost> waterTowerCost = SystemAPI.GetComponentRO<TowerCost>(characterEquipment.WaterTower);
+		RefRO<TowerCost> earthTowerCost = SystemAPI.GetComponentRO<TowerCost>(characterEquipment.EarthTower);
+		RefRO<TowerCost> woodTowerCost = SystemAPI.GetComponentRO<TowerCost>(characterEquipment.WoodTower);
+		
+		resourseController.UpdateResourceText(characterResources.Wood, characterResources.Fire,
+			characterResources.Water, characterResources.Earth, characterResources.Metal);
 
+		resourseController.UpdateTowerCostText(metalTowerCost.ValueRO.Cost,
+			fireTowerCost.ValueRO.Cost, waterTowerCost.ValueRO.Cost,
+			earthTowerCost.ValueRO.Cost, woodTowerCost.ValueRO.Cost);
 	}
 }

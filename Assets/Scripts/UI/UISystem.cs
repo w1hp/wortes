@@ -40,9 +40,9 @@ partial struct UISystem : ISystem
 				scene.StreamingState == Unity.Scenes.SceneSystem.SceneStreamingState.Loading)
 			{
 
-#if UNITY_EDITOR
-				UnityEngine.Debug.Log("(Un)loading");
-#endif
+//#if UNITY_EDITOR
+//				UnityEngine.Debug.Log("(Un)loading");
+//#endif
 				isAnySceneUnloading = true;
 				break;
 			}

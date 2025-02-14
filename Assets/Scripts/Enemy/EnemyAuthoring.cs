@@ -31,4 +31,5 @@ public struct EnemyComponent : IComponentData
 	public float DetectionRange;
 	public float Damage;
     public float moveSpeed;
+	public float MoveInput;
 }

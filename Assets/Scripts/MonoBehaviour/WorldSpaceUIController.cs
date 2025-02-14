@@ -29,16 +29,22 @@ public class WorldSpaceUIController : MonoBehaviour
 		//dealDamageSystem.OnGrantExperience -= DisplayExperienceIcon;
 	}
 
-	private void DisplayDamageIcon(float damageAmount, float3 startPosition, bool isHealing)
+	private void DisplayDamageIcon(float damageAmount, float3 startPosition, AttackResult attackResult)
 	{
+		if (attackResult == AttackResult.NoEffect) return;
 		var directionToCamera = (Vector3)startPosition - _mainCameraTransform.position;
 		var rotationToCamera = Quaternion.LookRotation(directionToCamera, Vector3.up);
 		var newIcon = Instantiate(_damageIconPrefab, startPosition, rotationToCamera, transform);
 		var newIconText = newIcon.GetComponent<TextMeshProUGUI>();
-		if (isHealing)
-			newIconText.text = $"<color=green>+{damageAmount.ToString()}</color>";
-		else
-			newIconText.text = $"<color=red>-{damageAmount.ToString()}</color>";
+		switch (attackResult)
+		{
+			case AttackResult.Healed:
+				newIconText.text = $"<color=green>+{damageAmount.ToString()}</color>";
+				break;
+			case AttackResult.Damaged:
+				newIconText.text = $"<color=red>-{damageAmount.ToString()}</color>";
+				break;
+		}
 	}
 
 	//private void DisplayExperienceIcon(float experienceAmount, float3 startPosition)

@@ -252,6 +252,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 415620131275158081, guid: 12a814e136b12a94180abfb59f62e775,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2249733040691761383, guid: 12a814e136b12a94180abfb59f62e775,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -267,6 +272,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2584557787110736689, guid: 12a814e136b12a94180abfb59f62e775,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000015258789
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584557787110736689, guid: 12a814e136b12a94180abfb59f62e775,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -6.8999996
+      objectReference: {fileID: 0}
     - target: {fileID: 4023289332341583191, guid: 12a814e136b12a94180abfb59f62e775,
         type: 3}
       propertyPath: m_IsActive
@@ -277,6 +292,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScreenSpaceUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4803786612873233570, guid: 12a814e136b12a94180abfb59f62e775,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4951594585273955542, guid: 12a814e136b12a94180abfb59f62e775,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -285,6 +305,11 @@ PrefabInstance:
     - target: {fileID: 4951594585273955542, guid: 12a814e136b12a94180abfb59f62e775,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5718977684483336714, guid: 12a814e136b12a94180abfb59f62e775,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8226925894334350171, guid: 12a814e136b12a94180abfb59f62e775,

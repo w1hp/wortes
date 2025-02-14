@@ -83,6 +83,7 @@ public partial struct ShootingSystem : ISystem
 
 			gun.LastShotTime = gun.FireInterval;
 
+
 			Entity projectileEntity = ECB.Instantiate(gun.Bullet);
 
 			LocalTransform localTransform = LocalTransform.FromPositionRotationScale(
@@ -104,6 +105,9 @@ public partial struct ShootingSystem : ISystem
 				Angular = float3.zero
 			};
 
+			// VFX 
+			ECB.SetComponentEnabled<VfxComponent>(gun.MuzzleVfx, true);
+
 			ECB.SetComponent(projectileEntity, velocity);
 
 
@@ -116,6 +120,7 @@ public partial struct ShootingSystem : ISystem
 					ECB.SetComponentEnabled<IsExistTag>(gun.Owner, false);
 				}
 			}
+
 		}
 	}
 

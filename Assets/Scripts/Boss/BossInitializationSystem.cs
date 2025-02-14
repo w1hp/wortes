@@ -35,6 +35,13 @@ partial struct BossInitializationSystem : ISystem
 			var enemyQuery = SystemAPI.QueryBuilder()
 				.WithAll<EnemyTag>()
 				.WithNone<Prefab>().Build();
+			
+			var enemyCount = enemyQuery.CalculateEntityCount();
+			if (enemyCount > 0)
+			{
+				Debug.LogWarning($"Destroy {enemyCount}");
+			}
+
 			var enemyEntities = enemyQuery.ToEntityArray(Allocator.Temp);
 			foreach (var enemyEntity in enemyEntities)
 			{

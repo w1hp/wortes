@@ -1,7 +1,7 @@
 using Unity.Burst;
 using Unity.Entities;
 
-partial struct HealthSystems : ISystem
+partial struct HealthUpdateSystem : ISystem
 {
     [BurstCompile]
     public void OnCreate(ref SystemState state)

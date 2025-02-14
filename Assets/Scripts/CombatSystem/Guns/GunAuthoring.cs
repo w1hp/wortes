@@ -6,6 +6,7 @@ using UnityEngine;
 public class GunAuthoring : MonoBehaviour
 {
 	public GameObject Muzzle;
+	public GameObject MuzzleVfx;
 	public GameObject Bullet;
 	public OriginCharacterType OriginCharacterType;
 	public GameObject Owner;
@@ -21,6 +22,7 @@ public class GunAuthoring : MonoBehaviour
 			AddComponent(entity, new Gun
 			{
 				Muzzle = GetEntity(authoring.Muzzle, TransformUsageFlags.Dynamic),
+				MuzzleVfx = GetEntity(authoring.MuzzleVfx, TransformUsageFlags.Dynamic),
 				Bullet = GetEntity(authoring.Bullet, TransformUsageFlags.Dynamic),
 				OriginCharacterType = authoring.OriginCharacterType,
 				Owner = GetEntity(authoring.Owner, TransformUsageFlags.Dynamic),
@@ -36,6 +38,7 @@ public class GunAuthoring : MonoBehaviour
 public struct Gun : IComponentData, IEnableableComponent
 {
 	public Entity Muzzle;
+	public Entity MuzzleVfx;
 	public Entity Bullet;
 	public OriginCharacterType OriginCharacterType;
 	public Entity Owner;
