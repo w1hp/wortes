@@ -203,12 +203,6 @@ MonoBehaviour:
   detectionRange: 10
   damage: 10
   moveSpeed: 2
---- !u!1 &695823602 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1588494969846256124, guid: c280173c4b1bb2d489cf851ca7c6783b,
-    type: 3}
-  m_PrefabInstance: {fileID: 830404946}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &711736127
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +445,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MuzzleVfx
       value: 
-      objectReference: {fileID: 695823602}
+      objectReference: {fileID: 1273050779}
     - target: {fileID: 3741398301172348886, guid: c280173c4b1bb2d489cf851ca7c6783b,
         type: 3}
       propertyPath: FireInterval
@@ -563,6 +557,12 @@ MonoBehaviour:
   detectionRange: 10
   damage: 10
   moveSpeed: 2
+--- !u!1 &1273050779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2677492650286579728, guid: c280173c4b1bb2d489cf851ca7c6783b,
+    type: 3}
+  m_PrefabInstance: {fileID: 830404946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1273072030
 GameObject:
   m_ObjectHideFlags: 0

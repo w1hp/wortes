@@ -27,7 +27,7 @@ public partial struct EnemyAISystem : ISystem
         {
             // Pobierz pozycję postaci, ustawiając jej Y na poziom ziemi
             float3 characterPosition = entityManager.GetComponentData<LocalTransform>(characterEntity).Position;
-            characterPosition.y = groundLevel;
+            characterPosition.y = groundLevel;//
 
             // Pobierz pozycję wroga, ustawiając jego Y na poziom ziemi
             float3 enemyPosition = transformComponent.ValueRO.Position;
@@ -40,10 +40,12 @@ public partial struct EnemyAISystem : ISystem
                 float angle = math.atan2(direction.z, direction.x);
 
                 // Ustaw obrót wroga w płaszczyźnie XZ
-                transformComponent.ValueRW.Rotation = quaternion.Euler(new float3(0, angle, 0));
+                //transformComponent.ValueRW.Rotation = quaternion.Euler(new float3(0, angle, 0));
+				var desiredRotation = TransformHelpers.LookAtRotation(enemyPosition, characterPosition, math.up());
+				transformComponent.ValueRW.Rotation = desiredRotation;
 
-                // Zaktualizuj pozycję wroga, poruszając się tylko w płaszczyźnie XZ
-                float3 normalizedDirection = math.normalize(direction);
+				// Zaktualizuj pozycję wroga, poruszając się tylko w płaszczyźnie XZ
+				float3 normalizedDirection = math.normalize(direction);
                 float3 newPosition = enemyPosition + normalizedDirection * enemyComponent.moveSpeed * SystemAPI.Time.DeltaTime;
 
                 newPosition.y = groundLevel; // Upewnij się, że nowa pozycja ma odpowiedni poziom Y
