@@ -8,25 +8,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/Menu.unity
     guid: f710b621bd0ed8e47b100d0a078899cc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SubScenes/MenuSubScene.unity
     guid: 85a04763d10e3774f9dc086e89c32b73
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SubScenes/NewCharacterTestScene.unity
     guid: 9df97c30ab12eb847aa596287d8a15d6
   - enabled: 1
     path: Assets/Scenes/LVL/Earth.unity
     guid: 883603d876166a642897442712e183ee
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LVL/Fire.unity
     guid: 9d25d261d12af5e41b59b448afb7f5c3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LVL/Metal.unity
     guid: 84dbbbadda526cd4f99a0cca94a19961
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LVL/Water.unity
     guid: f8a4cc5cb62c14146aeabd6f51f4d06d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LVL/Wood.unity
     guid: 4629d33b5ffcc764d9c365fd848a61bb
   m_configObjects:
