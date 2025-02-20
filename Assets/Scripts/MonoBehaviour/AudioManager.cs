@@ -97,9 +97,9 @@ public class AudioManager : MonoBehaviour
             AudioMixer.SetFloat(name, mappedVolume);
         }
 
-        float result;
-        bool exists = AudioMixer.GetFloat(name, out result);
-        Debug.Log($"Ustawiono {name} na {volume} -> {(exists ? result : -80)} dB");
+float result;
+bool exists = AudioMixer.GetFloat(name, out result);
+Debug.Log($"Ustawiono {name} na {volume} -> {(exists ? result : -80)} dB");
 
     }
 
