@@ -79,13 +79,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Muzzle: {fileID: 454672816981532487}
+  MuzzleVfx: {fileID: 0}
   Bullet: {fileID: 911774879565320262, guid: 4a127abfb85fe8d48ae706198b475a3c, type: 3}
-  OwnerType: 0
+  OriginCharacterType: 0
   Owner: {fileID: 0}
   ElementType: 2
   Damage: 1
   Strength: 20
-  FireInterval: 0.5
+  FireInterval: 1
 --- !u!33 &2343897118600550418
 MeshFilter:
   m_ObjectHideFlags: 0
