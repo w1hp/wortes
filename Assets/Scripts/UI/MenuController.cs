@@ -37,25 +37,30 @@ public class MenuController : MonoBehaviour
 
         if (resolutionDropdown != null)
         {
-            resolutions = Screen.resolutions;
-            resolutionDropdown.ClearOptions();
-            List<string> options = new List<string>();
-
-            int currentResolutionIndex = 0;
-            for (int i = 0; i < resolutions.Length; i++)
+            // Lista rozdzielczości uporządkowana od najwyższej do najniższej
+            List<string> availableResolutions = new List<string>()
             {
-                string option = resolutions[i].width + " x " + resolutions[i].height;
-                options.Add(option);
+                "2048 x 1152",  // 2K
+                "1920 x 1080",  // Full HD (1080p)
+                "1600 x 900",   // HD+
+                "1366 x 768",   // HD
+                "1280 x 720",   // HD
+                "1280 x 1024",  // SXGA
+                "1280 x 960",   // XGA
+                "1280 x 800",   // WXGA
+                "1280 x 768",   // WXGA
+                "1024 x 768",   // XGA
+                "800 x 600"     // SVGA
+            };
 
-                if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
-                {
-                    currentResolutionIndex = i;
-                }
-            }
+            // Dodajemy rozdzielczości do dropdowna
+            resolutionDropdown.ClearOptions();
+            resolutionDropdown.AddOptions(availableResolutions);
 
-            resolutionDropdown.AddOptions(options);
-            resolutionDropdown.value = currentResolutionIndex;
+            // Ustaw domyślną rozdzielczość (np. 1920x1080)
+            resolutionDropdown.value = availableResolutions.IndexOf("1920 x 1080");
             resolutionDropdown.RefreshShownValue();
+
             resolutionDropdown.onValueChanged.AddListener(SetResolution);
         }
 
@@ -86,30 +91,34 @@ public class MenuController : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
-        if (resolutions == null || resolutions.Length == 0)
+        // Lista rozdzielczości (tym razem z konkretnymi wartościami)
+        var resolutionList = new List<Resolution>
         {
-            resolutions = Screen.resolutions;
-        }
+            new Resolution { width = 2048, height = 1152 },
+            new Resolution { width = 1920, height = 1080 },
+            new Resolution { width = 1600, height = 900 },
+            new Resolution { width = 1366, height = 768 },
+            new Resolution { width = 1280, height = 720 },
+            new Resolution { width = 1280, height = 1024 },
+            new Resolution { width = 1280, height = 960 },
+            new Resolution { width = 1280, height = 800 },
+            new Resolution { width = 1280, height = 768 },
+            new Resolution { width = 1024, height = 768 },
+            new Resolution { width = 800, height = 600 }
+        };
 
-        if (resolutionIndex < 0 || resolutionIndex >= resolutions.Length)
+        if (resolutionIndex >= 0 && resolutionIndex < resolutionList.Count)
         {
-            return;
+            Resolution selectedResolution = resolutionList[resolutionIndex];
+            Screen.SetResolution(selectedResolution.width, selectedResolution.height, Screen.fullScreen);
         }
-
-        Resolution resolution = resolutions[resolutionIndex];
-
-#if !UNITY_EDITOR
-            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-#endif
     }
 
     public void SetFullScreen(bool isFullscreen)
     {
-#if !UNITY_EDITOR
-            if (Screen.fullScreen != isFullscreen)
-            {
-                Screen.fullScreen = isFullscreen;
-            }
-#endif
+        if (Screen.fullScreen != isFullscreen)
+        {
+            Screen.fullScreen = isFullscreen;
+        }
     }
 }
