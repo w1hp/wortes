@@ -24,8 +24,8 @@ public class PauseMenuController : MonoBehaviour
 		_isPaused = !_isPaused;
 		conteiner.SetActive(_isPaused);
 		Time.timeScale = _isPaused ? 0 : 1;
-		Cursor.visible = _isPaused ? true : false;
-		Cursor.lockState = _isPaused ? CursorLockMode.Confined : CursorLockMode.Locked;
+		//Cursor.visible = _isPaused ? true : false;
+		//Cursor.lockState = _isPaused ? CursorLockMode.Confined : CursorLockMode.Locked;
 #if UNITY_EDITOR
 		Debug.Log($"Set pause: {_isPaused}");
 #endif
@@ -35,8 +35,8 @@ public class PauseMenuController : MonoBehaviour
 	{
 		_isPaused = setPause;
 		Time.timeScale = setPause ? 0 : 1;
-		Cursor.visible = setPause ? true : false;
-		Cursor.lockState = setPause ? CursorLockMode.Confined : CursorLockMode.Locked;
+		//Cursor.visible = setPause ? true : false;
+		//Cursor.lockState = setPause ? CursorLockMode.Confined : CursorLockMode.Locked;
 #if UNITY_EDITOR
 		Debug.Log($"Set pause: {setPause}");
 #endif
@@ -45,8 +45,8 @@ public class PauseMenuController : MonoBehaviour
 	{
 		_isPaused = setPause;
 		Time.timeScale = setPause ? 0 : 1;
-		Cursor.visible = showCursor ? true : false;
-		Cursor.lockState = showCursor ? CursorLockMode.Confined : CursorLockMode.Locked;
+		//Cursor.visible = showCursor ? true : false;
+		//Cursor.lockState = showCursor ? CursorLockMode.Confined : CursorLockMode.Locked;
 #if UNITY_EDITOR
 		Debug.Log($"Set pause: {setPause}, show cursor: {showCursor}");
 #endif

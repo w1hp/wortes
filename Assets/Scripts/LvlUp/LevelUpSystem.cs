@@ -30,8 +30,8 @@ partial class LevelUpSystem : SystemBase
 
 				PauseMenuController.Singleton.SetPause(true);
 
-				Cursor.visible = true;
-				Cursor.lockState = CursorLockMode.Confined;
+				//Cursor.visible = true;
+				//Cursor.lockState = CursorLockMode.Confined;
 
 				LevelUp?.Invoke((int)characterResources.ValueRW.Level);
 				characterResources.ValueRW.Level++;

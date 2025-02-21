@@ -113,8 +113,8 @@ public struct CharacterComponent : IComponentData
     public CapsuleGeometryDefinition SwimmingGeometry;
 
     [Header("Building")]
-    //public bool IsBuildMode;
-    //public bool IsShooting;
+    public bool IsBuildMode;
+    public bool IsShooting;
     public bool IsBuilding;
     public byte CurrentSlot;
 
@@ -156,8 +156,9 @@ public struct CharacterComponent : IComponentData
 public struct CharacterControl : IComponentData
 {
     public float3 MoveVector;
-    
-    public bool JumpHeld;
+    public float2 LookVector;
+
+	public bool JumpHeld;
     public bool RollHeld;
     public bool SprintHeld;
     

@@ -37,6 +37,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""LookPosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""f8e0eb10-6476-4a66-a02c-992e304abd43"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""LookDelta"",
                     ""type"": ""Value"",
                     ""id"": ""8313772a-4db2-4934-89d6-3410caf6d19c"",
@@ -190,6 +199,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Choose5"",
+                    ""type"": ""Button"",
+                    ""id"": ""9906b073-875a-4247-a54f-6300641cb2dd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""1bc031cf-13bd-4d52-be6e-65e0a60cfbf1"",
@@ -323,30 +341,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bcb0309b-d111-461f-b79b-06da5258c32f"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ShootOrBuild"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""823d275e-56e1-4067-9cd3-121e848aed99"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchMode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fc108363-082f-40e2-aed2-7ee12cdae890"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -367,30 +363,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""164d9dba-7183-46c1-b759-a699d5f5d93e"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Choose1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""282cd873-354c-4a67-b853-e774be7f3009"",
                     ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Choose2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5eeb2dc6-b5c1-49a0-9ce8-301f189e84f0"",
-                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -411,30 +385,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ed4c354a-d182-46c4-bb4e-676c5d9a0df3"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Choose3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8ffb8edb-dbfe-4274-bf28-7e28e0e9d50d"",
                     ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Choose4"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""40f4d75f-0c51-43fd-9fd2-6fa3d7420577"",
-                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -461,6 +413,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e19203e9-36e8-4c0b-936b-242d9dcfadf6"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb3b1143-93b2-46ca-afcc-72acc9390e8d"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -988,6 +962,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // GameplayMap
         m_GameplayMap = asset.FindActionMap("GameplayMap", throwIfNotFound: true);
         m_GameplayMap_Move = m_GameplayMap.FindAction("Move", throwIfNotFound: true);
+        m_GameplayMap_LookPosition = m_GameplayMap.FindAction("LookPosition", throwIfNotFound: true);
         m_GameplayMap_LookDelta = m_GameplayMap.FindAction("LookDelta", throwIfNotFound: true);
         m_GameplayMap_LookConst = m_GameplayMap.FindAction("LookConst", throwIfNotFound: true);
         m_GameplayMap_Jump = m_GameplayMap.FindAction("Jump", throwIfNotFound: true);
@@ -1005,6 +980,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_GameplayMap_Choose2 = m_GameplayMap.FindAction("Choose2", throwIfNotFound: true);
         m_GameplayMap_Choose3 = m_GameplayMap.FindAction("Choose3", throwIfNotFound: true);
         m_GameplayMap_Choose4 = m_GameplayMap.FindAction("Choose4", throwIfNotFound: true);
+        m_GameplayMap_Choose5 = m_GameplayMap.FindAction("Choose5", throwIfNotFound: true);
         m_GameplayMap_Pause = m_GameplayMap.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1080,6 +1056,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_GameplayMap;
     private List<IGameplayMapActions> m_GameplayMapActionsCallbackInterfaces = new List<IGameplayMapActions>();
     private readonly InputAction m_GameplayMap_Move;
+    private readonly InputAction m_GameplayMap_LookPosition;
     private readonly InputAction m_GameplayMap_LookDelta;
     private readonly InputAction m_GameplayMap_LookConst;
     private readonly InputAction m_GameplayMap_Jump;
@@ -1097,12 +1074,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GameplayMap_Choose2;
     private readonly InputAction m_GameplayMap_Choose3;
     private readonly InputAction m_GameplayMap_Choose4;
+    private readonly InputAction m_GameplayMap_Choose5;
     private readonly InputAction m_GameplayMap_Pause;
     public struct GameplayMapActions
     {
         private @PlayerInputActions m_Wrapper;
         public GameplayMapActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_GameplayMap_Move;
+        public InputAction @LookPosition => m_Wrapper.m_GameplayMap_LookPosition;
         public InputAction @LookDelta => m_Wrapper.m_GameplayMap_LookDelta;
         public InputAction @LookConst => m_Wrapper.m_GameplayMap_LookConst;
         public InputAction @Jump => m_Wrapper.m_GameplayMap_Jump;
@@ -1120,6 +1099,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Choose2 => m_Wrapper.m_GameplayMap_Choose2;
         public InputAction @Choose3 => m_Wrapper.m_GameplayMap_Choose3;
         public InputAction @Choose4 => m_Wrapper.m_GameplayMap_Choose4;
+        public InputAction @Choose5 => m_Wrapper.m_GameplayMap_Choose5;
         public InputAction @Pause => m_Wrapper.m_GameplayMap_Pause;
         public InputActionMap Get() { return m_Wrapper.m_GameplayMap; }
         public void Enable() { Get().Enable(); }
@@ -1133,6 +1113,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @LookPosition.started += instance.OnLookPosition;
+            @LookPosition.performed += instance.OnLookPosition;
+            @LookPosition.canceled += instance.OnLookPosition;
             @LookDelta.started += instance.OnLookDelta;
             @LookDelta.performed += instance.OnLookDelta;
             @LookDelta.canceled += instance.OnLookDelta;
@@ -1184,6 +1167,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Choose4.started += instance.OnChoose4;
             @Choose4.performed += instance.OnChoose4;
             @Choose4.canceled += instance.OnChoose4;
+            @Choose5.started += instance.OnChoose5;
+            @Choose5.performed += instance.OnChoose5;
+            @Choose5.canceled += instance.OnChoose5;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -1194,6 +1180,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @LookPosition.started -= instance.OnLookPosition;
+            @LookPosition.performed -= instance.OnLookPosition;
+            @LookPosition.canceled -= instance.OnLookPosition;
             @LookDelta.started -= instance.OnLookDelta;
             @LookDelta.performed -= instance.OnLookDelta;
             @LookDelta.canceled -= instance.OnLookDelta;
@@ -1245,6 +1234,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Choose4.started -= instance.OnChoose4;
             @Choose4.performed -= instance.OnChoose4;
             @Choose4.canceled -= instance.OnChoose4;
+            @Choose5.started -= instance.OnChoose5;
+            @Choose5.performed -= instance.OnChoose5;
+            @Choose5.canceled -= instance.OnChoose5;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -1386,6 +1378,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IGameplayMapActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnLookPosition(InputAction.CallbackContext context);
         void OnLookDelta(InputAction.CallbackContext context);
         void OnLookConst(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
@@ -1403,6 +1396,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnChoose2(InputAction.CallbackContext context);
         void OnChoose3(InputAction.CallbackContext context);
         void OnChoose4(InputAction.CallbackContext context);
+        void OnChoose5(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions

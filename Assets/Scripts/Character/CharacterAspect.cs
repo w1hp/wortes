@@ -100,27 +100,27 @@ public readonly partial struct CharacterAspect : IAspect, IKinematicCharacterPro
 			character.IsBuilding = characterControl.ShootOrBuildHeld ? true : false;
 
 
-			//if (characterControl.SwitchModePressed)
-			//{
-			//	character.IsBuildMode = !character.IsBuildMode;
-			//}
-			//if (!character.IsBuildMode && characterControl.ShootOrBuildHeld)
-			//{
-			//	character.IsShooting = true;
-			//}
-			//else
-			//{
-			//	character.IsShooting = false;
-			//}
-			//if (character.IsBuildMode && characterControl.ShootOrBuildHeld)
-			//{
+			if (characterControl.SwitchModePressed)
+			{
+				character.IsBuildMode = !character.IsBuildMode;
+			}
+			if (!character.IsBuildMode && characterControl.ShootOrBuildHeld)
+			{
+				character.IsShooting = true;
+			}
+			else
+			{
+				character.IsShooting = false;
+			}
+			if (character.IsBuildMode && characterControl.ShootOrBuildHeld)
+			{
 
-			//	character.IsBuilding = true;
-			//}
-			//else
-			//{
-			//	character.IsBuilding = false;
-			//}
+				character.IsBuilding = true;
+			}
+			else
+			{
+				character.IsBuilding = false;
+			}
 
 			character.CurrentSlot = characterControl.ChooseSlot;
 		}

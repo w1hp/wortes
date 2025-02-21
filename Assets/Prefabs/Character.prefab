@@ -533,7 +533,7 @@ MonoBehaviour:
   SwimmingDetectionPoint: {fileID: 7714356233572860452}
   LedgeDetectionPoint: {fileID: 1424979793409293892}
   HighlighterPrefab: {fileID: 0}
-  GunPrefab: {fileID: 0}
+  GunPrefab: {fileID: 5615167694861106069}
   DebugStandingGeometry: 0
   DebugCrouchingGeometry: 0
   DebugRollingGeometry: 1
@@ -1754,7 +1754,7 @@ PrefabInstance:
     - target: {fileID: 4211389737583730509, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
@@ -1779,7 +1779,12 @@ PrefabInstance:
     - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: FireInterval
-      value: 0.01
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931674746312332046, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+        type: 3}
+      propertyPath: OriginCharacterType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7894961992401528728, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
@@ -1794,7 +1799,7 @@ PrefabInstance:
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
         type: 3}
@@ -1844,6 +1849,12 @@ PrefabInstance:
 --- !u!4 &850524574870130773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8958049418209752205, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
+    type: 3}
+  m_PrefabInstance: {fileID: 8618985767317185752}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5615167694861106069 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4211389737583730509, guid: 8788b82eaa3fdbf4b81e4520e0afbb41,
     type: 3}
   m_PrefabInstance: {fileID: 8618985767317185752}
   m_PrefabAsset: {fileID: 0}

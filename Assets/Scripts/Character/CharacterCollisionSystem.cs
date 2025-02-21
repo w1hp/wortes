@@ -82,7 +82,7 @@ partial struct CharacterCollisionSystem : ISystem
 							break;
 					}
 				}
-				else if (projectileLookup.TryGetComponent(otherEntity, out Projectile projectile))
+				else if (projectileLookup.TryGetComponent(otherEntity, out Projectile projectile) && projectile.OriginCharacterType == OriginCharacterType.Enemy)
 				{
 					switch (collisionEvent.State)
 					{

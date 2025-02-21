@@ -142,11 +142,11 @@ public partial class EnemySpawnerSystem : SystemBase
         if (EntityManager.HasComponent<LocalTransform>(characterEntity))
         {
             float3 playerPos = EntityManager.GetComponentData<LocalTransform>(characterEntity).Position;
-            Debug.Log($"Player position: {playerPos}");
+            //Debug.Log($"Player position: {playerPos}");
             return playerPos;
         }
 
-        Debug.LogWarning("Character entity has no LocalTransform component!");
+        //Debug.LogWarning("Character entity has no LocalTransform component!");
         return float3.zero; // Default position if player not found
     }
 }

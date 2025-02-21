@@ -62,7 +62,7 @@ public partial struct ShootingSystem : ISystem
 					return;
 				case OriginCharacterType.Player:
 					var character = CharacterComponentLookup.GetRefRO(gun.Owner);
-					//if (!character.ValueRO.IsShooting) return;
+					if (!character.ValueRO.IsShooting) return;
 
 					var stats = CharacterStatsLookup.GetRefRO(gun.Owner);
 					damage += stats.ValueRO.AttackDamage;
