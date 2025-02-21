@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 4679155298858857445}
   - component: {fileID: 2345203536745030317}
   - component: {fileID: 5217471575957683570}
+  - component: {fileID: -8341530493805303105}
   m_Layer: 10
   m_Name: MachineGunTower_0
   m_TagString: Untagged
@@ -215,6 +216,27 @@ MonoBehaviour:
     Tag05: 0
     Tag06: 0
     Tag07: 0
+--- !u!65 &-8341530493805303105
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401014823036408}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 0.5, z: 2}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1 &1599602213529788
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,32 +397,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5478529617807881948, guid: e591aaee450e484449cdd91fd670cc4a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3497158032898284648}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e591aaee450e484449cdd91fd670cc4a, type: 3}
---- !u!1 &1634511114570772 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5478529617807881948, guid: e591aaee450e484449cdd91fd670cc4a,
-    type: 3}
-  m_PrefabInstance: {fileID: 5477058008564939464}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3497158032898284648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634511114570772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 935a17e9841aee6499a6997381c99032, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VfxType: 0
-  Time: 1
 --- !u!4 &4877050138446582 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5481787413295886398, guid: e591aaee450e484449cdd91fd670cc4a,

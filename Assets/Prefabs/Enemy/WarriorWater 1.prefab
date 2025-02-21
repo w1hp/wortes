@@ -89,6 +89,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7428874357738166646, guid: 94a72468bb08f424cb96072ca0d99eb8,
         type: 3}
+    - target: {fileID: 8608522499231231601, guid: 453b9b44def8d3543b6a61f9c731864a,
+        type: 3}
+      propertyPath: AnimatedGameObjectPrefab
+      value: 
+      objectReference: {fileID: 3961972914560592201, guid: c5dc20c4ab22f884aae38dc1c736ad90,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 6546087164542527488, guid: 453b9b44def8d3543b6a61f9c731864a, type: 3}
     m_RemovedGameObjects: []

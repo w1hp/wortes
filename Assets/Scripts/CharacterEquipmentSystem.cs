@@ -18,81 +18,49 @@ partial struct CharacterEquipmentSystem : ISystem
 			.WithNone<Prefab>())
 		{
 			var character = SystemAPI.GetComponentRO<CharacterComponent>(characterEquipment.ValueRO.Character);
-			switch (character.ValueRO.CurrentSlot)
-			{
-				case 0:
-					characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.MetalTower;
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot0, true);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot1, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot2, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot3, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot4, false);
-
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot0, true);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot1, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot2, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot3, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot4, false);
-					break;
-				case 1:
-					characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.FireTower;
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot0, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot1, true);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot2, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot3, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot4, false);
-
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot0, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot1, true);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot2, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot3, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot4, false);
-					break;
-				case 2:
-					characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.WaterTower;					
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot0, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot1, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot2, true);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot3, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot4, false);
-
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot0, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot1, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot2, true);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot3, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot4, false);
-					break;
-				case 3:
-					characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.EarthTower;					
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot0, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot1, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot2, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot3, true);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot4, false);
-
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot0, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot1, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot2, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot3, true);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot4, false);
-					break;
-				case 4:
-					characterEquipment.ValueRW.SelectedTower = characterEquipment.ValueRW.WoodTower;					
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot0, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot1, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot2, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot3, false);
-					SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WeaponSlot4, true);
-
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot0, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot1, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot2, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot3, false);
-					SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WeaponSlot4, true);
-					break;
-				default:
-					break;
-			}
+			UpdateCharacterEquipment(characterEquipment, character.ValueRO.CurrentSlot, ref state);
 		}
+	}
+
+	private void UpdateCharacterEquipment(RefRW<CharacterEquipment> characterEquipment, int currentSlot, ref SystemState state)
+	{
+		switch (currentSlot)
+		{
+			case 1:
+				SetEquipment(characterEquipment, characterEquipment.ValueRW.MetalTower, characterEquipment.ValueRW.MetalGun, characterEquipment.ValueRO.MetalGun, ref state);
+				break;
+			case 2:
+				SetEquipment(characterEquipment, characterEquipment.ValueRW.FireTower, characterEquipment.ValueRW.FireGun, characterEquipment.ValueRO.FireGun, ref state);
+				break;
+			case 3:
+				SetEquipment(characterEquipment, characterEquipment.ValueRW.WaterTower, characterEquipment.ValueRW.WaterGun, characterEquipment.ValueRO.WaterGun, ref state);
+				break;
+			case 4:
+				SetEquipment(characterEquipment, characterEquipment.ValueRW.EarthTower, characterEquipment.ValueRW.EarthGun, characterEquipment.ValueRO.EarthGun, ref state);
+				break;
+			case 5:
+				SetEquipment(characterEquipment, characterEquipment.ValueRW.WoodTower, characterEquipment.ValueRW.WoodGun, characterEquipment.ValueRO.WoodGun, ref state);
+				break;
+			default:
+				break;
+		}
+	}
+
+	private void SetEquipment(RefRW<CharacterEquipment> characterEquipment, Entity selectedTower, Entity enabledGun, Entity enabledMesh, ref SystemState state)
+	{
+		characterEquipment.ValueRW.SelectedTower = selectedTower;
+		characterEquipment.ValueRW.SelectedWeapon = enabledGun;
+
+		SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.FireGun, enabledGun == characterEquipment.ValueRW.FireGun);
+		SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WaterGun, enabledGun == characterEquipment.ValueRW.WaterGun);
+		SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.EarthGun, enabledGun == characterEquipment.ValueRW.EarthGun);
+		SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.WoodGun, enabledGun == characterEquipment.ValueRW.WoodGun);
+		SystemAPI.SetComponentEnabled<Gun>(characterEquipment.ValueRW.MetalGun, enabledGun == characterEquipment.ValueRW.MetalGun);
+
+		SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.FireGun, enabledMesh == characterEquipment.ValueRO.FireGun);
+		SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WaterGun, enabledMesh == characterEquipment.ValueRO.WaterGun);
+		SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.EarthGun, enabledMesh == characterEquipment.ValueRO.EarthGun);
+		SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.WoodGun, enabledMesh == characterEquipment.ValueRO.WoodGun);
+		SystemAPI.SetComponentEnabled<MaterialMeshInfo>(characterEquipment.ValueRO.MetalGun, enabledMesh == characterEquipment.ValueRO.MetalGun);
 	}
 }

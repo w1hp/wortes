@@ -19,9 +19,11 @@ partial struct RotationSystem : ISystem
 		//var physicsWorld = SystemAPI.GetSingleton<BuildPhysicsWorld>().PhysicsWorld;
 		//var collisionWorld = physicsWorld.CollisionWorld;
 
-		foreach (var (characterComponent, characterControl, transform) in SystemAPI.Query<CharacterComponent, CharacterControl, LocalToWorld>())
+		foreach (var (characterComponent, characterControl, equipment, transform) in 
+			SystemAPI.Query<CharacterComponent, CharacterControl, CharacterEquipment, LocalToWorld>())
 		{
-			var gunTransform = SystemAPI.GetComponent<LocalTransform>(characterComponent.GunPrefabEntity);
+			//var gunTransform = SystemAPI.GetComponent<LocalTransform>(characterComponent.GunPrefabEntity);
+			var gunTransform = SystemAPI.GetComponent<LocalTransform>(equipment.SelectedWeapon);
 
 			// Raycast from mouse position
 			var ray = Camera.main.ScreenPointToRay(new Vector3(characterControl.LookVector.x, characterControl.LookVector.y, 0));
@@ -42,7 +44,7 @@ partial struct RotationSystem : ISystem
 				// Apply the rotation to the gun
 				gunTransform.Position = transform.Position + new float3(.5f, 2, .25f);
 				gunTransform.Rotation = targetRotation;
-				SystemAPI.SetComponent(characterComponent.GunPrefabEntity, gunTransform);
+				SystemAPI.SetComponent(equipment.SelectedWeapon, gunTransform);
 			}
 		}
 	}
