@@ -5,11 +5,11 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
-public struct AudioSorurceComponent : IComponentData
-{
-	//public int SoundType;
-	public AudioType Type;
-}
+//public struct AudioSorurceComponent : IComponentData
+//{
+//	//public int SoundType;
+//	public AudioType Type;
+//}
 
 public partial class SoundPoolSystem : SystemBase
 {

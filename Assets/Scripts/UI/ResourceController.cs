@@ -10,11 +10,14 @@ public class ResourceController : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _earthAmount;
 	[SerializeField] private TextMeshProUGUI _woodAmount;
 
-	[SerializeField] private TextMeshProUGUI _metalTowerCost;
-	[SerializeField] private TextMeshProUGUI _fireTowerCost;
-	[SerializeField] private TextMeshProUGUI _waterTowerCost;
-	[SerializeField] private TextMeshProUGUI _earthTowerCost;
-	[SerializeField] private TextMeshProUGUI _woodTowerCost;
+	[SerializeField] private TextMeshProUGUI _selectedTowerCost;
+
+	[SerializeField] private RectTransform _metalTransform;
+	[SerializeField] private RectTransform _fireTransform;
+	[SerializeField] private RectTransform _waterTransform;
+	[SerializeField] private RectTransform _earthTransform;
+	[SerializeField] private RectTransform _woodTransform;
+	private RectTransform _lastSelectedElementTransform;
 
 	[SerializeField] private Slider _metalReloadSlider;
 	//[SerializeField] private Slider _fireReloadSlider;
@@ -26,6 +29,7 @@ public class ResourceController : MonoBehaviour
 	void Start()
     {
         Singleton = this;
+		_lastSelectedElementTransform = _metalTransform;
 	}
 
 	public void UpdateReloadSlider(float value)
@@ -55,12 +59,31 @@ public class ResourceController : MonoBehaviour
 		return value.ToString();
 	}
 
-	public void UpdateTowerCostText(float metal, float fire, float water, float earth, float wood)
+	public void UpdateTowerCostText(float cost)
 	{
-		_metalTowerCost.text = $"/ {metal}";
-		_fireTowerCost.text = $"/ {fire}";
-		_waterTowerCost.text = $"/ {water}";
-		_earthTowerCost.text = $"/ {earth}";
-		_woodTowerCost.text = $"/ {wood}";
+		_selectedTowerCost.text = $"- {cost}";
+	}
+	public void UpdateSelectedTower(ElementType type)
+	{
+		_lastSelectedElementTransform.anchoredPosition -= new Vector2(0, 20);
+		switch (type)
+		{
+			case ElementType.Metal:
+				_lastSelectedElementTransform = _metalTransform;
+				break;
+			case ElementType.Fire:
+				_lastSelectedElementTransform = _fireTransform;
+				break;
+			case ElementType.Water:
+				_lastSelectedElementTransform = _waterTransform;
+				break;
+			case ElementType.Earth:
+				_lastSelectedElementTransform = _earthTransform;
+				break;
+			case ElementType.Wood:
+				_lastSelectedElementTransform = _woodTransform;
+				break;
+		}
+		_lastSelectedElementTransform.anchoredPosition += new Vector2(0, 20);
 	}
 }

@@ -648,17 +648,17 @@ MonoBehaviour:
   WeaponSlot2: {fileID: 1944486168274623026}
   WeaponSlot3: {fileID: 122148421464033128}
   WeaponSlot4: {fileID: 663582106332601277}
-  SelectedTower: {fileID: 8759440460334986151, guid: 80da36c3c63d14043a37314acdf2e667,
+  SelectedTower: {fileID: 8449748693016543844, guid: 0e4e360eedd1aaa4ebdfab3085a1327e,
     type: 3}
-  FireTower: {fileID: 844096362543688308, guid: c19396d0da9627b4c859d3918a953283,
+  FireTower: {fileID: 8449748693016543844, guid: eeca8e7cee64e194cb84e91260473067,
     type: 3}
-  WaterTower: {fileID: 844096362543688308, guid: 90fa4f3fc0443b140a5bdec4a4db207d,
+  WaterTower: {fileID: 8449748693016543844, guid: f48656c375a6ac444b05f18e3a58137a,
     type: 3}
-  EarthTower: {fileID: 844096362543688308, guid: 65e3fc8b98f9e924b87ab6f949d9cbc9,
+  EarthTower: {fileID: 8449748693016543844, guid: f26dc47198e88544d8f015342e3f28c9,
     type: 3}
-  WoodTower: {fileID: 844096362543688308, guid: d45a0e90f53993d4b9219a0ad45410e9,
+  WoodTower: {fileID: 8449748693016543844, guid: 8bdef56c56a746342971ee13beda63cd,
     type: 3}
-  MetalTower: {fileID: 844096362543688308, guid: c2591ff64a2498043baad2ed6b46d8ef,
+  MetalTower: {fileID: 8449748693016543844, guid: 0e4e360eedd1aaa4ebdfab3085a1327e,
     type: 3}
 --- !u!114 &6475067831583943522
 MonoBehaviour:
