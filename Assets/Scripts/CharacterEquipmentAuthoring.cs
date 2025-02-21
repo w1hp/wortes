@@ -6,11 +6,11 @@ class CharacterEquipmentAuthoring : MonoBehaviour
 	public GameObject Character;
 
 	public GameObject SelectedWeapon;
-	public GameObject WeaponSlot0;
-	public GameObject WeaponSlot1;
-	public GameObject WeaponSlot2;
-	public GameObject WeaponSlot3;
-	public GameObject WeaponSlot4;
+	public GameObject FireGun;
+	public GameObject WaterGun;
+	public GameObject EarthGun;
+	public GameObject WoodGun;
+	public GameObject MetalGun;
 
 
 	public GameObject SelectedTower;
@@ -28,12 +28,13 @@ class CharacterEquipmentAuthoring : MonoBehaviour
 			AddComponent(entity, new CharacterEquipment
 			{
 				Character = GetEntity(authoring.Character, TransformUsageFlags.Dynamic),
-				SelectedWeapon = GetEntity(authoring.SelectedWeapon, TransformUsageFlags.Dynamic),
-				WeaponSlot0 = GetEntity(authoring.WeaponSlot0, TransformUsageFlags.Dynamic),
-				WeaponSlot1 = GetEntity(authoring.WeaponSlot1, TransformUsageFlags.Dynamic),
-				WeaponSlot2 = GetEntity(authoring.WeaponSlot2, TransformUsageFlags.Dynamic),
-				WeaponSlot3 = GetEntity(authoring.WeaponSlot3, TransformUsageFlags.Dynamic),
-				WeaponSlot4 = GetEntity(authoring.WeaponSlot4, TransformUsageFlags.Dynamic),
+
+				SelectedWeapon = GetEntity(authoring.SelectedWeapon, TransformUsageFlags.WorldSpace),
+				FireGun = GetEntity(authoring.FireGun, TransformUsageFlags.WorldSpace),
+				WaterGun = GetEntity(authoring.WaterGun, TransformUsageFlags.WorldSpace),
+				EarthGun = GetEntity(authoring.EarthGun, TransformUsageFlags.WorldSpace),
+				WoodGun = GetEntity(authoring.WoodGun, TransformUsageFlags.WorldSpace),
+				MetalGun = GetEntity(authoring.MetalGun, TransformUsageFlags.WorldSpace),
 
 				SelectedTower = GetEntity(authoring.SelectedTower, TransformUsageFlags.Dynamic),
 				FireTower = GetEntity(authoring.FireTower, TransformUsageFlags.Dynamic),
@@ -50,14 +51,14 @@ class CharacterEquipmentAuthoring : MonoBehaviour
 
 public struct CharacterEquipment : IComponentData
 {
-
 	public Entity Character;
+
     public Entity SelectedWeapon;
-	public Entity WeaponSlot0;
-	public Entity WeaponSlot1;
-	public Entity WeaponSlot2;
-	public Entity WeaponSlot3;
-	public Entity WeaponSlot4;
+	public Entity FireGun;
+	public Entity WaterGun;
+	public Entity EarthGun;
+	public Entity WoodGun;
+	public Entity MetalGun;
 
 
 	public Entity SelectedTower;

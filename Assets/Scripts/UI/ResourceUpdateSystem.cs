@@ -27,8 +27,8 @@ partial struct ResourceUpdateSystem : ISystem
 
 
 
-		resourseController.UpdateResourceText(characterResources.Wood, characterResources.Fire,
-			characterResources.Water, characterResources.Earth, characterResources.Metal);
+		resourseController.UpdateResourceText(characterResources.Metal, characterResources.Fire,
+			characterResources.Water, characterResources.Earth, characterResources.Wood);
 
 		resourseController.UpdateTowerCostText(selectedTowerCost.ValueRO.Cost);
 		resourseController.UpdateSelectedTower(selectedTowerElement.ValueRO.Element);

@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 5591473804521091752, guid: 453b9b44def8d3543b6a61f9c731864a,
         type: 3}
       propertyPath: m_Name
-      value: WarriorEarth 1
+      value: WarriorEarth1
       objectReference: {fileID: 0}
     - target: {fileID: 6383469630660165456, guid: 453b9b44def8d3543b6a61f9c731864a,
         type: 3}
@@ -88,6 +88,12 @@ PrefabInstance:
       propertyPath: ResourcePrefab
       value: 
       objectReference: {fileID: 7428874357738166646, guid: 94291b0e461eacc459c9561d960eb8b7,
+        type: 3}
+    - target: {fileID: 8608522499231231601, guid: 453b9b44def8d3543b6a61f9c731864a,
+        type: 3}
+      propertyPath: AnimatedGameObjectPrefab
+      value: 
+      objectReference: {fileID: 3961972914560592201, guid: e689474ca19588b4d9801193fff19e77,
         type: 3}
     m_RemovedComponents:
     - {fileID: 6546087164542527488, guid: 453b9b44def8d3543b6a61f9c731864a, type: 3}
