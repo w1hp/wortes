@@ -9,6 +9,9 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Slider brightnessSlider;
     private float brightnessLevel = 1f;
 
+    [Header("UI Background Settings")]
+    [SerializeField] private Image backgroundImage;  // Pole dla obrazu tła UI
+
     [Header("Resolution Settings")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
@@ -76,18 +79,36 @@ public class MenuController : MonoBehaviour
             fullScreenToggle.onValueChanged.AddListener(SetFullScreen);
         }
     }
-
     public void SetBrightness(float brightness)
     {
-        brightnessLevel = brightness; // Teraz zmienna jest używana
+        // Używamy wartości suwaka od 0 do 1, aby obliczyć skalę jasności.
+        // Jasność tła w skali od 0.2 (ciemno) do 1.8 (bardzo jasne).
+        brightnessLevel = Mathf.Lerp(0.2f, 1f, brightness);  // Zmieniamy skalę jasności
 
+        // Zmieniamy intensywność światła (skalowanie w zakresie od 0.1 do 3)
         Light mainLight = FindObjectOfType<Light>();
         if (mainLight != null)
         {
-            mainLight.intensity = Mathf.Clamp(brightnessLevel * 2f, 0.1f, 3f);
-            mainLight.color = Color.white * brightnessLevel;
+            // Ustawiamy intensywność światła, aby rosła z wartości 0.1 do 3
+            mainLight.intensity = Mathf.Lerp(0.1f, 3f, brightness);  // Jasność światła
+            mainLight.color = Color.white * brightnessLevel;  // Ustawiamy kolor światła na jasność
+        }
+
+        // Zmieniamy kolor tła UI w zależności od brightnessLevel
+        if (backgroundImage != null)
+        {
+            // Kolor tła w UI (od ciemnego do jasnego)
+            Color newColor = new Color(brightnessLevel, brightnessLevel, brightnessLevel, 1f);  // Kolor tła na podstawie jasności
+            backgroundImage.color = newColor;
         }
     }
+
+
+
+
+
+
+
 
     public void SetResolution(int resolutionIndex)
     {
