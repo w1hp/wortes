@@ -1010,21 +1010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ade974fde62bdc4eb187fb55d1b3302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  container: {fileID: 1769476734}
-  levelUpText: {fileID: 291972241}
-  namePowerUp1: {fileID: 1738591516}
-  descriptionPowerUp1: {fileID: 1492562867}
-  iconPowerUp1: {fileID: 1338028968}
-  namePowerUp2: {fileID: 493057786}
-  descriptionPowerUp2: {fileID: 1967246176}
-  iconPowerUp2: {fileID: 782436658}
-  namePowerUp3: {fileID: 1427807245}
-  descriptionPowerUp3: {fileID: 1156472436}
-  iconPowerUp3: {fileID: 1522305270}
-  poolOfPowerUps:
-  - {fileID: 11400000, guid: f43dcf08479c5ad44bdb3f43ee8fcb87, type: 2}
-  - {fileID: 11400000, guid: 738bbaac06194c44f9eee4cc858d1ef0, type: 2}
-  - {fileID: 11400000, guid: 6ba0f575809ac44448f9770f3bfbfded, type: 2}
 --- !u!1 &37146545
 GameObject:
   m_ObjectHideFlags: 0
@@ -12432,7 +12417,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Q
+  m_text: TAB
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20214,7 +20199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Q
+  m_text: TAB
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
