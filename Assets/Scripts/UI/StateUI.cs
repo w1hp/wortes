@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -10,6 +10,7 @@ public class StateUI : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject introductionPanel;
+    [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject lvlSelectionPanel;
 
