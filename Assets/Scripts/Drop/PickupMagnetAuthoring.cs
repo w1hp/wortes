@@ -4,6 +4,7 @@ using UnityEngine;
 class PickupMagnetAuthoring : MonoBehaviour
 {
     public float MagnetRange = 3f;
+    public GameObject CharacterResources;
 }
 
 class PickupMagnetAuthoringBaker : Baker<PickupMagnetAuthoring>
@@ -14,8 +15,9 @@ class PickupMagnetAuthoringBaker : Baker<PickupMagnetAuthoring>
 
         AddComponent(entity, new PickupMagnet
         {
-            MagnetRange = authoring.MagnetRange
-        });
+            MagnetRange = authoring.MagnetRange,
+			CharacterResourcesEntity = GetEntity(authoring.CharacterResources, TransformUsageFlags.Dynamic)
+		});
         
     }
 }
@@ -23,4 +25,5 @@ class PickupMagnetAuthoringBaker : Baker<PickupMagnetAuthoring>
 public struct PickupMagnet : IComponentData
 {
     public float MagnetRange;
+    public Entity CharacterResourcesEntity;
 }

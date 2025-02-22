@@ -14,7 +14,7 @@ partial struct CharacterCollisionSystem : ISystem
 		var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 		var ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
-		var itemLookup = SystemAPI.GetComponentLookup<Item>(true);
+		//var itemLookup = SystemAPI.GetComponentLookup<Item>(true);
 		var enemyLookup = SystemAPI.GetComponentLookup<EnemyComponent>(true);
 		var projectileLookup = SystemAPI.GetComponentLookup<Projectile>(true);
 
@@ -29,43 +29,44 @@ partial struct CharacterCollisionSystem : ISystem
 				var otherEntity = collisionEvent.Hit.Entity;
 
 
-				if (itemLookup.TryGetComponent(otherEntity, out Item item))
-				{
-					switch (collisionEvent.State)
-					{
-						case CharacterHitState.Enter:
-							var characterResources = SystemAPI.GetComponent<CharacterResources>(entity);
-							switch (item.Type)
-							{
-								case ElementType.Fire:
-									characterResources.Fire += item.Value;
-									break;
-								case ElementType.Water:
-									characterResources.Water += item.Value;
-									break;
-								case ElementType.Earth:
-									characterResources.Earth += item.Value;
-									break;
-								case ElementType.Wood:
-									characterResources.Wood += item.Value;
-									break;
-								case ElementType.Metal:
-									characterResources.Metal += item.Value;
-									break;
-							}
-							characterResources.Gold++;
-							ECB.SetComponent(entity, characterResources);
+				//if (itemLookup.TryGetComponent(otherEntity, out Item item))
+				//{
+				//	switch (collisionEvent.State)
+				//	{
+				//		case CharacterHitState.Enter:
+				//			var characterResources = SystemAPI.GetComponent<CharacterResources>(entity);
+				//			switch (item.Type)
+				//			{
+				//				case ElementType.Fire:
+				//					characterResources.Fire += item.Value;
+				//					break;
+				//				case ElementType.Water:
+				//					characterResources.Water += item.Value;
+				//					break;
+				//				case ElementType.Earth:
+				//					characterResources.Earth += item.Value;
+				//					break;
+				//				case ElementType.Wood:
+				//					characterResources.Wood += item.Value;
+				//					break;
+				//				case ElementType.Metal:
+				//					characterResources.Metal += item.Value;
+				//					break;
+				//			}
+				//			characterResources.Gold++;
+				//			ECB.SetComponent(entity, characterResources);
 
-							ECB.DestroyEntity(otherEntity);
-							break;
-						case CharacterHitState.Stay:
-							break;
-						case CharacterHitState.Exit:
-							break;
-					}
-					continue;
-				}
-				else if (enemyLookup.TryGetComponent(otherEntity, out EnemyComponent enemy))
+				//			ECB.DestroyEntity(otherEntity);
+				//			break;
+				//		case CharacterHitState.Stay:
+				//			break;
+				//		case CharacterHitState.Exit:
+				//			break;
+				//	}
+				//	continue;
+				//}
+		 
+				if (enemyLookup.TryGetComponent(otherEntity, out EnemyComponent enemy))
 				{
 					switch (collisionEvent.State)
 					{
