@@ -77,7 +77,6 @@ public partial class EnemySpawnerSystem : SystemBase
             float groundLevel = 1.0f;
             float3 spawnPosition;
 
-            // Losowy punkt wokół gracza (możemy to zmienić na krzywą, jak w poprzednich przykładach)
             float angle = random.NextFloat(0, 2 * math.PI);
             float distance = random.NextFloat(minSpawnDistance, maxSpawnDistance);
             float offsetX = math.cos(angle) * distance;
@@ -130,21 +129,32 @@ public partial class EnemySpawnerSystem : SystemBase
         nextSpawnTime = (float)elapsedTime + spawnInterval;
     }
 
+    //private int CalculateEnemiesToSpawn(double elapsedTime)
+    //{
+    //    // Funkcja wykładnicza rosnąca z czasem
+    //    float spawnFactor = (float)(Math.Exp(0.03 * elapsedTime) - 1); // Możesz dostosować wartość 0.03
+    //    int numberOfEnemies = Mathf.FloorToInt(spawnFactor);
+
+    //    // Upewnij się, że zawsze spawnujemy co najmniej 1 przeciwnika
+    //    return Mathf.Max(1, numberOfEnemies);
+    //}
+
     private int CalculateEnemiesToSpawn(double elapsedTime)
     {
-        // Funkcja wykładnicza rosnąca z czasem
-        float spawnFactor = (float)(Math.Exp(0.03 * elapsedTime) - 1); // Możesz dostosować wartość 0.03
+        // Funkcja logarytmiczna rosnąca z czasem, ale wolniej niż wykładnicza
+        float spawnFactor = Mathf.Log((float)(elapsedTime + 1)); // Dodajemy 1, żeby uniknąć log(0)
         int numberOfEnemies = Mathf.FloorToInt(spawnFactor);
 
         // Upewnij się, że zawsze spawnujemy co najmniej 1 przeciwnika
         return Mathf.Max(1, numberOfEnemies);
     }
 
+
     private void AdjustSpawnInterval()
     {
         // Gradual decrease in spawn interval
         spawnInterval *= spawnAccelerationRate;
-        spawnInterval = math.max(spawnInterval, 0.5f); // Minimum interval of 0.5 seconds
+        spawnInterval = math.max(spawnInterval, 0.7f); // Minimum interval of 0.5 seconds
     }
 
     private float3 GetPlayerPosition()
