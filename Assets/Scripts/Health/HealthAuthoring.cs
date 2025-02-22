@@ -46,7 +46,7 @@ public struct Health : IComponentData
 	public float WoodResistance;
 	public float MetalResistance;
 
-	public AttackResult TakeDamage(float amount, ElementType typeDamage)
+	public (AttackResult, float) TakeDamage(float amount, ElementType typeDamage)
 	{
 		float tmpHealth = CurrentHealth;
 		float resistance = 0f;
@@ -72,17 +72,18 @@ public struct Health : IComponentData
 #if UNITY_EDITOR
 				Debug.Log("Unidentified type damage");
 #endif
-				return AttackResult.NoEffect;
+				return (AttackResult.NoEffect, 0f);
 		}
 
 		if (resistance == 100f)
 		{
-			return AttackResult.NoEffect;
+			return (AttackResult.NoEffect, 0f);
 		}
-
-		tmpHealth -= amount * (100 - resistance) / 100;
+		var damage = amount * (100 - resistance) / 100;
+		tmpHealth -= damage;
 		var isHealing = tmpHealth >= CurrentHealth;
 		CurrentHealth = tmpHealth;
-		return isHealing ? AttackResult.Healed : AttackResult.Damaged;
+		var result = isHealing ? AttackResult.Healed : AttackResult.Damaged;
+		return (result, damage);
 	}
 }

@@ -78,6 +78,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: WarriorEarth
       objectReference: {fileID: 0}
+    - target: {fileID: 5591473804521091752, guid: 453b9b44def8d3543b6a61f9c731864a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383469630660165456, guid: 453b9b44def8d3543b6a61f9c731864a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6383469630660165456, guid: 453b9b44def8d3543b6a61f9c731864a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

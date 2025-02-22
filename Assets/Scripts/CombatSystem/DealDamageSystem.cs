@@ -23,7 +23,7 @@ public partial class DealDamageSystem : SystemBase
 #endif
 			var atackResult = health.ValueRW.TakeDamage(damageToCharacter.ValueRO.Value, damageToCharacter.ValueRO.Type);
 
-			OnDealDamage?.Invoke(damageToCharacter.ValueRO.Value, transform.Position, atackResult);
+			OnDealDamage?.Invoke(atackResult.Item2, transform.Position, atackResult.Item1);
 
 			ecb.RemoveComponent<DamageToCharacter>(entity);
 

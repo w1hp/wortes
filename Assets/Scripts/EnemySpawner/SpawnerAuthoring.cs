@@ -6,7 +6,8 @@ using Unity.Mathematics;
 public class EnemySpawnerAuthoring : MonoBehaviour
 {
     public float spawnCooldown = 1;
-    public Vector3 cameraSize;
+    public int level = 1;
+	public Vector3 cameraSize;
     public List<EnemySO> enemiesSO;
 
     public class EnemySpawnerBaker : Baker<EnemySpawnerAuthoring>
@@ -18,8 +19,9 @@ public class EnemySpawnerAuthoring : MonoBehaviour
             AddComponent(enemySpawnerAuthoring, new EnemySpawnerComponent
             {
                 spawnCooldown = authoring.spawnCooldown,
-                cameraSize = authoring.cameraSize
-            });
+                cameraSize = authoring.cameraSize,
+				level = authoring.level
+			});
 
             List<EnemyData> enemyData = new List<EnemyData>();
 

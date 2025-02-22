@@ -63,17 +63,19 @@ public partial class EnemySpawnerSystem : SystemBase
     {
         // Na podstawie czasu ustalamy, ile przeciwników ma się pojawić
         int numberOfEnemiesToSpawn = CalculateEnemiesToSpawn(elapsedTime);
-
-        for (int i = 0; i < numberOfEnemiesToSpawn; i++)
+        int currentEnemyTypeIndex = 0;
+		for (int i = 0; i < numberOfEnemiesToSpawn; i++)
         {
-            int enemyTypeIndex = (elapsedTime >= 60) ? 2 : (elapsedTime >= 30) ? 1 : 0;
-            if (enemyTypeIndex >= enemyDataContainer.enemies.Count)
+			int maxEnemyTypeIndex = enemySpawnerComponent.level - 1;
+            int enemyTypeIndex = currentEnemyTypeIndex;
+			//int enemyTypeIndex = (elapsedTime >= 60) ? 2 : (elapsedTime >= 30) ? 1 : 0;
+			if (enemyTypeIndex >= enemyDataContainer.enemies.Count)
             {
                 Debug.LogWarning("Enemy type index out of bounds!");
                 return;
             }
-
-            var enemyPrefab = enemyDataContainer.enemies[enemyTypeIndex].prefab;
+            //Debug.Log("Spawning enemy type: " + enemyTypeIndex);
+			var enemyPrefab = enemyDataContainer.enemies[enemyTypeIndex].prefab;
             float groundLevel = 1.0f;
             float3 spawnPosition;
 
@@ -123,7 +125,12 @@ public partial class EnemySpawnerSystem : SystemBase
                 moveSpeed = enemyData.moveSpeed,
                 EnemyType = enemyData.elementType
             });
-        }
+			currentEnemyTypeIndex++;
+			if (currentEnemyTypeIndex > maxEnemyTypeIndex)
+			{
+				currentEnemyTypeIndex = 0;
+			}
+		}
 
         // Zaktualizowanie czasu kolejnego spawnu
         nextSpawnTime = (float)elapsedTime + spawnInterval;

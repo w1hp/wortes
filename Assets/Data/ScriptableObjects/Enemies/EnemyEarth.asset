@@ -19,11 +19,11 @@ MonoBehaviour:
   damage: 5
   moveSpeed: 0.5
   maxHealth: 100
-  fireResistance: 100
-  waterResistance: 100
+  fireResistance: 50
+  waterResistance: 50
   earthResistance: 150
   woodResistance: 0
-  metalResistance: 100
+  metalResistance: 50
   experiencePoints: 5
   resourcePrefab: {fileID: 2132811732415857500, guid: 051a09c4195a1b54a9332126f2a396f7,
     type: 3}
