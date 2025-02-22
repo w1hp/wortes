@@ -2127,17 +2127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 371352475}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1b2b5a50-b129-45a5-b8a6-25374847981a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Water
 --- !u!1 &55294040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2706,17 +2695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 704565329}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 9e9ab2aa-03e3-48fc-ad4a-b6a940c648ee
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Back
 --- !u!1 &111571579
 GameObject:
   m_ObjectHideFlags: 0
@@ -3881,17 +3859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 1943384972}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: e4287b2c-c6d8-4656-b59f-78754b05ece8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Left
 --- !u!1 &134254384
 GameObject:
   m_ObjectHideFlags: 0
@@ -3977,17 +3944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 1704767491}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1b2b5a50-b129-45a5-b8a6-25374847981a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Water
 --- !u!1 &137003516
 GameObject:
   m_ObjectHideFlags: 0
@@ -6569,17 +6525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 1380881535}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c33cec3e-1665-4d27-b02b-8b9b630d7d12
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Wood
 --- !u!1 &238298098
 GameObject:
   m_ObjectHideFlags: 0
@@ -8234,7 +8179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9300,17 +9245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 1411821067}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5d9c5879-8f6c-4305-a0d5-4dc94acac766
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: ShootOrBuild
 --- !u!1 &343027217
 GameObject:
   m_ObjectHideFlags: 0
@@ -10309,17 +10243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 263954789}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f1acd0ab-b3a7-472a-83ae-fe27b48ed4a9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Fire
 --- !u!1 &387668668
 GameObject:
   m_ObjectHideFlags: 0
@@ -10772,17 +10695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 2065577687}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f1acd0ab-b3a7-472a-83ae-fe27b48ed4a9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Fire
 --- !u!1 &404777613
 GameObject:
   m_ObjectHideFlags: 0
@@ -11415,17 +11327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 470969654}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: e4287b2c-c6d8-4656-b59f-78754b05ece8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Left
 --- !u!1 &430349562
 GameObject:
   m_ObjectHideFlags: 0
@@ -12665,7 +12566,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13925,17 +13826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 2095309057}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b70411f9-51d9-4ca5-9f9b-dbb0bcd2a2fe
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Forward
 --- !u!1 &536743453
 GameObject:
   m_ObjectHideFlags: 0
@@ -21299,17 +21189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 1599293580}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 9e9ab2aa-03e3-48fc-ad4a-b6a940c648ee
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Back
 --- !u!1 &834704564
 GameObject:
   m_ObjectHideFlags: 0
@@ -24087,17 +23966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 1665053368}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b94ffb9a-1452-4766-a2f1-3612662a0643
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Sand
 --- !u!1 &972322396
 GameObject:
   m_ObjectHideFlags: 0
@@ -24155,7 +24023,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '4
+  m_text: '5
 
 '
   m_isRightToLeft: 0
@@ -25271,7 +25139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '4
+  m_text: '5
 
 '
   m_isRightToLeft: 0
@@ -25873,17 +25741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 980155794}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 2b3c66e8-bb07-4154-9aa8-7d06d1b010a9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Right
 --- !u!1 &1032815829
 GameObject:
   m_ObjectHideFlags: 0
@@ -25977,7 +25834,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '2
+  m_text: '3
 
 '
   m_isRightToLeft: 0
@@ -26800,7 +26657,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -28569,17 +28426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 140086278}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: fca281c0-a4b9-4143-90e0-36aad6e75326
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Metal
 --- !u!1 &1160268413
 GameObject:
   m_ObjectHideFlags: 0
@@ -32211,7 +32057,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -32345,7 +32191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -34612,7 +34458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '2
+  m_text: '3
 
 '
   m_isRightToLeft: 0
@@ -42364,17 +42210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 366203149}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b94ffb9a-1452-4766-a2f1-3612662a0643
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Sand
 --- !u!1 &1664817289
 GameObject:
   m_ObjectHideFlags: 0
@@ -42922,17 +42757,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 739153296}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 2b3c66e8-bb07-4154-9aa8-7d06d1b010a9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Right
 --- !u!1 &1677206863
 GameObject:
   m_ObjectHideFlags: 0
@@ -47254,10 +47078,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1867386431670312519, guid: 8cf63222534d78f4294562502b6ae24d,
+        type: 3}
+      propertyPath: m_Text
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2768709847697738727, guid: 8cf63222534d78f4294562502b6ae24d,
+        type: 3}
+      propertyPath: m_Text
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5330650837584870793, guid: 8cf63222534d78f4294562502b6ae24d,
         type: 3}
       propertyPath: m_Name
       value: ResourcePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250285408443806720, guid: 8cf63222534d78f4294562502b6ae24d,
+        type: 3}
+      propertyPath: m_Text
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7451816658595555764, guid: 8cf63222534d78f4294562502b6ae24d,
+        type: 3}
+      propertyPath: m_Text
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7960625527192722018, guid: 8cf63222534d78f4294562502b6ae24d,
+        type: 3}
+      propertyPath: m_Text
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -47835,7 +47684,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -48630,17 +48479,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 2018564171}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 62140d7e-fd9f-4623-b3e0-da9f15836893
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Switch
 --- !u!1 &1921444708
 GameObject:
   m_ObjectHideFlags: 0
@@ -50809,17 +50647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 312015984}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 62140d7e-fd9f-4623-b3e0-da9f15836893
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Switch
 --- !u!1 &1975051079
 GameObject:
   m_ObjectHideFlags: 0
@@ -51339,17 +51166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 859964906}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5d9c5879-8f6c-4305-a0d5-4dc94acac766
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: ShootOrBuild
 --- !u!1 &1999385600
 GameObject:
   m_ObjectHideFlags: 0
@@ -51541,17 +51357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 1243602365}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b70411f9-51d9-4ca5-9f9b-dbb0bcd2a2fe
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Forward
 --- !u!224 &2014807911
 RectTransform:
   m_ObjectHideFlags: 0
@@ -54137,17 +53942,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 1190784862}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c33cec3e-1665-4d27-b02b-8b9b630d7d12
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Wood
 --- !u!1 &2095309056
 GameObject:
   m_ObjectHideFlags: 0
@@ -54749,17 +54543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f317b4e62e1f121488ac600e818afd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLbl: {fileID: 343551875}
-  inputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: fca281c0-a4b9-4143-90e0-36aad6e75326
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  actionName: Metal
 --- !u!1 &2132290480
 GameObject:
   m_ObjectHideFlags: 0
