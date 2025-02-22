@@ -33811,7 +33811,7 @@ MonoBehaviour:
   ElementType: 0
   Damage: 10
   Strength: 20
-  FireInterval: 0.2
+  FireInterval: 2
 --- !u!1001 &6692491389611093528
 PrefabInstance:
   m_ObjectHideFlags: 0

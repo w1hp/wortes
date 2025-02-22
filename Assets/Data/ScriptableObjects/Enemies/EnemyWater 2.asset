@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4caec54d6260a4ab75927d382677ef, type: 3}
   m_Name: EnemyWater 2
   m_EditorClassIdentifier: 
-  level: 2
+  level: 1
   prefab: {fileID: 2259230368267083137, guid: 96761e09c4f07bf48bac68b2782c520b, type: 3}
   detectionRange: 100
   elementType: 2
   damage: 10
-  moveSpeed: 1
+  moveSpeed: 1.2
   maxHealth: 130
   fireResistance: 130
   waterResistance: 150

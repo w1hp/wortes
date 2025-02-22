@@ -627,7 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70763839391362e44ae68ae389246f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamage: 50
+  AttackDamage: 0
   AttackSpeed: 1
   MaxHealth: 100
   MoveSpeed: 5
@@ -1206,6 +1206,16 @@ PrefabInstance:
       objectReference: {fileID: 1692896102597148395}
     - target: {fileID: 5037631602010080899, guid: 575d3a0812595374992de27128ec3f77,
         type: 3}
+      propertyPath: Damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037631602010080899, guid: 575d3a0812595374992de27128ec3f77,
+        type: 3}
+      propertyPath: FireInterval
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037631602010080899, guid: 575d3a0812595374992de27128ec3f77,
+        type: 3}
       propertyPath: OriginCharacterType
       value: 1
       objectReference: {fileID: 0}
@@ -1304,6 +1314,16 @@ PrefabInstance:
       propertyPath: Owner
       value: 
       objectReference: {fileID: 1692896102597148395}
+    - target: {fileID: 5037631602010080899, guid: af28258f9b8bf2448842eabb6eca40bb,
+        type: 3}
+      propertyPath: Damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037631602010080899, guid: af28258f9b8bf2448842eabb6eca40bb,
+        type: 3}
+      propertyPath: FireInterval
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5037631602010080899, guid: af28258f9b8bf2448842eabb6eca40bb,
         type: 3}
       propertyPath: OriginCharacterType
@@ -1406,6 +1426,16 @@ PrefabInstance:
       objectReference: {fileID: 1692896102597148395}
     - target: {fileID: 5037631602010080899, guid: 381ed5a12dcbc894f83444262e6431b9,
         type: 3}
+      propertyPath: Damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037631602010080899, guid: 381ed5a12dcbc894f83444262e6431b9,
+        type: 3}
+      propertyPath: FireInterval
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037631602010080899, guid: 381ed5a12dcbc894f83444262e6431b9,
+        type: 3}
       propertyPath: OriginCharacterType
       value: 1
       objectReference: {fileID: 0}
@@ -1506,6 +1536,16 @@ PrefabInstance:
       objectReference: {fileID: 1692896102597148395}
     - target: {fileID: 5037631602010080899, guid: 9b72fefbd8d3c5a4e996a0fa6a3dcb44,
         type: 3}
+      propertyPath: Damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037631602010080899, guid: 9b72fefbd8d3c5a4e996a0fa6a3dcb44,
+        type: 3}
+      propertyPath: FireInterval
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037631602010080899, guid: 9b72fefbd8d3c5a4e996a0fa6a3dcb44,
+        type: 3}
       propertyPath: OriginCharacterType
       value: 1
       objectReference: {fileID: 0}
@@ -1604,6 +1644,16 @@ PrefabInstance:
       propertyPath: Owner
       value: 
       objectReference: {fileID: 1692896102597148395}
+    - target: {fileID: 5037631602010080899, guid: 35944c99c7cdb3645be1741bac26a9a7,
+        type: 3}
+      propertyPath: Damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037631602010080899, guid: 35944c99c7cdb3645be1741bac26a9a7,
+        type: 3}
+      propertyPath: FireInterval
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5037631602010080899, guid: 35944c99c7cdb3645be1741bac26a9a7,
         type: 3}
       propertyPath: OriginCharacterType

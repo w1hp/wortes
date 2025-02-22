@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4caec54d6260a4ab75927d382677ef, type: 3}
   m_Name: EnemyWood 1
   m_EditorClassIdentifier: 
-  level: 4
+  level: 1
   prefab: {fileID: 6228013897857435684, guid: 24e8e2fa94a25bb4cbce55bf09a6f307, type: 3}
   detectionRange: 100
   elementType: 4
   damage: 3
-  moveSpeed: 10
+  moveSpeed: 1.2
   maxHealth: 60
   fireResistance: 60
   waterResistance: 60

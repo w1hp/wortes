@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4caec54d6260a4ab75927d382677ef, type: 3}
   m_Name: EnemyEarth 2
   m_EditorClassIdentifier: 
-  level: 3
+  level: 1
   prefab: {fileID: 5404238183554296672, guid: 078353657b372904e84107db4b18c0b8, type: 3}
   detectionRange: 100
   elementType: 3
   damage: 10
-  moveSpeed: 2
+  moveSpeed: 1.2
   maxHealth: 130
   fireResistance: 130
   waterResistance: 130

@@ -66,10 +66,10 @@ public partial class PlayerInputsSystem : SystemBase
 			//         {
 			//             playerInputs.ValueRW.JumpPressed.Set(fixedTick);
 			//         }
-			//         if (_defaultActionsMap.Dash.WasPressedThisFrame())
-			//         {
-			//             playerInputs.ValueRW.DashPressed.Set(fixedTick);
-			//         }
+			if (_defaultActionsMap.Dash.WasPressedThisFrame())
+			{
+				playerInputs.ValueRW.DashPressed.Set(fixedTick);
+			}
 			//         if (_defaultActionsMap.Crouch.WasPressedThisFrame())
 			//         {
 			//             playerInputs.ValueRW.CrouchPressed.Set(fixedTick);

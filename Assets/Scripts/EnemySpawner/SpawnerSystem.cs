@@ -149,7 +149,7 @@ public partial class EnemySpawnerSystem : SystemBase
     private int CalculateEnemiesToSpawn(double elapsedTime)
     {
         // Funkcja logarytmiczna rosnąca z czasem, ale wolniej niż wykładnicza
-        float spawnFactor = Mathf.Log((float)(elapsedTime + 1)); // Dodajemy 1, żeby uniknąć log(0)
+        float spawnFactor = Mathf.Log((float)(elapsedTime + 1)) * 0.5f; // Dodajemy 1, żeby uniknąć log(0)
         int numberOfEnemies = Mathf.FloorToInt(spawnFactor);
 
         // Upewnij się, że zawsze spawnujemy co najmniej 1 przeciwnika
@@ -161,7 +161,7 @@ public partial class EnemySpawnerSystem : SystemBase
     {
         // Gradual decrease in spawn interval
         spawnInterval *= spawnAccelerationRate;
-        spawnInterval = math.max(spawnInterval, 0.7f); // Minimum interval of 0.5 seconds
+        spawnInterval = math.max(spawnInterval, 1f); // Minimum interval of 0.5 seconds
     }
 
     private float3 GetPlayerPosition()

@@ -391,8 +391,18 @@ PrefabInstance:
       objectReference: {fileID: 1401014823036408}
     - target: {fileID: 7603736823457496745, guid: e591aaee450e484449cdd91fd670cc4a,
         type: 3}
+      propertyPath: Damage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603736823457496745, guid: e591aaee450e484449cdd91fd670cc4a,
+        type: 3}
       propertyPath: ElementType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603736823457496745, guid: e591aaee450e484449cdd91fd670cc4a,
+        type: 3}
+      propertyPath: FireInterval
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
