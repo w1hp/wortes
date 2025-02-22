@@ -30,6 +30,7 @@ partial struct CountdownSystem : ISystem
 			if (bossCountdown.ValueRO.TargetDuration == 0)
 			{
 				countdownController.UpdateBossHealthPanel(true);
+				ECB.AddComponent(entity, new GameOverTag { Success = true });
 				ECB.RemoveComponent<BossCountdown>(entity);
 			}
 		}
