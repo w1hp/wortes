@@ -44,6 +44,7 @@ partial struct PickupMagnetSystem : ISystem
 				switch (triggerEvent.State)
 				{
 					case StatefulEventState.Enter:
+					case StatefulEventState.Stay:
 						var item = SystemAPI.GetComponent<Item>(otherEntity);
 						var characterResourcesEntity = pickupMagnet.ValueRW.CharacterResourcesEntity;
 						var characterResources = SystemAPI.GetComponent<CharacterResources>(characterResourcesEntity);
@@ -70,26 +71,6 @@ partial struct PickupMagnetSystem : ISystem
 						ECB.SetComponent(characterResourcesEntity, characterResources);
 
 						ECB.DestroyEntity(otherEntity);
-						break;
-					case StatefulEventState.Stay:
-						//var otherTransform = SystemAPI.GetComponent<LocalTransform>(otherEntity);
-						//var direction = transform.ValueRO.Position - otherTransform.Position;
-
-						//PhysicsVelocity velocity = new PhysicsVelocity
-						//{
-						//	Linear = math.lerp(direction, (direction * 10), 0.5f),
-						//	Angular = float3.zero
-						//};
-
-						//var newPosition = math.lerp(otherTransform.Position, transform.ValueRO.Position, 0.1f);
-						//LocalTransform newTransform = new LocalTransform
-						//{
-						//	Position = newPosition,
-						//	Rotation = otherTransform.Rotation,
-						//	Scale = otherTransform.Scale
-						//};
-
-						//ECB.SetComponent(otherEntity, velocity);
 						break;
 					case StatefulEventState.Exit:
 						break;
