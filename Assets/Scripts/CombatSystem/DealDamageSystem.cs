@@ -17,6 +17,10 @@ public partial class DealDamageSystem : SystemBase
 		foreach (var (health, damageToCharacter, transform, entity) in
 				 SystemAPI.Query<RefRW<Health>, RefRO<DamageToCharacter>, LocalTransform>().WithEntityAccess())
 		{
+#if UNITY_EDITOR
+
+			UnityEngine.Debug.Log("DealDamageSystem");
+#endif
 			var atackResult = health.ValueRW.TakeDamage(damageToCharacter.ValueRO.Value, damageToCharacter.ValueRO.Type);
 
 			OnDealDamage?.Invoke(damageToCharacter.ValueRO.Value, transform.Position, atackResult);

@@ -100,8 +100,24 @@ public partial class EnemySpawnerSystem : SystemBase
                 WoodResistance = enemyData.woodResistance,
                 MetalResistance = enemyData.metalResistance
             });
+			EntityManager.AddComponentData(instance, new IsExistTag { });
 
-            EntityManager.AddComponentData(instance, new EnemyComponent
+			EntityManager.AddComponentData(instance, new EnemyTag { });
+
+			EntityManager.AddComponentData(instance, new DamageableTag { });
+
+			EntityManager.AddComponentData(instance, new CharacterExperiencePoints
+			{
+				Value = enemyData.experiencePoints
+			});
+
+			EntityManager.AddComponentData(instance, new Drop
+			{
+				ResourcePrefab = enemyData.resourcePrefab,
+				ResourceAmount = enemyData.resourceAmount
+			});
+
+			EntityManager.AddComponentData(instance, new EnemyComponent
             {
                 DetectionRange = enemyData.detectionRange,
                 Damage = enemyData.damage,
