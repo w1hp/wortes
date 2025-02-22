@@ -33811,7 +33811,7 @@ MonoBehaviour:
   ElementType: 0
   Damage: 10
   Strength: 20
-  FireInterval: 0.5
+  FireInterval: 1
 --- !u!1001 &6692491389611093528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33888,7 +33888,8 @@ AudioSource:
   m_GameObject: {fileID: 6693547475805319816}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1685746344808762058, guid: 350db6d18f8315347b5656f8b3082181,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 29859915a6a39164c9f30ed68d70711a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.45
