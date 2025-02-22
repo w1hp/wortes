@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
+using System;
 
 public partial class EnemySpawnerSystem : SystemBase
 {
@@ -14,11 +15,11 @@ public partial class EnemySpawnerSystem : SystemBase
     private float nextSpawnTime;
     private Random random;
 
-    private float spawnInterval = 2f; 
-    private float spawnAccelerationRate = 0.95f; 
+    private float spawnInterval = 2f;
+    private float spawnAccelerationRate = 0.95f;
     private double elapsedTime;
 
-    private const float minSpawnDistance = 25f; 
+    private const float minSpawnDistance = 25f;
     private const float maxSpawnDistance = 50f;
 
     protected override void OnCreate()
@@ -60,79 +61,72 @@ public partial class EnemySpawnerSystem : SystemBase
 
     private void SpawnEnemy()
     {
-        // Determine which enemy type to spawn based on elapsed time
-        int enemyTypeIndex = 0; // Default to first type
+        // Na podstawie czasu ustalamy, ile przeciwników ma się pojawić
+        int numberOfEnemiesToSpawn = CalculateEnemiesToSpawn(elapsedTime);
 
-        if (elapsedTime >= 60)
+        for (int i = 0; i < numberOfEnemiesToSpawn; i++)
         {
-            enemyTypeIndex = 2; // Third type
-        }
-        else if (elapsedTime >= 30)
-        {
-            enemyTypeIndex = 1; // Second type
-        }
+            int enemyTypeIndex = (elapsedTime >= 60) ? 2 : (elapsedTime >= 30) ? 1 : 0;
+            if (enemyTypeIndex >= enemyDataContainer.enemies.Count)
+            {
+                Debug.LogWarning("Enemy type index out of bounds!");
+                return;
+            }
 
-        // Ensure the index is within the bounds of the enemies list
-        if (enemyTypeIndex >= enemyDataContainer.enemies.Count)
-        {
-            Debug.LogWarning("Enemy type index out of bounds!");
-            return;
-        }
+            var enemyPrefab = enemyDataContainer.enemies[enemyTypeIndex].prefab;
+            float groundLevel = 1.0f;
+            float3 spawnPosition;
 
-        var enemyPrefab = enemyDataContainer.enemies[enemyTypeIndex].prefab;
-
-        float groundLevel = 1.0f; // Adjust enemy spawn height to the correct ground level
-        float3 spawnPosition;
-        int attempts = 0;
-        const int maxAttempts = 10;
-
-        do
-        {
+            // Losowy punkt wokół gracza (możemy to zmienić na krzywą, jak w poprzednich przykładach)
             float angle = random.NextFloat(0, 2 * math.PI);
             float distance = random.NextFloat(minSpawnDistance, maxSpawnDistance);
             float offsetX = math.cos(angle) * distance;
             float offsetZ = math.sin(angle) * distance;
             float3 playerPosition = GetPlayerPosition();
             spawnPosition = new float3(playerPosition.x + offsetX, groundLevel, playerPosition.z + offsetZ);
-            attempts++;
-        } while (attempts < maxAttempts);
 
-        var instance = EntityManager.Instantiate(enemyPrefab);
-        EntityManager.SetComponentData(instance, LocalTransform.FromPosition(spawnPosition));
+            // Instantiowanie przeciwnika
+            var instance = EntityManager.Instantiate(enemyPrefab);
+            EntityManager.SetComponentData(instance, LocalTransform.FromPosition(spawnPosition));
 
-        // Ensure enemy starts with a valid transform for AI tracking
-        if (!EntityManager.HasComponent<LocalTransform>(instance))
-        {
-            EntityManager.AddComponentData(instance, LocalTransform.FromPosition(spawnPosition));
+            // Dodanie komponentów do przeciwnika
+            var enemyData = enemyDataContainer.enemies[enemyTypeIndex];
+            EntityManager.AddComponentData(instance, new Health
+            {
+                CurrentHealth = enemyData.maxHealth,
+                FireResistance = enemyData.fireResistance,
+                WaterResistance = enemyData.waterResistance,
+                EarthResistance = enemyData.earthResistance,
+                WoodResistance = enemyData.woodResistance,
+                MetalResistance = enemyData.metalResistance
+            });
+
+            EntityManager.AddComponentData(instance, new EnemyComponent
+            {
+                DetectionRange = enemyData.detectionRange,
+                Damage = enemyData.damage,
+                moveSpeed = enemyData.moveSpeed,
+                EnemyType = enemyData.elementType
+            });
         }
 
-        // Assign health and elemental properties
-        var enemyData = enemyDataContainer.enemies[enemyTypeIndex];
-        EntityManager.AddComponentData(instance, new Health
-        {
-            CurrentHealth = enemyData.maxHealth,
-            FireResistance = enemyData.fireResistance,
-            WaterResistance = enemyData.waterResistance,
-            EarthResistance = enemyData.earthResistance,
-            WoodResistance = enemyData.woodResistance,
-            MetalResistance = enemyData.metalResistance
-        });
-
-        // Assign movement speed and detection range to EnemyComponent
-        EntityManager.AddComponentData(instance, new EnemyComponent
-        {
-            DetectionRange = enemyData.detectionRange,
-            Damage = enemyData.damage,
-            moveSpeed = enemyData.moveSpeed,
-            EnemyType = enemyData.elementType
-        });
-
+        // Zaktualizowanie czasu kolejnego spawnu
         nextSpawnTime = (float)elapsedTime + spawnInterval;
+    }
+
+    private int CalculateEnemiesToSpawn(double elapsedTime)
+    {
+        // Funkcja wykładnicza rosnąca z czasem
+        float spawnFactor = (float)(Math.Exp(0.03 * elapsedTime) - 1); // Możesz dostosować wartość 0.03
+        int numberOfEnemies = Mathf.FloorToInt(spawnFactor);
+
+        // Upewnij się, że zawsze spawnujemy co najmniej 1 przeciwnika
+        return Mathf.Max(1, numberOfEnemies);
     }
 
     private void AdjustSpawnInterval()
     {
-        // Gradually decrease spawn interval
+        // Gradual decrease in spawn interval
         spawnInterval *= spawnAccelerationRate;
         spawnInterval = math.max(spawnInterval, 0.5f); // Minimum interval of 0.5 seconds
     }
@@ -142,11 +136,9 @@ public partial class EnemySpawnerSystem : SystemBase
         if (EntityManager.HasComponent<LocalTransform>(characterEntity))
         {
             float3 playerPos = EntityManager.GetComponentData<LocalTransform>(characterEntity).Position;
-            //Debug.Log($"Player position: {playerPos}");
             return playerPos;
         }
 
-        //Debug.LogWarning("Character entity has no LocalTransform component!");
         return float3.zero; // Default position if player not found
     }
 }
