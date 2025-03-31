@@ -676,11 +676,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level: 1
   Gold: 0
-  Wood: 20
-  Metal: 20
-  Water: 20
-  Earth: 20
-  Fire: 20
+  Wood: 100
+  Metal: 100
+  Water: 100
+  Earth: 100
+  Fire: 100
 --- !u!114 &4011941080999230373
 MonoBehaviour:
   m_ObjectHideFlags: 0

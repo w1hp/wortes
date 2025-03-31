@@ -17,12 +17,12 @@ MonoBehaviour:
   detectionRange: 100
   elementType: 4
   damage: 20
-  moveSpeed: 1.2
+  moveSpeed: 2.5
   maxHealth: 100
   fireResistance: 50
   waterResistance: 50
   earthResistance: 50
-  woodResistance: 150
+  woodResistance: 75
   metalResistance: 0
   experiencePoints: 5
   resourcePrefab: {fileID: 2132811732415857500, guid: a825f039226293b4b9658af5ef3c53c0,

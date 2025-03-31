@@ -17,7 +17,7 @@ MonoBehaviour:
   detectionRange: 100
   elementType: 1
   damage: 10
-  moveSpeed: 1.2
+  moveSpeed: 2.5
   maxHealth: 130
   fireResistance: 200
   waterResistance: 0

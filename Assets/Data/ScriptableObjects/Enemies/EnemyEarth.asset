@@ -17,11 +17,11 @@ MonoBehaviour:
   detectionRange: 100
   elementType: 3
   damage: 5
-  moveSpeed: 1.2
+  moveSpeed: 2.5
   maxHealth: 100
   fireResistance: 50
   waterResistance: 50
-  earthResistance: 150
+  earthResistance: 75
   woodResistance: 0
   metalResistance: 50
   experiencePoints: 5
